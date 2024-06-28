@@ -1,0 +1,113 @@
+Sentence,Dominant vs. Subordinate,Target Word,Context Strength,Related Word 1,Related Word 2,Related Word 3,Related Word 4,Related Word 5
+The robber rushed out the door. He came from the bank with both guns blazing.,Dominant,bank,Strong,vault,heist,robbery,getaway,loot
+The alligator saw the food. He came from the bank with a quick lunge.,Subordinate,bank,Strong,riverbank,shore,edge,shoreline,riverside
+The veterinarian heard the sound. She investigated the bark coming from the kennel.,Dominant,bark,Strong,yelp,howl,growl,woof,whine
+The botanist looked for a fungus. She investigated the bark for signs of disease.,Subordinate,bark,Strong,tree bark,wood,trunk,surface,outer layer
+The carpenter used a saw. He divided the board to the appropriate length.,Dominant,board,Strong,plank,panel,slab,timber,wood
+The chairman started the argument. He divided the board to weaken the vote.,Subordinate,board,Strong,committee,group,council,panel,directors
+The archer missed the mark. He straightened the bow and hit the target.,Dominant,bow,Strong,archery bow,longbow,recurve,weapon,arrow
+The groomsman looked in the mirror. He straightened the bow before the photo session.,Subordinate,bow,Strong,bow tie,necktie,ribbon,accessory,decoration
+The custodian fixed the problem. She inserted the bulb into the empty socket.,Dominant,bulb,Strong,light bulb,lamp,LED,filament,globe
+The gardener dug a hole. She inserted the bulb carefully into the soil.,Subordinate,bulb,Strong,seed bulb,tuber,rhizome,corm,root
+The navigator dropped the compass. He searched the deck beneath the life boat.,Dominant,deck,Strong,floor,platform,surface,ship,vessel
+The gambler wanted an ace. He searched the deck for the marked cards.,Subordinate,deck,Strong,pack,stack,pile,set,collection
+The housewife prepared the cookies. She saved the dough that was left over.,Dominant,dough,Strong,batter,mixture,pastry,cookie mix,ingredients
+The graduate wanted a car. She saved the dough for the down payment.,Subordinate,dough,Strong,money,cash,savings,funds,earnings
+The planter sprayed the crops. He rechecked the field for signs of insects.,Dominant,field,Strong,farmland,area,plot,land,agriculture
+The referee miscounted. He rechecked the field for the extra player.,Subordinate,field,Strong,pitch,court,ground,arena,play area
+The typist forgot the invoice number. She needed the file to complete the order.,Dominant,file,Strong,document,record,paperwork,folder,archives
+The manicurist was not finished. She needed the file to smooth the nail.,Subordinate,file,Strong,emery board,nail file,buffer,sanding tool,grooming
+The traveler checked the itinerary. She counted the flights on the departure board.,Dominant,flights,Strong,departures,planes,journeys,schedules,trips
+The resident noted the broken elevator. She counted the flights leading to the penthouse.,Subordinate,flights,Strong,stairs,levels,stories,floors,steps
+The burglar used a hacksaw. He cut the lock on the outside door.,Dominant,lock,Strong,padlock,latch,bolt,fastener,security
+The hippie changed his appearance. He cut the lock that was tightly braided.,Subordinate,lock,Strong,hair,tress,braid,strand,dreadlock
+The cat was hunting. She observed the mole running across the yard.,Dominant,mole,Strong,rodent,burrower,small animal,pest,creature
+The dermatologist examined the skin. She observed the mole on the lower back.,Subordinate,mole,Strong,blemish,spot,skin lesion,growth,mark
+The secretary made the correction. She changed the note indicating the arrival time.,Dominant,note,Strong,memo,message,annotation,reminder,comment
+The guitarist adjusted the string. She changed the note to a different pitch.,Subordinate,note,Strong,tone,sound,pitch,key,chord
+The stenographer took dictation. He emptied the pen before finishing the document.,Dominant,pen,Strong,ink pen,writing tool,ballpoint,fountain pen,marker
+The farmer hated the smell. He emptied the pen before cleaning the barn.,Subordinate,pen,Strong,enclosure,coop,sty,barn,shed
+The catcher flashed the signal. He changed the pitch to a curve ball.,Dominant,pitch,Strong,throw,delivery,toss,curveball,fastball
+The pianist tuned the instrument. He changed the pitch to match the tone.,Subordinate,pitch,Strong,key,note,sound,frequency,register
+The realtor wanted to expand. He developed the plot according to zoning laws.,Dominant,plot,Strong,land,parcel,tract,site,property
+The writer changed the setting. He developed the plot to reveal the villain.,Subordinate,plot,Strong,storyline,narrative,scheme,plan,structure
+The addict saw the police. He burned the pot to destroy the evidence.,Dominant,pot,Strong,marijuana,cannabis,weed,drug,stash
+The husband roasted the chicken. He burned the pot on the back burner.,Subordinate,pot,Strong,pan,saucepan,cooking pot,skillet,casserole
+The bride turned down the money. She preferred the present for the new house.,Dominant,present,Strong,gift,offering,token,item,contribution
+The woman remembered her childhood. She preferred the present rather than the past.,Subordinate,present,Strong,current time,now,moment,present day,contemporary
+The chef prepared the stew. He adjusted the range to a low simmer.,Dominant,range,Strong,stove,cooktop,burner,oven,kitchen appliance
+The gunner saw the target. He adjusted the range before firing the cannon.,Subordinate,range,Strong,distance,scope,reach,field,radius
+The jeweler followed the instructions. She modified the ring as the customer requested.,Dominant,ring,Strong,band,circle,jewelry,loop,ornament
+The nurse hated the alarm clock. She modified the ring to decrease the noise.,Subordinate,ring,Strong,tone,chime,sound,alarm,bell
+The miner finished the shift. He wanted a shower to remove the dirt.,Dominant,shower,Strong,bath,rinse,wash,cleaning,bathing
+The homesteader needed a good crop. He wanted a shower to moisten the soil.,Subordinate,shower,Strong,rain,downpour,watering,sprinkle,irrigation
+The driver went to the garage. She needed a spare to replace the tire.,Dominant,spare,Strong,extra,backup,replacement,additional,reserve
+The amateur was in the last frame. She needed a spare to win the tournament.,Subordinate,spare,Strong,strike,second attempt,chance,opportunity,spare shot
+The mother prepared the sandwich. She smoothed the spread over the onion roll.,Dominant,spread,Strong,topping,filling,layer,coating,smear
+The maid cleaned the house. She smoothed the spread over the guest bed.,Subordinate,spread,Strong,cover,blanket,quilt,comforter,bedspread
+The umpire changed the call. He overruled the strike which pleased the batter.,Dominant,strike,Strong,pitch,throw,ball,swing,hit
+The governor recommended the compromise. He overruled the strike at the auto factory.,Subordinate,strike,Strong,labor stoppage,protest,walkout,job action,work stoppage
+The salesperson rang up the charge. He got the tag off of the coat.,Dominant,tag,Strong,label,price tag,sticker,marker,ticket
+The wrestler needed a break. He got the tag before leaving the ring.,Subordinate,tag,Strong,touch,contact,signal,marker,relay
+The butler got the jelly. He prepared the toast after making the coffee.,Dominant,toast,Strong,bread,slice,breakfast,toasted bread,food
+The best man rehearsed his lines. He prepared the toast at the rehearsal dinner.,Subordinate,toast,Strong,speech,tribute,address,dedication,acknowledgement
+The chauffeur backed into the wall. He scratched his trunk and broke the lock.,Dominant,trunk,Strong,car trunk,rear,boot,storage,compartment
+The animal felt an itch. He scratched his trunk on a small tree.,Subordinate,trunk,Strong,appendage,snout,proboscis,nose,limb
+The skipper returned to dock. He repaired the vessel before continuing the voyage.,Dominant,vessel,Strong,boat,ship,craft,yacht,ferry
+The cardiologist found the problem. He repaired the vessel leading to the heart.,Subordinate,vessel,Strong,artery,vein,blood vessel,capillary,conduit
+The owner made a decision. He painted the bar during the slow season.,Dominant,bar,Weak,pub,counter,saloon,tavern,bistro
+The welder finished the job. He painted the bar with a rust protector.,Subordinate,bar,Weak,rod,beam,metal piece,rail,support
+The agent revealed the strategy. He described the bluff to the other officers.,Dominant,bluff,Weak,deception,trick,ruse,feint,stratagem
+The scout returned home. He described the bluff to the little children.,Subordinate,bluff,Weak,cliff,hill,promontory,escarpment,elevation
+The trucker examined the vehicle. He expected a break in the gas line.,Dominant,break,Weak,rupture,leak,crack,fracture,split
+The worker put away his tools. He expected a break after the long shift.,Subordinate,break,Weak,rest,pause,respite,intermission,interval
+The teenager listened carefully. He admired the coach for the strategic planning.,Dominant,coach,Weak,trainer,mentor,instructor,guide,leader
+The curator saw the restoration. He admired the coach with the velvet interior.,Subordinate,coach,Weak,carriage,buggy,vehicle,wagon,cab
+The teenager was proficient. He skipped the course recommended by the advisor.,Dominant,course,Weak,class,lesson,curriculum,program,study
+The pro had an appointment. He skipped the course to see the physician.,Subordinate,course,Weak,path,route,track,way,trail
+The reporter was well known. He frequented the court to pick up stories.,Dominant,court,Weak,courtroom,tribunal,justice,judiciary,legal place
+The tenant liked the neighbors. He frequented the court to talk with friends.,Subordinate,court,Weak,courtyard,plaza,quad,yard,patio
+The student made an error. He forgot the date on the final exam.,Dominant,date,Weak,day,time,appointment,schedule,occasion
+The boyfriend was thoughtless. He forgot the date at the birthday party.,Subordinate,date,Weak,companion,partner,outing,meeting,rendezvous
+The president anticipated the conflict. He approved the draft in preparation for war.,Dominant,draft,Weak,conscription,recruitment,enlistment,induction,selection
+The supervisor was pleased. He approved the draft of the work schedule.,Subordinate,draft,Weak,version,plan,outline,document,blueprint
+The businesswoman checked the schedule. She awaited the express that was running late.,Dominant,express,Weak,train,fast service,direct service,quick route,speedy delivery
+The subscriber went to the main office. She awaited the express to receive the parcel.,Subordinate,express,Weak,delivery,package,parcel,shipment,mail
+The tenant heard the rattle. He hit the fan with a baseball bat.,Dominant,fan,Weak,ventilator,blower,cooler,air circulator,rotor
+The actor became angry. He hit the fan outside the small theater.,Subordinate,fan,Weak,supporter,enthusiast,follower,devotee,admirer
+The customer made a selection. He liked gin after a hard day.,Dominant,gin,Weak,alcohol,liquor,spirit,beverage,drink
+The patient selected an activity. He liked gin to pass the time.,Subordinate,gin,Weak,card game,pastime,rummy,solitaire,game
+The milkman was dedicated. He ignored the hail while making his rounds.,Dominant,hail,Weak,precipitation,sleet,ice pellets,frozen rain,snow
+The cab driver was in a hurry. He ignored the hail of the many pedestrians.,Subordinate,hail,Weak,call,shout,signal,wave,summon
+The mother was in a hurry. She jammed the key while opening the door.,Dominant,key,Weak,lock opener,passkey,door key,entry key,house key
+The author was clumsy. She jammed the key while finishing the document.,Subordinate,key,Weak,typewriter key,keyboard key,button,character,digit
+The craftsman chose the spot. He chipped the marble with skill and precision.,Dominant,marble,Weak,stone,granite,rock,material,slab
+The child shot too hard. He chipped the marble during the championship game.,Subordinate,marble,Weak,playing marble,toy,game piece,ball,shooter
+The farmer saw the entrance. He reported the mine to the survey crew.,Dominant,mine,Weak,excavation,pit,quarry,shaft,tunnel
+The scout patrolled the area. He reported the mine to the commanding officer.,Subordinate,mine,Weak,explosive,bomb,booby trap,device,charge
+The pilot checked the radar screen. He highlighted the object before reporting the enemy.,Dominant,object,Weak,target,item,entity,subject,thing
+The student examined the sentence. He highlighted the object with a yellow marker.,Subordinate,object,Weak,noun,direct object,pronoun,grammatical element,part of speech
+The owner fixed the cage. He mounted the perch near the food dish.,Dominant,perch,Weak,roost,stand,bar,pole,rod
+The sportsman won the tournament. He mounted the perch in the trophy room.,Subordinate,perch,Weak,pedestal,stand,platform,base,support
+The critic was displeased. She suggested the sage to improve the flavor.,Dominant,sage,Weak,herb,seasoning,spice,culinary ingredient,plant
+The priestess was uncertain. She suggested the sage would understand the problem.,Subordinate,sage,Weak,wise person,scholar,philosopher,guru,mentor
+The grocer completed the transaction. She wiped the scales with a wet rag.,Dominant,scales,Weak,weighing device,balance,measure,instrument,gauge
+The taxidermist prepared the specimen. She wiped the scales with a protective oil.,Subordinate,scales,Weak,fish scales,reptile scales,skin,covering,surface
+The buyer was critical. He examined the screen before signing the mortgage.,Dominant,screen,Weak,display,monitor,panel,viewing surface,protection
+The usher saw the hole. He examined the screen after the patrons left.,Subordinate,screen,Weak,barrier,divider,curtain,partition,covering
+The lady found a flaw. She swapped the set for a similar pattern.,Dominant,set,Weak,collection,series,ensemble,group,kit
+The viewer wanted more options. She swapped the set for a newer model.,Subordinate,set,Weak,television,TV,receiver,box,monitor
+The sponsor sent out fliers. He advertised the speaker to the student body.,Dominant,speaker,Weak,presenter,orator,lecturer,spokesperson,announcer
+The widower needed money. He advertised the speaker in the Sunday paper.,Subordinate,speaker,Weak,audio device,sound system,loudspeaker,amplifier,woofer
+The buyer distrusted the market. He sold his stock the very next day.,Dominant,stock,Weak,shares,equity,securities,investments,assets
+The farmer wanted to retire. He sold his stock at the local auction.,Subordinate,stock,Weak,livestock,animals,cattle,herd,farm animals
+The apprentice fixed the transmitter. He tried the switch before returning the radio.,Dominant,switch,Weak,button,lever,toggle,control,actuator
+The client handled the diamonds. He tried the switch before paying the clerk.,Subordinate,switch,Weak,exchange,trade,change,swap,substitute
+The architect changed the blueprint. She added the terminal to the west concourse.,Dominant,terminal,Weak,station,depot,hub,facility,terminal point
+The technician modified the component. She added the terminal to the wiring diagram.,Subordinate,terminal,Weak,connector,plug,interface,port,junction
+The serviceman was angry. He considered the tip to be very small.,Dominant,tip,Weak,gratuity,bonus,extra,reward,payment
+The man pondered the situation. He considered the tip to be sound advice.,Subordinate,tip,Weak,suggestion,advice,recommendation,hint,clue
+The boy walked through the park. He uncovered a trace leading to the gate.,Dominant,trace,Weak,trail,path,sign,mark,footprint
+The student examined the fluid. He uncovered a trace of the deadly poison.,Subordinate,trace,Weak,residue,hint,sign,remnant,evidence
+The principal overheard the plan. He banned the trade between the two students.,Dominant,trade,Weak,exchange,transaction,barter,deal,swap
+The king declared war. He banned the trade with the rival country.,Subordinate,trade,Weak,commerce,import,export,business,trafficking

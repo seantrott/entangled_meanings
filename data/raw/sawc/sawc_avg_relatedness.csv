@@ -1,0 +1,813 @@
+"","List","Word","Same_sense","Sentence_1","Sentence_2","Sense_id_s1","Sense_id_s2","Gender_s1","Gender_s2","mean_relatedness","sd_relatedness","median_relatedness","count"
+"1",1,"aceite","Different Sense","Compró el aceite de oliva","Compró el aceite de motor",1,2,"male","male",3.17647058823529,1.66715679067863,4,17
+"2",1,"aceite","Same Sense","Compró el aceite de motor","Compró el aceite de carro",2,2,"male","male",4.64705882352941,0.606339062590832,5,17
+"3",1,"aceite","Same Sense","Compró el aceite de oliva","Compró el aceite de cocina",1,1,"male","male",4.76470588235294,0.437237316097603,5,17
+"4",1,"ala","Same Sense","Le gustó el ala sureste","Le gustó el ala remodelada",1,1,"female","female",4.64705882352941,0.701888209634219,5,17
+"5",1,"algodón","Different Sense","Evaluó el algodón sembrado","Evaluó el algodón endulzado",1,2,"male","male",2.88235294117647,1.76360259629177,3,17
+"6",1,"algodón","Same Sense","Evaluó el algodón cultivado","Evaluó el algodón sembrado",1,1,"male","male",4.76470588235294,0.562295714538387,5,17
+"7",1,"arte","Same Sense","Se trataba del arte renacentista","Se trataba del arte abstracto",2,2,"male","male",4.47058823529412,1.32842232831014,5,17
+"8",1,"banco","Different Sense","Era un banco financiero","Era un banco plástico",1,2,"male","male",1.29411764705882,0.587867532097255,1,17
+"9",1,"caja","Different Sense","Ella vio la caja registradora","Ella vio la caja percusiva",1,3,"female","female",2,1.11803398874989,2,17
+"10",1,"caja","Different Sense","Ella vio la caja registradora","Ella vio la caja sellada",1,2,"female","female",2.70588235294118,1.35852428586835,2,17
+"11",1,"cámara","Different Sense","Se trataba de la cámara gubernamental","Se trataba de la cámara digital",1,2,"female","female",1.23529411764706,0.437237316097603,1,17
+"12",1,"cámara","Different Sense","Se trataba de la cámara gubernamental","Se trataba de la cámara principal",1,3,"female","female",2.94117647058824,1.47777654921567,3,17
+"13",1,"cámara","Different Sense","Se trataba de la cámara senatorial","Se trataba de la cámara digital",1,2,"female","female",1.47058823529412,1.12459142907677,1,17
+"14",1,"cámara","Different Sense","Se trataba de la cámara senatorial","Se trataba de la cámara principal",1,3,"female","female",3.05882352941176,1.56007164239716,3,17
+"15",1,"campo","Same Sense","Era un campo competitivo","Era un campo biológico",1,1,"male","male",2.64705882352941,1.57881191369445,2,17
+"16",1,"carrera","Different Sense","Fue una carrera académica","Fue una carrera benéfica",1,2,"female","female",1.88235294117647,1.53632487373181,1,17
+"17",1,"casco","Different Sense","Le gustó el casco de la ciclista","Le gustó el casco urbano",1,2,"male","male",1.29411764705882,0.587867532097255,1,17
+"18",1,"casco","Same Sense","Le gustó el casco urbano","Le gustó el casco de la ciudad",2,2,"male","male",4.11764705882353,1.53632487373181,5,17
+"19",1,"caudal","Different Sense","Era un caudal heredado","Era un caudal ecológico",1,2,"male","male",2.58823529411765,1.73417211982446,2,17
+"20",1,"cinta","Different Sense","Usó la cinta decorativa","Usó la cinta quirúrgica",2,4,"female","female",2.88235294117647,1.65387246111877,3,17
+"21",1,"cinta","Different Sense","Usó la cinta pegante","Usó la cinta rosada",1,2,"female","female",3.05882352941176,1.74894926439041,4,17
+"22",1,"cinta","Same Sense","Usó la cinta adhesiva","Usó la cinta pegante",1,1,"female","female",4.88235294117647,0.485071250072666,5,17
+"23",1,"clase","Same Sense","Se trataba de una clase de geología","Se trataba de una clase aburrida",2,2,"female","female",4.70588235294118,0.985184366143778,5,17
+"24",1,"clima","Different Sense","El clima estaba tenso","El clima estaba lluvioso",1,2,"male","male",2.64705882352941,1.72992689406909,2,17
+"25",1,"colonia","Different Sense","Era una colonia de hombre","Era una colonia rebelde",1,2,"female","female",1.41176470588235,0.618346942400842,1,17
+"26",1,"colonia","Different Sense","Era una colonia fragante","Era una colonia de hormigas",1,3,"female","female",1.58823529411765,1.17573506419451,1,17
+"27",1,"colonia","Same Sense","Era una colonia abandonada","Era una colonia rebelde",2,2,"female","female",4.05882352941176,1.14403825522216,4,17
+"28",1,"colonia","Same Sense","Era una colonia oprimida","Era una colonia rebelde",2,2,"female","female",4.41176470588235,1.1213175023946,5,17
+"29",1,"compañía","Same Sense","Le gustó la compañía teatral","Le gustó la compañía de actores",2,2,"female","female",4.23529411764706,1.34765591698632,5,17
+"30",1,"copa","Different Sense","Él vio la copa deportiva","Él vio la copa vacía",1,2,"female","female",1.52941176470588,0.624264272846798,1,17
+"31",1,"corazón","Different Sense","Tenía el corazón angustiado","Tenía el corazón operado",1,2,"male","male",3.76470588235294,1.39326109203847,4,17
+"32",1,"cordón","Different Sense","Se trataba de un cordón biológico","Se trataba de un cordón inalámbrico",2,3,"male","male",2,1.3228756555323,1,17
+"33",1,"cordón","Different Sense","Se trataba de un cordón de lona","Se trataba de un cordón inalámbrico",1,3,"male","male",2.76470588235294,1.64048056086875,2,17
+"34",1,"corte","Different Sense","Le gustó la corte judicial","Le gustó el corte de pelo",2,3,"female","male",1.17647058823529,0.392952623996688,1,17
+"35",1,"corte","Different Sense","Le gustó la corte suprema","Le gustó el corte asimétrico",2,3,"female","male",1.17647058823529,0.392952623996688,1,17
+"36",1,"corteza","Different Sense","Estaba en la corteza geológica","Estaba en la corteza del árbol",1,2,"female","female",2.35294117647059,1.27186754767292,2,17
+"37",1,"corteza","Different Sense","Estaba en la corteza terrestre","Estaba en la corteza cerebral",1,3,"female","female",2.29411764705882,1.35852428586835,2,17
+"38",1,"corteza","Different Sense","Estaba en la corteza terrestre","Estaba en la corteza crocante",1,4,"female","female",2.23529411764706,1.2514697241996,2,17
+"39",1,"corteza","Same Sense","Estaba en la corteza cerebral","Estaba en la corteza prefrontal",3,3,"female","female",4.82352941176471,0.528594139870924,5,17
+"40",1,"cuadro","Different Sense","No le gustó el cuadro de síntomas","No le gustó el cuadro pintoresco",1,2,"male","male",1.17647058823529,0.528594139870924,1,17
+"41",1,"cubo","Different Sense","Le gustó el cubo tridimensional","Le gustó el cubo plástico",1,2,"male","male",3.05882352941176,1.6759545129304,3,17
+"42",1,"cuerdas","Different Sense","Tenía cuerdas de terreno","Tenía cuerdas vocales",2,3,"female","female",1.41176470588235,0.618346942400842,1,17
+"43",1,"cuerdas","Different Sense","Tenía cuerdas forestadas","Tenía cuerdas inflamadas",2,3,"female","female",1.82352941176471,0.951005659660279,2,17
+"44",1,"cuerdas","Different Sense","Tenía cuerdas sintéticas","Tenía cuerdas de terreno",1,2,"female","female",2.35294117647059,1.36661884182223,2,17
+"45",1,"cuerdas","Different Sense","Tenía cuerdas sintéticas","Tenía cuerdas forestadas",1,2,"female","female",3.11764705882353,1.26897364734145,3,17
+"46",1,"cuerdas","Same Sense","Tenía cuerdas de terreno","Tenía cuerdas forestadas",2,2,"female","female",2.76470588235294,1.34765591698632,3,17
+"47",1,"depresión","Different Sense","Se trataba de una depresión geológica","Se trataba de una depresión psicológica",1,2,"female","female",1.47058823529412,0.799816155346303,1,17
+"48",1,"fibra","Different Sense","Carecía fibra moral","Carecía fibra dietética",1,2,"female","female",2.17647058823529,1.23669388480168,2,17
+"49",1,"frente","Different Sense","Era un frente lluvioso","Era una frente arrugada",1,2,"male","female",1.17647058823529,0.528594139870924,1,17
+"50",1,"función","Different Sense","Era una función biológica","Era una función lineal",1,2,"female","female",2,0.935414346693485,2,17
+"51",1,"hábito","Different Sense","Era un hábito irritante","Era un hábito de lona",1,2,"male","male",1.23529411764706,0.437237316097603,1,17
+"52",1,"lengua","Different Sense","Le gusta la lengua castellana","Le gusta la lengua marinada",1,2,"female","female",1.23529411764706,0.562295714538387,1,17
+"53",1,"lengua","Same Sense","Le gusta la lengua cocida","Le gusta la lengua marinada",2,2,"female","female",4.35294117647059,1.36661884182223,5,17
+"54",1,"mano","Different Sense","Tenía una mano dura","Tenía una mano lastimada",1,2,"female","female",3.47058823529412,1.58578241961277,4,17
+"55",1,"mano","Same Sense","Tenía una mano arrugada","Tenía una mano sudada",2,2,"female","female",4.52941176470588,1.32842232831014,5,17
+"56",1,"nota","Different Sense","Era una nota aguda","Era una nota académica",1,2,"female","female",1.52941176470588,1.06757008311068,1,17
+"57",1,"papa","Different Sense","Era una papa podrida","Era un papa jesuita",1,2,"female","male",1.47058823529412,1.32842232831014,1,17
+"58",1,"pastor","Different Sense","Era un pastor evangélico","Era un pastor de ovejas",1,2,"male","male",2.29411764705882,1.35852428586835,3,17
+"59",1,"periódico","Different Sense","Se trataba de un periódico global","Se trataba de un periódico plegado",1,2,"male","male",3.64705882352941,1.36661884182223,4,17
+"60",1,"periódico","Different Sense","Se trataba de un periódico local","Se trataba de un periódico estrujado",1,2,"male","male",3.94117647058824,1.14403825522216,4,17
+"61",1,"pico","Different Sense","Dibujó el pico montuno","Dibujó el pico amarillo",1,2,"male","male",2.47058823529412,1.2307338795828,3,17
+"62",1,"pico","Same Sense","Dibujó el pico del ave","Dibujó el pico amarillo",2,2,"male","male",4.35294117647059,0.996316746232607,5,17
+"63",1,"pieza","Different Sense","Le gustó la pieza flamenca","Le gustó la pieza añadida",1,2,"femael","female",2.47058823529412,1.50489397711365,2,17
+"64",1,"pieza","Same Sense","Le gustó la pieza abstracta","Le gustó la pieza contemporánea",3,3,"female","female",4.64705882352941,0.996316746232607,5,17
+"65",1,"pista","Different Sense","Era una pista de baile","Era una pista falsa",1,2,"female","female",1.11764705882353,0.332105582077536,1,17
+"66",1,"pista","Same Sense","Era una pista clave","Era una pista falsa",2,2,"female","female",4.58823529411765,0.939336436627724,5,17
+"67",1,"planta","Different Sense","Estaba en la planta baja","Estaba en la planta del pie",2,3,"female","female",1.47058823529412,0.874474632195206,1,17
+"68",1,"planta","Same Sense","Estaba en la planta del pie","Estaba en la planta izquierda",3,3,"female","female",2.17647058823529,1.50977209031889,1,17
+"69",1,"prima","Same Sense","Era una prima anual","Era una prima costosa",1,1,"female","female",4.17647058823529,1.38000426256801,5,17
+"70",1,"pupila","Same Sense","Tenía una pupila estudiosa","Tenía una pupila aplicada",2,2,"female","female",4.47058823529412,1.12459142907677,5,17
+"71",1,"químico","Different Sense","Era un químico negligente","Era un químico tóxico",1,2,"male","male",2.29411764705882,1.40377641926844,2,17
+"72",1,"red","Different Sense","Era una red cibernética","Era una red de cuerda",1,2,"female","female",1.70588235294118,0.985184366143778,1,17
+"73",1,"rosa","Same Sense","Era un rosa claro","Era un rosa tenue",2,2,"male","male",4.64705882352941,0.996316746232607,5,17
+"74",1,"semilla","Same Sense","Era una semilla germinada","Era una semilla sembrada",2,2,"female","female",4.76470588235294,0.664211164155071,5,17
+"75",1,"seno","Different Sense","Estaba en el seno familiar","Estaba en el seno izquiero",1,2,"male","male",1.23529411764706,0.562295714538387,1,17
+"76",1,"seno","Different Sense","Estaba en el seno social","Estaba en el seno operado",1,2,"male","male",1.41176470588235,0.712287119900726,1,17
+"77",1,"sierra","Different Sense","Era una sierra eléctrica","Era una sierra nevada",1,2,"female","female",1.17647058823529,0.528594139870924,1,17
+"78",1,"sostén","Different Sense","Era un sostén emocional","Era un sostén sedoso",1,2,"male","male",1.58823529411765,0.939336436627724,1,17
+"79",1,"sueño","Different Sense","Él abandonó su sueño","Él tenía sueño",1,2,"male","male",2,1.17260393995586,1,17
+"80",1,"sueño","Same Sense","Él alcanzó su sueño","Él abandonó su sueño",1,1,"male","male",4.76470588235294,0.970142500145332,5,17
+"81",1,"título","Different Sense","Le gustó el título halagador","Le gustó el título legal",1,3,"male","male",2.47058823529412,1.46277335303626,3,17
+"82",1,"título","Same Sense","Le gustó el título legal","Le gustó el título propietario",3,3,"male","male",4,1.11803398874989,4,17
+"83",2,"ala","Different Sense","Le gustó el ala sureste","Le gustó el ala de águila",1,2,"female","female",1.18181818181818,0.603022689155527,1,11
+"84",2,"algodón","Same Sense","Evaluó el algodón endulzado","Evaluó el algodón caramelizado",2,2,"male","male",5,0,5,11
+"85",2,"arte","Same Sense","Se trataba del arte de mentir","Se trataba del arte de guerra",1,1,"male","male",4.27272727272727,1.00904995821903,5,11
+"86",2,"banco","Same Sense","Era un banco plástico","Era un banco cómodo",2,2,"male","male",4.45454545454545,0.820199532264724,5,11
+"87",2,"baño","Different Sense","Disfrutó el baño caliente","Disfrutó el baño privado",1,2,"male","male",3.63636363636364,1.36181696807811,4,11
+"88",2,"baño","Different Sense","Disfrutó el baño caliente","Disfrutó el baño remodelado",1,2,"male","male",2.09090909090909,0.831209414593634,2,11
+"89",2,"baño","Same Sense","Disfrutó el baño caliente","Disfrutó el baño frío",1,1,"male","male",4.45454545454545,1.29333958136573,5,11
+"90",2,"cadena","Different Sense","Era una cadena de oro","Era una cadena de reo",1,2,"female","female",3.18181818181818,1.25045446283996,3,11
+"91",2,"calle","Different Sense","Condujo en la calle marginal","Condujo en la calle resbalosa",1,2,"female","female",4.27272727272727,1.1037127426019,5,11
+"92",2,"calle","Different Sense","Condujo en la calle principal","Condujo en la calle resbalosa",1,2,"female","female",4.72727272727273,0.646669790682863,5,11
+"93",2,"cámara","Different Sense","Se trataba de la cámara digital","Se trataba de la cámara remodelada",2,3,"female","female",1.45454545454545,0.820199532264724,1,11
+"94",2,"capital","Different Sense","Le gustó la capital holandesa","Le gustó el capital económico",1,2,"female","male",1.09090909090909,0.301511344577764,1,11
+"95",2,"carrera","Same Sense","Fue una carrera benéfica","Fue una carrera olímpica",2,2,"female","female",4,1.48323969741913,5,11
+"96",2,"cima","Different Sense","Estaba en la cima de la montaña","Estaba en la cima de la fama",1,2,"female","female",2.63636363636364,1.5015143870591,2,11
+"97",2,"cinta","Different Sense","Usó la cinta adhesiva","Usó la cinta métrica",1,3,"female","female",3.36363636363636,1.43336856898198,4,11
+"98",2,"clase","Different Sense","Se trataba de una clase media","Se trataba de una clase aburrida",1,2,"female","female",1.54545454545455,0.522232967867094,2,11
+"99",2,"clase","Different Sense","Se trataba de una clase social","Se trataba de una clase de geología",1,2,"female","female",1.72727272727273,1.1908743922773,1,11
+"100",2,"colonia","Different Sense","Era una colonia sutil","Era una colonia rebelde",1,2,"female","female",1.72727272727273,1.1037127426019,1,11
+"101",2,"columna","Different Sense","Era una columna decorativa","Era una columna vertebral",1,2,"female","female",1.45454545454545,0.687551650952329,1,11
+"102",2,"compás","Different Sense","Él navegaba con el compás","Él cantaba al compás",1,2,"male","male",1.45454545454545,0.934198732993827,1,11
+"103",2,"corazón","Different Sense","Tenía el corazón partido","Tenía el corazón operado",1,2,"male","male",3.54545454545455,1.50755672288882,4,11
+"104",2,"corteza","Different Sense","Estaba en la corteza geológica","Estaba en la corteza comestible",1,4,"female","female",2,1.18321595661992,2,11
+"105",2,"corteza","Different Sense","Estaba en la corteza geológica","Estaba en la corteza prefrontal",1,3,"female","female",1.72727272727273,1.27207775634268,1,11
+"106",2,"corteza","Different Sense","Estaba en la corteza prefrontal","Estaba en la corteza crocante",3,4,"female","female",1.45454545454545,0.687551650952329,1,11
+"107",2,"corteza","Same Sense","Estaba en la corteza del árbol","Estaba en la corteza del roble",2,2,"female","female",4.63636363636364,0.924416277737175,5,11
+"108",2,"corteza","Same Sense","Estaba en la corteza terrestre","Estaba en la corteza geológica",1,1,"female","female",4.72727272727273,0.904534033733291,5,11
+"109",2,"cuadro","Different Sense","No le gustó el cuadro diagnóstico","No le gustó el cuadro pintoresco",1,2,"male","male",1.09090909090909,0.301511344577764,1,11
+"110",2,"cuerdas","Different Sense","Tenía cuerdas sintéticas","Tenía cuerdas vocales",1,3,"female","female",1.81818181818182,1.16774841624228,2,11
+"111",2,"cura","Different Sense","Era un cura compasivo","Era una cura efectiva",1,2,"male","female",1.09090909090909,0.301511344577764,1,11
+"112",2,"cura","Same Sense","Era una cura efectiva","Era una cura potente",2,2,"female","female",4.36363636363636,1.43336856898198,5,11
+"113",2,"depresión","Different Sense","Se trataba de una depresión geológica","Se trataba de una depresión mental",1,2,"female","female",1.27272727272727,0.467099366496914,1,11
+"114",2,"depresión","Same Sense","Se trataba de una depresión geológica","Se trataba de una depresión terrestre",1,1,"female","female",4.45454545454545,1.21355975243384,5,11
+"115",2,"fibra","Different Sense","Carecía fibra dietética","Carecía fibra muscular",2,3,"female","female",1.81818181818182,0.981649817214043,2,11
+"116",2,"fibra","Different Sense","Carecía fibra moral","Carecía fibra nutritiva",1,2,"female","female",1.63636363636364,0.80903983495589,1,11
+"117",2,"frase","Different Sense","Le gustó la frase musical","Le gustó la frase poética",1,2,"female","female",4.27272727272727,1.00904995821903,5,11
+"118",2,"función","Different Sense","Era una función biológica","Era una función matemática",1,2,"female","female",2.27272727272727,1.34839972492648,2,11
+"119",2,"gato","Different Sense","Compró el gato para el niño","Compró el gato para el auto",1,2,"male","male",1.09090909090909,0.301511344577764,1,11
+"120",2,"hábito","Different Sense","Era un hábito irritante","Era un hábito de monje",1,2,"male","male",1.72727272727273,1.42062726222673,1,11
+"121",2,"hábito","Different Sense","Era un hábito rutinario","Era un hábito de lona",1,2,"male","male",1.36363636363636,0.674199862463242,1,11
+"122",2,"lengua","Different Sense","Le gusta la lengua castellana","Le gusta la lengua cocida",1,2,"female","female",1.27272727272727,0.646669790682863,1,11
+"123",2,"mano","Same Sense","Tenía una mano de hierro","Tenía una mano dura",1,1,"female","female",3.72727272727273,1.34839972492648,4,11
+"124",2,"mano","Same Sense","Tenía una mano lastimada","Tenía una mano sudada",2,2,"female","female",4.81818181818182,0.603022689155527,5,11
+"125",2,"muñeca","Different Sense","Tenía una muñeca fracturada","Tenía una muñeca plástica",1,2,"female","female",1.18181818181818,0.404519917477945,1,11
+"126",2,"naranja","Different Sense","Era una naranja jugosa","Era un naranja brillante",1,2,"female","male",3.36363636363636,1.68954001270922,3,11
+"127",2,"nota","Same Sense","Era una nota desafinada","Era una nota aguda",1,1,"female","female",4.90909090909091,0.301511344577764,5,11
+"128",2,"ola","Different Sense","Se trataba de una ola marítima","Se trataba de una ola criminal",1,2,"female","female",1.54545454545455,1.21355975243384,1,11
+"129",2,"ola","Different Sense","Se trataba de una ola navegable","Se trataba de una ola criminal",1,2,"female","female",1.18181818181818,0.404519917477945,1,11
+"130",2,"orden","Different Sense","Es una orden ejecutiva","Es una orden católica",1,2,"female","female",2,1.4142135623731,1,11
+"131",2,"orden","Different Sense","Es una orden ejecutiva","Es una orden religiosa",1,2,"female","female",2.18181818181818,1.53741222957161,2,11
+"132",2,"palma","Different Sense","Estaba en la palma frondosa","Estaba en la palma derecha",1,2,"female","female",1.27272727272727,0.646669790682863,1,11
+"133",2,"papa","Different Sense","Era una papa podrida","Era un papa conservador",1,2,"female","male",1,0,1,11
+"134",2,"pata","Different Sense","Ella vio la pata de la mesa","Ella vio la pata de la gata",1,2,"female","female",2.18181818181818,1.25045446283996,2,11
+"135",2,"periódico","Different Sense","Se trataba de un periódico local","Se trataba de un periódico plegado",1,2,"male","male",4.18181818181818,1.25045446283996,5,11
+"136",2,"pieza","Different Sense","Le gustó la pieza flamenca","Le gustó la pieza alterada",1,2,"femael","female",2.09090909090909,1.22102788293679,2,11
+"137",2,"planta","Different Sense","Estaba en la planta tropical","Estaba en la planta del pie",1,3,"female","female",1.09090909090909,0.301511344577764,1,11
+"138",2,"planta","Different Sense","Estaba en la planta venenosa","Estaba en la planta del pie",1,3,"female","female",1.09090909090909,0.301511344577764,1,11
+"139",2,"planta","Same Sense","Estaba en la planta tropical","Estaba en la planta venenosa",1,1,"female","female",4.45454545454545,1.03572548135463,5,11
+"140",2,"pluma","Different Sense","Tenía una pluma albina","Tenía una pluma estilográfica",1,2,"female","female",1.54545454545455,0.820199532264724,1,11
+"141",2,"posición","Different Sense","Estaba en una posición sentada","Estaba en una posición ventajosa",1,2,"female","female",1.81818181818182,1.07871977994119,1,11
+"142",2,"prima","Different Sense","Era una prima anual","Era una prima atenta",1,2,"female","female",1,0,1,11
+"143",2,"pupila","Different Sense","Tenía una pupila contraída","Tenía una pupila aplicada",1,2,"female","female",1.27272727272727,0.646669790682863,1,11
+"144",2,"rama","Different Sense","Era una rama competitiva","Era una rama disecada",1,2,"female","female",1.18181818181818,0.404519917477945,1,11
+"145",2,"rama","Different Sense","Era una rama médica","Era una rama disecada",1,2,"female","female",1.18181818181818,0.404519917477945,1,11
+"146",2,"rama","Same Sense","Era una rama disecada","Era una rama retorcida",2,2,"female","female",4.18181818181818,0.981649817214043,4,11
+"147",2,"raya","Different Sense","Dibujó una raya recta","Dibujó una raya marina",1,2,"female","female",1.36363636363636,0.504524979109513,1,11
+"148",2,"raya","Same Sense","Dibujó una raya marina","Dibujó una raya endémica",2,2,"female","female",2.09090909090909,1.57826141399614,1,11
+"149",2,"raya","Same Sense","Dibujó una raya recta","Dibujó una raya precisa",1,1,"female","female",4.63636363636364,0.924416277737175,5,11
+"150",2,"resistencia","Different Sense","Se trataba de una resistencia de circuito","Se trataba de una resistencia política",1,2,"female","female",1.27272727272727,0.467099366496914,1,11
+"151",2,"resistencia","Different Sense","Se trataba de una resistencia eléctrica","Se trataba de una resistencia militar",1,2,"female","female",1.45454545454545,0.687551650952329,1,11
+"152",2,"serie","Same Sense","Se trataba de una serie televisiva","Se trataba de una serie animada",1,1,"female","female",4.90909090909091,0.301511344577764,5,11
+"153",2,"sierra","Different Sense","Era una sierra automática","Era una sierra forestada",1,2,"female","female",1.54545454545455,1.29333958136573,1,11
+"154",2,"sueño","Different Sense","Él alcanzó su sueño","Él tenía sueño",1,2,"male","male",1.54545454545455,0.934198732993827,1,11
+"155",2,"tabla","Different Sense","Le gustó la tabla astillada","Le gustó la tabla de ajedrez",1,2,"female","female",2.81818181818182,1.77866139656663,2,11
+"156",2,"tabla","Different Sense","Le gustó la tabla astillada","Le gustó la tabla de juego",1,2,"female","female",2.27272727272727,1.55505042303516,2,11
+"157",2,"taco","Different Sense","Le gustó el taco delicioso","Le gustó el taco puntiagudo",1,2,"male","male",1.27272727272727,0.646669790682863,1,11
+"158",2,"taco","Same Sense","Le gustó el taco mexicano","Le gustó el taco delicioso",1,1,"male","male",4.81818181818182,0.404519917477945,5,11
+"159",2,"tecla","Different Sense","Tocó la tecla del ordenador","Tocó la tecla afinada",1,2,"female","female",2.63636363636364,1.43336856898198,3,11
+"160",2,"título","Different Sense","Le gustó el título halagador","Le gustó el título del libro",1,2,"male","male",2.81818181818182,1.53741222957161,3,11
+"161",2,"vaso","Different Sense","Se trataba de un vaso cristalino","Se trataba de un vaso sanguíneo",1,2,"male","male",1.09090909090909,0.301511344577764,1,11
+"162",2,"vela","Different Sense","Ella vio la vela del barco","Ella vio la vela derretida",1,2,"female","female",1.09090909090909,0.301511344577764,1,11
+"163",2,"volumen","Different Sense","Aumentó el volumen de la corriente","Aumentó el volumen de la bocina",1,2,"male","male",2.18181818181818,1.32801971507819,2,11
+"164",2,"volumen","Different Sense","Aumentó el volumen del agua","Aumentó el volumen de la bocina",1,2,"male","male",2,1.4142135623731,1,11
+"165",3,"ala","Different Sense","Le gustó el ala remodelada","Le gustó el ala de águila",1,2,"female","female",1.83333333333333,1.40345893053447,1,12
+"166",3,"arte","Different Sense","Se trataba del arte de guerra","Se trataba del arte abstracto",1,2,"male","male",3.33333333333333,1.43548112513055,3,12
+"167",3,"arte","Different Sense","Se trataba del arte de mentir","Se trataba del arte abstracto",1,2,"male","male",3.08333333333333,1.50504203102489,3.5,12
+"168",3,"cadena","Different Sense","Era una cadena elegante","Era una cadena de hierro",1,2,"female","female",3.41666666666667,1.50504203102489,3.5,12
+"169",3,"cadena","Different Sense","Era una cadena elegante","Era una cadena de reo",1,2,"female","female",2.58333333333333,1.50504203102489,2.5,12
+"170",3,"cadena","Same Sense","Era una cadena de radio","Era una cadena televisiva",3,3,"female","female",4.58333333333333,0.792961461098759,5,12
+"171",3,"caja","Different Sense","Ella vio la caja sellada","Ella vio la caja percusiva",2,3,"female","female",2.75,1.76454990398015,2,12
+"172",3,"campo","Different Sense","Era un campo competitivo","Era un campo cultivado",1,2,"male","male",1.5,1.16774841624228,1,12
+"173",3,"canal","Same Sense","Estaba en el canal cervical","Estaba en el canal uterino",3,3,"male","male",4.83333333333333,0.577350269189626,5,12
+"174",3,"carrera","Different Sense","Fue una carrera universitaria","Fue una carrera benéfica",1,2,"female","female",1.66666666666667,1.07308673997732,1,12
+"175",3,"cartel","Different Sense","Era un cartel informativo","Era un cartel peligroso",1,2,"male","male",2,1.65144564768954,1,12
+"176",3,"caudal","Same Sense","Era un caudal ambiental","Era un caudal ecológico",2,2,"male","male",4.58333333333333,0.668557923421521,5,12
+"177",3,"cima","Different Sense","Estaba en la cima de la loma","Estaba en la cima de la fama",1,2,"female","female",3.16666666666667,1.52752523165195,3,12
+"178",3,"cinta","Different Sense","Usó la cinta decorativa","Usó la cinta métrica",2,3,"female","female",3.5,1.44599761096244,4,12
+"179",3,"cinta","Different Sense","Usó la cinta pegante","Usó la cinta decorativa",1,2,"female","female",3.83333333333333,1.40345893053447,4.5,12
+"180",3,"clave","Different Sense","Era la clave musical","Era la clave al caso",1,2,"female","female",1.83333333333333,1.02985730108887,1.5,12
+"181",3,"colonia","Different Sense","Era una colonia abandonada","Era una colonia bacteriana",2,3,"female","female",1.83333333333333,0.937436866561092,1.5,12
+"182",3,"colonia","Different Sense","Era una colonia oprimida","Era una colonia de hormigas",2,3,"female","female",2.91666666666667,1.56427928995103,3,12
+"183",3,"colonia","Different Sense","Era una colonia rebelde","Era una colonia bacteriana",2,3,"female","female",2.16666666666667,1.02985730108887,2,12
+"184",3,"colonia","Different Sense","Era una colonia rebelde","Era una colonia de hormigas",2,3,"female","female",3,1.53741222957161,3.5,12
+"185",3,"columna","Different Sense","Era una columna de mármol","Era una columna vertebral",1,2,"female","female",1.83333333333333,1.02985730108887,1.5,12
+"186",3,"compañía","Different Sense","Le gustó la compañía de inversiones","Le gustó la compañía de actores",1,2,"female","female",3.5,1.50755672288882,4,12
+"187",3,"compañía","Different Sense","Le gustó la compañía financiera","Le gustó la compañía de actores",1,2,"female","female",3.83333333333333,1.33711584684304,4,12
+"188",3,"compás","Different Sense","Él navegaba con el compás","Él bailaba al compás",1,2,"male","male",1.33333333333333,0.887625364598595,1,12
+"189",3,"cordón","Different Sense","Se trataba de un cordón de lona","Se trataba de un cordón eléctrico",1,3,"male","male",3.66666666666667,1.30267789455786,4,12
+"190",3,"corte","Different Sense","Le gustó la corte noble","Le gustó la corte judicial",1,2,"female","female",3.08333333333333,1.31137217055151,3,12
+"191",3,"corte","Different Sense","Le gustó la corte suprema","Le gustó el corte de pelo",2,3,"female","male",1,0,1,12
+"192",3,"corteza","Different Sense","Estaba en la corteza cerebral","Estaba en la corteza crocante",3,4,"female","female",2.16666666666667,1.19341628287971,2,12
+"193",3,"corteza","Different Sense","Estaba en la corteza del roble","Estaba en la corteza cerebral",2,3,"female","female",2.5,1.38169855941551,2.5,12
+"194",3,"corteza","Different Sense","Estaba en la corteza del roble","Estaba en la corteza prefrontal",2,3,"female","female",2.58333333333333,1.44337567297406,2.5,12
+"195",3,"corteza","Different Sense","Estaba en la corteza geológica","Estaba en la corteza del roble",1,2,"female","female",3.5,1.24316312101612,3.5,12
+"196",3,"corteza","Different Sense","Estaba en la corteza terrestre","Estaba en la corteza comestible",1,4,"female","female",2.25,1.35680105059994,2,12
+"197",3,"corteza","Different Sense","Estaba en la corteza terrestre","Estaba en la corteza del roble",1,2,"female","female",3.25,1.28805702866407,3.5,12
+"198",3,"cuadro","Different Sense","No le gustó el cuadro clíninco","No le gustó el cuadro barroco",1,2,"male","male",1.33333333333333,1.15470053837925,1,12
+"199",3,"cuadro","Different Sense","No le gustó el cuadro diagnóstico","No le gustó el cuadro antiguo",1,2,"male","male",1.25,0.452267016866645,1,12
+"200",3,"cuadro","Same Sense","No le gustó el cuadro clíninco","No le gustó el cuadro de síntomas",1,1,"male","male",4.75,0.621581560508061,5,12
+"201",3,"cuadro","Same Sense","No le gustó el cuadro pintoresco","No le gustó el cuadro antiguo",2,2,"male","male",4.91666666666667,0.288675134594813,5,12
+"202",3,"cubo","Different Sense","Le gustó el cubo geométrico","Le gustó el cubo de madera",1,2,"male","male",4.16666666666667,1.33711584684304,5,12
+"203",3,"cubo","Same Sense","Le gustó el cubo plástico","Le gustó el cubo de madera",2,2,"male","male",4.75,0.621581560508061,5,12
+"204",3,"cuerdas","Different Sense","Tenía cuerdas forestadas","Tenía cuerdas vocales",2,3,"female","female",1.75,0.866025403784439,1.5,12
+"205",3,"cura","Different Sense","Era un cura sabio","Era una cura efectiva",1,2,"male","female",1.25,0.866025403784439,1,12
+"206",3,"cura","Same Sense","Era un cura compasivo","Era un cura sabio",1,1,"male","male",5,0,5,12
+"207",3,"depresión","Different Sense","Se trataba de una depresión terrestre","Se trataba de una depresión psicológica",1,2,"female","female",1.5,1.16774841624228,1,12
+"208",3,"estado","Different Sense","Le preocupaba su estado mental","Le preocupaba su estado sureño",1,2,"male","male",1.66666666666667,1.55699788832305,1,12
+"209",3,"firma","Different Sense","Era una firma caligráfica","Era una firma acreditada",1,2,"female","female",3,1.85864075456917,3.5,12
+"210",3,"firma","Different Sense","Era una firma caligráfica","Era una firma emprendedora",1,2,"female","female",1.58333333333333,1.24011240937215,1,12
+"211",3,"firma","Different Sense","Era una firma indescifrable","Era una firma acreditada",1,2,"female","female",3.08333333333333,1.83195540504146,3,12
+"212",3,"fortuna","Different Sense","Fue una fortuna heredada","Fue una fortuna imprevista",1,2,"female","female",2.75,1.81533868615599,2.5,12
+"213",3,"frente","Different Sense","Era un frente lluvioso","Era una frente amplia",1,2,"male","female",1.16666666666667,0.389249472080761,1,12
+"214",3,"frente","Same Sense","Era un frente frío","Era un frente lluvioso",1,1,"male","male",4.75,0.621581560508061,5,12
+"215",3,"gato","Same Sense","Compró el gato para el auto","Compró el gato hidraúlico",2,2,"male","male",4.91666666666667,0.288675134594813,5,12
+"216",3,"hoja","Different Sense","Era una hoja de papel","Era una hoja de árbol",1,2,"female","female",3.16666666666667,1.33711584684304,3,12
+"217",3,"hoja","Same Sense","Era una hoja de cálculo","Era una hoja de papel",1,1,"female","female",2.58333333333333,1.44337567297406,2.5,12
+"218",3,"mano","Different Sense","Tenía una mano dura","Tenía una mano sudada",1,2,"female","female",4,1.53741222957161,5,12
+"219",3,"nota","Same Sense","Era una nota académica","Era una nota decepcionante",2,2,"female","female",4.16666666666667,1.19341628287971,5,12
+"220",3,"nota","Same Sense","Era una nota académica","Era una nota satisfactoria",2,2,"female","female",4.75,0.452267016866645,5,12
+"221",3,"orden","Same Sense","Es una orden jurídica","Es una orden ejecutiva",1,1,"female","female",4.41666666666667,1.24011240937215,5,12
+"222",3,"orden","Same Sense","Es una orden religiosa","Es una orden católica",2,2,"female","female",5,0,5,12
+"223",3,"palma","Same Sense","Estaba en la palma derecha","Estaba en la palma izquierda",2,2,"female","female",5,0,5,12
+"224",3,"papa","Different Sense","Era una papa majada","Era un papa jesuita",1,2,"female","male",1.66666666666667,1.23091490979333,1,12
+"225",3,"papel","Same Sense","Era un papel principal","Era un papel secundario",2,2,"male","male",5,0,5,12
+"226",3,"pasta","Different Sense","Le gustó la pasta italiana","Le gustó la pasta blanqueadora",1,2,"female","female",1.25,0.621581560508061,1,12
+"227",3,"pastor","Same Sense","Era un pastor evangélico","Era un pastor eclesiástico",1,1,"male","male",5,0,5,12
+"228",3,"pata","Same Sense","Ella vio la pata de la gata","Ella vio la pata peluda",2,2,"female","female",4.5,0.904534033733291,5,12
+"229",3,"pieza","Different Sense","Le gustó la pieza flamenca","Le gustó la pieza contemporánea",1,3,"femael","female",4.75,0.866025403784439,5,12
+"230",3,"pieza","Same Sense","Le gustó la pieza alterada","Le gustó la pieza añadida",2,2,"female","female",4.83333333333333,0.577350269189626,5,12
+"231",3,"planta","Different Sense","Estaba en la planta superior","Estaba en la planta izquierda",2,3,"female","female",3.5,1.78376517003169,4.5,12
+"232",3,"posición","Different Sense","Estaba en una posición fetal","Estaba en una posición oportuna",1,2,"female","female",2.91666666666667,1.62135371797393,3.5,12
+"233",3,"químico","Different Sense","Era un químico negligente","Era un químico orgánico",1,2,"male","male",2.58333333333333,1.83195540504146,2,12
+"234",3,"químico","Same Sense","Era un químico orgánico","Era un químico tóxico",2,2,"male","male",4.41666666666667,1.08362466945083,5,12
+"235",3,"raya","Different Sense","Dibujó una raya recta","Dibujó una raya endémica",1,2,"female","female",2.25,1.48477117918737,1.5,12
+"236",3,"redada","Different Sense","Fue una redada en el río","Fue una redada en el barrio",1,2,"female","female",3.41666666666667,1.44337567297406,4,12
+"237",3,"rosa","Different Sense","Era una rosa fragante","Era un rosa claro",1,2,"female","male",2.58333333333333,1.56427928995103,2,12
+"238",3,"sangre","Different Sense","Él tiene sangre diluida","Él tiene sangre noble",1,2,"female","female",3.58333333333333,1.56427928995103,4,12
+"239",3,"sostén","Different Sense","Era un sostén incondicional","Era un sostén sedoso",1,2,"male","male",1.75,1.28805702866407,1,12
+"240",3,"sueño","Different Sense","Él moría de sueño","Él recordó su sueño",2,3,"male","male",2.83333333333333,1.6966991126266,2.5,12
+"241",3,"sueño","Same Sense","Él moría de sueño","Él tenía sueño",2,2,"male","male",4.66666666666667,0.887625364598595,5,12
+"242",3,"tabla","Different Sense","Le gustó la tabla de madera","Le gustó la tabla de ajedrez",1,2,"female","female",3.91666666666667,0.996204919895622,4,12
+"243",3,"tabla","Same Sense","Le gustó la tabla de madera","Le gustó la tabla astillada",1,1,"female","female",4.91666666666667,0.288675134594813,5,12
+"244",3,"título","Different Sense","Le gustó el título del libro","Le gustó el título propietario",2,3,"male","male",2.33333333333333,0.887625364598595,2,12
+"245",3,"vela","Different Sense","Ella vio la vela de lona","Ella vio la vela de cera",1,2,"female","female",1.41666666666667,0.792961461098759,1,12
+"246",4,"algodón","Different Sense","Evaluó el algodón cultivado","Evaluó el algodón endulzado",1,2,"male","male",2.26666666666667,1.33452327853522,3,15
+"247",4,"cadena","Different Sense","Era una cadena de hierro","Era una cadena televisiva",2,3,"female","female",1.4,0.736788397613007,1,15
+"248",4,"cadena","Different Sense","Era una cadena de oro","Era una cadena de hierro",1,2,"female","female",4.66666666666667,1.04653623694457,5,15
+"249",4,"caja","Different Sense","Ella vio la caja registradora","Ella vio la caja acústica",1,3,"female","female",2.33333333333333,1.39727626201154,2,15
+"250",4,"calle","Different Sense","Condujo en la calle marginal","Condujo en la calle asfaltada",1,2,"female","female",4.46666666666667,0.833809387832792,5,15
+"251",4,"calle","Same Sense","Condujo en la calle principal","Condujo en la calle marginal",1,1,"female","female",4.33333333333333,1.29099444873581,5,15
+"252",4,"cámara","Different Sense","Se trataba de la cámara profesional","Se trataba de la cámara principal",2,3,"female","female",3,1.8516401995451,4,15
+"253",4,"campo","Same Sense","Era un campo cultivado","Era un campo abandonado",2,2,"male","male",4.46666666666667,1.12546286774228,5,15
+"254",4,"canal","Different Sense","Estaba en el canal navegable","Estaba en el canal uterino",2,3,"male","male",2.2,1.32017314881691,2,15
+"255",4,"canal","Different Sense","Estaba en el canal televisivo","Estaba en el canal navegable",1,2,"male","male",1.46666666666667,1.06009882737862,1,15
+"256",4,"canal","Different Sense","Estaba en el canal televisivo","Estaba en el canal uterino",1,3,"male","male",1.4,0.736788397613007,1,15
+"257",4,"carrera","Same Sense","Fue una carrera profesional","Fue una carrera universitaria",1,1,"female","female",4.46666666666667,0.639940473422184,5,15
+"258",4,"cartel","Same Sense","Era un cartel peligroso","Era un cartel dominante",2,2,"male","male",3.4,1.84390889145858,4,15
+"259",4,"cima","Different Sense","Estaba en la cima de la loma","Estaba en la cima de su carrera",1,2,"female","female",3.33333333333333,1.29099444873581,4,15
+"260",4,"cima","Same Sense","Estaba en la cima de la montaña","Estaba en la cima de la loma",1,1,"female","female",4.66666666666667,0.617213399848368,5,15
+"261",4,"cima","Same Sense","Estaba en la cima de su carrera","Estaba en la cima de la fama",2,2,"female","female",4.8,0.414039335605413,5,15
+"262",4,"cinta","Different Sense","Usó la cinta adhesiva","Usó la cinta decorativa",1,2,"female","female",3.93333333333333,1.33452327853522,4,15
+"263",4,"cinta","Different Sense","Usó la cinta adhesiva","Usó la cinta quirúrgica",1,4,"female","female",3.4,1.35224680756563,3,15
+"264",4,"clave","Different Sense","Era la clave de sol","Era la clave esencial",1,2,"female","female",1.46666666666667,0.639940473422184,1,15
+"265",4,"clave","Different Sense","Era la clave musical","Era la clave esencial",1,2,"female","female",1.8,1.26491106406735,1,15
+"266",4,"clima","Different Sense","El clima estaba amigable","El clima estaba lluvioso",1,2,"male","male",3.73333333333333,1.43759057685652,4,15
+"267",4,"clima","Same Sense","El clima estaba frío","El clima estaba lluvioso",2,2,"male","male",4.86666666666667,0.516397779494322,5,15
+"268",4,"clima","Same Sense","El clima estaba tenso","El clima estaba amigable",1,1,"male","male",4,1.4638501094228,5,15
+"269",4,"código","Different Sense","Era un código de conducta","Era un código númerico",1,2,"male","male",1.93333333333333,1.03279555898864,2,15
+"270",4,"código","Different Sense","Era un código de ética","Era un código númerico",1,2,"male","male",2.4,1.54919333848297,2,15
+"271",4,"código","Same Sense","Era un código númerico","Era un código programático",2,2,"male","male",4.06666666666667,1.16291915126588,4,15
+"272",4,"colonia","Different Sense","Era una colonia abandonada","Era una colonia de hormigas",2,3,"female","female",3.4,1.35224680756563,4,15
+"273",4,"colonia","Different Sense","Era una colonia de hombre","Era una colonia bacteriana",1,3,"female","female",1.66666666666667,1.29099444873581,1,15
+"274",4,"colonia","Different Sense","Era una colonia de hombre","Era una colonia de hormigas",1,3,"female","female",1.33333333333333,0.899735410842437,1,15
+"275",4,"colonia","Different Sense","Era una colonia oprimida","Era una colonia bacteriana",2,3,"female","female",2.86666666666667,1.50554530541816,3,15
+"276",4,"colonia","Different Sense","Era una colonia sutil","Era una colonia oprimida",1,2,"female","female",2.4,1.76473389333512,1,15
+"277",4,"colonia","Same Sense","Era una colonia fragante","Era una colonia de hombre",1,1,"female","female",3.86666666666667,1.64171803158706,5,15
+"278",4,"colonia","Same Sense","Era una colonia fragante","Era una colonia sutil",1,1,"female","female",3.66666666666667,1.58865022072498,4,15
+"279",4,"columna","Different Sense","Era una columna decorativa","Era una columna encorvada",1,2,"female","female",3.13333333333333,1.68466472572297,3,15
+"280",4,"compañía","Same Sense","Le gustó la compañía de inversiones","Le gustó la compañía financiera",1,1,"female","female",4.86666666666667,0.516397779494322,5,15
+"281",4,"copa","Different Sense","Él vio la copa mundial","Él vio la copa vacía",1,2,"female","female",1.73333333333333,1.03279555898864,1,15
+"282",4,"copa","Same Sense","Él vio la copa llena","Él vio la copa vacía",2,2,"female","female",4.66666666666667,1.04653623694457,5,15
+"283",4,"corazón","Same Sense","Tenía el corazón operado","Tenía el corazón inflamado",2,2,"male","male",4.73333333333333,0.593616839704664,5,15
+"284",4,"cordón","Different Sense","Se trataba de un cordón de lona","Se trataba de un cordón umbilical",1,2,"male","male",2.2,1.26491106406735,2,15
+"285",4,"cordón","Different Sense","Se trataba de un cordón sedoso","Se trataba de un cordón eléctrico",1,3,"male","male",3.13333333333333,1.40746310109799,3,15
+"286",4,"cordón","Different Sense","Se trataba de un cordón umbilical","Se trataba de un cordón eléctrico",2,3,"male","male",1.93333333333333,0.961150104723255,2,15
+"287",4,"cordón","Same Sense","Se trataba de un cordón sedoso","Se trataba de un cordón de lona",1,1,"male","male",4.33333333333333,1.17513930278601,5,15
+"288",4,"corte","Different Sense","Le gustó la corte noble","Le gustó el corte de pelo",1,3,"female","male",1.06666666666667,0.258198889747161,1,15
+"289",4,"corteza","Different Sense","Estaba en la corteza cerebral","Estaba en la corteza comestible",3,4,"female","female",2,1,2,15
+"290",4,"corteza","Different Sense","Estaba en la corteza del roble","Estaba en la corteza crocante",2,4,"female","female",3.26666666666667,1.33452327853522,3,15
+"291",4,"corteza","Same Sense","Estaba en la corteza comestible","Estaba en la corteza crocante",4,4,"female","female",4.46666666666667,0.743223352957207,5,15
+"292",4,"cuerdas","Different Sense","Tenía cuerdas fibrosas","Tenía cuerdas inflamadas",1,3,"female","female",2.93333333333333,1.27988094684437,3,15
+"293",4,"cura","Different Sense","Era un cura compasivo","Era una cura potente",1,2,"male","female",1.46666666666667,1.06009882737862,1,15
+"294",4,"cura","Different Sense","Era un cura sabio","Era una cura potente",1,2,"male","female",1.2,0.560611910581388,1,15
+"295",4,"estado","Same Sense","Le preocupaba su estado mental","Le preocupaba su estado psicológico",1,1,"male","male",4.93333333333333,0.258198889747161,5,15
+"296",4,"fibra","Different Sense","Carecía fibra nutritiva","Carecía fibra óptica",2,4,"female","female",1.73333333333333,0.883715101688537,1,15
+"297",4,"firma","Same Sense","Era una firma emprendedora","Era una firma acreditada",2,2,"female","female",3.93333333333333,1.38701460836198,4,15
+"298",4,"fondo","Different Sense","Estaba en el fondo gubernamental","Estaba en el fondo del cuarto",1,2,"male","male",1.2,0.414039335605413,1,15
+"299",4,"fondo","Different Sense","Estaba en el fondo presupuestario","Estaba en el fondo marino",1,2,"male","male",1.6,0.828078671210825,1,15
+"300",4,"gato","Different Sense","Compró el gato peludo","Compró el gato para el auto",1,2,"male","male",1.06666666666667,0.258198889747161,1,15
+"301",4,"guardia","Different Sense","Llamó al guardia de noche","Llamó a la guardia nacional",1,2,"male","female",3.8,1.01418510567422,4,15
+"302",4,"guía","Different Sense","Era una guía turística","Era una guía televisiva",1,2,"female","female",3.33333333333333,1.29099444873581,3,15
+"303",4,"mano","Different Sense","Tenía una mano dura","Tenía una mano arrugada",1,2,"female","female",4.13333333333333,0.915475416434127,4,15
+"304",4,"naranja","Different Sense","Era una naranja jugosa","Era un naranja oscuro",1,2,"female","male",1.53333333333333,0.743223352957207,1,15
+"305",4,"nave","Same Sense","Era una nave de madera","Era una nave marítima",1,1,"female","female",3.53333333333333,1.30201309334357,4,15
+"306",4,"papa","Same Sense","Era una papa caliente","Era una papa podrida",1,1,"female","female",4.73333333333333,0.79880863671798,5,15
+"307",4,"papel","Different Sense","Era un papel amplio","Era un papel secundario",1,2,"male","male",2.13333333333333,1.06009882737862,2,15
+"308",4,"parque","Different Sense","Visitó el parque de atracciones","Visitó el parque estatal",1,2,"male","male",3.26666666666667,1.22279928657082,3,15
+"309",4,"parque","Same Sense","Visitó el parque estatal","Visitó el parque forestal",2,2,"male","male",4.6,0.632455532033676,5,15
+"310",4,"periódico","Same Sense","Se trataba de un periódico estrujado","Se trataba de un periódico plegado",2,2,"male","male",4.8,0.560611910581388,5,15
+"311",4,"pico","Different Sense","Dibujó el pico alpino","Dibujó el pico amarillo",1,2,"male","male",2.2,1.37321312465119,2,15
+"312",4,"pico","Same Sense","Dibujó el pico montuno","Dibujó el pico alpino",1,1,"male","male",3.86666666666667,1.12546286774228,4,15
+"313",4,"pieza","Different Sense","Le gustó la pieza añadida","Le gustó la pieza contemporánea",2,3,"female","female",2.53333333333333,1.30201309334357,2,15
+"314",4,"pista","Different Sense","Era una pista resbalosa","Era una pista clave",1,2,"female","female",1.26666666666667,0.593616839704664,1,15
+"315",4,"planta","Different Sense","Estaba en la planta venenosa","Estaba en la planta baja",1,2,"female","female",1.06666666666667,0.258198889747161,1,15
+"316",4,"red","Different Sense","Era una red privada","Era una red pesquera",1,2,"female","female",1.73333333333333,1.16291915126588,1,15
+"317",4,"redada","Different Sense","Fue una redada pesquera","Fue una redada en el barrio",1,2,"female","female",2.53333333333333,1.55226409142382,3,15
+"318",4,"revista","Different Sense","Era una revista deportiva","Era una revista brillosa",1,2,"female","female",4.53333333333333,0.833809387832792,5,15
+"319",4,"semilla","Different Sense","Era una semilla educativa","Era una semilla germinada",1,2,"female","female",2,1,2,15
+"320",4,"sierra","Different Sense","Era una sierra automática","Era una sierra nevada",1,2,"female","female",1.26666666666667,0.593616839704664,1,15
+"321",4,"sirena","Different Sense","Era una sirena coqueta","Era una sirena ruidosa",1,2,"female","female",1.33333333333333,1.04653623694457,1,15
+"322",4,"sueño","Different Sense","Él moría de sueño","Él relató su sueño",2,3,"male","male",2.4,1.12122382116278,2,15
+"323",4,"sueño","Same Sense","Él recordó su sueño","Él relató su sueño",3,3,"male","male",4.66666666666667,0.723746864455746,5,15
+"324",4,"título","Different Sense","Le gustó el título del poema","Le gustó el título propietario",2,3,"male","male",1.93333333333333,0.883715101688537,2,15
+"325",4,"título","Different Sense","Le gustó el título profesional","Le gustó el título legal",1,3,"male","male",4,1.19522860933439,4,15
+"326",4,"vaso","Same Sense","Se trataba de un vaso antiguo","Se trataba de un vaso cristalino",1,1,"male","male",4.8,0.560611910581388,5,15
+"327",5,"aceite","Different Sense","Compró el aceite de cocina","Compró el aceite de carro",1,2,"male","male",3.35714285714286,1.27744594087896,3,14
+"328",5,"aceite","Different Sense","Compró el aceite de cocina","Compró el aceite de motor",1,2,"male","male",3.57142857142857,1.45254607840513,4,14
+"329",5,"banco","Different Sense","Era un banco exitoso","Era un banco cómodo",1,2,"male","male",1.21428571428571,0.801783725737273,1,14
+"330",5,"banco","Same Sense","Era un banco financiero","Era un banco exitoso",1,1,"male","male",4.42857142857143,0.85163062725264,5,14
+"331",5,"cadena","Different Sense","Era una cadena de oro","Era una cadena de radio",1,3,"female","female",1.07142857142857,0.267261241912424,1,14
+"332",5,"cadena","Different Sense","Era una cadena elegante","Era una cadena de radio",1,3,"female","female",1.14285714285714,0.363136519601281,1,14
+"333",5,"caja","Different Sense","Ella vio la caja bancaria","Ella vio la caja fuerte",1,2,"female","female",2.71428571428571,1.48989268733698,2,14
+"334",5,"cámara","Different Sense","Se trataba de la cámara digital","Se trataba de la cámara principal",2,3,"female","female",2.07142857142857,1.43924583425785,1.5,14
+"335",5,"cámara","Different Sense","Se trataba de la cámara gubernamental","Se trataba de la cámara profesional",1,2,"female","female",1.28571428571429,1.0690449676497,1,14
+"336",5,"cámara","Different Sense","Se trataba de la cámara profesional","Se trataba de la cámara remodelada",2,3,"female","female",2.35714285714286,1.54954796669832,2,14
+"337",5,"cámara","Same Sense","Se trataba de la cámara senatorial","Se trataba de la cámara gubernamental",1,1,"female","female",4.85714285714286,0.363136519601281,5,14
+"338",5,"canal","Different Sense","Estaba en el canal de comedia","Estaba en el canal uterino",1,3,"male","male",1.07142857142857,0.267261241912424,1,14
+"339",5,"capa","Different Sense","Se trataba de la capa de superhéroe","Se trataba de la capa de ozono",1,2,"female","female",1.42857142857143,0.937614461876991,1,14
+"340",5,"capa","Different Sense","Se trataba de la capa de tela","Se trataba de la capa de ozono",1,2,"female","female",1.92857142857143,1.43924583425785,1,14
+"341",5,"capital","Different Sense","Le gustó la capital antigua","Le gustó el capital financiero",1,2,"female","male",1.07142857142857,0.267261241912424,1,14
+"342",5,"carrera","Different Sense","Fue una carrera académica","Fue una carrera olímpica",1,2,"female","female",1.92857142857143,1.43924583425785,1,14
+"343",5,"carrera","Different Sense","Fue una carrera universitaria","Fue una carrera olímpica",1,2,"female","female",2,1.56892908110547,1,14
+"344",5,"carrera","Same Sense","Fue una carrera profesional","Fue una carrera académica",1,1,"female","female",4.57142857142857,0.755928946018454,5,14
+"345",5,"carrera","Same Sense","Fue una carrera universitaria","Fue una carrera académica",1,1,"female","female",4.71428571428571,1.0690449676497,5,14
+"346",5,"caudal","Same Sense","Era un caudal financiero","Era un caudal heredado",1,1,"male","male",3.78571428571429,1.25137287246211,4,14
+"347",5,"cinta","Different Sense","Usó la cinta rosada","Usó la cinta métrica",2,3,"female","female",2.78571428571429,1.47692880035521,3,14
+"348",5,"clima","Different Sense","El clima estaba tenso","El clima estaba frío",1,2,"male","male",2.85714285714286,1.56190922897601,3,14
+"349",5,"colonia","Different Sense","Era una colonia fragante","Era una colonia abandonada",1,2,"female","female",1.21428571428571,0.801783725737273,1,14
+"350",5,"colonia","Different Sense","Era una colonia sutil","Era una colonia de hormigas",1,3,"female","female",1.35714285714286,0.744946343668492,1,14
+"351",5,"columna","Different Sense","Era una columna de mármol","Era una columna encorvada",1,2,"female","female",2.64285714285714,1.78054195972172,2,14
+"352",5,"columna","Same Sense","Era una columna vertebral","Era una columna encorvada",2,2,"female","female",4.07142857142857,1.26881445053645,5,14
+"353",5,"compás","Different Sense","Él observaba el compás","Él bailaba al compás",1,2,"male","male",2.14285714285714,1.40642169281549,1.5,14
+"354",5,"copa","Same Sense","Él vio la copa mundial","Él vio la copa deportiva",1,1,"female","female",4.78571428571429,0.578934223521839,5,14
+"355",5,"copa","Same Sense","Él vio la copa vacía","Él vio la copa de cristal",2,2,"female","female",5,0,5,14
+"356",5,"cordón","Different Sense","Se trataba de un cordón sedoso","Se trataba de un cordón inalámbrico",1,3,"male","male",2.42857142857143,1.86935964825003,1,14
+"357",5,"corte","Same Sense","Le gustó la corte suprema","Le gustó la corte judicial",2,2,"female","female",4.57142857142857,1.08940955880384,5,14
+"358",5,"corteza","Different Sense","Estaba en la corteza del árbol","Estaba en la corteza comestible",2,4,"female","female",3.35714285714286,1.33630620956212,3.5,14
+"359",5,"corteza","Different Sense","Estaba en la corteza del árbol","Estaba en la corteza crocante",2,4,"female","female",2.71428571428571,1.48989268733698,3,14
+"360",5,"cubo","Same Sense","Le gustó el cubo geométrico","Le gustó el cubo tridimensional",1,1,"male","male",4.92857142857143,0.267261241912424,5,14
+"361",5,"cuerdas","Different Sense","Tenía cuerdas fibrosas","Tenía cuerdas vocales",1,3,"female","female",2.5,1.50639661750509,2,14
+"362",5,"estado","Different Sense","Le preocupaba su estado psicológico","Le preocupaba su estado natal",1,2,"male","male",2.14285714285714,1.87522892375398,1,14
+"363",5,"firma","Different Sense","Era una firma indescifrable","Era una firma emprendedora",1,2,"female","female",1.5,1.16023870223064,1,14
+"364",5,"fortuna","Same Sense","Fue una fortuna heredada","Fue una fortuna financiera",1,1,"female","female",3.92857142857143,1.59152977759357,5,14
+"365",5,"frase","Same Sense","Le gustó la frase musical","Le gustó la frase melódica",1,1,"female","female",4.42857142857143,0.85163062725264,5,14
+"366",5,"frente","Different Sense","Era un frente frío","Era una frente arrugada",1,2,"male","female",1,0,1,14
+"367",5,"guía","Same Sense","Era una guía turística","Era una guía viajera",1,1,"female","female",4.64285714285714,0.744946343668492,5,14
+"368",5,"llama","Different Sense","Era una llama ardiente","Era una llama lanuda",1,2,"female","female",1,0,1,14
+"369",5,"llama","Different Sense","Era una llama brillante","Era una llama peruana",1,2,"female","female",1.28571428571429,0.825420305855557,1,14
+"370",5,"llama","Same Sense","Era una llama ardiente","Era una llama brillante",1,1,"female","female",4.5,1.09192842819834,5,14
+"371",5,"mano","Different Sense","Tenía una mano de hierro","Tenía una mano arrugada",1,2,"female","female",3,1.75411603861406,2.5,14
+"372",5,"mano","Different Sense","Tenía una mano de hierro","Tenía una mano sudada",1,2,"female","female",3.28571428571429,1.81568259800641,3.5,14
+"373",5,"nave","Different Sense","Era una nave de madera","Era una nave sagrada",1,2,"female","female",3.07142857142857,1.43924583425785,4,14
+"374",5,"nave","Same Sense","Era una nave católica","Era una nave sagrada",2,2,"female","female",3.85714285714286,1.23145585242976,4,14
+"375",5,"nota","Same Sense","Era una nota desafinada","Era una nota musical",1,1,"female","female",5,0,5,14
+"376",5,"orden","Different Sense","Es una orden jurídica","Es una orden católica",1,2,"female","female",1.85714285714286,1.56190922897601,1,14
+"377",5,"orden","Different Sense","Es una orden jurídica","Es una orden religiosa",1,2,"female","female",1.78571428571429,1.3114039117603,1,14
+"378",5,"órgano","Different Sense","Tenía un órgano ceremonial","Tenía un órgano herido",1,2,"male","male",1.07142857142857,0.267261241912424,1,14
+"379",5,"órgano","Different Sense","Tenía un órgano eclesiástico","Tenía un órgano herido",1,2,"male","male",1.14285714285714,0.534522483824849,1,14
+"380",5,"órgano","Same Sense","Tenía un órgano herido","Tenía un órgano operado",2,2,"male","male",5,0,5,14
+"381",5,"papa","Different Sense","Era una papa majada","Era un papa comprensivo",1,2,"female","male",1,0,1,14
+"382",5,"papa","Different Sense","Era una papa majada","Era un papa conservador",1,2,"female","male",1,0,1,14
+"383",5,"pasta","Different Sense","Le gustó la pasta italiana","Le gustó la pasta dental",1,2,"female","female",1.07142857142857,0.267261241912424,1,14
+"384",5,"perfil","Different Sense","Se trataba de un perfil perturbador","Se trataba de un perfil elegante",1,2,"male","male",3.78571428571429,1.47692880035521,4.5,14
+"385",5,"pieza","Different Sense","Le gustó la pieza alterada","Le gustó la pieza contemporánea",2,3,"female","female",2.78571428571429,1.1217137594956,2.5,14
+"386",5,"pieza","Different Sense","Le gustó la pieza añadida","Le gustó la pieza abstracta",2,3,"female","female",3.57142857142857,1.28388147753274,4,14
+"387",5,"pieza","Different Sense","Le gustó la pieza musical","Le gustó la pieza alterada",1,2,"female","female",2.5,1.40054934277178,2,14
+"388",5,"pieza","Same Sense","Le gustó la pieza musical","Le gustó la pieza flamenca",1,1,"female","femael",4.71428571428571,0.611249845502127,5,14
+"389",5,"pista","Different Sense","Era una pista de baile","Era una pista clave",1,2,"female","female",1,0,1,14
+"390",5,"planta","Different Sense","Estaba en la planta baja","Estaba en la planta izquierda",2,3,"female","female",2.78571428571429,1.67233468441676,3,14
+"391",5,"planta","Different Sense","Estaba en la planta superior","Estaba en la planta del pie",2,3,"female","female",1.14285714285714,0.363136519601281,1,14
+"392",5,"planta","Different Sense","Estaba en la planta tropical","Estaba en la planta baja",1,2,"female","female",1,0,1,14
+"393",5,"red","Different Sense","Era una red privada","Era una red de cuerda",1,2,"female","female",1.07142857142857,0.267261241912424,1,14
+"394",5,"resistencia","Different Sense","Se trataba de una resistencia de circuito","Se trataba de una resistencia militar",1,2,"female","female",1.42857142857143,1.15786844704368,1,14
+"395",5,"resistencia","Same Sense","Se trataba de una resistencia eléctrica","Se trataba de una resistencia de circuito",1,1,"female","female",4.71428571428571,0.468807230938495,5,14
+"396",5,"resistencia","Same Sense","Se trataba de una resistencia política","Se trataba de una resistencia militar",2,2,"female","female",4.21428571428571,0.974961255922229,4.5,14
+"397",5,"rosa","Different Sense","Era una rosa frágil","Era un rosa tenue",1,2,"female","male",2,1.46759877141069,1,14
+"398",5,"sangre","Different Sense","Él tiene sangre diluida","Él tiene sangre real",1,2,"female","female",3.64285714285714,1.49908396938022,4,14
+"399",5,"seno","Same Sense","Estaba en el seno izquiero","Estaba en el seno operado",2,2,"male","male",3.85714285714286,1.51185789203691,4.5,14
+"400",5,"sirena","Different Sense","Era una sirena coqueta","Era una sirena policíaca",1,2,"female","female",1.14285714285714,0.534522483824849,1,14
+"401",5,"sirena","Same Sense","Era una sirena mitológica","Era una sirena coqueta",1,1,"female","female",4.57142857142857,0.755928946018454,5,14
+"402",5,"sueño","Different Sense","Él abandonó su sueño","Él relató su sueño",1,3,"male","male",3,1.46759877141069,3,14
+"403",5,"sueño","Different Sense","Él tenía sueño","Él recordó su sueño",2,3,"male","male",3.21428571428571,1.52812461375532,3.5,14
+"404",5,"sueño","Different Sense","Él tenía sueño","Él relató su sueño",2,3,"male","male",2.64285714285714,1.5984195491,2.5,14
+"405",5,"tabla","Same Sense","Le gustó la tabla de ajedrez","Le gustó la tabla de juego",2,2,"female","female",4.28571428571429,1.43733575268066,5,14
+"406",5,"tecla","Different Sense","Tocó la tecla espaciadora","Tocó la tecla afinada",1,2,"female","female",2.28571428571429,1.54065777303929,1.5,14
+"407",5,"volumen","Different Sense","Aumentó el volumen de la corriente","Aumentó el volumen de la voz",1,2,"male","male",1.85714285714286,0.949262293098647,1.5,14
+"408",6,"ala","Different Sense","Le gustó el ala remodelada","Le gustó el ala plumosa",1,2,"female","female",1.4,0.516397779494322,1,10
+"409",6,"cadena","Different Sense","Era una cadena de hierro","Era una cadena de radio",2,3,"female","female",1.4,0.699205898780101,1,10
+"410",6,"caja","Different Sense","Ella vio la caja bancaria","Ella vio la caja sellada",1,2,"female","female",2.5,1.43372087784044,2,10
+"411",6,"caja","Different Sense","Ella vio la caja fuerte","Ella vio la caja acústica",2,3,"female","female",2.3,0.948683298050514,2,10
+"412",6,"campo","Different Sense","Era un campo biológico","Era un campo abandonado",1,2,"male","male",2,1.05409255338946,2,10
+"413",6,"campo","Different Sense","Era un campo biológico","Era un campo cultivado",1,2,"male","male",2.6,1.34989711542111,3,10
+"414",6,"campo","Different Sense","Era un campo competitivo","Era un campo abandonado",1,2,"male","male",2.1,1.28668393770792,2,10
+"415",6,"canal","Different Sense","Estaba en el canal televisivo","Estaba en el canal cervical",1,3,"male","male",1.6,0.966091783079296,1,10
+"416",6,"canal","Same Sense","Estaba en el canal televisivo","Estaba en el canal de comedia",1,1,"male","male",4.5,0.52704627669473,4.5,10
+"417",6,"capa","Same Sense","Se trataba de la capa de superhéroe","Se trataba de la capa de tela",1,1,"female","female",4.2,1.22927259430572,4.5,10
+"418",6,"capital","Different Sense","Le gustó la capital holandesa","Le gustó el capital financiero",1,2,"female","male",1.3,0.674948557710553,1,10
+"419",6,"carrera","Different Sense","Fue una carrera profesional","Fue una carrera olímpica",1,2,"female","female",2.3,1.49443411809733,2,10
+"420",6,"carrera","Same Sense","Fue una carrera reñida","Fue una carrera olímpica",2,2,"female","female",4,1.05409255338946,4,10
+"421",6,"cinta","Different Sense","Usó la cinta adhesiva","Usó la cinta rosada",1,2,"female","female",2.4,1.34989711542111,3,10
+"422",6,"cinta","Different Sense","Usó la cinta métrica","Usó la cinta quirúrgica",3,4,"female","female",2.2,0.632455532033676,2,10
+"423",6,"código","Different Sense","Era un código de conducta","Era un código programático",1,2,"male","male",2.6,1.17378779077727,3,10
+"424",6,"código","Different Sense","Era un código de ética","Era un código programático",1,2,"male","male",2.4,1.26491106406735,2.5,10
+"425",6,"colonia","Different Sense","Era una colonia de hombre","Era una colonia oprimida",1,2,"female","female",1.2,0.421637021355784,1,10
+"426",6,"colonia","Different Sense","Era una colonia fragante","Era una colonia oprimida",1,2,"female","female",1.8,0.918936583472681,1.5,10
+"427",6,"colonia","Same Sense","Era una colonia sutil","Era una colonia de hombre",1,1,"female","female",3.9,1.59513148186739,4.5,10
+"428",6,"compañía","Different Sense","Le gustó la compañía financiera","Le gustó la compañía teatral",1,2,"female","female",2.9,1.3703203194063,3,10
+"429",6,"compás","Same Sense","Él navegaba con el compás","Él observaba el compás",1,1,"male","male",2.4,1.34989711542111,2.5,10
+"430",6,"corte","Different Sense","Le gustó la corte noble","Le gustó el corte asimétrico",1,3,"female","male",1.3,0.483045891539648,1,10
+"431",6,"corte","Different Sense","Le gustó la corte noble","Le gustó la corte suprema",1,2,"female","female",3.7,1.05934990547138,4,10
+"432",6,"corte","Different Sense","Le gustó la corte real","Le gustó la corte judicial",1,2,"female","female",3.5,1.35400640077266,4,10
+"433",6,"cuadro","Different Sense","No le gustó el cuadro de síntomas","No le gustó el cuadro barroco",1,2,"male","male",1.4,0.699205898780101,1,10
+"434",6,"cuadro","Different Sense","No le gustó el cuadro diagnóstico","No le gustó el cuadro barroco",1,2,"male","male",1.5,0.849836585598797,1,10
+"435",6,"cuadro","Same Sense","No le gustó el cuadro antiguo","No le gustó el cuadro barroco",2,2,"male","male",4.4,1.07496769977314,5,10
+"436",6,"cubo","Different Sense","Le gustó el cubo tridimensional","Le gustó el cubo de madera",1,2,"male","male",3.4,1.17378779077727,3,10
+"437",6,"cuerdas","Different Sense","Tenía cuerdas sintéticas","Tenía cuerdas inflamadas",1,3,"female","female",1.3,0.483045891539648,1,10
+"438",6,"cuerdas","Same Sense","Tenía cuerdas fibrosas","Tenía cuerdas sintéticas",1,1,"female","female",3.7,1.05934990547138,4,10
+"439",6,"depresión","Different Sense","Se trataba de una depresión terrestre","Se trataba de una depresión mental",1,2,"female","female",1.3,0.483045891539648,1,10
+"440",6,"fibra","Same Sense","Carecía fibra nutritiva","Carecía fibra dietética",2,2,"female","female",4.2,1.22927259430572,4.5,10
+"441",6,"fondo","Different Sense","Estaba en el fondo presupuestario","Estaba en el fondo del cuarto",1,2,"male","male",1.6,0.699205898780101,1.5,10
+"442",6,"función","Same Sense","Era una función biológica","Era una función social",1,1,"female","female",3.1,1.44913767461894,3,10
+"443",6,"gato","Different Sense","Compró el gato peludo","Compró el gato hidraúlico",1,2,"male","male",1,0,1,10
+"444",6,"guardia","Different Sense","Llamó al guardia de seguridad","Llamó a la guardia nacional",1,2,"male","female",3.7,1.05934990547138,3.5,10
+"445",6,"guardia","Same Sense","Llamó al guardia de seguridad","Llamó al guardia de noche",1,1,"male","male",4.8,0.421637021355784,5,10
+"446",6,"guía","Different Sense","Era una guía viajera","Era una guía digital",1,2,"female","female",3,1.15470053837925,3,10
+"447",6,"guía","Different Sense","Era una guía viajera","Era una guía televisiva",1,2,"female","female",3.2,1.22927259430572,3,10
+"448",6,"guía","Same Sense","Era una guía digital","Era una guía televisiva",2,2,"female","female",2.6,1.07496769977314,3,10
+"449",6,"hábito","Same Sense","Era un hábito irritante","Era un hábito rutinario",1,1,"male","male",4.8,0.421637021355784,5,10
+"450",6,"llama","Different Sense","Era una llama ardiente","Era una llama peruana",1,2,"female","female",1.2,0.421637021355784,1,10
+"451",6,"llama","Different Sense","Era una llama brillante","Era una llama lanuda",1,2,"female","female",1.4,0.699205898780101,1,10
+"452",6,"muñeca","Different Sense","Tenía una muñeca lesionada","Tenía una muñeca plástica",1,2,"female","female",1.7,1.05934990547138,1,10
+"453",6,"muñeca","Same Sense","Tenía una muñeca preciosa","Tenía una muñeca plástica",2,2,"female","female",3.7,1.41813649241218,4,10
+"454",6,"nave","Different Sense","Era una nave marítima","Era una nave católica",1,2,"female","female",2.3,1.15950180872841,2,10
+"455",6,"nota","Different Sense","Era una nota aguda","Era una nota decepcionante",1,2,"female","female",1.9,1.10050493461461,1.5,10
+"456",6,"nota","Different Sense","Era una nota desafinada","Era una nota decepcionante",1,2,"female","female",1.8,1.03279555898864,1.5,10
+"457",6,"nota","Different Sense","Era una nota musical","Era una nota decepcionante",1,2,"female","female",1.9,1.19721899973786,1.5,10
+"458",6,"órgano","Different Sense","Tenía un órgano eclesiástico","Tenía un órgano operado",1,2,"male","male",1.3,0.674948557710553,1,10
+"459",6,"órgano","Same Sense","Tenía un órgano eclesiástico","Tenía un órgano ceremonial",1,1,"male","male",2.8,1.3984117975602,2,10
+"460",6,"palma","Different Sense","Estaba en la palma de coco","Estaba en la palma derecha",1,2,"female","female",1.8,0.918936583472681,1.5,10
+"461",6,"palma","Different Sense","Estaba en la palma frondosa","Estaba en la palma izquierda",1,2,"female","female",1.3,0.483045891539648,1,10
+"462",6,"papa","Different Sense","Era una papa caliente","Era un papa conservador",1,2,"female","male",1,0,1,10
+"463",6,"papa","Same Sense","Era una papa majada","Era una papa caliente",1,1,"female","female",3.2,1.47572957474524,3.5,10
+"464",6,"pasta","Same Sense","Le gustó la pasta dental","Le gustó la pasta blanqueadora",2,2,"female","female",3.9,1.44913767461894,4.5,10
+"465",6,"pastor","Different Sense","Era un pastor eclesiástico","Era un pastor de ovejas",1,2,"male","male",2.3,1.25166555703457,2,10
+"466",6,"pastor","Same Sense","Era un pastor montuno","Era un pastor de ovejas",2,2,"male","male",2.7,0.948683298050514,2.5,10
+"467",6,"pata","Same Sense","Ella vio la pata de la mesa","Ella vio la pata de hierro",1,1,"female","female",3.4,1.7763883459299,4,10
+"468",6,"patrón","Different Sense","Era un patrón exigente","Era un patrón geométrico",1,2,"male","male",1.6,0.843274042711568,1,10
+"469",6,"perfil","Different Sense","Se trataba de un perfil psicológico","Se trataba de un perfil elegante",1,2,"male","male",2.8,1.31656117720877,3,10
+"470",6,"perfil","Same Sense","Se trataba de un perfil psicológico","Se trataba de un perfil perturbador",1,1,"male","male",3.8,1.22927259430572,4,10
+"471",6,"periódico","Same Sense","Se trataba de un periódico local","Se trataba de un periódico global",1,1,"male","male",4.8,0.421637021355784,5,10
+"472",6,"prima","Different Sense","Era una prima costosa","Era una prima hermana",1,2,"female","female",1.5,1.26929551764398,1,10
+"473",6,"pupila","Different Sense","Tenía una pupila contraída","Tenía una pupila estudiosa",1,2,"female","female",1.9,1.19721899973786,1.5,10
+"474",6,"químico","Different Sense","Era un químico exitoso","Era un químico orgánico",1,2,"male","male",2.8,1.68654808542314,3,10
+"475",6,"químico","Different Sense","Era un químico exitoso","Era un químico tóxico",1,2,"male","male",1.9,0.875595035770913,2,10
+"476",6,"revista","Different Sense","Era una revista de belleza","Era una revista brillosa",1,2,"female","female",3.4,1.42984070596848,3.5,10
+"477",6,"revista","Different Sense","Era una revista de belleza","Era una revista estrujada",1,2,"female","female",3.8,1.13529242439509,4,10
+"478",6,"rosa","Same Sense","Era una rosa fragante","Era una rosa frágil",1,1,"female","female",4.1,0.875595035770913,4,10
+"479",6,"sangre","Same Sense","Él tiene sangre noble","Él tiene sangre real",2,2,"female","female",5,0,5,10
+"480",6,"semilla","Different Sense","Era una semilla cultural","Era una semilla germinada",1,2,"female","female",1.9,0.737864787372622,2,10
+"481",6,"serie","Different Sense","Se trataba de una serie televisiva","Se trataba de una serie matemática",1,2,"female","female",1.9,1.10050493461461,1.5,10
+"482",6,"sirena","Different Sense","Era una sirena mitológica","Era una sirena ruidosa",1,2,"female","female",1.7,0.823272602348565,1.5,10
+"483",6,"sueño","Different Sense","Él abandonó su sueño","Él moría de sueño",1,2,"male","male",1.9,1.19721899973786,1.5,10
+"484",6,"tabla","Different Sense","Le gustó la tabla de madera","Le gustó la tabla de juego",1,2,"female","female",2.6,0.843274042711568,3,10
+"485",6,"taco","Different Sense","Le gustó el taco delicioso","Le gustó el taco del zapato",1,2,"male","male",1.2,0.421637021355784,1,10
+"486",6,"tecla","Same Sense","Tocó la tecla desafinada","Tocó la tecla afinada",2,2,"female","female",4.4,1.34989711542111,5,10
+"487",6,"título","Different Sense","Le gustó el título halagador","Le gustó el título propietario",1,3,"male","male",2.7,1.15950180872841,3,10
+"488",6,"título","Different Sense","Le gustó el título profesional","Le gustó el título del libro",1,2,"male","male",2.4,1.42984070596848,2,10
+"489",7,"algodón","Different Sense","Evaluó el algodón cultivado","Evaluó el algodón caramelizado",1,2,"male","male",2.15384615384615,1.34450448407296,2,13
+"490",7,"arte","Different Sense","Se trataba del arte de guerra","Se trataba del arte renacentista",1,2,"male","male",3.07692307692308,1.32045058354705,4,13
+"491",7,"arte","Different Sense","Se trataba del arte de mentir","Se trataba del arte renacentista",1,2,"male","male",1.84615384615385,1.06818801763811,1,13
+"492",7,"banco","Different Sense","Era un banco exitoso","Era un banco plástico",1,2,"male","male",1.53846153846154,0.967417922046845,1,13
+"493",7,"baño","Different Sense","Disfrutó el baño frío","Disfrutó el baño privado",1,2,"male","male",3.23076923076923,1.53589529557661,3,13
+"494",7,"calle","Same Sense","Condujo en la calle asfaltada","Condujo en la calle resbalosa",2,2,"female","female",4.84615384615385,0.554700196225229,5,13
+"495",7,"cámara","Different Sense","Se trataba de la cámara gubernamental","Se trataba de la cámara remodelada",1,3,"female","female",2.69230769230769,1.60128153805087,2,13
+"496",7,"capa","Different Sense","Se trataba de la capa de superhéroe","Se trataba de la capa atmosférica",1,2,"female","female",1.30769230769231,0.630425171956115,1,13
+"497",7,"capa","Different Sense","Se trataba de la capa de tela","Se trataba de la capa atmosférica",1,2,"female","female",1.46153846153846,0.776250025806185,1,13
+"498",7,"capa","Same Sense","Se trataba de la capa atmosférica","Se trataba de la capa de ozono",2,2,"female","female",4.92307692307692,0.277350098112615,5,13
+"499",7,"cima","Different Sense","Estaba en la cima de la montaña","Estaba en la cima de su carrera",1,2,"female","female",3.23076923076923,1.36344209960466,4,13
+"500",7,"cinta","Same Sense","Usó la cinta rosada","Usó la cinta decorativa",2,2,"female","female",4.69230769230769,0.630425171956115,5,13
+"501",7,"clave","Different Sense","Era la clave de sol","Era la clave al caso",1,2,"female","female",1.23076923076923,0.438529009653515,1,13
+"502",7,"clave","Same Sense","Era la clave musical","Era la clave de sol",1,1,"female","female",4.69230769230769,1.10940039245046,5,13
+"503",7,"colonia","Different Sense","Era una colonia de hombre","Era una colonia abandonada",1,2,"female","female",1.23076923076923,0.832050294337844,1,13
+"504",7,"colonia","Different Sense","Era una colonia sutil","Era una colonia abandonada",1,2,"female","female",1.76923076923077,1.48064435037847,1,13
+"505",7,"colonia","Different Sense","Era una colonia sutil","Era una colonia bacteriana",1,3,"female","female",1.53846153846154,0.877058019307029,1,13
+"506",7,"compañía","Different Sense","Le gustó la compañía de inversiones","Le gustó la compañía teatral",1,2,"female","female",3.23076923076923,1.48064435037847,4,13
+"507",7,"compás","Different Sense","Él observaba el compás","Él cantaba al compás",1,2,"male","male",1.76923076923077,1.09192842819834,1,13
+"508",7,"cordón","Same Sense","Se trataba de un cordón umbilical","Se trataba de un cordón biológico",2,2,"male","male",4.15384615384615,1.21423184538991,5,13
+"509",7,"corte","Different Sense","Le gustó la corte judicial","Le gustó el corte asimétrico",2,3,"female","male",1.07692307692308,0.277350098112615,1,13
+"510",7,"corte","Different Sense","Le gustó la corte real","Le gustó el corte asimétrico",1,3,"female","male",1.07692307692308,0.277350098112615,1,13
+"511",7,"corte","Different Sense","Le gustó la corte real","Le gustó la corte suprema",1,2,"female","female",3.92307692307692,1.55250005161237,5,13
+"512",7,"corteza","Different Sense","Estaba en la corteza geológica","Estaba en la corteza cerebral",1,3,"female","female",2.07692307692308,1.3821202589704,1,13
+"513",7,"corteza","Different Sense","Estaba en la corteza terrestre","Estaba en la corteza prefrontal",1,3,"female","female",1.69230769230769,1.03155347127648,1,13
+"514",7,"cuadro","Different Sense","No le gustó el cuadro clíninco","No le gustó el cuadro antiguo",1,2,"male","male",1.84615384615385,1.21423184538991,1,13
+"515",7,"fibra","Different Sense","Carecía fibra nutritiva","Carecía fibra muscular",2,3,"female","female",2.38461538461538,1.60926802918084,2,13
+"516",7,"fondo","Same Sense","Estaba en el fondo marino","Estaba en el fondo del cuarto",2,2,"male","male",3.30769230769231,1.31558702896054,3,13
+"517",7,"fortuna","Different Sense","Fue una fortuna financiera","Fue una fortuna inesperada",1,2,"female","female",3.30769230769231,1.43669849450139,3,13
+"518",7,"frase","Different Sense","Le gustó la frase melódica","Le gustó la frase lírica",1,2,"female","female",4.15384615384615,1.34450448407296,5,13
+"519",7,"función","Same Sense","Era una función lineal","Era una función matemática",2,2,"female","female",4.23076923076923,1.16575055606865,5,13
+"520",7,"guía","Different Sense","Era una guía turística","Era una guía digital",1,2,"female","female",3.15384615384615,1.46322439872551,3,13
+"521",7,"hoja","Different Sense","Era una hoja de papel","Era una hoja verdosa",1,2,"female","female",2.76923076923077,1.53589529557661,3,13
+"522",7,"hoja","Same Sense","Era una hoja de árbol","Era una hoja verdosa",2,2,"female","female",4.53846153846154,0.660225291773525,5,13
+"523",7,"naranja","Different Sense","Era una naranja madura","Era un naranja brillante",1,2,"female","male",3.07692307692308,1.75411603861406,3,13
+"524",7,"naranja","Same Sense","Era un naranja oscuro","Era un naranja brillante",2,2,"male","male",4.46153846153846,1.19828937903056,5,13
+"525",7,"nave","Different Sense","Era una nave marítima","Era una nave sagrada",1,2,"female","female",3,1.73205080756888,4,13
+"526",7,"nota","Different Sense","Era una nota aguda","Era una nota satisfactoria",1,2,"female","female",2.23076923076923,1.23516841994969,3,13
+"527",7,"nota","Different Sense","Era una nota desafinada","Era una nota académica",1,2,"female","female",1.23076923076923,0.599144689515278,1,13
+"528",7,"nota","Same Sense","Era una nota decepcionante","Era una nota satisfactoria",2,2,"female","female",4.46153846153846,1.05003052458683,5,13
+"529",7,"ola","Same Sense","Se trataba de una ola marítima","Se trataba de una ola navegable",1,1,"female","female",4.69230769230769,0.630425171956115,5,13
+"530",7,"palma","Same Sense","Estaba en la palma frondosa","Estaba en la palma de coco",1,1,"female","female",3.69230769230769,1.31558702896054,4,13
+"531",7,"papa","Different Sense","Era una papa caliente","Era un papa jesuita",1,2,"female","male",1,0,1,13
+"532",7,"papa","Same Sense","Era un papa jesuita","Era un papa comprensivo",2,2,"male","male",3.38461538461538,1.66024403519792,4,13
+"533",7,"parque","Different Sense","Visitó el parque de diversiones","Visitó el parque forestal",1,2,"male","male",3.07692307692308,1.32045058354705,3,13
+"534",7,"pasta","Different Sense","Le gustó la pasta caliente","Le gustó la pasta dental",1,2,"female","female",1,0,1,13
+"535",7,"pasta","Same Sense","Le gustó la pasta italiana","Le gustó la pasta caliente",1,1,"female","female",4.69230769230769,0.630425171956115,5,13
+"536",7,"pata","Different Sense","Ella vio la pata de hierro","Ella vio la pata peluda",1,2,"female","female",3.15384615384615,1.46322439872551,4,13
+"537",7,"patrón","Different Sense","Era un patrón exigente","Era un patrón complicado",1,2,"male","male",3.61538461538462,1.44559454541846,4,13
+"538",7,"patrón","Different Sense","Era un patrón orgulloso","Era un patrón geométrico",1,2,"male","male",1.38461538461538,0.960768922830523,1,13
+"539",7,"perfil","Different Sense","Se trataba de un perfil perturbador","Se trataba de un perfil fotogénico",1,2,"male","male",2.92307692307692,1.65637850251377,2,13
+"540",7,"perfil","Same Sense","Se trataba de un perfil fotogénico","Se trataba de un perfil elegante",2,2,"male","male",3.84615384615385,1.14354374979373,4,13
+"541",7,"periódico","Different Sense","Se trataba de un periódico global","Se trataba de un periódico estrujado",1,2,"male","male",3.84615384615385,1.2810252304407,4,13
+"542",7,"pico","Different Sense","Dibujó el pico montuno","Dibujó el pico del ave",1,2,"male","male",2.30769230769231,1.43669849450139,2,13
+"543",7,"pieza","Different Sense","Le gustó la pieza musical","Le gustó la pieza contemporánea",1,3,"female","female",4,1.29099444873581,4,13
+"544",7,"planta","Different Sense","Estaba en la planta tropical","Estaba en la planta izquierda",1,3,"female","female",1.07692307692308,0.277350098112615,1,13
+"545",7,"pluma","Different Sense","Tenía una pluma silvestre","Tenía una pluma fuente",1,2,"female","female",1.92307692307692,1.18754217199071,2,13
+"546",7,"pluma","Same Sense","Tenía una pluma silvestre","Tenía una pluma albina",1,1,"female","female",4.07692307692308,1.11516355015296,4,13
+"547",7,"posición","Different Sense","Estaba en una posición sentada","Estaba en una posición oportuna",1,2,"female","female",2.38461538461538,1.66024403519792,1,13
+"548",7,"prima","Different Sense","Era una prima anual","Era una prima hermana",1,2,"female","female",1.07692307692308,0.277350098112615,1,13
+"549",7,"prima","Different Sense","Era una prima costosa","Era una prima atenta",1,2,"female","female",1.61538461538462,0.960768922830523,1,13
+"550",7,"químico","Same Sense","Era un químico negligente","Era un químico exitoso",1,1,"male","male",4.61538461538461,0.869718492622904,5,13
+"551",7,"red","Same Sense","Era una red pesquera","Era una red de cuerda",2,2,"female","female",4.53846153846154,0.518874521662771,5,13
+"552",7,"redada","Different Sense","Fue una redada en el río","Fue una redada policiaca",1,2,"female","female",2.23076923076923,1.01273936708367,2,13
+"553",7,"redada","Different Sense","Fue una redada pesquera","Fue una redada policiaca",1,2,"female","female",1.76923076923077,1.23516841994969,1,13
+"554",7,"resistencia","Different Sense","Se trataba de una resistencia eléctrica","Se trataba de una resistencia política",1,2,"female","female",1.38461538461538,0.869718492622904,1,13
+"555",7,"revista","Same Sense","Era una revista de belleza","Era una revista deportiva",1,1,"female","female",4.84615384615385,0.554700196225229,5,13
+"556",7,"rosa","Different Sense","Era una rosa fragante","Era un rosa tenue",1,2,"female","male",2.92307692307692,1.4978617237882,3,13
+"557",7,"rosa","Different Sense","Era una rosa frágil","Era un rosa claro",1,2,"female","male",1.76923076923077,1.23516841994969,1,13
+"558",7,"semilla","Different Sense","Era una semilla educativa","Era una semilla sembrada",1,2,"female","female",1.84615384615385,1.21423184538991,1,13
+"559",7,"semilla","Same Sense","Era una semilla educativa","Era una semilla cultural",1,1,"female","female",4,1.52752523165195,5,13
+"560",7,"serie","Different Sense","Se trataba de una serie animada","Se trataba de una serie numérica",1,2,"female","female",1.76923076923077,1.16575055606865,1,13
+"561",7,"sierra","Same Sense","Era una sierra forestada","Era una sierra nevada",2,2,"female","female",4.61538461538461,0.869718492622904,5,13
+"562",7,"sirena","Different Sense","Era una sirena mitológica","Era una sirena policíaca",1,2,"female","female",1,0,1,13
+"563",7,"sirena","Same Sense","Era una sirena policíaca","Era una sirena ruidosa",2,2,"female","female",4,1.35400640077266,5,13
+"564",7,"tecla","Same Sense","Tocó la tecla del ordenador","Tocó la tecla espaciadora",1,1,"female","female",4.92307692307692,0.277350098112615,5,13
+"565",7,"título","Different Sense","Le gustó el título del libro","Le gustó el título legal",2,3,"male","male",2.38461538461538,1.66024403519792,2,13
+"566",7,"título","Different Sense","Le gustó el título del poema","Le gustó el título legal",2,3,"male","male",2.23076923076923,1.36344209960466,2,13
+"567",7,"vela","Different Sense","Ella vio la vela del barco","Ella vio la vela de cera",1,2,"female","female",1.07692307692308,0.277350098112615,1,13
+"568",7,"vela","Same Sense","Ella vio la vela del barco","Ella vio la vela de lona",1,1,"female","female",4.23076923076923,0.926808695996298,5,13
+"569",7,"volumen","Same Sense","Aumentó el volumen de la voz","Aumentó el volumen de la bocina",2,2,"male","male",4.38461538461539,1.50213523239762,5,13
+"570",8,"algodón","Different Sense","Evaluó el algodón sembrado","Evaluó el algodón caramelizado",1,2,"male","male",1.9,1.28668393770792,1,10
+"571",8,"baño","Different Sense","Disfrutó el baño frío","Disfrutó el baño remodelado",1,2,"male","male",2,0.816496580927726,2,10
+"572",8,"cadena","Same Sense","Era una cadena de hierro","Era una cadena de reo",2,2,"female","female",4.1,1.10050493461461,4.5,10
+"573",8,"caja","Different Sense","Ella vio la caja registradora","Ella vio la caja fuerte",1,2,"female","female",3.4,1.34989711542111,4,10
+"574",8,"caja","Same Sense","Ella vio la caja acústica","Ella vio la caja percusiva",3,3,"female","female",4.4,1.26491106406735,5,10
+"575",8,"caja","Same Sense","Ella vio la caja fuerte","Ella vio la caja sellada",2,2,"female","female",3.3,1.70293863659264,3.5,10
+"576",8,"caja","Same Sense","Ella vio la caja registradora","Ella vio la caja bancaria",1,1,"female","female",3.4,1.17378779077727,4,10
+"577",8,"cámara","Different Sense","Se trataba de la cámara senatorial","Se trataba de la cámara profesional",1,2,"female","female",1.7,1.05934990547138,1,10
+"578",8,"cámara","Same Sense","Se trataba de la cámara profesional","Se trataba de la cámara digital",2,2,"female","female",3.9,1.66332999331662,5,10
+"579",8,"canal","Different Sense","Estaba en el canal de comedia","Estaba en el canal marítimo",1,2,"male","male",1.2,0.632455532033676,1,10
+"580",8,"canal","Different Sense","Estaba en el canal televisivo","Estaba en el canal marítimo",1,2,"male","male",1.5,0.849836585598797,1,10
+"581",8,"capital","Same Sense","Le gustó el capital financiero","Le gustó el capital económico",2,2,"male","male",4.8,0.632455532033676,5,10
+"582",8,"carrera","Different Sense","Fue una carrera profesional","Fue una carrera benéfica",1,2,"female","female",1.9,1.19721899973786,1,10
+"583",8,"casco","Different Sense","Le gustó el casco protector","Le gustó el casco urbano",1,2,"male","male",1.2,0.421637021355784,1,10
+"584",8,"casco","Same Sense","Le gustó el casco protector","Le gustó el casco de la ciclista",1,1,"male","male",4.9,0.316227766016838,5,10
+"585",8,"caudal","Different Sense","Era un caudal financiero","Era un caudal ecológico",1,2,"male","male",1.3,0.483045891539648,1,10
+"586",8,"caudal","Different Sense","Era un caudal heredado","Era un caudal ambiental",1,2,"male","male",1.8,0.918936583472681,1.5,10
+"587",8,"cinta","Different Sense","Usó la cinta pegante","Usó la cinta quirúrgica",1,4,"female","female",3.4,1.34989711542111,4,10
+"588",8,"clima","Different Sense","El clima estaba amigable","El clima estaba frío",1,2,"male","male",4.3,1.25166555703457,5,10
+"589",8,"código","Same Sense","Era un código de ética","Era un código de conducta",1,1,"male","male",4.8,0.632455532033676,5,10
+"590",8,"colonia","Different Sense","Era una colonia fragante","Era una colonia bacteriana",1,3,"female","female",2,1.63299316185545,1,10
+"591",8,"colonia","Same Sense","Era una colonia oprimida","Era una colonia abandonada",2,2,"female","female",4.2,0.918936583472681,4,10
+"592",8,"copa","Different Sense","Él vio la copa deportiva","Él vio la copa de cristal",1,2,"female","female",1.7,1.33749350984926,1,10
+"593",8,"copa","Different Sense","Él vio la copa mundial","Él vio la copa de cristal",1,2,"female","female",1.4,0.516397779494322,1,10
+"594",8,"copa","Different Sense","Él vio la copa mundial","Él vio la copa llena",1,2,"female","female",1.2,0.421637021355784,1,10
+"595",8,"copa","Same Sense","Él vio la copa llena","Él vio la copa de cristal",2,2,"female","female",4.5,0.707106781186548,5,10
+"596",8,"corazón","Same Sense","Tenía el corazón partido","Tenía el corazón angustiado",1,1,"male","male",4.3,1.25166555703457,5,10
+"597",8,"cordón","Different Sense","Se trataba de un cordón biológico","Se trataba de un cordón eléctrico",2,3,"male","male",1.5,0.849836585598797,1,10
+"598",8,"cordón","Different Sense","Se trataba de un cordón de lona","Se trataba de un cordón biológico",1,2,"male","male",1.4,0.843274042711568,1,10
+"599",8,"cordón","Same Sense","Se trataba de un cordón eléctrico","Se trataba de un cordón inalámbrico",3,3,"male","male",3.6,1.50554530541816,4,10
+"600",8,"corte","Different Sense","Le gustó la corte real","Le gustó el corte de pelo",1,3,"female","male",1.3,0.948683298050514,1,10
+"601",8,"corte","Same Sense","Le gustó el corte de pelo","Le gustó el corte asimétrico",3,3,"male","male",3.3,1.49443411809733,3,10
+"602",8,"corteza","Different Sense","Estaba en la corteza del roble","Estaba en la corteza comestible",2,4,"female","female",3.6,1.42984070596848,3.5,10
+"603",8,"cuadro","Same Sense","No le gustó el cuadro pintoresco","No le gustó el cuadro barroco",2,2,"male","male",4.9,0.316227766016838,5,10
+"604",8,"cuerdas","Different Sense","Tenía cuerdas fibrosas","Tenía cuerdas de terreno",1,2,"female","female",1.4,0.699205898780101,1,10
+"605",8,"cuerdas","Different Sense","Tenía cuerdas fibrosas","Tenía cuerdas forestadas",1,2,"female","female",2.4,1.07496769977314,3,10
+"606",8,"depresión","Same Sense","Se trataba de una depresión mental","Se trataba de una depresión psicológica",2,2,"female","female",5,0,5,10
+"607",8,"fibra","Different Sense","Carecía fibra dietética","Carecía fibra óptica",2,4,"female","female",1.1,0.316227766016838,1,10
+"608",8,"firma","Same Sense","Era una firma caligráfica","Era una firma indescifrable",1,1,"female","female",4.5,0.849836585598797,5,10
+"609",8,"fondo","Different Sense","Estaba en el fondo gubernamental","Estaba en el fondo marino",1,2,"male","male",1.5,1.08012344973464,1,10
+"610",8,"frase","Different Sense","Le gustó la frase melódica","Le gustó la frase poética",1,2,"female","female",4.3,1.33749350984926,5,10
+"611",8,"frente","Different Sense","Era un frente frío","Era una frente amplia",1,2,"male","female",1.7,1.33749350984926,1,10
+"612",8,"guardia","Different Sense","Llamó al guardia de seguridad","Llamó a la guardia costanera",1,2,"male","female",4.4,1.26491106406735,5,10
+"613",8,"lengua","Same Sense","Le gusta la lengua castellana","Le gusta la lengua española",1,1,"female","female",5,0,5,10
+"614",8,"llama","Same Sense","Era una llama peruana","Era una llama lanuda",2,2,"female","female",4.5,1.26929551764398,5,10
+"615",8,"mano","Different Sense","Tenía una mano de hierro","Tenía una mano lastimada",1,2,"female","female",2.9,1.44913767461894,3,10
+"616",8,"mano","Same Sense","Tenía una mano lastimada","Tenía una mano arrugada",2,2,"female","female",4.8,0.421637021355784,5,10
+"617",8,"muñeca","Different Sense","Tenía una muñeca lesionada","Tenía una muñeca preciosa",1,2,"female","female",1.4,0.699205898780101,1,10
+"618",8,"naranja","Same Sense","Era una naranja jugosa","Era una naranja madura",1,1,"female","female",5,0,5,10
+"619",8,"nave","Different Sense","Era una nave de madera","Era una nave católica",1,2,"female","female",1.8,0.918936583472681,1.5,10
+"620",8,"nota","Different Sense","Era una nota desafinada","Era una nota satisfactoria",1,2,"female","female",2.9,1.72884033065199,2.5,10
+"621",8,"nota","Same Sense","Era una nota aguda","Era una nota musical",1,1,"female","female",4.7,0.674948557710553,5,10
+"622",8,"ola","Different Sense","Se trataba de una ola marítima","Se trataba de una ola migratoria",1,2,"female","female",1.6,0.843274042711568,1,10
+"623",8,"órgano","Different Sense","Tenía un órgano ceremonial","Tenía un órgano operado",1,2,"male","male",1.1,0.316227766016838,1,10
+"624",8,"palma","Different Sense","Estaba en la palma de coco","Estaba en la palma izquierda",1,2,"female","female",1.5,0.707106781186548,1,10
+"625",8,"papa","Same Sense","Era un papa comprensivo","Era un papa conservador",2,2,"male","male",4.7,0.483045891539648,5,10
+"626",8,"papel","Different Sense","Era un papel cuadriculado","Era un papel principal",1,2,"male","male",1.5,1.26929551764398,1,10
+"627",8,"papel","Same Sense","Era un papel amplio","Era un papel cuadriculado",1,1,"male","male",4,1.05409255338946,4,10
+"628",8,"parque","Same Sense","Visitó el parque de diversiones","Visitó el parque de atracciones",1,1,"male","male",4.8,0.632455532033676,5,10
+"629",8,"pastor","Different Sense","Era un pastor eclesiástico","Era un pastor montuno",1,2,"male","male",2.1,1.10050493461461,2,10
+"630",8,"patrón","Same Sense","Era un patrón geométrico","Era un patrón complicado",2,2,"male","male",3.7,1.25166555703457,4,10
+"631",8,"pieza","Different Sense","Le gustó la pieza flamenca","Le gustó la pieza abstracta",1,3,"femael","female",2.7,0.674948557710553,3,10
+"632",8,"pieza","Different Sense","Le gustó la pieza musical","Le gustó la pieza abstracta",1,3,"female","female",3.2,1.61932770686548,3.5,10
+"633",8,"pista","Different Sense","Era una pista resbalosa","Era una pista falsa",1,2,"female","female",1.9,1.44913767461894,1,10
+"634",8,"planta","Different Sense","Estaba en la planta venenosa","Estaba en la planta izquierda",1,3,"female","female",1.3,0.674948557710553,1,10
+"635",8,"pluma","Same Sense","Tenía una pluma fuente","Tenía una pluma estilográfica",2,2,"female","female",3.6,1.89736659610103,5,10
+"636",8,"posición","Different Sense","Estaba en una posición fetal","Estaba en una posición ventajosa",1,2,"female","female",2.2,1.54919333848297,1.5,10
+"637",8,"posición","Same Sense","Estaba en una posición oportuna","Estaba en una posición ventajosa",2,2,"female","female",5,0,5,10
+"638",8,"rama","Different Sense","Era una rama competitiva","Era una rama retorcida",1,2,"female","female",1.3,0.483045891539648,1,10
+"639",8,"rama","Same Sense","Era una rama médica","Era una rama competitiva",1,1,"female","female",2.9,1.72884033065199,3.5,10
+"640",8,"raya","Different Sense","Dibujó una raya precisa","Dibujó una raya marina",1,2,"female","female",1.1,0.316227766016838,1,10
+"641",8,"red","Same Sense","Era una red cibernética","Era una red privada",1,1,"female","female",4.2,0.788810637746616,4,10
+"642",8,"redada","Same Sense","Fue una redada pesquera","Fue una redada en el río",1,1,"female","female",3.6,1.50554530541816,4,10
+"643",8,"semilla","Different Sense","Era una semilla cultural","Era una semilla sembrada",1,2,"female","female",1.2,0.421637021355784,1,10
+"644",8,"sostén","Same Sense","Era un sostén emocional","Era un sostén incondicional",1,1,"male","male",4.3,1.25166555703457,5,10
+"645",8,"sostén","Same Sense","Era un sostén sedoso","Era un sostén incómodo",2,2,"male","male",4.3,1.25166555703457,5,10
+"646",8,"sueño","Different Sense","Él alcanzó su sueño","Él moría de sueño",1,2,"male","male",1.4,0.699205898780101,1,10
+"647",8,"taco","Same Sense","Le gustó el taco del zapato","Le gustó el taco puntiagudo",2,2,"male","male",3.6,1.83787316694536,4.5,10
+"648",8,"vaso","Different Sense","Se trataba de un vaso antiguo","Se trataba de un vaso sanguíneo",1,2,"male","male",1.1,0.316227766016838,1,10
+"649",8,"vaso","Different Sense","Se trataba de un vaso cristalino","Se trataba de un vaso obstruido",1,2,"male","male",2.1,1.44913767461894,1.5,10
+"650",8,"vela","Same Sense","Ella vio la vela de cera","Ella vio la vela derretida",2,2,"female","female",4.5,1.26929551764398,5,10
+"651",9,"ala","Same Sense","Le gustó el ala plumosa","Le gustó el ala de águila",2,2,"female","female",4.64705882352941,0.606339062590832,5,17
+"652",9,"banco","Different Sense","Era un banco financiero","Era un banco cómodo",1,2,"male","male",1.23529411764706,0.664211164155071,1,17
+"653",9,"baño","Same Sense","Disfrutó el baño remodelado","Disfrutó el baño privado",2,2,"male","male",4.35294117647059,1.05718827974185,5,17
+"654",9,"cadena","Different Sense","Era una cadena de oro","Era una cadena televisiva",1,3,"female","female",1,0,1,17
+"655",9,"cadena","Different Sense","Era una cadena de reo","Era una cadena televisiva",2,3,"female","female",1.23529411764706,0.562295714538387,1,17
+"656",9,"caja","Different Sense","Ella vio la caja bancaria","Ella vio la caja percusiva",1,3,"female","female",1.17647058823529,0.392952623996688,1,17
+"657",9,"caja","Different Sense","Ella vio la caja fuerte","Ella vio la caja percusiva",2,3,"female","female",1.88235294117647,1.11143786045242,1,17
+"658",9,"caja","Different Sense","Ella vio la caja sellada","Ella vio la caja acústica",2,3,"female","female",2.41176470588235,1.1213175023946,3,17
+"659",9,"canal","Different Sense","Estaba en el canal de comedia","Estaba en el canal cervical",1,3,"male","male",1.11764705882353,0.332105582077536,1,17
+"660",9,"canal","Different Sense","Estaba en el canal de comedia","Estaba en el canal navegable",1,2,"male","male",1.29411764705882,0.985184366143778,1,17
+"661",9,"canal","Different Sense","Estaba en el canal marítimo","Estaba en el canal uterino",2,3,"male","male",1.70588235294118,1.35852428586835,1,17
+"662",9,"capital","Different Sense","Le gustó la capital antigua","Le gustó el capital económico",1,2,"female","male",1.11764705882353,0.485071250072666,1,17
+"663",9,"carrera","Different Sense","Fue una carrera académica","Fue una carrera reñida",1,2,"female","female",1.23529411764706,0.752446988556825,1,17
+"664",9,"carrera","Different Sense","Fue una carrera profesional","Fue una carrera reñida",1,2,"female","female",1.11764705882353,0.332105582077536,1,17
+"665",9,"carrera","Different Sense","Fue una carrera universitaria","Fue una carrera reñida",1,2,"female","female",1.64705882352941,1.11474080342631,1,17
+"666",9,"cartel","Different Sense","Era un cartel publicitario","Era un cartel peligroso",1,2,"male","male",1.52941176470588,1.32842232831014,1,17
+"667",9,"cartel","Same Sense","Era un cartel publicitario","Era un cartel informativo",1,1,"male","male",4.82352941176471,0.528594139870924,5,17
+"668",9,"casco","Different Sense","Le gustó el casco de la ciclista","Le gustó el casco de la ciudad",1,2,"male","male",1.11764705882353,0.332105582077536,1,17
+"669",9,"casco","Different Sense","Le gustó el casco protector","Le gustó el casco de la ciudad",1,2,"male","male",1.11764705882353,0.332105582077536,1,17
+"670",9,"caudal","Different Sense","Era un caudal financiero","Era un caudal ambiental",1,2,"male","male",1.70588235294118,0.848874687627165,2,17
+"671",9,"cinta","Different Sense","Usó la cinta rosada","Usó la cinta quirúrgica",2,4,"female","female",2.76470588235294,1.34765591698632,3,17
+"672",9,"clase","Same Sense","Se trataba de una clase media","Se trataba de una clase social",1,1,"female","female",4.82352941176471,0.392952623996688,5,17
+"673",9,"clave","Same Sense","Era la clave esencial","Era la clave al caso",2,2,"female","female",4.58823529411765,0.712287119900726,5,17
+"674",9,"colonia","Different Sense","Era una colonia fragante","Era una colonia rebelde",1,2,"female","female",1.82352941176471,1.38000426256801,1,17
+"675",9,"colonia","Same Sense","Era una colonia bacteriana","Era una colonia de hormigas",3,3,"female","female",4.05882352941176,1.34492510178514,5,17
+"676",9,"copa","Different Sense","Él vio la copa deportiva","Él vio la copa llena",1,2,"female","female",2,1.2747548783982,1,17
+"677",9,"corazón","Different Sense","Tenía el corazón angustiado","Tenía el corazón inflamado",1,2,"male","male",3.41176470588235,1.50244898122248,4,17
+"678",9,"cordón","Different Sense","Se trataba de un cordón sedoso","Se trataba de un cordón umbilical",1,2,"male","male",2.05882352941176,1.2485285456936,2,17
+"679",9,"corteza","Different Sense","Estaba en la corteza del árbol","Estaba en la corteza prefrontal",2,3,"female","female",1.29411764705882,0.587867532097255,1,17
+"680",9,"corteza","Different Sense","Estaba en la corteza geológica","Estaba en la corteza crocante",1,4,"female","female",2.52941176470588,1.2307338795828,3,17
+"681",9,"corteza","Different Sense","Estaba en la corteza terrestre","Estaba en la corteza del árbol",1,2,"female","female",2,1.11803398874989,2,17
+"682",9,"cubo","Different Sense","Le gustó el cubo geométrico","Le gustó el cubo plástico",1,2,"male","male",3.11764705882353,1.7278003697323,4,17
+"683",9,"estado","Different Sense","Le preocupaba su estado mental","Le preocupaba su estado natal",1,2,"male","male",2.05882352941176,1.43486010795888,1,17
+"684",9,"fibra","Different Sense","Carecía fibra muscular","Carecía fibra óptica",3,4,"female","female",1.82352941176471,1.28623938856882,1,17
+"685",9,"fortuna","Different Sense","Fue una fortuna financiera","Fue una fortuna imprevista",1,2,"female","female",3.94117647058824,1.2485285456936,4,17
+"686",9,"frase","Different Sense","Le gustó la frase musical","Le gustó la frase lírica",1,2,"female","female",3.94117647058824,1.19742370504837,4,17
+"687",9,"frase","Same Sense","Le gustó la frase poética","Le gustó la frase lírica",2,2,"female","female",4.47058823529412,1.06757008311068,5,17
+"688",9,"gato","Different Sense","Compró el gato para el niño","Compró el gato hidraúlico",1,2,"male","male",1.11764705882353,0.485071250072666,1,17
+"689",9,"gato","Same Sense","Compró el gato para el niño","Compró el gato peludo",1,1,"male","male",4.82352941176471,0.528594139870924,5,17
+"690",9,"guardia","Same Sense","Llamó a la guardia nacional","Llamó a la guardia costanera",2,2,"female","female",4.82352941176471,0.392952623996688,5,17
+"691",9,"hoja","Different Sense","Era una hoja de cálculo","Era una hoja de árbol",1,2,"female","female",1.47058823529412,1.00732610526728,1,17
+"692",9,"lengua","Different Sense","Le gusta la lengua española","Le gusta la lengua cocida",1,2,"female","female",1.23529411764706,0.562295714538387,1,17
+"693",9,"lengua","Different Sense","Le gusta la lengua española","Le gusta la lengua marinada",1,2,"female","female",1.29411764705882,0.587867532097255,1,17
+"694",9,"muñeca","Different Sense","Tenía una muñeca fracturada","Tenía una muñeca preciosa",1,2,"female","female",1.17647058823529,0.727606875108999,1,17
+"695",9,"naranja","Different Sense","Era una naranja madura","Era un naranja oscuro",1,2,"female","male",2,1.4142135623731,1,17
+"696",9,"nota","Different Sense","Era una nota musical","Era una nota académica",1,2,"female","female",1.17647058823529,0.392952623996688,1,17
+"697",9,"nota","Different Sense","Era una nota musical","Era una nota satisfactoria",1,2,"female","female",1.52941176470588,0.799816155346303,1,17
+"698",9,"ola","Same Sense","Se trataba de una ola migratoria","Se trataba de una ola criminal",2,2,"female","female",3.47058823529412,1.41940335435455,3,17
+"699",9,"papa","Different Sense","Era una papa caliente","Era un papa comprensivo",1,2,"female","male",1,0,1,17
+"700",9,"papa","Different Sense","Era una papa podrida","Era un papa comprensivo",1,2,"female","male",1,0,1,17
+"701",9,"papel","Different Sense","Era un papel amplio","Era un papel principal",1,2,"male","male",2.29411764705882,1.57181049598675,1,17
+"702",9,"papel","Different Sense","Era un papel cuadriculado","Era un papel secundario",1,2,"male","male",1.47058823529412,1.17885787199006,1,17
+"703",9,"pata","Different Sense","Ella vio la pata de hierro","Ella vio la pata de la gata",1,2,"female","female",2.35294117647059,1.455213750218,2,17
+"704",9,"pata","Different Sense","Ella vio la pata de la mesa","Ella vio la pata peluda",1,2,"female","female",1.94117647058824,1.08803654782905,2,17
+"705",9,"patrón","Same Sense","Era un patrón orgulloso","Era un patrón exigente",1,1,"male","male",4.47058823529412,1.06757008311068,5,17
+"706",9,"perfil","Different Sense","Se trataba de un perfil psicológico","Se trataba de un perfil fotogénico",1,2,"male","male",2.52941176470588,1.58578241961277,2,17
+"707",9,"pista","Same Sense","Era una pista de baile","Era una pista resbalosa",1,1,"female","female",3.94117647058824,1.2485285456936,4,17
+"708",9,"pluma","Different Sense","Tenía una pluma silvestre","Tenía una pluma estilográfica",1,2,"female","female",1.88235294117647,1.16631647405284,1,17
+"709",9,"pupila","Different Sense","Tenía una pupila dilatada","Tenía una pupila aplicada",1,2,"female","female",1.76470588235294,1.48026229790137,1,17
+"710",9,"rama","Different Sense","Era una rama médica","Era una rama retorcida",1,2,"female","female",1.23529411764706,0.752446988556825,1,17
+"711",9,"raya","Different Sense","Dibujó una raya precisa","Dibujó una raya endémica",1,2,"female","female",2.23529411764706,1.39326109203847,2,17
+"712",9,"red","Different Sense","Era una red cibernética","Era una red pesquera",1,2,"female","female",1.17647058823529,0.528594139870924,1,17
+"713",9,"revista","Different Sense","Era una revista deportiva","Era una revista estrujada",1,2,"female","female",4.17647058823529,1.4677914581799,5,17
+"714",9,"revista","Same Sense","Era una revista brillosa","Era una revista estrujada",2,2,"female","female",3.76470588235294,1.4374200745044,4,17
+"715",9,"sangre","Different Sense","Él tiene sangre coagulada","Él tiene sangre real",1,2,"female","female",2.82352941176471,1.4677914581799,3,17
+"716",9,"sangre","Same Sense","Él tiene sangre coagulada","Él tiene sangre diluida",1,1,"female","female",5,0,5,17
+"717",9,"seno","Different Sense","Estaba en el seno social","Estaba en el seno izquiero",1,2,"male","male",1.05882352941176,0.242535625036333,1,17
+"718",9,"seno","Same Sense","Estaba en el seno familiar","Estaba en el seno social",1,1,"male","male",4,1.4142135623731,5,17
+"719",9,"serie","Different Sense","Se trataba de una serie televisiva","Se trataba de una serie numérica",1,2,"female","female",1.23529411764706,0.562295714538387,1,17
+"720",9,"sierra","Same Sense","Era una sierra eléctrica","Era una sierra automática",1,1,"female","female",4.64705882352941,1.05718827974185,5,17
+"721",9,"sostén","Different Sense","Era un sostén emocional","Era un sostén incómodo",1,2,"male","male",1.35294117647059,0.701888209634219,1,17
+"722",9,"taco","Different Sense","Le gustó el taco mexicano","Le gustó el taco puntiagudo",1,2,"male","male",1.47058823529412,1.06757008311068,1,17
+"723",9,"tecla","Different Sense","Tocó la tecla del ordenador","Tocó la tecla desafinada",1,2,"female","female",2.52941176470588,1.32842232831014,3,17
+"724",9,"tecla","Different Sense","Tocó la tecla espaciadora","Tocó la tecla desafinada",1,2,"female","female",2.70588235294118,1.26316595714661,3,17
+"725",9,"título","Different Sense","Le gustó el título halagador","Le gustó el título del poema",1,2,"male","male",2.35294117647059,1.41161151129605,2,17
+"726",9,"título","Same Sense","Le gustó el título del poema","Le gustó el título del libro",2,2,"male","male",4.94117647058824,0.242535625036333,5,17
+"727",9,"título","Same Sense","Le gustó el título profesional","Le gustó el título halagador",1,1,"male","male",2.47058823529412,1.28051000868909,2,17
+"728",9,"vaso","Different Sense","Se trataba de un vaso antiguo","Se trataba de un vaso obstruido",1,2,"male","male",1,0,1,17
+"729",9,"vaso","Same Sense","Se trataba de un vaso sanguíneo","Se trataba de un vaso obstruido",2,2,"male","male",4.76470588235294,0.562295714538387,5,17
+"730",9,"vela","Different Sense","Ella vio la vela de lona","Ella vio la vela derretida",1,2,"female","female",1.17647058823529,0.727606875108999,1,17
+"731",9,"volumen","Different Sense","Aumentó el volumen del agua","Aumentó el volumen de la voz",1,2,"male","male",2.11764705882353,1.45268514057488,2,17
+"732",10,"aceite","Different Sense","Compró el aceite de oliva","Compró el aceite de carro",1,2,"male","male",3.58333333333333,1.08362466945083,3.5,12
+"733",10,"ala","Different Sense","Le gustó el ala sureste","Le gustó el ala plumosa",1,2,"female","female",1.25,0.621581560508061,1,12
+"734",10,"cadena","Different Sense","Era una cadena de reo","Era una cadena de radio",2,3,"female","female",1.16666666666667,0.389249472080761,1,12
+"735",10,"cadena","Different Sense","Era una cadena elegante","Era una cadena televisiva",1,3,"female","female",1.08333333333333,0.288675134594813,1,12
+"736",10,"cadena","Same Sense","Era una cadena de oro","Era una cadena elegante",1,1,"female","female",4.66666666666667,0.492365963917331,5,12
+"737",10,"caja","Different Sense","Ella vio la caja bancaria","Ella vio la caja acústica",1,3,"female","female",1.91666666666667,1.08362466945083,2,12
+"738",10,"calle","Different Sense","Condujo en la calle principal","Condujo en la calle asfaltada",1,2,"female","female",4.58333333333333,0.996204919895622,5,12
+"739",10,"cámara","Different Sense","Se trataba de la cámara senatorial","Se trataba de la cámara remodelada",1,3,"female","female",2.33333333333333,1.43548112513055,2,12
+"740",10,"cámara","Same Sense","Se trataba de la cámara remodelada","Se trataba de la cámara principal",3,3,"female","female",3.83333333333333,1.26730446462585,4,12
+"741",10,"canal","Different Sense","Estaba en el canal marítimo","Estaba en el canal cervical",2,3,"male","male",1.58333333333333,0.668557923421521,1.5,12
+"742",10,"canal","Different Sense","Estaba en el canal navegable","Estaba en el canal cervical",2,3,"male","male",1.75,1.13818036595899,1,12
+"743",10,"canal","Same Sense","Estaba en el canal navegable","Estaba en el canal marítimo",2,2,"male","male",4.5,0.674199862463242,5,12
+"744",10,"capital","Same Sense","Le gustó la capital holandesa","Le gustó la capital antigua",1,1,"female","female",4.91666666666667,0.288675134594813,5,12
+"745",10,"carrera","Same Sense","Fue una carrera benéfica","Fue una carrera reñida",2,2,"female","female",4.16666666666667,1.33711584684304,5,12
+"746",10,"cartel","Different Sense","Era un cartel informativo","Era un cartel dominante",1,2,"male","male",1.75,1.05528970602217,1,12
+"747",10,"cartel","Different Sense","Era un cartel publicitario","Era un cartel dominante",1,2,"male","male",1.83333333333333,1.02985730108887,1.5,12
+"748",10,"cinta","Different Sense","Usó la cinta pegante","Usó la cinta métrica",1,3,"female","female",3.08333333333333,1.62135371797393,3,12
+"749",10,"clase","Different Sense","Se trataba de una clase media","Se trataba de una clase de geología",1,2,"female","female",1.08333333333333,0.288675134594813,1,12
+"750",10,"clase","Different Sense","Se trataba de una clase social","Se trataba de una clase aburrida",1,2,"female","female",1.91666666666667,1.31137217055151,1.5,12
+"751",10,"columna","Same Sense","Era una columna de mármol","Era una columna decorativa",1,1,"female","female",4.33333333333333,1.37068883368468,5,12
+"752",10,"compás","Same Sense","Él bailaba al compás","Él cantaba al compás",2,2,"male","male",5,0,5,12
+"753",10,"corazón","Different Sense","Tenía el corazón partido","Tenía el corazón inflamado",1,2,"male","male",3.83333333333333,1.02985730108887,4,12
+"754",10,"cordón","Different Sense","Se trataba de un cordón sedoso","Se trataba de un cordón biológico",1,2,"male","male",1.83333333333333,0.834847109936722,2,12
+"755",10,"cordón","Different Sense","Se trataba de un cordón umbilical","Se trataba de un cordón inalámbrico",2,3,"male","male",2.08333333333333,1.24011240937215,2,12
+"756",10,"corte","Same Sense","Le gustó la corte noble","Le gustó la corte real",1,1,"female","female",4.41666666666667,1.16450015288132,5,12
+"757",10,"corteza","Different Sense","Estaba en la corteza del árbol","Estaba en la corteza cerebral",2,3,"female","female",2,1.27920429813366,1.5,12
+"758",10,"corteza","Different Sense","Estaba en la corteza prefrontal","Estaba en la corteza comestible",3,4,"female","female",1.91666666666667,0.996204919895622,2,12
+"759",10,"cuadro","Different Sense","No le gustó el cuadro clíninco","No le gustó el cuadro pintoresco",1,2,"male","male",1.16666666666667,0.389249472080761,1,12
+"760",10,"cuadro","Different Sense","No le gustó el cuadro de síntomas","No le gustó el cuadro antiguo",1,2,"male","male",1.5,0.904534033733291,1,12
+"761",10,"cuadro","Same Sense","No le gustó el cuadro clíninco","No le gustó el cuadro diagnóstico",1,1,"male","male",4.58333333333333,0.668557923421521,5,12
+"762",10,"cuadro","Same Sense","No le gustó el cuadro de síntomas","No le gustó el cuadro diagnóstico",1,1,"male","male",4.58333333333333,0.668557923421521,5,12
+"763",10,"cuerdas","Different Sense","Tenía cuerdas de terreno","Tenía cuerdas inflamadas",2,3,"female","female",1.33333333333333,0.492365963917331,1,12
+"764",10,"cuerdas","Same Sense","Tenía cuerdas vocales","Tenía cuerdas inflamadas",3,3,"female","female",4.41666666666667,0.996204919895622,5,12
+"765",10,"estado","Different Sense","Le preocupaba su estado psicológico","Le preocupaba su estado sureño",1,2,"male","male",1.41666666666667,0.668557923421521,1,12
+"766",10,"estado","Same Sense","Le preocupaba su estado sureño","Le preocupaba su estado natal",2,2,"male","male",3.33333333333333,1.55699788832305,3.5,12
+"767",10,"fibra","Different Sense","Carecía fibra moral","Carecía fibra muscular",1,3,"female","female",1.58333333333333,0.792961461098759,1,12
+"768",10,"fibra","Different Sense","Carecía fibra moral","Carecía fibra óptica",1,4,"female","female",1.58333333333333,1.16450015288132,1,12
+"769",10,"fondo","Same Sense","Estaba en el fondo gubernamental","Estaba en el fondo presupuestario",1,1,"male","male",3.66666666666667,1.37068883368468,3.5,12
+"770",10,"fortuna","Different Sense","Fue una fortuna heredada","Fue una fortuna inesperada",1,2,"female","female",3.58333333333333,1.50504203102489,4,12
+"771",10,"fortuna","Same Sense","Fue una fortuna imprevista","Fue una fortuna inesperada",2,2,"female","female",4.75,0.452267016866645,5,12
+"772",10,"frente","Same Sense","Era una frente amplia","Era una frente arrugada",2,2,"female","female",5,0,5,12
+"773",10,"función","Different Sense","Era una función social","Era una función lineal",1,2,"female","female",1.75,1.13818036595899,1.5,12
+"774",10,"función","Different Sense","Era una función social","Era una función matemática",1,2,"female","female",1.66666666666667,1.23091490979333,1,12
+"775",10,"guardia","Different Sense","Llamó al guardia de noche","Llamó a la guardia costanera",1,2,"male","female",4.16666666666667,0.937436866561092,4,12
+"776",10,"hábito","Different Sense","Era un hábito rutinario","Era un hábito de monje",1,2,"male","male",1.66666666666667,1.07308673997732,1,12
+"777",10,"hábito","Same Sense","Era un hábito de monje","Era un hábito de lona",2,2,"male","male",3.08333333333333,1.50504203102489,3.5,12
+"778",10,"hoja","Different Sense","Era una hoja de cálculo","Era una hoja verdosa",1,2,"female","female",1.08333333333333,0.288675134594813,1,12
+"779",10,"muñeca","Same Sense","Tenía una muñeca fracturada","Tenía una muñeca lesionada",1,1,"female","female",5,0,5,12
+"780",10,"ola","Different Sense","Se trataba de una ola navegable","Se trataba de una ola migratoria",1,2,"female","female",1.75,0.753778361444409,2,12
+"781",10,"papa","Same Sense","Era un papa jesuita","Era un papa conservador",2,2,"male","male",3.91666666666667,1.78164037455442,5,12
+"782",10,"papa","Same Sense","Era una papa majada","Era una papa podrida",1,1,"female","female",4,1.34839972492648,4.5,12
+"783",10,"parque","Different Sense","Visitó el parque de atracciones","Visitó el parque forestal",1,2,"male","male",3.5,1.44599761096244,3.5,12
+"784",10,"parque","Different Sense","Visitó el parque de diversiones","Visitó el parque estatal",1,2,"male","male",3.16666666666667,1.26730446462585,3.5,12
+"785",10,"pasta","Different Sense","Le gustó la pasta caliente","Le gustó la pasta blanqueadora",1,2,"female","female",1.41666666666667,1.16450015288132,1,12
+"786",10,"pastor","Different Sense","Era un pastor evangélico","Era un pastor montuno",1,2,"male","male",2.25,0.965307299163423,2,12
+"787",10,"patrón","Different Sense","Era un patrón orgulloso","Era un patrón complicado",1,2,"male","male",2.16666666666667,1.52752523165195,1,12
+"788",10,"pico","Different Sense","Dibujó el pico alpino","Dibujó el pico del ave",1,2,"male","male",1.41666666666667,0.668557923421521,1,12
+"789",10,"pieza","Different Sense","Le gustó la pieza alterada","Le gustó la pieza abstracta",2,3,"female","female",3.75,1.48477117918737,4.5,12
+"790",10,"pieza","Different Sense","Le gustó la pieza musical","Le gustó la pieza añadida",1,2,"female","female",1.91666666666667,0.792961461098759,2,12
+"791",10,"planta","Different Sense","Estaba en la planta tropical","Estaba en la planta superior",1,2,"female","female",1.5,0.797724035217466,1,12
+"792",10,"planta","Different Sense","Estaba en la planta venenosa","Estaba en la planta superior",1,2,"female","female",1,0,1,12
+"793",10,"planta","Same Sense","Estaba en la planta baja","Estaba en la planta superior",2,2,"female","female",4.91666666666667,0.288675134594813,5,12
+"794",10,"pluma","Different Sense","Tenía una pluma albina","Tenía una pluma fuente",1,2,"female","female",1.75,0.965307299163423,1.5,12
+"795",10,"posición","Same Sense","Estaba en una posición fetal","Estaba en una posición sentada",1,1,"female","female",4.91666666666667,0.288675134594813,5,12
+"796",10,"prima","Same Sense","Era una prima hermana","Era una prima atenta",2,2,"female","female",4.16666666666667,1.58592292219752,5,12
+"797",10,"pupila","Different Sense","Tenía una pupila dilatada","Tenía una pupila estudiosa",1,2,"female","female",1.5,1.16774841624228,1,12
+"798",10,"pupila","Same Sense","Tenía una pupila dilatada","Tenía una pupila contraída",1,1,"female","female",5,0,5,12
+"799",10,"redada","Same Sense","Fue una redada policiaca","Fue una redada en el barrio",2,2,"female","female",4.75,0.621581560508061,5,12
+"800",10,"sangre","Different Sense","Él tiene sangre coagulada","Él tiene sangre noble",1,2,"female","female",1.91666666666667,1.31137217055151,1,12
+"801",10,"seno","Different Sense","Estaba en el seno familiar","Estaba en el seno operado",1,2,"male","male",1.41666666666667,0.668557923421521,1,12
+"802",10,"serie","Different Sense","Se trataba de una serie animada","Se trataba de una serie matemática",1,2,"female","female",1.16666666666667,0.389249472080761,1,12
+"803",10,"serie","Same Sense","Se trataba de una serie matemática","Se trataba de una serie numérica",2,2,"female","female",4.75,0.452267016866645,5,12
+"804",10,"sierra","Different Sense","Era una sierra eléctrica","Era una sierra forestada",1,2,"female","female",1.41666666666667,1.16450015288132,1,12
+"805",10,"sostén","Different Sense","Era un sostén incondicional","Era un sostén incómodo",1,2,"male","male",1.66666666666667,1.30267789455786,1,12
+"806",10,"sueño","Different Sense","Él abandonó su sueño","Él recordó su sueño",1,3,"male","male",3.75,1.42222616792382,4,12
+"807",10,"sueño","Different Sense","Él alcanzó su sueño","Él recordó su sueño",1,3,"male","male",3.66666666666667,1.49747261825525,4,12
+"808",10,"sueño","Different Sense","Él alcanzó su sueño","Él relató su sueño",1,3,"male","male",3.58333333333333,1.50504203102489,3.5,12
+"809",10,"taco","Different Sense","Le gustó el taco mexicano","Le gustó el taco del zapato",1,2,"male","male",1,0,1,12
+"810",10,"título","Different Sense","Le gustó el título profesional","Le gustó el título del poema",1,2,"male","male",1.58333333333333,1.16450015288132,1,12
+"811",10,"título","Different Sense","Le gustó el título profesional","Le gustó el título propietario",1,3,"male","male",3.25,1.42222616792382,3,12
+"812",10,"volumen","Same Sense","Aumentó el volumen de la corriente","Aumentó el volumen del agua",1,1,"male","male",4.41666666666667,1.16450015288132,5,12
