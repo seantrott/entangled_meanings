@@ -1,0 +1,299 @@
+---
+title: "Analysis of HuggingFace Models Attention"
+author: "Sean Trott and Pam Rivière"
+date: "November 20, 2024"
+output:
+  html_document:
+    keep_md: yes
+    toc: yes
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(dpi = 300, fig.format = "pdf")
+```
+
+
+```{r include=FALSE}
+library(tidyverse)
+library(lmtest)
+library(forcats)
+library(broom)
+library(lme4)
+library(viridis)
+library(ggridges)
+library(lmerTest)
+library(ggcorrplot)
+
+all_colors <- viridis::viridis(10, option = "mako")
+my_colors <- all_colors[c(3, 5, 7)]  # Selecting specific colors from the palette
+```
+
+# Load Pythia data
+
+
+```{r}
+# setwd("/Users/seantrott/Dropbox/UCSD/Research/Ambiguity/SSD/entangled_meanings/src/analysis/")
+directory_path <- "../../data/processed/rawc/pythia/attention/"
+csv_files <- list.files(path = directory_path, pattern = "*.csv", full.names = TRUE)
+csv_list <- csv_files %>%
+  map(~ read_csv(.))
+df_pythia_models <- bind_rows(csv_list) %>%
+  mutate(Layer = Layer + 1)
+
+table(df_pythia_models$mpath)
+
+```
+
+# Entropy over time
+
+```{r}
+df_entropy_over_time = df_pythia_models %>% 
+  group_by(mpath, step, revision, Layer, n_params) %>%
+  summarise(mean_entropy = mean(Entropy)) %>%
+  mutate(step_modded = step + 1) %>%
+  group_by(mpath, Layer) %>%
+  mutate(
+    entropy_diff = mean_entropy - lag(mean_entropy)
+  )
+
+df_entropy_over_time %>%
+  ggplot(aes(x = step_modded,
+             y = mean_entropy,
+             color = factor(Layer))) +
+  geom_point(size = 4, alpha = .7) +
+  geom_line(size = 2, alpha = .7) +
+  theme_minimal() +
+  labs(x = "Training Step (Log10)",
+       y = "Entropy Across Heads",
+       color = "Layer") +
+  scale_x_log10() +
+  theme(text = element_text(size = 15),
+        legend.position = "bottom") +
+  scale_color_viridis(option = "mako", discrete=TRUE) +
+  facet_wrap(~reorder(mpath, n_params))
+
+df_entropy_over_time %>%
+  ggplot(aes(x = step_modded,
+             y = entropy_diff,
+             color = factor(Layer))) +
+  geom_point(size = 4, alpha = .7) +
+  geom_line(size = 2, alpha = .7) +
+  theme_minimal() +
+  geom_hline(yintercept = 0, linetype = "dotted", size = 1) +
+  labs(x = "Training Step (Log10)",
+       y = "Entropy Delta",
+       color = "") +
+  scale_x_log10() +
+  theme(text = element_text(size = 15),
+        legend.position = "bottom") +
+  scale_color_viridis(option = "mako", discrete=TRUE) +
+  facet_wrap(~mpath)
+```
+
+# Attention at final timestep
+
+```{r}
+df_attention_final_step_prop_layer = df_pythia_models %>%
+  filter(step == 143000) %>%
+  group_by(mpath, step, Head, Layer, n_params) %>%
+  summarise(mean_attention = mean(Attention)) %>%
+  group_by(mpath, Layer, n_params) %>%
+  summarise(max_attention_head = max(mean_attention)) %>%
+  group_by(mpath) %>%
+  mutate(max_layer = max(Layer),
+         prop_layer = Layer / max_layer) 
+
+df_attention_final_step_prop_layer %>%
+  mutate(binned_prop_layer = ntile(prop_layer, 6)) %>%
+  mutate(prop_binned = binned_prop_layer / 6) %>%
+  ggplot(aes(x = prop_binned,
+             y = max_attention_head)) +
+  stat_summary(
+    aes(group = mpath,
+        color = mpath),  
+    fun = mean,    
+    geom = "line",        
+    size = 2              
+  ) +
+  stat_summary(
+    aes(group = mpath, 
+        fill = mpath), 
+    fun.data = mean_se,    
+    geom = "ribbon",  
+    alpha = 0.2,   
+    color = NA     
+  ) +
+  theme_minimal() +
+  labs(x = "Layer Depth Ratio",
+       y = "Attention to Disambiguating Word") +
+  scale_color_viridis(option = "mako", discrete = TRUE) +
+  theme(text = element_text(size = 15)) 
+```
+
+# Attention over time
+
+## Averaging across heads, per layer
+
+
+**TODO**: instead, maybe get "max head" per layer?
+
+**TODO**: Do this also as a function 
+
+```{r}
+df_attention_over_time = df_pythia_models %>% 
+  group_by(mpath, step, revision, Head, Layer, n_params) %>%
+  summarise(mean_attention = mean(Attention)) %>%
+  group_by(mpath, step, revision, Layer, n_params) %>%
+  summarise(max_attention_head = max(mean_attention)) %>%
+  mutate(step_modded = step + 1) %>%
+  group_by(mpath, Layer) %>%
+  mutate(
+    attention_diff = max_attention_head - lag(max_attention_head)
+  )
+
+df_attention_over_time %>%
+  ggplot(aes(x = step_modded,
+             y = max_attention_head,
+             color = factor(Layer))) +
+  geom_point(size = 4, alpha = .7) +
+  geom_line(size = 2, alpha = .7) +
+  theme_minimal() +
+  geom_vline(xintercept = 1000, 
+             linetype = "dotted", 
+             size = 1.2) +
+  labs(x = "Training Step (Log10)",
+       y = "Attention to Disambiguating Word",
+       color = "Layer") +
+  scale_x_log10() +
+  theme(text = element_text(size = 15),
+        legend.position = "bottom") +
+  scale_color_viridis(option = "mako", discrete=TRUE) +
+  facet_wrap(~reorder(mpath, n_params))
+
+df_attention_over_time %>%
+  ggplot(aes(x = step_modded,
+             y = attention_diff,
+             color = factor(Layer))) +
+  geom_point(size = 4, alpha = .7) +
+  geom_line(size = 2, alpha = .7) +
+  theme_minimal() +
+  geom_hline(yintercept = 0, linetype = "dotted", size = 1) +
+  labs(x = "Training Step (Log10)",
+       y = "Attention Delta",
+       color = "") +
+  scale_x_log10() +
+  theme(text = element_text(size = 15),
+        legend.position = "bottom") +
+  scale_color_viridis(option = "mako", discrete=TRUE) +
+  facet_wrap(~mpath)
+```
+
+
+
+## Attention by head
+
+
+**TODO**: calculate attention differences by head
+```{r}
+df_attention_over_time = df_pythia_models %>% 
+  # filter(Layer == 3) %>%
+  group_by(mpath, revision, Layer, Head, step, n_params) %>%
+  summarise(mean_attention = mean(Attention)) %>%
+  mutate(step_modded = step + 1) %>%
+  group_by(mpath, step, Head) %>%
+  mutate(
+    attention_diff = mean_attention - lag(mean_attention),
+    Head = Head + 1
+  )
+
+df_attention_over_time %>%
+  # filter(Layer == 3) %>%
+  filter(Layer %in% c(3, 4, 5, 6)) %>%
+  ggplot(aes(x = step_modded,
+             y = mean_attention,
+             color = factor(Head))) +
+  geom_point(size = 4, alpha = .7) +
+  geom_line(size = 2, alpha = .7) +
+  theme_minimal() +
+  labs(x = "Training Step (Log10)",
+       y = "Attention to Disambiguating Word",
+       color = "Attention Head") +
+  scale_x_log10() +
+  theme(text = element_text(size = 15),
+        legend.position = "bottom") +
+  scale_color_viridis(option = "mako", discrete=TRUE) +
+  facet_wrap(~reorder(mpath, n_params) + Layer, ncol = 4)
+
+```
+
+### Attention at sentence-level
+
+```{r}
+df_pythia_models %>%
+  # filter(mpath == "EleutherAI/pythia-14m") %>%
+  filter(Layer == 3) %>%
+  filter(step %in% c(512, 1000, 2000, 143000)) %>%
+  ggplot(aes(x = Attention,
+             y = factor(Head),
+             fill = factor(mpath))) +
+  geom_density_ridges2(aes(height = ..density..), 
+                       color=gray(0.25), 
+                       alpha = .7, 
+                       scale=.85, 
+                       # size=1, 
+                       size = 0,
+                       stat="density") +
+  labs(x = "Attention to Disambiguating Word",
+       y = "Attention Head",
+       fill = "") +
+  theme_minimal() +
+  scale_fill_viridis(option = "mako", discrete=TRUE) +
+  theme(text = element_text(size = 15),
+        legend.position="none") +
+  facet_wrap(~reorder(revision, step))
+```
+
+
+## Overlaying attention and R2
+
+**TODO**: Just messing around with this part, doesn't actaully run without loading the distance data.
+
+**TODO**: Need to also get layer information for $R^2$.
+
+```{r}
+df_merged_r2_attention = df_attention_over_time %>%
+  mutate(Layer = Layer + 1) %>%
+  # select(-Layer) %>%
+  inner_join(df_best_r2)
+
+scale_factor <- max(df_merged_r2_attention$mean_attention, na.rm = TRUE) / 
+                max(df_merged_r2_attention$r2, na.rm = TRUE)
+
+df_merged_r2_attention %>%
+  ggplot(aes(x = step_modded)) +
+  # Primary Y-axis: Attention
+  geom_line(aes(y = mean_attention, color = factor(Layer)), size = 2, alpha = .7) +
+  # Secondary Y-axis: R-squared
+  geom_line(aes(y = r2 * scale_factor, color = factor(Layer)), 
+            size = 2, linetype = "dotted") +
+  scale_y_continuous(
+    name = "Attention to Disambiguating Word",
+    sec.axis = sec_axis(~ . / scale_factor, name = "R-squared")
+  ) +
+  scale_x_log10() +
+  theme_minimal() +
+  labs(
+    x = "Training Step (Log10)",
+    color = ""
+  ) +
+  facet_wrap(~Layer) +
+  scale_color_viridis(option = "mako", discrete=TRUE) +
+  theme(
+    text = element_text(size = 15),
+    legend.position = "bottom"
+  )
+```
+
+
+
