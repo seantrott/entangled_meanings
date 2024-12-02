@@ -1,0 +1,449 @@
+word,sentence,disambiguating_word,Class,string
+act,It was a desperate act.,desperate,N,act
+act,It was a humane act.,humane,N,act
+act,It was a magic act.,magic,N,act
+appeal,He had a universal appeal.,universal,N,appeal
+appeal,He had an undefinable appeal.,undefinable,N,appeal
+appeal,He had a legal appeal.,legal,N,appeal
+atmosphere,It was a tense atmosphere.,tense,N,atmosphere
+atmosphere,It was a hostile atmosphere.,hostile,N,atmosphere
+atmosphere,It was a gaseous atmosphere.,gaseous,N,atmosphere
+bail,He bailed out the prisoner.,prisoner,V,bailed
+bail,He bailed out the defendant.,defendant,V,bailed
+bail,He bailed out the water.,water,V,bailed
+band,It was a gold band.,gold,N,band
+band,It was a rubber band.,rubber,N,band
+band,It was a jazz band.,jazz,N,band
+bank,He banked the plane.,plane,V,banked
+bank,He banked the helicopter.,helicopter,V,banked
+bank,He banked the money.,money,V,banked
+barrier,There was a police barrier.,police,N,barrier
+barrier,There was a concrete barrier.,concrete,N,barrier
+barrier,There was a language barrier.,language,N,barrier
+bat,He saw a furry bat.,furry,N,bat
+bat,He saw a fruit bat.,fruit,N,bat
+bat,He saw a wooden bat.,wooden,N,bat
+beam,He saw the laser beam.,laser,N,beam
+beam,He saw the bright beam.,bright,N,beam
+beam,He saw the wood beam.,wood,N,beam
+block,She had a toy block.,toy,N,block
+block,She had a wooden block.,wooden,N,block
+block,She had a mental block.,mental,N,block
+blood,He has coagulated blood.,coagulated,N,blood
+blood,He has thin blood.,thin,N,blood
+blood,He has noble blood.,noble,N,blood
+board,It was the ironing board.,ironing,N,board
+board,It was the wooden board.,wooden,N,board
+board,It was the executive board.,executive,N,board
+book,He had a best-selling book.,best-selling,N,book
+book,He had a popular book.,popular,N,book
+book,He had a heavy book.,heavy,N,book
+break,He broke the glass.,glass,V,broke
+break,He broke the dish.,dish,V,broke
+break,He broke the law.,law,V,broke
+breakfast,They ate a pancake breakfast.,pancake,N,breakfast
+breakfast,They ate a nutritious breakfast.,nutritious,N,breakfast
+breakfast,They ate a family breakfast.,family,N,breakfast
+call,They called the landlord.,landlord,V,called
+call,They called the police.,police,V,called
+call,They called the loan.,loan,V,called
+cape,It was a red cape.,red,N,cape
+cape,It was a flowing cape.,flowing,N,cape
+cape,It was a rocky cape.,rocky,N,cape
+case,It was a beer case.,beer,N,case
+case,It was a display case.,display,N,case
+case,It was a divorce case.,divorce,N,case
+cast,She cast a shadow.,shadow,V,cast
+cast,She cast a glow.,glow,V,cast
+cast,She cast a spear.,spear,V,cast
+cause,It was a worthy cause.,worthy,N,cause
+cause,It was a political cause.,political,N,cause
+cause,It was a main cause.,main,N,cause
+cell,It was a skin cell.,skin,N,cell
+cell,It was a brain cell.,brain,N,cell
+cell,It was a prison cell.,prison,N,cell
+charm,She had a devilish charm.,devilish,N,charm
+charm,She had a natural charm.,natural,N,charm
+charm,She had a gold charm.,gold,N,charm
+check,He checked the engine.,engine,V,checked
+check,He checked the oven.,oven,V,checked
+check,He checked the alibi.,alibi,V,checked
+chicken,They liked the juicy chicken.,juicy,N,chicken
+chicken,They liked the roasted chicken.,roasted,N,chicken
+chicken,They liked the clucking chicken.,clucking,N,chicken
+class,It was a perceptive class.,perceptive,N,class
+class,It was a misbehaving class.,misbehaving,N,class
+class,It was a boring class.,boring,N,class
+clear,He cleared the desk.,desk,V,cleared
+clear,He cleared the shelf.,shelf,V,cleared
+clear,He cleared the path.,path,V,cleared
+clip,It was a film clip.,film,N,clip
+clip,It was a video clip.,video,N,clip
+clip,It was a hair clip.,hair,N,clip
+clog,The dancer clogged.,dancer,V,clogged
+clog,The choreographer clogged.,choreographer,V,clogged
+clog,The pipe clogged.,pipe,V,clogged
+cold,It was an icy cold.,icy,N,cold
+cold,It was a freezing cold.,freezing,N,cold
+cold,It was a chest cold.,chest,N,cold
+column,It was a gossip column.,gossip,N,column
+column,It was a sports column.,sports,N,column
+column,It was a concrete column.,concrete,N,column
+company,He liked the investment company.,investment,N,company
+company,He liked the pharmaceutical company.,pharmaceutical,N,company
+company,He liked the pleasant company.,pleasant,N,company
+cone,It was a waffle cone.,waffle,N,cone
+cone,It was a sugar cone.,sugar,N,cone
+cone,It was an orange cone.,orange,N,cone
+contribution,He made a charitable contribution.,charitable,N,contribution
+contribution,He made a voluntary contribution.,voluntary,N,contribution
+contribution,He made a scholarly contribution.,scholarly,N,contribution
+count,That was the noble count.,noble,N,count
+count,That was the vengeful count.,vengeful,N,count
+count,That was the final count.,final,N,count
+course,It was an introductory course.,introductory,N,course
+course,It was a pass-fail course.,pass-fail,N,course
+course,It was a charted course.,charted,N,course
+cross,He crossed a road.,road,V,crossed
+cross,He crossed a room.,room,V,crossed
+cross,He crossed an enemy.,enemy,V,crossed
+date,It was a dinner date.,dinner,N,date
+date,It was a blind date.,blind,N,date
+date,It was an expiration date.,expiration,N,date
+degree,It was about forty degrees.,forty,N,degrees
+degree,It was about fifty degrees.,fifty,N,degrees
+degree,It was about associate degrees.,associate,N,degrees
+design,They liked the floral design.,floral,N,design
+design,They liked the geometric design.,geometric,N,design
+design,They liked the product design.,product,N,design
+dinner,They liked the turkey dinner.,turkey,N,dinner
+dinner,They liked the light dinner.,light,N,dinner
+dinner,They liked the formal dinner.,formal,N,dinner
+drain,They drained the account.,account,V,drained
+drain,They drained the budget.,budget,V,drained
+drain,They drained the pool.,pool,V,drained
+draw,He drew a gun.,gun,V,drew
+draw,He drew a sword.,sword,V,drew
+draw,He drew a tree.,tree,V,drew
+dream,He had a recurring dream.,recurring,N,dream
+dream,He had a bad dream.,bad,N,dream
+dream,He had a childhood dream.,childhood,N,dream
+drill,It was a grueling drill.,grueling,N,drill
+drill,It was a challenging drill.,challenging,N,drill
+drill,It was an electric drill.,electric,N,drill
+examination,It was a multiple-choice examination.,multiple-choice,N,examination
+examination,It was a difficult examination.,difficult,N,examination
+examination,It was a prostate examination.,prostate,N,examination
+fan,They had an electric fan.,electric,N,fan
+fan,They had a ceiling fan.,ceiling,N,fan
+fan,They had a zealous fan.,zealous,N,fan
+file,She had a text file.,text,N,file
+file,She had a data file.,data,N,file
+file,She had a nail file.,nail,N,file
+film,It was an action film.,action,N,film
+film,It was a censored film.,censored,N,film
+film,It was a transparent film.,transparent,N,film
+fix,They fixed the radio.,radio,V,fixed
+fix,They fixed the dishwasher.,dishwasher,V,fixed
+fix,They fixed the date.,date,V,fixed
+foundation,It was a charitable foundation.,charitable,N,foundation
+foundation,It was an educational foundation.,educational,N,foundation
+foundation,It was a wooden foundation.,wooden,N,foundation
+function,It was a mathematical function.,mathematical,N,function
+function,It was a linear function.,linear,N,function
+function,It was a social function.,social,N,function
+ground,He was on the firm ground.,firm,N,ground
+ground,He was on the frozen ground.,frozen,N,ground
+ground,He was on the camp ground.,camp,N,ground
+guard,They liked the night guard.,night,N,guard
+guard,They liked the security guard.,security,N,guard
+guard,They liked the coast guard.,coast,N,guard
+guide,He had an assembly guide.,assembly,N,guide
+guide,He had a TV guide.,TV,N,guide
+guide,He had a talkative guide.,talkative,N,guide
+hail,They hailed a cab.,cab,V,hailed
+hail,They hailed a taxi.,taxi,V,hailed
+hail,They hailed a friend.,friend,V,hailed
+home,It was a summer home.,summer,N,home
+home,It was a childhood home.,childhood,N,home
+home,It was a funeral home.,funeral,N,home
+intelligence,They had natural intelligence.,natural,N,intelligence
+intelligence,They had innate intelligence.,innate,N,intelligence
+intelligence,They had classified intelligence.,classified,N,intelligence
+issue,It was a sensitive issue.,sensitive,N,issue
+issue,It was a political issue.,political,N,issue
+issue,It was a weekly issue.,weekly,N,issue
+jam,It was a blackberry jam.,blackberry,N,jam
+jam,It was a peach jam.,peach,N,jam
+jam,It was a traffic jam.,traffic,N,jam
+key,It was a duplicate key.,duplicate,N,key
+key,It was a master key.,master,N,key
+key,It was a delete key.,delete,N,key
+lamb,They liked the marinated lamb.,marinated,N,lamb
+lamb,They liked the grilled lamb.,grilled,N,lamb
+lamb,They liked the cute lamb.,cute,N,lamb
+lap,She lapped the milk.,milk,V,lapped
+lap,She lapped the water.,water,V,lapped
+lap,She lapped the runners.,runners,V,lapped
+load,She loaded the gun.,gun,V,loaded
+load,She loaded the rifle.,rifle,V,loaded
+load,She loaded the truck.,truck,V,loaded
+lock,She had curly locks.,curly,N,locks
+lock,She had brown locks.,brown,N,locks
+lock,She had window locks.,window,N,locks
+lunch,They liked the hot lunch.,hot,N,lunch
+lunch,They liked the sandwich lunch.,sandwich,N,lunch
+lunch,They liked the afternoon lunch.,afternoon,N,lunch
+market,He liked the flea market.,flea,N,market
+market,He liked the fish market.,fish,N,market
+market,He liked the housing market.,housing,N,market
+match,It was a lit match.,lit,N,match
+match,It was a burning match.,burning,N,match
+match,It was a soccer match.,soccer,N,match
+medicine,It was cough medicine.,cough,N,medicine
+medicine,It was prescription medicine.,prescription,N,medicine
+medicine,It was orthopedic medicine.,orthopedic,N,medicine
+message,There was a phone message.,phone,N,message
+message,There was a computer message.,computer,N,message
+message,There was an urgent message.,urgent,N,message
+mold,It was a fungal mold.,fungal,N,mold
+mold,It was a harmful mold.,harmful,N,mold
+mold,It was a rubber mold.,rubber,N,mold
+mole,She saw the cancerous mole.,cancerous,N,mole
+mole,She saw the raised mole.,raised,N,mole
+mole,She saw the cute mole.,cute,N,mole
+movement,He liked the rhythmic movement.,rhythmic,N,movement
+movement,He liked the graceful movement.,graceful,N,movement
+movement,He liked the feminist movement.,feminist,N,movement
+newspaper,It was a national newspaper.,national,N,newspaper
+newspaper,It was a daily newspaper.,daily,N,newspaper
+newspaper,It was a faded newspaper.,faded,N,newspaper
+orange,It was a juicy orange.,juicy,N,orange
+orange,It was a ripe orange.,ripe,N,orange
+orange,It was a bright orange.,bright,N,orange
+page,He saw the young page.,young,N,page
+page,He saw the loyal page.,loyal,N,page
+page,He saw the blank page.,blank,N,page
+palm,It was a calloused palm.,calloused,N,palm
+palm,It was a wrinkled palm.,wrinkled,N,palm
+palm,It was a tropical palm.,tropical,N,palm
+panel,It was a control panel.,control,N,panel
+panel,It was an instrument panel.,instrument,N,panel
+panel,It was an advisory panel.,advisory,N,panel
+passage,It was a secret passage.,secret,N,passage
+passage,It was a narrow passage.,narrow,N,passage
+passage,It was a literary passage.,literary,N,passage
+pen,She penned her animals.,animals,V,penned
+pen,She penned her livestock.,livestock,V,penned
+pen,She penned her memoirs.,memoirs,V,penned
+perch,It was a tasty perch.,tasty,N,perch
+perch,It was a freshwater perch.,freshwater,N,perch
+perch,It was a lofty perch.,lofty,N,perch
+pick,He picked his coffee.,coffee,V,picked
+pick,He picked his dinner.,dinner,V,picked
+pick,He picked his scab.,scab,V,picked
+pitcher,He saw the fast pitcher.,fast,N,pitcher
+pitcher,He saw the right-handed pitcher.,right-handed,N,pitcher
+pitcher,He saw the glass pitcher.,glass,N,pitcher
+poach,She poached the deer.,deer,V,poached
+poach,She poached the bear.,bear,V,poached
+poach,She poached the eggs.,eggs,V,poached
+port,It was a windy port.,windy,N,port
+port,It was a seaside port.,seaside,N,port
+port,It was a delicious port.,delicious,N,port
+position,He was in a distinguished position.,distinguished,N,position
+position,He was in a prominent position.,prominent,N,position
+position,He was in a fetal position.,fetal,N,position
+post,It was a wooden post.,wooden,N,post
+post,It was a fence post.,fence,N,post
+post,It was a teaching post.,teaching,N,post
+punch,He had the alcoholic punch.,alcoholic,N,punch
+punch,He had the fruit punch.,fruit,N,punch
+punch,He had the strongest punch.,strongest,N,punch
+pupil,She had a brilliant pupil.,brilliant,N,pupil
+pupil,She had an interested pupil.,interested,N,pupil
+pupil,She had a dilated pupil.,dilated,N,pupil
+push,He pushed the cocaine.,cocaine,V,pushed
+push,He pushed the drugs.,drugs,V,pushed
+push,He pushed the bed.,bed,V,pushed
+racket,That was a loud racket.,loud,N,racket
+racket,That was an annoying racket.,annoying,N,racket
+racket,That was a badminton racket.,badminton,N,racket
+rock,He liked electronic rock.,electronic,N,rock
+rock,He liked alternative rock.,alternative,N,rock
+rock,He liked limestone rock.,limestone,N,rock
+run,She ran the marathon.,marathon,V,ran
+run,She ran the race.,race,V,ran
+run,She ran the shop.,shop,V,ran
+sage,He saw the wise sage.,wise,N,sage
+sage,He saw the renowned sage.,renowned,N,sage
+sage,He saw the fragrant sage.,fragrant,N,sage
+scale,It was a fish scale.,fish,N,scale
+scale,It was a lizard scale.,lizard,N,scale
+scale,It was a music scale.,music,N,scale
+scene,It was a touching scene.,touching,N,scene
+scene,It was a well-acted scene.,well-acted,N,scene
+scene,It was a nature scene.,nature,N,scene
+seal,It was a gold seal.,gold,N,seal
+seal,It was a certified seal.,certified,N,seal
+seal,It was a circus seal.,circus,N,seal
+serve,She served a pie.,pie,V,served
+serve,She served a lasagna.,lasagna,V,served
+serve,She served a summons.,summons,V,served
+sing,The girl sang.,girl,V,sang
+sing,The choir sang.,choir,V,sang
+sing,The bird sang.,bird,V,sang
+spill,He spilled the drink.,drink,V,spilled
+spill,He spilled the flour.,flour,V,spilled
+spill,He spilled the news.,news,V,spilled
+stake,He staked his horse.,horse,V,staked
+stake,He staked his tent.,tent,V,staked
+stake,He staked his name.,name,V,staked
+stall,They stalled the truck.,truck,V,stalled
+stall,They stalled the bus.,bus,V,stalled
+stall,They stalled the horse.,horse,V,stalled
+stay,They stayed wet.,wet,V,stayed
+stay,They stayed cold.,cold,V,stayed
+stay,They stayed nearby.,nearby,V,stayed
+tap,He tapped the keg.,keg,V,tapped
+tap,He tapped the beer.,beer,V,tapped
+tap,He tapped the stick.,stick,V,tapped
+tape,He used the scotch tape.,scotch,N,tape
+tape,He used the double-sided tape.,double-sided,N,tape
+tape,He used the interview tape.,interview,N,tape
+term,It was a winter term.,winter,N,term
+term,It was a fall term.,fall,N,term
+term,It was a legal term.,legal,N,term
+tick,It was a clock tick.,clock,N,tick
+tick,It was an audible tick.,audible,N,tick
+tick,It was a parasitic tick.,parasitic,N,tick
+tip,It was a generous tip.,generous,N,tip
+tip,It was a stingy tip.,stingy,N,tip
+tip,It was a pencil tip.,pencil,N,tip
+title,She liked the essay title.,essay,N,title
+title,She liked the poem title.,poem,N,title
+title,She liked the academic title.,academic,N,title
+toast,They toasted the bread.,bread,V,toasted
+toast,They toasted the strudel.,strudel,V,toasted
+toast,They toasted the host.,host,V,toasted
+toll,It was a costly toll.,costly,N,toll
+toll,It was a road toll.,road,N,toll
+toll,It was a loud toll.,loud,N,toll
+track,She saw the train tracks.,train,N,tracks
+track,She saw the trolley tracks.,trolley,N,tracks
+track,She saw the moose tracks.,moose,N,tracks
+yard,It was five yards.,five,N,yards
+yard,It was ten yards.,ten,N,yards
+yard,They were big yards.,big,N,yards
+act,It was a comedic act.,comedic,N,act
+appeal,He had a pending appeal.,pending,N,appeal
+atmosphere,It was a polluted atmosphere.,polluted,N,atmosphere
+bail,He bailed out the liquid.,liquid,V,bailed
+band,It was a country band.,country,N,band
+bank,He banked the cash.,cash,V,banked
+barrier,There was a religious barrier.,religious,N,barrier
+bat,He saw a baseball bat.,baseball,N,bat
+beam,He saw the balance beam.,balance,N,beam
+block,She had a writer's block.,writer,N,block
+blood,He has royal blood.,royal,N,blood
+board,It was the school board.,school,N,board
+book,He had a leather-bound book.,leather-bound,N,book
+break,He broke the promise.,promise,V,broke
+breakfast,They ate a lonely breakfast.,lonely,N,breakfast
+call,They called the debt.,debt,V,called
+cape,It was an island cape.,island,N,cape
+case,It was a criminal case.,criminal,N,case
+cast,She cast a stone.,stone,V,cast
+cause,It was a primary cause.,primary,N,cause
+cell,It was a jail cell.,jail,N,cell
+charm,She had a good-luck charm.,good-luck,N,charm
+check,He checked the facts.,facts,V,checked
+chicken,They liked the pet chicken.,pet,N,chicken
+class,It was a stimulating class.,stimulating,N,class
+clear,He cleared the road.,road,V,cleared
+clip,It was a metal clip.,metal,N,clip
+clog,The sink clogged.,sink,V,clogged
+cold,It was a common cold.,common,N,cold
+column,It was a marble column.,marble,N,column
+company,He liked the polite company.,polite,N,company
+cone,It was a traffic cone.,traffic,N,cone
+contribution,He made a well-written contribution.,well-written,N,contribution
+count,That was the correct count.,correct,N,count
+course,It was a collision course.,collision,N,course
+cross,He crossed a friend.,friend,V,crossed
+date,It was a historical date.,historical,N,date
+degree,It was about college degrees.,college,N,degrees
+design,They liked the architectural design.,architectural,N,design
+dinner,They liked the anniversary dinner.,anniversary,N,dinner
+drain,They drained the pond.,pond,V,drained
+draw,They drew a picture.,picture,V,drew
+dream,He had a career dream.,career,N,dream
+drill,It was a battery-powered drill.,battery-powered,N,drill
+examination,It was a physical examination.,physical,N,examination
+fan,They had an enthusiastic fan.,enthusiastic,N,fan
+file,She had a steel file.,steel,N,file
+film,It was a plastic film.,plastic,N,film
+fix,They fixed the price.,price,V,fixed
+foundation,It was a concrete foundation.,concrete,N,foundation
+function,It was a business function.,business,N,function
+ground,He was on the parade ground.,parade,N,ground
+guard,They liked the national guard.,national,N,guard
+guide,He had a friendly guide.,friendly,N,guide
+hail,They hailed a guest.,guest,V,hailed
+home,It was a nursing home.,nursing,N,home
+intelligence,They had military intelligence.,military,N,intelligence
+issue,It was a special issue.,special,N,issue
+jam,It was a paper jam.,paper,N,jam
+key,It was a backspace key.,backspace,N,key
+lamb,They liked the friendly lamb.,friendly,N,lamb
+lap,She lapped the competitors.,competitors,V,lapped
+load,She loaded the van.,van,V,loaded
+lock,She had door locks.,door,N,locks
+lunch,They liked the women's lunch.,women,N,lunch
+market,He liked the stock market.,stock,N,market
+match,It was a tennis match.,tennis,N,match
+medicine,It was veterinary medicine.,veterinary,N,medicine
+message,There was a clear message.,clear,N,message
+mold,It was a clay mold.,clay,N,mold
+mole,She saw the fast mole.,fast,N,mole
+movement,He liked the civil-rights movement.,civil-rights,N,movement
+newspaper,It was a shredded newspaper.,shredded,N,newspaper
+orange,It was a reddish orange.,reddish,N,orange
+page,He saw the ripped page.,ripped,N,page
+palm,It was a tree palm.,tree,N,palm
+panel,It was a consumer panel.,consumer,N,panel
+passage,It was a biblical passage.,biblical,N,passage
+pen,She penned her thoughts.,thoughts,V,penned
+perch,It was a secure perch.,secure,N,perch
+pick,He picked his nose.,nose,V,picked
+pitcher,He saw the plastic pitcher.,plastic,N,pitcher
+poach,She poached the vegetables.,vegetables,V,poached
+port,It was a sweet port.,sweet,N,port
+position,He was in a yoga position.,yoga,N,position
+post,It was a challenging post.,challenging,N,post
+punch,He had the quickest punch.,quickest,N,punch
+pupil,She had a cloudy pupil.,cloudy,N,pupil
+push,He pushed the desk.,desk,V,pushed
+racket,That was a tennis racket.,tennis,N,racket
+rock,He liked granite rock.,granite,N,rock
+run,She ran the company.,company,V,ran
+sage,He saw the bushy sage.,bushy,N,sage
+scale,It was a major scale.,major,N,scale
+scene,It was a panoramic scene.,panoramic,N,scene
+seal,It was a trained seal.,trained,N,seal
+serve,She served a warrant.,warrant,V,served
+sing,The cricket sang.,cricket,V,sang
+spill,He spilled the secret.,secret,V,spilled
+stake,He staked his claim.,claim,V,staked
+stall,They stalled the pig.,pig,V,stalled
+stay,They stayed overnight.,overnight,V,stayed
+tap,He tapped the drums.,drums,V,tapped
+tape,He used the video tape.,video,N,tape
+term,It was a technical term.,technical,N,term
+tick,It was a diseased tick.,diseased,N,tick
+tip,It was a finger tip.,finger,N,tip
+title,She liked the professional title.,professional,N,title
+toast,They toasted the bride.,bride,V,toasted
+toll,It was a bell toll.,bell,N,toll
+track,She saw the snowshoe tracks.,snowshoe,N,tracks
+yard,They were cluttered yards.,cluttered,N,yards
