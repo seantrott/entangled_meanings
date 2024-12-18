@@ -227,11 +227,51 @@ df_attention_over_time %>%
 
 ```
 
+
+Testing out Pam's idea:
+
+```{r}
+df_attention_over_time %>%
+  filter(mpath == "EleutherAI/pythia-14m") %>%
+  ggplot(aes(x = factor(step, levels = sort(unique(step))), 
+             y = factor(Head), # Use only "Head" as y-axis
+             fill = mean_attention)) +
+  geom_tile() +
+  facet_grid(Layer ~ ., scales = "free_y", space = "free") + # Separate by Layer
+  theme_minimal() +
+  scale_x_discrete(
+    breaks = sort(unique(df_attention_over_time$step))[seq(1, length(unique(df_attention_over_time$step)), 
+                                      by = 15)] # Every 10th step
+  ) +
+  labs(x = "Step",
+       y = "Head",
+       fill = "Attention to Disambiguating Word") +
+  theme(text = element_text(size = 15),
+        strip.text.y = element_text(angle = 0), # Keep facet labels horizontal
+        axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.position = "bottom")
+
+df_attention_over_time %>%
+  filter(mpath == "EleutherAI/pythia-14m") %>%
+  ggplot(aes(x = step,  # Keep step as continuous
+             y = factor(Head),  # Combine Layer and Head hierarchically
+             fill = mean_attention)) +
+  geom_tile(width = 1) +
+  theme_minimal() +
+  facet_grid(Layer ~ ., scales = "free_y", space = "free") + # Separate by Layer
+  labs(x = "Step",
+       y = "Layer_Head",
+       fill = "Attention to Disambiguating Word") +
+  theme(text = element_text(size = 15),
+        axis.text.x = element_text(angle = 90, hjust = 1))
+```
+
+
 ### Attention at sentence-level
 
 ```{r}
 df_pythia_models %>%
-  # filter(mpath == "EleutherAI/pythia-14m") %>%
+  filter(mpath == "EleutherAI/pythia-14m") %>%
   filter(Layer == 3) %>%
   filter(step %in% c(512, 1000, 2000, 143000)) %>%
   ggplot(aes(x = Attention,
