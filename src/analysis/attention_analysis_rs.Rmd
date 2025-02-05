@@ -200,6 +200,10 @@ final_step_wide = df_pythia_models %>%
   pivot_wider(names_from = c(Head, Layer),
               values_from = Attention) 
 
+
+### Save for convenience
+write.csv(final_step_wide, "../../data/processed/rawc/pythia/attention_rs/pythia14m_final_step_wide.csv")
+
 # Get the numeric columns
 numeric_columns <- grep("^\\d+_\\d+$", colnames(final_step_wide), value = TRUE)
 clustering_data <- final_step_wide %>%
