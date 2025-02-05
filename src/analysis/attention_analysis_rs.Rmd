@@ -1,0 +1,442 @@
+---
+title: "Analysis of HuggingFace Models Attention"
+author: "Sean Trott and Pam Rivière"
+date: "November 20, 2024"
+output:
+  html_document:
+    keep_md: yes
+    toc: yes
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(dpi = 300, fig.format = "pdf")
+```
+
+
+```{r include=FALSE}
+library(tidyverse)
+library(lmtest)
+library(forcats)
+library(broom)
+library(lme4)
+library(viridis)
+library(ggridges)
+library(lmerTest)
+library(ggrepel)
+library(ggcorrplot)
+library(Rtsne)
+
+all_colors <- viridis::viridis(10, option = "mako")
+my_colors <- all_colors[c(3, 5, 7)]  # Selecting specific colors from the palette
+```
+
+# Load Pythia data
+
+
+```{r}
+# setwd("/Users/seantrott/Dropbox/UCSD/Research/Ambiguity/SSD/entangled_meanings/src/analysis/")
+directory_path <- "../../data/processed/rawc/pythia/attention_rs/"
+csv_files <- list.files(path = directory_path, pattern = "*.csv", full.names = TRUE)
+csv_list <- csv_files %>%
+  map(~ read_csv(.))
+df_pythia_models <- bind_rows(csv_list) %>%
+  mutate(Layer = Layer + 1)
+
+table(df_pythia_models$mpath)
+nrow(df_pythia_models)
+
+```
+
+# Entropy over time
+
+## Mean entropy by seed and overall
+
+```{r}
+summary_df <- df_pythia_models %>%
+  group_by(step, seed_name) %>%
+  summarise(
+    mean_entropy = mean(Entropy)
+  )
+
+
+summary_avg = summary_df %>%
+  group_by(step) %>%
+  summarise(
+    mean_entropy = mean(mean_entropy)
+  )
+
+ggplot(summary_df, aes(x = step, 
+                       y = mean_entropy, 
+                       color = seed_name)) +
+  geom_line(size = .5, linetype = "dotted") +  # Lineplot for mean entropy
+  geom_line(data = summary_avg, aes(x = step, y = mean_entropy), 
+             color = "black", size = 1.3) + # Smoothed average
+  labs(
+    title = "",
+    x = "Step",
+    y = "Mean Entropy"
+  ) +
+  theme_minimal() +
+  scale_x_log10() +
+  scale_y_continuous(limits = c(1.72, 1.85)) +
+  theme(text = element_text(size = 15),
+        legend.position = "none") +
+  geom_vline(xintercept = 1000, 
+             linetype = "dotted", 
+             size = 1.2) +
+  scale_color_viridis(option = "mako", discrete=TRUE)
+
+
+```
+
+## Mean entropy by seed, layer, and overall
+
+```{r}
+summary_df <- df_pythia_models %>%
+  group_by(step, Layer, seed_name) %>%
+  summarise(
+    mean_entropy = mean(Entropy)
+  )
+
+
+summary_avg = summary_df %>%
+  group_by(step, Layer) %>%
+  summarise(
+    mean_entropy = mean(mean_entropy)
+  )
+
+ggplot(summary_df, aes(x = step, 
+                       y = mean_entropy, 
+                       color = seed_name)) +
+  geom_line(size = .5, linetype = "dotted") +  # Lineplot for mean entropy
+  geom_line(data = summary_avg, aes(x = step, y = mean_entropy), 
+             color = "black", size = 1.3) + # Smoothed average
+  labs(
+    title = "",
+    x = "Step",
+    y = "Mean Entropy"
+  ) +
+  theme_minimal() +
+  scale_x_log10() +
+  scale_y_continuous(limits = c(1.72, 1.85)) +
+  theme(text = element_text(size = 15),
+        legend.position = "none") +
+  geom_vline(xintercept = 1000, 
+             linetype = "dotted", 
+             size = 1.2) +
+  scale_color_viridis(option = "mako", discrete=TRUE) +
+  facet_wrap(~Layer)
+
+
+```
+
+# Attention
+
+
+## Attention at final step
+
+```{r}
+df_pythia_models %>%
+  filter(step == 143000) %>%
+  group_by(seed_name, Layer, Head) %>%
+  summarise(mean_attention = mean(Attention)) %>%
+  ggplot(aes(x = Layer,
+             y = Head,
+             fill = mean_attention)) +
+  geom_tile() +
+  labs(x = "Layer",
+       y = "Head",
+       fill = "Attention to Disambiguating Word") +
+  scale_fill_gradient2(low = "blue",
+                       mid = "white",
+                       high = "red",
+                       midpoint = 0, 
+                       name = "Attention to Disambiguating Word") +
+  theme_minimal() +
+  theme(text = element_text(size = 15),
+        strip.text.y = element_text(angle = 0), # Keep facet labels horizontal
+        axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.position = "bottom") +
+  facet_wrap(~seed_name)
+
+
+df_pythia_models %>%
+  filter(step == 143000) %>%
+  group_by(seed_name, Layer, Head) %>%
+  summarise(mean_attention = mean(Attention)) %>%
+  group_by(seed_name, Layer) %>%
+  summarise(max_mean = max(mean_attention)) %>%
+  ggplot(aes(x = Layer,
+             y = seed_name,
+             fill = max_mean)) +
+  geom_tile() +
+  labs(x = "Layer",
+       y = "Seed",
+       fill = "Max Attn. to Disambiguating Word") +
+  scale_fill_gradient2(low = "blue",
+                       mid = "white",
+                       high = "red",
+                       midpoint = 0, 
+                       name = "Max Attn. to Disambiguating Word") +
+  theme_minimal() +
+  theme(text = element_text(size = 15),
+        strip.text.y = element_text(angle = 0), # Keep facet labels horizontal
+        axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.position = "bottom") 
+
+
+```
+
+### Clustering by final-step attention
+
+In an exploratory analysis, do these apparent attention patterns naturally separate into two distinct clusters?
+
+```{r}
+### Pivot wider
+final_step_wide = df_pythia_models %>%
+  filter(step == 143000) %>% ### REDO WITH FINAL STEP
+  select(-Entropy, -n_params) %>%
+  pivot_wider(names_from = c(Head, Layer),
+              values_from = Attention) 
+
+# Get the numeric columns
+numeric_columns <- grep("^\\d+_\\d+$", colnames(final_step_wide), value = TRUE)
+clustering_data <- final_step_wide %>%
+  select(all_of(numeric_columns))
+
+# Scale data for k-means
+scaled_data <- scale(clustering_data)
+
+# Run k-means with two clusters
+set.seed(123) 
+k <- 2 
+kmeans_result <- kmeans(scaled_data, centers = k, nstart = 25)
+
+## Analyze correspondence to seed
+final_step_wide$cluster_kmeans <- kmeans_result$cluster
+table(final_step_wide$cluster_kmeans, final_step_wide$seed_name)
+round(table(final_step_wide$cluster_kmeans, final_step_wide$seed_name) / 336, 2)
+
+
+##### Can also visualize using PCA
+# Perform PCA
+pca_result <- prcomp(scaled_data, center = TRUE, scale. = TRUE)
+
+# Extract first two principal components to plot
+final_step_wide$PC1 = pca_result$x[,1]
+final_step_wide$PC2 = pca_result$x[,2]
+
+# Plot the first two principal components
+final_step_wide %>%
+  ggplot(aes(x = PC1, y = PC2, color = seed_name, 
+             shape = factor(cluster_kmeans))) +
+  geom_point(alpha = .8, size = 2) +
+  theme_minimal() +
+  geom_vline(xintercept = 0, linetype = "dotted", size = 1.5) +
+  labs(x = "PC1", 
+       y = "PC2") +
+  theme(text = element_text(size = 15),
+        legend.position = "none") +
+  scale_color_viridis(option = "mako", discrete=TRUE)
+
+
+
+#### Now do with TSNE
+tsne_result <- Rtsne(scaled_data, perplexity = 30, 
+                     check_duplicates = FALSE, verbose = TRUE, max_iter = 500)
+
+# Extract the two components and store them in a dataframe
+final_step_wide$ts1 = tsne_result$Y[,1]
+final_step_wide$ts2 = tsne_result$Y[,2]
+
+# Plot t-SNE results
+final_step_wide %>%
+  ggplot(aes(x = ts1, y = ts2, color = factor(seed), 
+             shape = factor(cluster_kmeans))) +
+  geom_point(alpha = .8, size = 2) +
+  theme_minimal() +
+  geom_vline(xintercept = 0, linetype = "dotted", size = 1.5) +
+  labs(x = "Dim 1", 
+       y = "Dim 2") +
+  theme(text = element_text(size = 15),
+        legend.position = "none") +
+  scale_color_viridis(option = "mako", discrete=TRUE)
+
+
+```
+
+
+
+## Attention over time by head
+
+```{r}
+df_attention_over_time = df_pythia_models %>% 
+  filter(mpath %in% c("EleutherAI/pythia-14m")) %>%
+  group_by(mpath, revision, Layer, Head, step, n_params, seed_name) %>%
+  summarise(mean_attention = mean(Attention)) %>%
+  mutate(step_modded = step + 1) %>%
+  group_by(mpath, step, Head) %>%
+  mutate(
+    attention_diff = mean_attention - lag(mean_attention),
+    Head = Head + 1
+  )
+
+df_attention_avg = df_attention_over_time %>% 
+  group_by(step_modded, revision, step, Layer, Head) %>%
+  summarise(mean_attention = mean(mean_attention))
+
+
+df_attention_over_time %>%
+  filter(Layer == 3) %>%
+  ggplot(aes(x = step_modded,
+             y = mean_attention,
+             color = factor(Head))) +
+  geom_point(size = 2, alpha = .7) +
+  geom_line(size = 1, alpha = .7) + #, linetype = "dotted") +
+  # geom_line(data = df_attention_avg, aes(x = step_modded, y = mean_attention), 
+  #           color = "black", size = 1.3) + # Smoothed average
+  theme_minimal() +
+  labs(x = "Training Step (Log10)",
+       y = "Attention to Disambiguating Word",
+       color = "Attention Head",
+       title = "Layer 3") +
+  scale_x_log10() +
+    geom_vline(xintercept = 1000, 
+             linetype = "dotted", 
+             size = 1.2) +
+  theme(text = element_text(size = 15),
+        legend.position = "bottom") +
+  scale_color_viridis(option = "mako", discrete=TRUE) +
+  facet_wrap(~seed_name)
+
+
+df_attention_over_time %>%
+  filter(Layer == 4) %>%
+  ggplot(aes(x = step_modded,
+             y = mean_attention,
+             color = factor(Head))) +
+  geom_point(size = 2, alpha = .7) +
+  geom_line(size = 1, alpha = .7) + #, linetype = "dotted") +
+  # geom_line(data = df_attention_avg, aes(x = step_modded, y = mean_attention), 
+  #           color = "black", size = 1.3) + # Smoothed average
+  theme_minimal() +
+  labs(x = "Training Step (Log10)",
+       y = "Attention to Disambiguating Word",
+       color = "Attention Head",
+       title = "Layer 4") +
+  scale_x_log10() +
+    geom_vline(xintercept = 1000, 
+             linetype = "dotted", 
+             size = 1.2) +
+  theme(text = element_text(size = 15),
+        legend.position = "bottom") +
+  scale_color_viridis(option = "mako", discrete=TRUE) +
+  facet_wrap(~seed_name)
+
+
+```
+
+
+# Attention vs. R2
+
+## Load R2 data
+
+```{r}
+# setwd("/Users/seantrott/Dropbox/UCSD/Research/Ambiguity/SSD/entangled_meanings/src/analysis/")
+directory_path <- "../../data/processed/rawc/pythia/distances_rs/"
+csv_files <- list.files(path = directory_path, pattern = "*.csv", full.names = TRUE)
+csv_list <- csv_files %>%
+  map(~ read_csv(.))
+df_pythia_models <- bind_rows(csv_list)
+
+table(df_pythia_models$mpath)
+
+df_best_r2 = df_pythia_models %>% 
+  filter(mpath %in% c("EleutherAI/pythia-14m")) %>%
+  group_by(mpath, revision, step, Layer, seed, seed_name, n_params) %>%
+  summarise(r = cor(Distance, mean_relatedness, method = "pearson"),
+            r2 = r ** 2) %>%
+  group_by(mpath, step, n_params) %>%
+  mutate(step_modded = step + 1) 
+
+
+### Merge
+df_merged_r2_attention = df_attention_over_time %>%
+  inner_join(df_best_r2)
+
+```
+
+## Modeling
+
+### CCF
+
+```{r}
+df_ccf_by_head = df_merged_r2_attention %>%
+  group_by(seed_name, Layer, Head) %>%
+  arrange(revision) %>%
+  summarise(
+    ccf = list(ccf(mean_attention, r2, plot = FALSE)),
+    .groups = "drop"
+  )
+
+ccf_summary <- df_ccf_by_head %>%
+  mutate(
+    max_ccf = map_dbl(ccf, ~ max(.x$acf, na.rm = TRUE)),
+    lag_at_max_ccf = map_dbl(ccf, ~ .x$lag[which.max(.x$acf)])
+  ) %>%
+  select(seed_name, Head, Layer, max_ccf, lag_at_max_ccf)
+
+ccf_summary
+
+ccf_summary %>%
+  ggplot(aes(x = Layer,
+             y = Head,
+             fill = max_ccf)) +
+  geom_tile() +
+  labs(x = "Layer",
+       y = "Head",
+       fill = "Max CCF") +
+  scale_fill_gradient2(low = "blue",
+                       mid = "white",
+                       high = "red",
+                       midpoint = 0, 
+                       name = "Max CCF") +
+  theme_minimal() +
+  theme(text = element_text(size = 15),
+        strip.text.y = element_text(angle = 0), # Keep facet labels horizontal
+        axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.position = "bottom") +
+  facet_wrap(~seed_name)
+
+
+### Any systematic effects by layer?
+avg_by_layer = ccf_summary %>%
+  group_by(Layer) %>%
+  summarise(mean_ccf = mean(max_ccf),
+            se_ccf = sd(max_ccf) / sqrt(n()))
+avg_by_layer
+
+ccf_summary %>%
+  group_by(seed_name, Layer) %>%
+  summarise(mean_ccf = mean(max_ccf)) %>%
+  ggplot(aes(x = Layer, y = mean_ccf,
+             color = seed_name)) +
+  geom_line(size = .5, linetype = "dotted") +
+  geom_line(data = avg_by_layer, aes(x = Layer, y = mean_ccf), 
+             color = "black", size = 1.3) + # Smoothed average
+  labs(x = "Layer",
+       y = "Mean CCF") +
+  scale_color_viridis(option = "mako", discrete=TRUE) +
+  theme_minimal() +
+  theme(text = element_text(size = 15),
+        legend.position = "bottom")
+  
+
+```
+
+
+
+
+
+

@@ -18,7 +18,7 @@ def generate_revisions():
 
 def generate_revisions_test():
     # Fixed initial steps
-    revisions = [32, 64, 512, 1000, 143000]
+    revisions = [143000]
     # revisions = [143000]
     return [f"step{step}" for step in revisions]
 

@@ -1,4 +1,13 @@
-"""Compute logprob ratios for original and reversed modifier-noun phrases."""
+"""
+
+Compute logprob ratios for original and reversed modifier-noun phrases.
+
+Specifically, we calculate the ratio of the log-probability of an original modifier NP construction ("desperate act") 
+vs. the reversed version ("act desperate"), each presented after an *end of sequence token* to each Pythia model.
+
+See V2 for an alternative version that presents the original and reversed versions in entire sentences (e.g., "It was a desperate act") 
+and analyzes the relative log-probability of the modifier-NP phrases respectively.
+"""
 
 import numpy as np
 import os
@@ -19,8 +28,8 @@ import utils
 
 ### Models to test
 MODELS = [
-          'EleutherAI/pythia-14m',
-         # 'EleutherAI/pythia-70m',
+          # 'EleutherAI/pythia-14m',
+         'EleutherAI/pythia-70m',
          # 'EleutherAI/pythia-160m',
           # 'EleutherAI/pythia-410m',
           # 'EleutherAI/pythia-1b',

@@ -23,6 +23,7 @@ library(lme4)
 library(viridis)
 library(ggridges)
 library(lmerTest)
+library(ggrepel)
 
 all_colors <- viridis::viridis(10, option = "mako")
 my_colors <- all_colors[c(3, 5, 7)]  # Selecting specific colors from the palette
@@ -56,7 +57,8 @@ df_best_r2_scale = df_pythia_models %>%
   summarise(r = cor(Distance, mean_relatedness, method = "pearson"),
             r2 = r ** 2) %>%
   group_by(mpath, n_params) %>%
-  slice_max(r2, n = 1) 
+  slice_max(r2, n = 1) %>%
+  mutate(mpath = str_remove(mpath, ".*?/"))
 
 df_best_r2_scale %>%
   ggplot(aes(x = n_params,
@@ -125,6 +127,8 @@ df_best_r2_scale %>%
 
 ```{r r2_by_step}
 df_best_r2 = df_pythia_models %>% 
+  filter(mpath %in% c("EleutherAI/pythia-14m",
+                      "EleutherAI/pythia-70m")) %>%
   group_by(mpath, revision, step, Layer, n_params) %>%
   summarise(r = cor(Distance, mean_relatedness, method = "pearson"),
             r2 = r ** 2) %>%
@@ -134,7 +138,8 @@ df_best_r2 = df_pythia_models %>%
   mutate(million_tokens_seen = 2.1 * step_modded) %>%
   group_by(mpath) %>%
   mutate(
-    r2_diff = r2 - lag(r2)
+    r2_diff = r2 - lag(r2),
+    r2_diff2 = r2_diff - lag(r2_diff)
   )
 
 df_best_r2 %>%
@@ -149,78 +154,51 @@ df_best_r2 %>%
        y = "Best R2",
        color = "") +
   scale_x_log10() +
-  theme(text = element_text(size = 15)) +
+  geom_vline(xintercept = 1000, 
+             linetype = "dotted", 
+             size = 1.2) +
+  theme(text = element_text(size = 15),
+        legend.position = "bottom") +
   scale_color_viridis(option = "mako", discrete=TRUE)
 
-df_best_r2 %>%
-  ggplot(aes(x = step_modded,
-             y = r2,
-             color = reorder(mpath, n_params))) +
-  geom_point(size = 4, alpha = .7) +
-  geom_line(size = 2, alpha = .7) +
-  theme_minimal() +
-  labs(x = "Training Step",
-       y = "Best R2",
-       color = "") +
-  theme(text = element_text(size = 15)) +
-  scale_color_viridis(option = "mako", discrete=TRUE)
 
 df_best_r2 %>%
   filter(step > 0) %>%
   ggplot(aes(x = step_modded,
              y = r2_diff,
+             color = reorder(mpath, n_params))) +
+  geom_point(size = 4, alpha = .7) +
+  geom_line(size = 2, alpha = .7) +
+  theme_minimal() +
+  labs(x = "Training Step (Log10)",
+       y = "R2 change (1st derivative)",
+       color = "") +
+  scale_x_log10() +
+  geom_vline(xintercept = 1000, 
+             linetype = "dotted", 
+             size = 1.2) +
+  geom_hline(yintercept = 0, linetype = "dotted", size = 2) +
+  theme(text = element_text(size = 15),
+        legend.position = "bottom") +
+  scale_color_viridis(option = "mako", discrete=TRUE)
+
+
+df_best_r2 %>%
+  filter(step > 0) %>%
+  ggplot(aes(x = step_modded,
+             y = r2_diff2,
              color = reorder(mpath, n_params))) +
   geom_point(size = 4, alpha = .7) +
   geom_line(size = 2, alpha = .7) +
   theme_minimal() +
   labs(x = "Training Step (Log10)",
-       y = "R2 Delta",
+       y = "R2 change (2nd derivative)",
        color = "") +
   scale_x_log10() +
+  geom_vline(xintercept = 1000, 
+             linetype = "dotted", 
+             size = 1.2) +
   geom_hline(yintercept = 0, linetype = "dotted", size = 2) +
-  theme(text = element_text(size = 15)) +
-  scale_color_viridis(option = "mako", discrete=TRUE)
-
-
-df_best_r2 %>%
-  filter(step > 0) %>%
-  ggplot(aes(x = step_modded,
-             y = r2_diff,
-             color = reorder(mpath, n_params))) +
-  geom_point(size = 4, alpha = .7) +
-  geom_line(size = 2, alpha = .7) +
-  theme_minimal() +
-  labs(x = "Training Step",
-       y = "R2 Delta",
-       color = "") +
-  geom_hline(yintercept = 0, linetype = "dotted", size = 2) +
-  theme(text = element_text(size = 15),
-        legend.position = "bottom") +
-  scale_color_viridis(option = "mako", discrete=TRUE)
-
-
-df_best_r2 %>%
-  ggplot(aes(x = million_tokens_seen,
-             y = r2_diff,
-             color = reorder(mpath, n_params))) +
-  geom_line(size = 2, alpha = .7) +
-  theme_minimal() +
-  labs(x = "Million Tokens Seen",
-       y = "R2 Delta") +
-  scale_x_log10() +
-  theme(text = element_text(size = 15),
-        legend.position = "bottom") +
-  scale_color_viridis(option = "mako", discrete=TRUE)
-
-df_best_r2 %>%
-  ggplot(aes(x = million_tokens_seen,
-             y = r2,
-             color = reorder(mpath, n_params))) +
-  geom_line(size = 2, alpha = .7) +
-  theme_minimal() +
-  labs(x = "Million Tokens Seen",
-       y = "Best R2") +
-  scale_x_log10() +
   theme(text = element_text(size = 15),
         legend.position = "bottom") +
   scale_color_viridis(option = "mako", discrete=TRUE)
@@ -237,8 +215,12 @@ df_best_r2 %>%
        y = "Best R2",
        color = "") +
   scale_x_log10() +
-  theme(text = element_text(size = 15)) +
+  theme(text = element_text(size = 15),
+        legend.position = "bottom") +
   scale_color_viridis(option = "mako", discrete=TRUE)
+
+
+
 
 ```
 
@@ -248,6 +230,7 @@ df_best_r2 %>%
 
 
 ```{r}
+
 
 ```
 
@@ -271,7 +254,7 @@ df_perf %>%
   theme_minimal() +
   labs(x = "Layer",
        y = "R2") +
-  scale_x_continuous(breaks = c(0:13)) +
+  # scale_x_continuous(breaks = c(0:13)) +
   theme(text = element_text(size = 15),
         legend.position = "bottom") +
   scale_color_viridis(option = "mako", discrete=TRUE)
@@ -342,43 +325,6 @@ df_perf_best %>%
 ```
 
 
-# Distance by step
-
-**TODO**: Figure out how to visualize this. (Currently using tile plot?)
-
-**TODO**: Maybe subtract different vs. same sense distance?
-
-```{r}
-df_summary <- df_pythia_models %>%
-  group_by(Layer, Same_sense,revision, mpath, step) %>%
-  summarise(
-    mean_Distance = mean(Distance),
-    .groups = 'drop'  # Drop the automatic grouping by dplyr
-  ) %>%
-  pivot_wider(
-    names_from = Same_sense,      # Column to pivot on (e.g., Same_sense)
-    values_from = mean_Distance, # Values to fill in (mean_distance)
-    names_prefix = "sense_"      # Optional prefix for new columns
-  ) %>%
-  mutate(distance_difference = `sense_Different Sense` - `sense_Same Sense`)
-
-
-df_summary %>%
-  ggplot(aes(x = Layer,
-             y = reorder(revision, step),
-             fill = distance_difference)) +
-  geom_tile() +
-  theme_minimal() +
-  labs(x = "Layer",
-       y = "Step",
-       fill = "Distance Difference (Diff - Same)") +
-  scale_x_continuous(breaks = c(0:13)) +
-  theme(text = element_text(size = 15),
-        legend.position="bottom") +
-  facet_wrap(~mpath)
-
-
-```
 
 
 # "Learned distinction"
@@ -397,13 +343,6 @@ df_pythia_models_wide = df_pythia_models %>%
   mutate(distance_diff = `sense_Different Sense` - `sense_Same Sense`,
          learned = distance_diff > 0)
 
-
-df_pythia_models_wide %>%
-  group_by(step, mpath, Layer) %>%
-  summarise(prop_learned = mean(learned)) %>%
-  ggplot(aes(x = Layer, y = prop_learned)) +
-  geom_point() +
-  facet_wrap(~mpath + step)
 ```
 
 
@@ -421,21 +360,7 @@ models <- by(df_pythia_models, df_pythia_models$step, function(subdata) {
 # Combine the results back into a single dataframe
 results <- do.call(rbind, models)
 
-  
-### Plot revisions
-results %>%
-  ggplot(aes(x = residuals,
-             fill = Same_sense)) +
-  geom_density(alpha = .7, size = 0) +
-  geom_vline(xintercept = 0, size = .6, linetype = "dashed") +
-  theme_minimal() +
-  # scale_fill_viridis(option = "mako", discrete=TRUE) +
-  theme(text = element_text(size = 15),
-        legend.position="bottom") +
-  scale_fill_manual(values = my_colors)  +
-  labs(x = "Residuals (Relatedness ~ Distance * Layer)",
-       fill = "") +
-  facet_wrap(~step)
+
 ```
 
 

@@ -23,11 +23,11 @@ import utils
 ### Models to test
 MODELS = [
          # 'EleutherAI/pythia-14m',
-        #'EleutherAI/pythia-70m',
+         'EleutherAI/pythia-70m',
          # 'EleutherAI/pythia-160m',
          # 'EleutherAI/pythia-410m',
           # 'EleutherAI/pythia-1b',
-           'EleutherAI/pythia-1.4b',
+          #  'EleutherAI/pythia-1.4b',
           # 'EleutherAI/pythia-2.8b',
           # 'EleutherAI/pythia-6.9b',
           # 'EleutherAI/pythia-12b',
@@ -47,7 +47,20 @@ def main(df, mpath, revisions):
     print("number of checkpoints:", len(revisions))
 
     for checkpoint in tqdm(revisions):
-        print(checkpoint)
+
+        ### Set up save path, filename, etc.
+        savepath = "data/processed/rawc/pythia/distances/"
+        if not os.path.exists(savepath): 
+            os.mkdir(savepath)
+        if "/" in mpath:
+            filename = "rawc-distances_model-" + mpath.split("/")[1] + "-" + checkpoint +  ".csv"
+        else:
+            filename = "rawc-distances_model-" + mpath +  "-" + checkpoint + ".csv"
+
+        print("Checking if we've already run this analysis...")
+        if os.path.exists(os.path.join(savepath,filename)):
+            print("Already run this model for this checkpoint.")
+            continue
 
         model = GPTNeoXForCausalLM.from_pretrained(
             mpath,
@@ -149,7 +162,7 @@ if __name__ == "__main__":
     df_just_n = df[df['Class']=='N']
 
     ### Get revisions
-    revisions = utils.generate_revisions_test()
+    revisions = utils.generate_revisions()
 
     ## Run main
     main(df_just_n, MODELS[0], revisions)
