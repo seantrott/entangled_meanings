@@ -214,7 +214,7 @@ scaled_data <- scale(clustering_data)
 
 # Run k-means with two clusters
 set.seed(123) 
-k <- 2 
+k <- 2
 kmeans_result <- kmeans(scaled_data, centers = k, nstart = 25)
 
 ## Analyze correspondence to seed
