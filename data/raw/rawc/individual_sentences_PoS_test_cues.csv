@@ -1,0 +1,361 @@
+word,sentence_original,sentence_new,disambiguating_word_new,class_ambiguous_word,class_disambiguating_word,string_ambiguous_word,construction
+band,It was a gold band.,She wore a band.,wore,N,V,band,active
+band,It was a rubber band.,She snapped a band. ,snapped,N,V,band,active
+band,It was a jazz band.,She watched a band. ,watched,N,V,band,active
+band,It was a country band.,She joined a band. ,joined,N,V,band,active
+barrier,There was a police barrier.,He confronted a barrier. ,confronted,N,V,barrier,active
+barrier,There was a concrete barrier.,He climbed a barrier.,climbed,N,V,barrier,active
+barrier,There was a language barrier.,He overcame a barrier. ,overcame,N,V,barrier,active
+barrier,There was a religious barrier.,He encountered a barrier. ,encountered,N,V,barrier,active
+bat,He saw a furry bat.,He photographed a bat. ,photographed,N,V,bat,active
+bat,He saw a fruit bat.,He studied a bat. ,studied,N,V,bat,active
+bat,He saw a wooden bat.,He gripped a bat. ,gripped,N,V,bat,active
+bat,He saw a baseball bat.,He swung a bat. ,swung,N,V,bat,active
+beam,He saw the laser beam. ,He flashed the beam. ,flashed,N,V,beam,active
+beam,He saw the wood beam. ,He splintered the beam. ,splintered,N,V,beam,active
+beam,He saw the bright beam. ,He shone the beam. ,shone,N,V,beam,active
+beam,He saw the balance beam. ,He repaired the beam. ,repaired,N,V,beam,active
+block,She had a toy block.,She toppled a block. ,toppled,N,V,block,active
+block,She had a wooden block.,She stacked a block. ,stacked,N,V,block,active
+block,She had a mental block.,She suffered a block.,suffered,N,V,block,active
+block,She had a writer's block.,She overcame a block. ,overcame,N,V,block,active
+blood,He has coagulated blood.,He collected his blood.,collected,N,V,blood,active
+blood,He has thin blood.,He injected his blood. ,injected,N,V,blood,active
+blood,He has noble blood.,He claimed his blood. ,claimed,N,V,blood,active
+blood,He has royal blood.,He denied his blood. ,denied,N,V,blood,active
+board,It was the school board.,She joined the board.,joined,N,V,board,active
+board,It was the executive board.,She fired the board. ,fired,N,V,board,active
+board,It was the ironing board.,She bought the board. ,bought,N,V,board,active
+board,It was the wooden board.,She varnished the board.,varnished,N,V,board,active
+book,He had a best-selling book.,He translated the book. ,translated,N,V,book,active
+book,He had a popular book.,He discussed the book. ,discussed,N,V,book,active
+book,He had a heavy book.,He held the book. ,held,N,V,book,active
+book,He had a leather-bound book.,He bound the book. ,bound,N,V,book,active
+break,He broke the glass.,The glass was broken.,glass,V,N,broken,passive
+break,He broke the dish.,The dish was broken.,dish,V,N,broken,passive
+break,He broke the law.,The law was broken.,law,V,N,broken,passive
+break,He broke the promise.,The promise was broken.,promise,V,N,broken,passive
+bail,He bailed out the prisoner.,The prisoner was bailed out. ,prisoner,V,N,bailed,passive
+bail,He bailed out the defendant.,The defendant was bailed out.,defendant,V,N,bailed,passive
+bail,He bailed out the water.,The water was bailed out.,water,V,N,bailed,passive
+bail,He bailed out the liquid.,The liquid was bailed out.,liquid,V,N,bailed,passive
+breakfast,They ate a nutritious breakfast.,They devoured the breakfast. ,devoured,N,V,breakfast,active
+breakfast,They ate a pancake breakfast.,They finished the breakfast.,finished,N,V,breakfast,active
+breakfast,They ate a family breakfast.,They skipped the breakfast.,skipped,N,V,breakfast,active
+breakfast,They ate a lonely breakfast.,They endured the breakfast. ,endured,N,V,breakfast,active
+cape,It was a red cape.,She wore a cape. ,wore,N,V,cape,active
+cape,It was a flowing cape.,She tore a cape. ,tore,N,V,cape,active
+cape,It was a rocky cape.,She climbed a cape. ,climbed,N,V,cape,active
+cape,It was an island cape.,She visited a cape. ,visited,N,V,cape,active
+case,It was a beer case.,He bought the case.,bought,N,V,case,active
+case,It was a display case.,He polished the case. ,polished,N,V,case,active
+case,It was a divorce case.,He filed the case. ,filed,N,V,case,active
+case,It was a criminal case.,He dismissed the case. ,dismissed,N,V,case,active
+cast,She cast a stone.,A stone was cast. ,stone,V,N,cast,passive
+cast,She cast a shadow.,A shadow was cast.,shadow,V,N,cast,passive
+cast,She cast a spear.,A spear was cast.,spear,V,N,cast,passive
+cast,She cast a glow.,A glow was cast.,glow,V,N,cast,passive
+cause,It was a worthy cause.,She upheld the cause. ,upheld,N,V,cause,active
+cause,It was a political cause.,She pursued the cause. ,pursued,N,V,cause,active
+cause,It was a primary cause.,She revealed the cause. ,revealed,N,V,cause,active
+cause,It was a main cause.,She discoverd the cause.,discovered,N,V,cause,active
+cell,It was a skin cell.,He identified a cell.,identified,N,V,cell,active
+cell,It was a brain cell.,He stained a cell. ,stained,N,V,cell,active
+cell,It was a prison cell.,He built a cell. ,built,N,V,cell,active
+cell,It was a jail cell.,He locked a cell. ,locked,N,V,cell,active
+charm,She had a natural charm.,She belied her charm. ,belied,N,V,charm,active
+charm,She had a devilish charm.,She deployed her charm. ,deployed,N,V,charm,active
+charm,She had a good-luck charm.,She fastened her charm. ,fastened,N,V,charm,active
+charm,She had a gold charm.,She carried her charm. ,carried,N,V,charm,active
+chicken,They liked the juicy chicken.,He devoured the chicken. ,devoured,N,V,chicken,active
+chicken,They liked the roasted chicken.,He ate the chicken. ,ate,N,V,chicken,active
+chicken,They liked the pet chicken.,He pet the chicken. ,pet,N,V,chicken,active
+chicken,They liked the clucking chicken.,He tracked the chicken. ,tracked,N,V,chicken,active
+class,It was a misbehaving class.,She disciplined the class. ,disciplined,N,V,class,active
+class,It was a perceptive class.,She encouraged the class. ,encouraged,N,V,class,active
+class,It was a boring class.,She taught the class. ,taught,N,V,class,active
+class,It was a stimulating class.,She developed the class. ,developed,N,V,class,active
+clear,He cleared the desk.,The desk was cleared.  ,desk,V,N,cleared,passive
+clear,He cleared the shelf.,The shelf was cleared.,shelf,V,N,cleared,passive
+clear,He cleared the cleared.,The path was cleared.,path,V,N,cleared,passive
+clear,He cleared the road.,The road was cleared.,road,V,N,cleared,passive
+clip,It was a metal clip.,She lost the clip. ,lost,N,V,clip,active
+clip,It was a hair clip.,She wore the clip. ,wore,N,V,clip,active
+clip,It was a video clip.,She uploaded the clip. ,uploaded,N,V,clip,active
+clip,It was a film clip.,She played the clip. ,played,N,V,clip,active
+column,It was a gossip column.,He read a column. ,read,N,V,column,active
+column,It was a sports column.,He drafted a column. ,drafted,N,V,column,active
+column,It was a concrete column.,He chipped a column. ,chipped,N,V,column,active
+column,It was a marble column.,He sculpted a column. ,sculpted,N,V,column,active
+company,He liked the investment company.,He prosecuted the company. ,prosecuted,N,V,company,active
+company,He liked the pharmaceutical company.,He joined the company.,joined,N,V,company,active
+company,He liked the pleasant company.,He enjoyed the company. ,enjoyed,N,V,company,active
+company,He liked the polite company.,He relished the company. ,relished,N,V,company,active
+cone,It was a waffle cone.,She baked a cone.,baked,N,V,cone,active
+cone,It was a sugar cone.,She ate a cone. ,ate,N,V,cone,active
+cone,It was an orange cone.,She painted a cone. ,painted,N,V,cone,active
+cone,It was a traffic cone.,She struck a cone. ,struck,N,V,cone,active
+contribution,He made a charitable contribution.,He financed a contribution. ,financed,N,V,contribution,active
+contribution,He made a contribution contribution.,He offered a contribution. ,volunteered,N,V,contribution,active
+contribution,He made a scholarly contribution.,He produced a contribution. ,produced,N,V,contribution,active
+contribution,He made a well-written contribution.,He authored a contribution. ,authored,N,V,contribution,active
+count,That was the noble count.,She married the count. ,married,N,V,count,active
+count,That was the vengeful count.,She avenged the count. ,avenged,N,V,count,active
+count,That was the final count.,She completed the count. ,completed,N,V,count,active
+count,That was the correct count.,She verified the count. ,verified,N,V,count,active
+course,It was an introductory course.,She taught the course.,taught,N,V,course,active
+course,It was a pass-fail course.,She failed the course. ,failed,N,V,course,active
+course,It was a charted course.,She charted the course. ,charted,N,V,course,active
+course,It was a collision course.,She averted the course.,averted,N,V,course,active
+date,It was a historical date.,He engraved a date. ,engraved,N,V,date,active
+date,It was an expiration date.,He fixed a date. ,fixed,N,V,date,active
+date,It was a blind date.,He arranged a date. ,arranged,N,V,date,active
+date,It was a dinner date.,He canceled a date. ,canceled,N,V,date,active
+degree,It was about forty degrees.,It measured degrees. ,measured,N,V,degrees,active
+degree,It was about fifty degrees.,It displayed degrees. ,displayed,N,V,degrees,active
+degree,It was about associate degrees.,It discussed degrees.,discussed,N,V,degrees,active
+degree,It was about college degrees.,It ranked degrees. ,ranked,N,V,degrees,active
+design,They liked the floral design.,They displayed the design.,displayed,N,V,design,active
+design,They liked the geometric design.,They engraved the design.,engraved,N,V,design,active
+design,They liked the product design.,They tested the design.,tested,N,V,design,active
+design,They liked the architectural design.,They modeled the design. ,modeled,N,V,design,active
+dinner,They liked the turkey dinner.,They cooked the dinner. ,cooked,N,V,dinner,active
+dinner,They liked the light dinner.,They digested the dinner. ,digested,N,V,dinner,active
+dinner,They liked the formal dinner.,They attended the dinner. ,attended,N,V,dinner,active
+dinner,They liked the anniversary dinner.,They scheduled the dinner. ,scheduled,N,V,dinner,active
+drain,They drained the pond.,The pond was drained. ,pond,V,N,drained,passive
+drain,They drained the account.,The account was drained.,account,V,N,drained,passive
+drain,They drained the budget.,The budget was drained.,budget,V,N,drained,passive
+drain,They drained the pool.,The pool was drained.,pool,V,N,drained,passive
+dream,He had a recurring dream.,He feared the dream. ,feared,N,V,dream,active
+dream,He had a bad dream.,He forgot the dream. ,forgot,N,V,dream,active
+dream,He had a childhood dream.,He abandoned the dream. ,abandoned,N,V,dream,active
+dream,He had a career dream.,He pursued the dream. ,pursued,N,V,dream,active
+drill,It was a battery-powered drill.,She bought the drill. ,bought,N,V,drill,active
+drill,It was a grueling drill.,She endured the drill. ,endured,N,V,drill,active
+drill,It was a challenging drill.,She executed the drill. ,executed,N,V,drill,active
+drill,It was an electric drill.,She used the drill.,used,N,V,drill,active
+examination,It was a multiple-choice examination.,He took the examination. ,took,N,V,examination,active
+examination,It was a difficult examination.,He aced the examination. ,aced,N,V,examination,active
+examination,It was a prostate examination.,He got the examination. ,got,N,V,examination,active
+examination,It was a physical examination.,He performed the examination. ,performed,N,V,examination,active
+fan,They had an electric fan.,They bought a fan. ,bought,N,V,fan,active
+fan,They had a ceiling fan.,They installed a fan. ,installed,N,V,fan,active
+fan,They had an enthusiastic fan.,They arrested a fan. ,arrested,N,V,fan,active
+fan,They had a zealous fan.,They invited a fan. ,invited,N,V,fan,active
+file,She had a text file.,She encrypted a file. ,encrypted,N,V,file,active
+file,She had a data file.,She analyzed a file. ,analyzed,N,V,file,active
+file,She had a nail file.,She used a file. ,used,N,V,file,active
+file,She had a steel file.,She bought a file.,bought,N,V,file,active
+film,It was an action film.,They rated the film. ,rated,N,V,film,active
+film,It was a censored film.,They censored the film. ,censored,N,V,film,active
+film,It was a transparent film.,They punctured the film. ,punctured,N,V,film,active
+film,It was a plastic film.,They melted the film. ,melted,N,V,film,active
+fix,They fixed the radio.,The radio was fixed.,radio,V,N,fixed,passive
+fix,They fixed the dishwasher.,The dishwasher was fixed.,dishwasher,V,N,fixed,passive
+fix,They fixed the date.,The date was fixed.,date,V,N,fixed,passive
+fix,They fixed the price.,The price was fixed.,price,V,N,fixed,passive
+foundation,It was a charitable foundation.,It funded the foundation. ,funded,N,V,foundation,active
+foundation,It was an educational foundation.,It accredited the foundation. ,accredited,N,V,foundation,active
+foundation,It was a wooden foundation.,It rotted the foundation. ,rotted,N,V,foundation,active
+foundation,It was a concrete foundation.,It shook the foundation. ,shook,N,V,foundation,active
+function,It was a linear function.,She plotted the function. ,plotted,N,V,function,active
+function,It was a mathematical function.,She solved the function. ,solved,N,V,function,active
+function,It was a social function.,She organized the function.,organized,N,V,function,active
+function,It was a business function.,She scheduled the function. ,scheduled,N,V,function,active
+ground,He was on the firm ground.,He lay on the ground. ,lay,N,V,ground,active
+ground,He was on the frozen ground.,He froze on the ground. ,froze,N,V,ground,active
+ground,He was on the camp ground.,He cooked on the ground. ,cooked,N,V,ground,active
+ground,He was on the parade ground.,He trained on the ground.,trained,N,V,ground,active
+guard,They liked the night guard.,They talked to the guard. ,talked,N,V,guard,active
+guard,They liked the security guard.,They whispered to the guard. ,whispered,N,V,guard,active
+guard,They liked the coast guard.,They retired from the guard. ,retired,N,V,guard,active
+guard,They liked the national guard.,They applied to the guard. ,applied,N,V,guard,active
+guide,He had an assembly guide.,He crumpled the guide. ,crumpled,N,V,guide,active
+guide,He had a TV guide.,He scanned the guide. ,scanned,N,V,guide,active
+guide,He had a friendly guide.,He followed the guide. ,followed,N,V,guide,active
+guide,He had talkative guide.,He paid the guide. ,paid,N,V,guide,active
+home,It was a summer home.,They renovated the home.,renovated,N,V,home,active
+home,It was a childhood home.,They cherished the home. ,cherished,N,V,home,active
+home,It was a funeral home.,They paid the home. ,paid,N,V,home,active
+home,It was a nursing home.,They visited the home. ,visited,N,V,home,active
+intelligence,They had natural intelligence.,They displayed intelligence. ,displayed,N,V,intelligence,active
+intelligence,They had innate intelligence.,They measured intelligence. ,measured,N,V,intelligence,active
+intelligence,They had classified intelligence.,They acquired intelligence. ,acquired,N,V,intelligence,active
+intelligence,They had military intelligence.,They collected intelligence. ,collected,N,V,intelligence,active
+issue,It was a sensitive issue.,She discussed the issue. ,discussed,N,V,issue,active
+issue,It was a political issue.,She debated the issue.,debated,N,V,issue,active
+issue,It was a weekly issue.,She edited the issue. ,edited,N,V,issue,active
+issue,It was a special issue.,She commissioned the issue. ,commissioned,N,V,issue,active
+jam,It was a blackberry jam.,He spread the jam. ,spread,N,V,jam,active
+jam,It was a peach jam.,He canned the jam. ,canned,N,V,jam,active
+jam,It was a paper jam.,He fixed the jam.,fixed,N,V,jam,active
+jam,It was a traffic jam.,He reported the jam. ,reported,N,V,jam,active
+key,It was a duplicate key.,She replaced the key. ,replaced,N,V,key,active
+key,It was a master key.,She returned the key. ,returned,N,V,key,active
+key,It was a delete key.,She hit the key. ,hit,N,V,key,active
+key,It was a backspace key.,She pressed the key. ,pressed,N,V,key,active
+lamb,They liked the friendly lamb.,They pet the lamb. ,pet,N,V,lamb,active
+lamb,They liked the cute lamb.,They held the lamb. ,held,N,V,lamb,active
+lamb,They liked the marinated lamb.,They ate the lamb. ,ate,N,V,lamb,active
+lamb,They liked the grilled lamb.,They grilled the lamb. ,grilled,N,V,lamb,active
+load,She loaded the gun.,The gun was loaded. ,gun,V,N,loaded,passive
+load,She loaded the rifle.,The rifle was loaded.,rifle,V,N,loaded,passive
+load,She loaded the truck.,The truck was loaded.,truck,V,N,loaded,passive
+load,She loaded the van.,The van was loaded.,van,V,N,loaded,passive
+lock,She had window locks.,She secured the locks. ,secured,N,V,locks,active
+lock,She had door locks.,She picked the locks. ,picked,N,V,locks,active
+lock,She had curly locks.,She brushed the locks. ,brushed,N,V,locks,active
+lock,She had brown locks.,She shampooed the locks. ,shampooed,N,V,locks,active
+lunch,They liked the hot lunch.,They smelled lunch. ,smelled,N,V,lunch,active
+lunch,They liked the sandwich lunch.,They brought lunch. ,brought,N,V,lunch,active
+lunch,They liked the afternoon lunch.,They enjoyed lunch. ,enjoyed,N,V,lunch,active
+lunch,They liked the women's lunch.,They skipped lunch.,skipped,N,V,lunch,active
+market,He liked the flea market.,He visited the market. ,visited,N,V,market,active
+market,He liked the fish market.,He smelled the market. ,smelled,N,V,market,active
+market,He liked the housing market.,He shorted the market. ,shorted,N,V,market,active
+market,He liked the stock market.,He beat the market. ,beat,N,V,market,active
+match,It was a lit match.,She lit the match. ,lit,N,V,match,active
+match,It was a burning match.,She struck the match. ,struck,N,V,match,active
+match,It was a soccer match.,She missed the match.,missed,N,V,match,active
+match,It was a tennis match.,She videotaped the match. ,videotaped,N,V,match,active
+medicine,It was cough medicine.,He took medicine. ,took,N,V,medicine,active
+medicine,It was prescription medicine.,He prescribed medicine. ,prescribed,N,V,medicine,active
+medicine,It was orthopedic medicine.,He studied medicine. ,studied,N,V,medicine,active
+medicine,It was veterinary medicine.,He practiced medicine. ,practiced,N,V,medicine,active
+message,There was a phone message.,She texted the message. ,texted,N,V,message,active
+message,There was a computer message.,She read the message. ,read,N,V,message,active
+message,There was an urgent message.,She delivered the message. ,delivered,N,V,message,active
+message,There was a clear message.,She understood the message. ,understood,N,V,message,active
+mold,It was a fungal mold.,He eradicated the mold. ,eradicated,N,V,mold,active
+mold,It was a harmful mold.,He discovered the mold. ,discovered,N,V,mold,active
+mold,It was a rubber mold.,He bought the mold. ,bought,N,V,mold,active
+mold,It was a clay mold.,He fired the mold. ,fired,N,V,mold,active
+mole,She saw the cancerous mole.,She detected the mole. ,detected,N,V,mole,active
+mole,She saw the raised mole.,She removed the mole. ,removed,N,V,mole,active
+mole,She saw the cute mole.,She trapped the mole. ,trapped,N,V,mole,active
+mole,She saw the fast mole.,She captured the mole. ,captured,N,V,mole,active
+movement,He liked the graceful movement.,He practiced the movement. ,practiced,N,V,movement,active
+movement,He liked the rhythmic movement.,He attempted the movement. ,attempted,N,V,movement,active
+movement,He liked the feminist movement.,He joined the movement. ,joined,N,V,movement,active
+movement,He liked the civil-rights movement.,He supported the movement. ,supported,N,V,movement,active
+newspaper,It was a faded newspaper.,She folded the newspaper. ,folded,N,V,newspaper,active
+newspaper,It was a shredded newspaper.,She shredded the newspaper.,shredded,N,V,newspaper,active
+newspaper,It was a national newspaper.,She managed the newspaper. ,managed,N,V,newspaper,active
+newspaper,It was a daily newspaper.,She financed the newspaper. ,financed,N,V,newspaper,active
+orange,It was a juicy orange.,He ate the orange. ,ate,N,V,orange,active
+orange,It was a ripe orange.,He peeled the orange. ,peeled,N,V,orange,active
+orange,It was a bright orange.,He wore orange. ,wore,N,V,orange,active
+orange,It was a reddish orange.,He colored orange. ,colored,N,V,orange,active
+page,He saw the ripped page.,He ripped the page.,ripped,N,V,page,active
+page,He saw the blank page.,He tore the page. ,tore,N,V,page,active
+page,He saw the young page.,He summoned the page.,summoned,N,V,page,active
+page,He saw the loyal page.,He dismissed the page. ,dismissed,N,V,page,active
+palm,It was a calloused palm.,She traced her palm.,traced,N,V,palm,active
+palm,It was a wrinkled palm.,She read her palm. ,read,N,V,palm,active
+palm,It was a tropical palm.,She watered her palm. ,watered,N,V,palm,active
+palm,It was a tree palm.,She killed her palm.,killed,N,V,palm,active
+panel,It was a control panel.,She reconfigured the panel. ,reconfigured,N,V,panel,active
+panel,It was an instrument panel.,She shut the panel. ,shut,N,V,panel,active
+panel,It was an advisory panel.,She joined the panel.,joined,N,V,panel,active
+panel,It was a consumer panel.,She advised the panel. ,advised,N,V,panel,active
+passage,It was a secret passage.,He blocked the passage. ,blocked,N,V,passage,active
+passage,It was a narrow passage.,He traversed the passage. ,traversed,N,V,passage,active
+passage,It was a literary passage.,He quoted the passage. ,quoted,N,V,passage,active
+passage,It was a biblical passage.,He copied the passage.,copied,N,V,passage,active
+pen,She penned her animals.,Her animals were penned. ,animals,V,N,penned,passive
+pen,She penned her livestock.,Her livestock were penned.,livestock,V,N,penned,passive
+pen,She penned her memoirs.,Her memoirs were penned.,memoirs,V,N,penned,passive
+pen,She penned her thoughts.,Her thoughts were penned.,thoughts,V,N,penned,passive
+perch,It was a lofty perch.,He viewed from his perch. ,viewed,N,V,perch,active
+perch,It was a secure perch.,He scanned from his perch. ,scanned,N,V,perch,active
+perch,It was a tasty perch.,He reeled in his perch. ,reeled,N,V,perch,active
+perch,It was a freshwater perch.,He cooked his perch. ,cooked,N,V,perch,active
+pitcher,He saw the fast pitcher.,He fired the pitcher. ,fired,N,V,pitcher,active
+pitcher,He saw the right-handed pitcher.,He hired the pitcher. ,hired,N,V,pitcher,active
+pitcher,He saw the glass pitcher.,He broke the pitcher. ,broke,N,V,pitcher,active
+pitcher,He saw the plastic pitcher.,He carried the pitcher. ,carried,N,V,pitcher,active
+poach,She poached the vegetables.,The vegetables were poached. ,vegetables,V,N,poached,passive
+poach,She poached the eggs.,The eggs were poached.,eggs,V,N,poached,passive
+poach,She poached the bears.,The bears were poached.,bears,V,N,poached,passive
+poach,She poached the deer.,The deer were poached.,deer,V,N,poached,passive
+port,It was a windy port.,They visited the port. ,visited,N,V,port,active
+port,It was a seaside port.,They abandoned the port. ,abandoned,N,V,port,active
+port,It was a delicious port.,They tasted the port. ,tasted,N,V,port,active
+port,It was a sweet port.,They poured the port. ,poured,N,V,port,active
+position,He was in a distinguished position.,He accepted the position. ,accepted,N,V,position,active
+position,He was in a prominent position.,He created the position. ,created,N,V,position,active
+position,He was in a fetal position.,He imitated the position. ,imitated,N,V,position,active
+position,He was in a yoga position.,He practiced the position.,practiced,N,V,position,active
+post,It was a wooden post.,She hammered the post. ,hammered,N,V,post,active
+post,It was a fence post.,She painted the post. ,painted,N,V,post,active
+post,It was a challenging post.,She accepted the post. ,accepted,N,V,post,active
+post,It was a teaching post.,She declined the post. ,declined,N,V,post,active
+punch,He had the alcoholic punch.,He mixed a punch. ,mixed,N,V,punch,active
+punch,He had the fruit punch.,He served a punch. ,served,N,V,punch,active
+punch,He had the strongest punch.,He threw a punch. ,threw,N,V,punch,active
+punch,He had the quickest punch.,He feigned a punch. ,feigned,N,V,punch,active
+pupil,She had a brilliant pupil.,She commended her pupil. ,commended,N,V,pupil,active
+pupil,She had an interested pupil.,She discouraged her pupil. ,discouraged,N,V,pupil,active
+pupil,She had a cloudy pupil.,She checked her pupil. ,checked,N,V,pupil,active
+pupil,She had a dilated pupil.,She dilated her pupil. ,dilated,N,V,pupil,active
+racket,That was a loud racket.,They stopped the racket. ,stopped,N,V,racket,active
+racket,That was an annoying racket.,They heard the racket.,heard,N,V,racket,active
+racket,That was a badminton racket.,They strung the racket. ,strung,N,V,racket,active
+racket,That was a tennis racket.,They replaced the racket. ,replaced,N,V,racket,active
+rock,He liked alternative rock.,He played rock. ,played,N,V,rock,active
+rock,He liked electronic rock.,He enjoyed rock. ,enjoyed,N,V,rock,active
+rock,He liked granite rock.,He climbed rock. ,climbed,N,V,rock,active
+rock,He liked limestone rock.,He carved rock. ,carved,N,V,rock,active
+sage,He saw the wise sage.,He fooled the sage. ,fooled,N,V,sage,active
+sage,He saw the renowned sage.,He visited the sage. ,visited,N,V,sage,active
+sage,He saw the bushy sage.,He crushed the sage. ,crushed,N,V,sage,active
+sage,He saw the fragrant sage.,He picked the sage. ,picked,N,V,sage,active
+scale,It was a fish scale.,She hid a scale. ,collected,N,V,scale,active
+scale,It was a lizard scale.,She chipped a scale. ,chipped,N,V,scale,active
+scale,It was a music scale.,She played a scale. ,played,N,V,scale,active
+scale,It was a major scale.,She mastered a scale.,mastered,N,V,scale,active
+scene,It was a panoramic scene.,She photographed the scene. ,photographed,N,V,scene,active
+scene,It was a nature scene.,She painted the scene. ,painted,N,V,scene,active
+scene,It was a well-acted scene.,She choreographed the scene. ,choreographed,N,V,scene,active
+scene,It was a touching scene.,She scripted the scene. ,scripted,N,V,scene,active
+seal,It was a certified seal.,He forged the seal. ,forged,N,V,seal,active
+seal,It was a gold seal.,He proffered the seal. ,proffered,N,V,seal,active
+seal,It was a trained seal.,He trained the seal. ,trained,N,V,seal,active
+seal,It was a circus seal.,He battled the seal. ,battled,N,V,seal,active
+spill,He spilled the flour.,The grains were spilled.,grains,V,N,spilled,passive
+spill,He spilled the drink.,The drinks were spilled.,drinks,V,N,spilled,passive
+spill,He spilled the secret.,The secrets were spilled. ,secrets,V,N,spilled,passive
+spill,He spilled the news.,The news were spilled.,news,V,N,spilled,passive
+tape,He used the scotch tape.,He restocked the tape. ,restocked,N,V,tape,active
+tape,He used the double-sided tape.,He pasted the tape. ,pasted,N,V,tape,active
+tape,He used the video tape.,He ejected the tape. ,ejected,N,V,tape,active
+tape,He used the interview tape.,He paused the tape. ,paused,N,V,tape,active
+term,It was a fall term.,She completed the term. ,completed,N,V,term,active
+term,It was a winter term.,She began the term. ,began,N,V,term,active
+term,It was a legal term.,She defined the term. ,defined,N,V,term,active
+term,It was a technical term.,She coined the term. ,coined,N,V,term,active
+tick,It was a clock tick.,She heard a tick. ,heard,N,V,tick,active
+tick,It was an audible tick.,She produced a tick. ,produced,N,V,tick,active
+tick,It was a parasitic tick.,She killed a tick. ,killed,N,V,tick,active
+tick,It was a diseased tick.,She removed a tick. ,removed,N,V,tick,active
+tip,It was a generous tip.,He paid the tip.,paid,N,V,tip,active
+tip,It was a stingy tip.,He skipped the tip. ,skipped,N,V,tip,active
+tip,It was a pencil tip.,He broke the tip. ,broke,N,V,tip,active
+tip,It was a finger tip.,He sharpened the tip. ,sharpened,N,V,tip,active
+title,She liked the essay title.,She drafted the title. ,drafted,N,V,title,active
+title,She liked the poem title.,She deleted the title. ,deleted,N,V,title,active
+title,She liked the academic title.,She accepted the title. ,accepted,N,V,title,active
+title,She liked the professional title.,She awarded the title. ,awarded,N,V,title,active
+toll,It was a road toll.,He paid the toll. ,paid,N,V,toll,active
+toll,It was a costly toll.,He avoided the toll. ,avoided,N,V,toll,active
+toll,It was a bell toll.,He heard the toll. ,heard,N,V,toll,active
+toll,It was a loud toll.,He awaited the toll. ,awaited,N,V,toll,active
+track,She saw the trolley tracks.,She crossed the tracks. ,crossed,N,V,tracks,active
+track,She saw the train tracks.,She repaired the tracks. ,repaired,N,V,tracks,active
+track,She saw the snowshoe tracks.,She cleared the tracks.,cleared,N,V,tracks,active
+track,She saw the moose tracks.,She blurred the tracks.,blurred,N,V,tracks,active
+yard,It was five yards.,They spanned a yard.,spanned,N,V,yard,active
+yard,It was ten yards.,They advanced a yard.,advanced,N,V,yard,active
+yard,They were big yards.,They rented a yard. ,rented,N,V,yard,active
+yard,They were cluttered yards.,They landscaped a yard. ,landscaped,N,V,yard,active
