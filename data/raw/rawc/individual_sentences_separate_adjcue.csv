@@ -1,0 +1,311 @@
+word,sentence_original,sentence_new,inserted_string,string_ambiguous_word,disambiguating_word
+act,It was a desperate act.,It was a desperate kind of act.,kind of,act,desperate
+act,It was a humane act.,It was a humane kind of act.,kind of,act,humane
+act,It was a magic act.,It was a magic kind of act.,kind of,act,magic
+act,It was a comedic act.,It was a comedic kind of act.,kind of,act,comedic
+appeal,He had a universal appeal.,He had a universal type of appeal.,type of,appeal,universal
+appeal,He had an undefinable appeal.,He had an undefinable type of appeal.,type of,appeal,undefinable
+appeal,He had a legal appeal.,He had a legal type of appeal.,type of,appeal,legal
+appeal,He had a pending appeal.,He had a pending type of appeal.,type of,appeal,pending
+atmosphere,It was a tense atmosphere.,It was a tense kind of atmosphere.,kind of,atmosphere,tense
+atmosphere,It was a hostile atmosphere.,It was a hostile kind of atmosphere.,kind of,atmosphere,hostile
+atmosphere,It was a gaseous atmosphere.,It was a gaseous kind of atmosphere.,kind of,atmosphere,gaseous
+atmosphere,It wa a polluted atmosphere.,It wa a polluted kind of atmosphere.,kind of,atmosphere,polluted
+barrier,There was a religious barrier.,There was a religious kind of barrier.,kind of,barrier,religious
+barrier,There was a police barrier.,There was a police kind of barrier.,kind of,barrier,police
+barrier,There was a concrete barrier.,There was a concrete kind of barrier.,kind of,barrier,concrete
+class,It was a perceptive class.,It was a perceptive sort of class.,sort of,class,perceptive
+class,It was a misbehaving class.,It was a misbehaving sort of class.,sort of,class,misbehaving
+class,It was a boring class.,It was a boring sort of class.,sort of,class,boring
+class,It was a stimulating class.,It was a stimulating sort of class.,sort of,class,stimulating
+book,It was a best-selling book.,It was a best-selling sort of book. ,sort of,book,best-selling
+book,It was a popular book.,It was a popular sort of book.,sort of,book,popular
+book,It was a heavy book.,It was a heavy sort of book.,sort of,book,heavy
+book,It was a leather-bound book.,It was a leather-bound sort of book.,sort of,book,leather-bound
+charm,She had a devilish charm.,She had a devilish sort of charm.,sort of,charm,devilish
+charm,She had a natural charm.,She had a natural sort of charm.,sort of,charm,natural
+charm,She had a gold charm. ,She had a gold sort of charm. ,sort of,charm,gold
+charm,She had a good-luck sort of charm.,She had a lucky sort of charm. ,sort of,charm,lucky
+contribution,He made a charitable contribution.,He made a charitable type of contribution.,type of,contribution,charitable
+contribution,He made a voluntary contribution.,He made a voluntary type of contribution.,type of,contribution,voluntary
+contribution,He made a scholarly contribution.,He made a scholarly type of contribution.,type of,contribution,scholarly
+contribution,He made a well-written contribution.,He made a well-written type of contribution.,type of,contribution,well-written
+band,It was a gold band.,It was a gold type of band.,type of,band,gold
+band,It was a rubber band.,It was a rubber type of band.,type of,band,rubber
+band,It was a jazz band.,It was a jazz type of band.,type of,band,jazz
+band,It was a country band.,It was a country type of band.,type of,band,country
+bat,He saw a furry bat.,He saw a furry species of bat.,species of,bat,furry
+bat,He saw a fruit bat.,He saw a fruit species of bat.,species of,bat,fruit
+beam,He saw a laser beam.,He saw a laser type of beam.,type of,beam,laser
+beam,He saw a bright beam.,He saw a bright type of beam.,type of,beam,bright
+beam,He saw a wood beam.,He saw a wood type of beam.,type of,beam,wood
+beam,He saw a balance beam.,He saw a balance type of beam.,type of,beam,balance
+block,She had a toy block.,She had a toy kind of block.,kind of,block,toy
+block,She had a wooden block.,She had a wooden kind of block.,kind of,block,wooden
+block,She had a mental block.,She had a mental kind of block.,kind of,block,mental
+block,She had a writer's block.,She had a writer's kind of block.,kind of,block,writer's
+blood,He has a coagulated blood.,He has a coagulated sort of blood.,sort of,blood,coagulated
+blood,He has a thin blood.,He has a thin sort of blood.,sort of,blood,thin
+blood,He has a noble blood.,He has a noble sort of blood.,sort of,blood,noble
+blood,He has a royal blood.,He has a royal sort of blood.,sort of,blood,royal
+board,It was the ironing board.,It was the ironing kind of board.,kind of,board,ironing
+board,It was the wooden board.,It was the wooden kind of board.,kind of,board,wooden
+board,It was the executive board.,It was the executive kind of board.,kind of,board,executive
+board,It was the school board.,It was the school kind of board.,kind of,board,school
+breakfast,They ate a pancake breakfast.,They ate a pancake style breakfast.,style,breakfast,pancake
+breakfast,They ate a nutritious breakfast.,They ate a nutritious sort of breakfast.,sort of,breakfast,nutritious
+breakfast,They ate a family breakfast.,They ate a family style breakfast.,style,breakfast,family
+breakfast,They ate a lonely breakfast.,They ate a lonely sort of breakfast.,sort of,breakfast,lonely
+cape,It was a red cape.,It was a red type of cape.,type of,cape,red
+cape,It was a flowing cape.,It was a flowing type of cape.,type of,cape,flowing
+cape,It was a rocky cape.,It was a rocky type of cape.,type of,cape,rocky
+cape,It was an island cape.,It was an island type of cape.,type of,cape,island
+case,It was a beer case.,It was a beer kind of case.,kind of,case,beer
+case,It was a display case.,It was a display kind of case.,kind of,case,display
+case,It was a divorce case.,It was a divorce kind of case.,kind of,case,divorce
+case,It was a criminal case.,It was a criminal kind of case.,kind of,case,criminal
+cause,It was a worthy cause.,It was a worthy type of cause.,type of,cause,worthy
+cause,It was a political cause.,It was a political type of cause.,type of,cause,political
+cause,It was a main cause.,It was a main type of cause.,type of,cause,main
+cause,It was a primary cause.,It was a primary type of cause.,type of,cause,primary
+cell,It was a skin cell.,It was a skin-type cell.,-type,cell,skin
+cell,It was a brain  cell.,It was a brain-type cell.,-type,cell,brain
+cell,It was a prison cell.,It was a prison-type cell.,-type,cell,prison
+cell,It was a jail cell.,It was a jail-type cell.,-type,cell,jail
+chicken,They liked the juicy chicken.,They liked the juicy brand of chicken.,brand of,chicken,juicy
+chicken,They liked the roasted chicken.,They liked the roasted brand of chicken.,brand of,chicken,roasted
+chicken,They liked the clucking chicken.,They liked the clucking brand of chicken.,brand of,chicken,clucking
+clip,It was a film clip.,It was a film type of clip.,type of,clip,film
+clip,It was a video clip.,It was a video type of clip.,type of,clip,video
+clip,It was a hair clip.,It was a hair type of clip.,type of,clip,hair
+clip,It was a metal clip.,It was a metal type of clip.,type of,clip,metal
+cold,It was an icy cold.,It was an icy type of cold.,type of,cold,icy
+cold,It was a freezing cold.,It was a freezing type of cold.,type of,cold,freezing
+cold,It was a chest cold.,It was a chest type of cold.,type of,cold,chest
+cold,It was a common cold.,It was a common type of cold.,type of,cold,common
+column,It was a gossip column.,It was a gossip type of column.,type of,column,gossip
+column,It was a sports column.,It was a sports type of column.,type of,column,sports
+column,It was a concrete column.,It was a concrete type of column.,type of,column,concrete
+column,It was a marble column.,It was a marble type of column.,type of,column,marble
+company,He liked the investment company.,He liked the investment type of company.,type of,company,investment
+company,He liked the pharmaceutical company.,He liked the pharmaceutical type of company.,type of,company,pharmaceutical
+company,He liked the pleasant company.,He liked the pleasant type of company.,type of,company,pleasant
+company,He liked the polite company.,He liked the polite type of company.,type of,company,polite
+cone,It was a waffle cone.,It was a waffle type of cone.,type of,cone,waffle
+cone,It was a sugar cone.,It was a sugar type of cone.,type of,cone,sugar
+cone,It was an orange cone.,It was an orange type of cone.,type of,cone,orange
+cone,It was a traffic cone.,It was a traffic type of cone.,type of,cone,traffic
+count,That was the noble count.,That was the noble sort of count.,sort of,count,noble
+count,That was the vengeful count.,That was the vengeful sort of count.,sort of,count,vengeful
+count,That was the final count.,That was the final sort of count.,sort of,count,final
+count,That was the correct count.,That was the correct sort of count.,sort of,count,correct
+course,It was an introductory course.,It was an introductory type of course.,type of,course,introductory
+course,It was a pass-fail course.,It was a pass-fail type of course.,type of,course,pass-fail
+course,It was a charted course.,It was a charted type of course.,type of,course,charted
+course,It was a collision course.,It was a collision type of course.,type of,course,collision
+date,It was a dinner date.,It was a dinner kind of date.,kind of,date,dinner
+date,It was a blind date.,It was a blind kind of date.,kind of,date,blind
+date,It was an expiration date.,It was an expiration kind of date.,kind of,date,expiration
+date,It was a historical date.,It was a historical kind of date.,kind of,date,historical
+degree,It was about associate degrees.,It was about associate type of degrees.,type of,degrees,associate
+degree,It was about college degrees.,It was about college type of degrees.,type of,degrees,college
+design,They liked the floral design.,They liked the floral kind of design.,kind of,design,floral
+design,They liked the geometric design.,They liked the geometric kind of design.,kind of,design,geometric
+design,They liked the product design.,They liked the product kind of design.,kind of,design,product
+design,They liked the architectural design.,They liked the architectural kind of design.,kind of,design,architectural
+dinner,They liked the turkey dinner.,They liked the turkey-style dinner.,-style,dinner,turkey
+dinner,They liked the light dinner.,They liked the light-style dinner.,-style,dinner,light
+dinner,They liked the formal dinner.,They liked the formal-style dinner.,-style,dinner,formal
+dinner,They liked the anniversary dinner.,They liked the anniversary-style dinner.,-style,dinner,anniversary
+dream,He had a recurring dream.,He had a recurring sort of dream.,sort of,dream,recurring
+dream,He had a bad dream.,He had a bad sort of dream.,sort of,dream,bad
+dream,He had a childhood dream.,He had a childhood sort of dream.,sort of,dream,childhood
+dream,He had a career dream.,He had a career sort of dream.,sort of,dream,career
+drill,It was a grueling drill.,It was a grueling type of drill.,type of,drill,grueling
+drill,It was a challenging drill.,It was a challenging type of drill.,type of,drill,challenging
+drill,It was an electric drill.,It was an electric type of drill.,type of,drill,electric
+drill,It was a battery-powered drill.,It was a battery-powered type of drill.,type of,drill,battery-powered
+examination,It was a multiple-choice examination.,It was a multiple-choice type of examination.,type of,examination,multiple-choice
+examination,It was a difficult examination.,It was a difficult type of examination.,type of,examination,difficult
+examination,It was a prostate examination.,It was a prostate type of examination.,type of,examination,prostate
+examination,It was a physical examination.,It was a physical type of examination.,type of,examination,physical
+fan,They had an electric fan.,They had an electric kind of fan.,kind of,fan,electric
+fan,They had a ceiling fan.,They had a ceiling kind of fan.,kind of,fan,ceiling
+fan,They had a zealous fan.,They had a zealous kind of fan.,kind of,fan,zealous
+fan,They had an enthusiastic fan.,They had an enthusiastic kind of fan.,kind of,fan,enthusiastic
+file,She had a text file.,She had a text type of file.,type of,file,text
+file,She had a data file.,She had a data type of file.,type of,file,data
+file,She had a nail file.,She had a nail type of file.,type of,file,nail
+file,She had a steel file.,She had a steel type of file.,type of,file,steel
+film,It was an action film.,It was an action sort of film.,sort of,film,action
+film,It was a censored film.,It was a censored sort of film.,sort of,film,censored
+film,It was a transparent film.,It was a transparent sort of film.,sort of,film,transparent
+film,It was a plastic film.,It was a plastic sort of film.,sort of,film,plastic
+foundation,It was a charitable foundation.,It was a charitable kind of foundation.,kind of,foundation,charitable
+foundation,It was an educational foundation.,It was an educational kind of foundation.,kind of,foundation,educational
+foundation,It was a wooden foundation.,It was a wooden kind of foundation.,kind of,foundation,wooden
+foundation,It was a concrete foundation.,It was a concrete kind of foundation.,kind of,foundation,concrete
+function,It was a mathematical function.,It was a mathematical kind of function.,kind of,function,mathematical
+function,It was a linear function.,It was a linear kind of function.,kind of,function,linear
+function,It was a social function.,It was a social kind of function.,kind of,function,social
+function,It was a business function.,It was a business kind of function.,kind of,function,business
+ground,He was on the firm ground.,He was on the firm type of ground.,type of,ground,firm
+ground,He was on the frozen ground.,He was on the frozen type of ground.,type of,ground,frozen
+ground,He was on the camp ground.,He was on the camp type of ground.,type of,ground,camp
+ground,He was on the parade ground.,He was on the parade type of ground.,type of,ground,parade
+guide,He had an assembly guide.,He had an assembly kind of guide.,kind of,guide,assembly
+guide,He had a TV guide.,He had a TV kind of guide.,kind of,guide,TV
+guide,He had a talkative guide.,He had a talkative kind of guide.,kind of,guide,talkative
+guide,He had a friendly guide.,He had a friendly kind of guide.,kind of,guide,friendly
+home ,It was a summer home.,It was a summer type of home.,type of,home,summer
+home ,It was a childhood home.,It was a childhood type of home.,type of,home,childhood
+home ,It was a funeral home.,It was a funeral type of home.,type of,home,funeral
+home ,It was a nursing home.,It was a nursing type of home.,type of,home,nursing
+issue,It was a sensitive issue.,It was a sensitive kind of issue.,kind of,issue,sensitive
+issue,It was a political issue.,It was a political kind of issue.,kind of,issue,political
+issue,It was a weekly issue.,It was a weekly kind of issue.,kind of,issue,weekly
+issue,It was a special issue.,It was a special kind of issue.,kind of,issue,special
+jam,It was a blackberry jam.,It was a blackberry kind of jam.,kind of,jam,blackberry
+jam,It was a peach jam.,It was a peach kind of jam.,kind of,jam,peach
+jam,It was a traffic jam.,It was a traffic kind of jam.,kind of,jam,traffic
+jam,It was a paper jam.,It was a paper kind of jam.,kind of,jam,paper
+key,It was a duplicate key.,It was a duplicate type of key.,type of,key,duplicate
+key,It was a master key.,It was a master type of key.,type of,key,master
+key,It was a delete key.,It was a delete type of key.,type of,key,delete
+key,It was a backspace key.,It was a backspace type of key.,type of,key,backspace
+lamb,They liked the marinated lamb.,They liked the marinated types of lamb.,types of,lamb,marinated
+lamb,They liked the grilled lamb.,They liked the grilled types of lamb.,types of,lamb,grilled
+lamb,They liked the cute lamb.,They liked the cute types of lamb.,types of,lamb,cute
+lamb,They liked the friendly lamb.,They liked the friendly types of lamb.,types of,lamb,friendly
+lock,She had curly locks.,She had curly-style locks.,-style,locks,curly
+lock,She had brown locks.,She had brown-style locks.,-style,locks,brown
+lock,She had window locks.,She had window-style locks.,-style,locks,window
+lock,She had door locks.,She had door-style locks.,-style,locks,door
+lunch,They liked the hot lunch.,They liked the hot sort of lunch.,sort of,lunch,hot
+lunch,They liked the sandwich lunch.,They liked the sandwich sort of lunch.,sort of,lunch,sandwich
+lunch,They liked the afternoon lunch.,They liked the afternoon sort of lunch.,sort of,lunch,afternoon
+lunch,They liked the women's lunch.,They liked the women's sort of lunch.,sort of,lunch,women's
+match,It was a lit match.,It was a lit sort of match.,sort of,match,lit
+match,It was a burning match.,It was a burning sort of match.,sort of,match,burning
+match,It was a soccer match.,It was a soccer sort of match.,sort of,match,soccer
+match,It was a tennis match.,It was a tennis sort of match.,sort of,match,tennis
+medicine,It was cough medicine.,It was a cough type of medicine.,type of,medicine,cough
+medicine,It was prescription medicine.,It was a prescription type of medicine.,type of,medicine,prescription
+medicine,It was orthopedic medicine.,It was an orthopedic type of medicine.,type of,medicine,orthopedic
+medicine,It was veterinary medicine.,It was a veterinary type of medicine.,type of,medicine,veterinary
+message,There was a phone message.,There was a phone type of message.,type of,message,phone
+message,There was a computer message.,There was a computer type of message.,type of,message,computer
+message,There was an urgent message.,There was an urgent type of message.,type of,message,urgent
+message,There was a clear message.,There was a clear type of message.,type of,message,clear
+mold,It was a fungal mold.,It was a fungal type of mold.,type of,mold,fungal
+mold,It was a harmful mold.,It was a harmful type of mold.,type of,mold,harmful
+mold,It was a rubber mold.,It was a rubber type of mold.,type of,mold,rubber
+mold,It was a clay mold.,It was a clay type of mold.,type of,mold,clay
+mole,She saw the cancerous mole.,She saw a cancerous kind of mole.,kind of,mole,cancerous
+mole,She saw the raised mole.,She saw a raised kind of mole.,kind of,mole,raised
+mole,She saw the cute mole.,She saw a cute kind of mole.,kind of,mole,cute
+mole,She saw the fast mole.,She saw a fast kind of mole.,kind of,mole,fast
+movement,He liked the rhythmic movement.,He liked rhythmic types of movements.,types of,movements,rhythmic
+movement,He liked the graceful movement.,He liked graceful types of movements.,types of,movements,graceful
+movement,He liked the feminist movement.,He liked feminist types of movements.,types of,movements,feminist
+movement,He liked the civil-rights movement.,He liked civil-rights types of movements.,types of,movements,civil-rights
+newspaper,It was a national newspaper.,It was a national sort of newspaper.,sort of,newspaper,national
+newspaper,It was a daily newspaper.,It was a daily sort of newspaper.,sort of,newspaper,daily
+newspaper,It was a faded newspaper.,It was a faded sort of newspaper.,sort of,newspaper,faded
+newspaper,It was a shredded newspaper.,It was a shredded sort of newspaper.,sort of,newspaper,shredded
+orange,It was a juicy orange.,It was a juicy kind of orange.,kind of,orange,juicy
+orange,It was a ripe orange.,It was a ripe kind of orange.,kind of,orange,ripe
+orange,It was a bright orange.,It was a bright kind of orange.,kind of,orange,bright
+orange,It was a reddish orange.,It was a reddish kind of orange.,kind of,orange,reddish
+page,He saw the young page.,He saw the young kind of page.,kind of,page,young
+page,He saw the loyal page.,He saw the loyal kind of page.,kind of,page,loyal
+page,He saw the blank page.,He saw the blank kind of page.,kind of,page,blank
+page,He saw the ripped page.,He saw the ripped kind of page.,kind of,page,ripped
+palm,It was a calloused palm.,It was a calloused sort of palm.,sort of,palm,calloused
+palm,It was a wrinkled palm.,It was a wrinkled sort of palm.,sort of,palm,wrinkled
+palm,It was a tropical palm.,It was a tropical sort of palm.,sort of,palm,tropical
+panel,It was a control panel.,It was a control type of panel.,type of,panel,control
+panel,It was an instrument panel.,It was an instrument type of panel.,type of,panel,instrument
+panel,It was an advisory panel.,It was an advisory type of panel.,type of,panel,advisory
+panel,It was a consumer panel.,It was a consumer type of panel.,type of,panel,consumer
+passage,It was a secret passage.,It was a secret sort of passage.,sort of,passage,secret
+passage,It was a narrow passage.,It was a narrow sort of passage.,sort of,passage,narrow
+passage,It was a literary passage.,It was a literary sort of passage.,sort of,passage,literary
+passage,It was a biblical passage.,It was a biblical sort of passage.,sort of,passage,biblical
+perch,It was a tasty perch.,It was a tasty type of perch.,type of,perch,tasty
+perch,It was a freshwater perch.,It was a freshwater type of perch.,type of,perch,freshwater
+perch,It was a lofty perch.,It was a lofty type of perch.,type of,perch,lofty
+perch,It was a secure perch.,It was a secure type of perch.,type of,perch,secure
+pitcher,He saw the fast pitcher.,He saw the fast kind of pitcher.,kind of,pitcher,fast
+pitcher,He saw the right-handed pitcher.,He saw the right-handed kind of pitcher.,kind of,pitcher,right-handed
+pitcher,He saw the glass pitcher.,He saw the glass kind of pitcher.,kind of,pitcher,glass
+pitcher,He saw the plastic pitcher.,He saw the plastic kind of pitcher.,kind of,pitcher,plastic
+port,It was a windy port.,It was a windy kind of port.,kind of,port,windy
+port,It was a seaside port.,It was a seaside kind of port.,kind of,port,seaside
+port,It was a delicious port.,It was a delicious kind of port.,kind of,port,delicious
+port,It was a sweet port.,It was a sweet kind of port.,kind of,port,sweet
+position,He was in a distinguished position.,He was in a distinguished kind of position.,kind of,position,distinguished
+position,He was in a prominent position.,He was in a prominent kind of position.,kind of,position,prominent
+position,He was in a fetal position.,He was in a fetal kind of position.,kind of,position,fetal
+position,He was in a yoga position.,He was in a yoga kind of position.,kind of,position,yoga
+post,It was a wooden post.,It was a wooden type of post.,type of,post,wooden
+post,It was a fence post.,It was a fence type of post.,type of,post,fence
+post,It was a teaching post.,It was a teaching type of post.,type of,post,teaching
+post,It was a challenging post.,It was a challenging type of post.,type of,post,challenging
+punch,He had the alcoholic punch.,He had the alcoholic type of punch.,type of,punch,alcoholic
+punch,He had the fruit punch.,He had the fruit type of punch.,type of,punch,fruit
+punch,He had the strongest punch.,He had the strongest type of punch.,type of,punch,strongest
+punch,He had the quickest punch.,He had the quickest type of punch.,type of,punch,quickest
+pupil,She had a brilliant pupil.,She had a brilliant sort of pupil.,sort of,pupil,brilliant
+pupil,She had an interested pupil.,She had an interested sort of pupil.,sort of,pupil,interested
+pupil,She had a dilated pupil.,She had a dilated sort of pupil.,sort of,pupil,dilated
+pupil,She had a cloudy pupil.,She had a cloudy sort of pupil.,sort of,pupil,cloudy
+racket,That was a loud racket.,That was a loud sort of racket.,sort of,racket,loud
+racket,That was an annoying racket.,That was an annoying sort of racket.,sort of,racket,annoying
+racket,That was a badminton racket.,That was a badminton sort of racket.,sort of,racket,badminton
+racket,That was a tennis racket.,That was a tennis sort of racket.,sort of,racket,tennis
+rock,He liked electronic rock.,He liked the electronic style of rock.,style of,rock,electronic
+rock,He liked alternative rock.,He liked the alternative style of rock.,style of,rock,alternative
+rock,He liked limestone rock.,He liked the limestone style of rock.,style of,rock,limestone
+rock,He liked granite rock.,He liked the granite style of rock.,style of,rock,granite
+sage,He saw the sage.,He saw the wise kind of sage.,kind of,sage,wise
+sage,He saw the renowned sage.,He saw the renowned kind of sage.,kind of,sage,renowned
+sage,He saw the fragrant sage.,He saw the fragrant kind of sage.,kind of,sage,fragrant
+sage,He saw the bushy sage.,He saw the bushy kind of sage.,kind of,sage,bushy
+scale,It was a fish scale.,It was a fish type of scale.,type of,scale,fish
+scale,It was a lizard scale.,It was a lizard type of scale.,type of,scale,lizard
+scale,It was a music scale.,It was a music type of scale.,type of,scale,music
+scale,It was a major scale.,It was a major type of scale.,type of,scale,major
+scene,It was a touching scene.,It was a touching sort of scene.,sort of,scene,touching
+scene,It was a well-acted scene.,It was a well-acted sort of scene.,sort of,scene,well-acted
+scene,It was a nature scene.,It was a nature sort of scene.,sort of,scene,nature
+scene,It was a panoramic scene.,It was a panoramic sort of scene.,sort of,scene,panoramic
+seal,It was a gold seal.,It was a gold type of seal.,type of,seal,gold
+seal,It was a certified seal.,It was a certified type of seal.,type of,seal,certified
+seal,It was a circus seal.,It was a circus type of seal.,type of,seal,circus
+seal,It was a trained seal.,It was a trained type of seal.,type of,seal,trained
+term,It was a winter term.,It was a winter kind of term.,kind of,term,winter
+term,It was a fall term.,It was a fall kind of term.,kind of,term,fall
+term,It was a legal term.,It was a legal kind of term.,kind of,term,legal
+term,It was a technical term.,It was a technical kind of term.,kind of,term,technical
+tick,It was a clock tick.,It was a clock type of tick.,type of,tick,clock
+tick,It was an audible tick.,It was an audible type of tick.,type of,tick,audible
+tick,It was a parasitic tick.,It was a parasitic type of tick.,type of,tick,parasitic
+tick,It was a diseased tick.,It was a diseased type of tick.,type of,tick,diseased
+tip,It was a generous tip.,It was a generous sort of tip.,sort of,tip,generous
+tip,It was a stingy tip.,It was a stingy sort of tip.,sort of,tip,stingy
+tip,It was a pencil tip.,It was a pencil sort of tip.,sort of,tip,pencil
+title,She liked the essay title.,She liked the essay sort of title.,sort of,title,essay
+title,She liked the poem title.,She liked the poem sort of title.,sort of,title,poem
+title,She liked the academic title.,She liked the academic sort of title.,sort of,title,academic
+title,She liked the professional title.,She liked the professional sort of title.,sort of,title,professional
+toll,It was a costly toll.,It was a costly kind of toll.,kind of,toll,costly
+toll,It was a road toll.,It was a road kind of toll.,kind of,toll,road
+toll,It was a loud toll.,It was a loud kind of toll.,kind of,toll,loud
+toll,It was a bell toll.,It was a bell kind of toll.,kind of,toll,bell
+track,She saw the train tracks.,She saw the train before the tracks.,before the,tracks,train
+track,She saw the trolley tracks.,She saw the trolley before the tracks.,before the,tracks,trolley
+track,She saw the moose tracks.,She saw the moose before the tracks.,before the,tracks,moose
+track,She saw the snowshoe tracks.,She saw the snowshoe before the tracks.,before the,tracks,snowshoe
+yards,They were big yards.,They were big kinds of yards.,kinds of,yards,big
+yards,They were cluttered yards.,They were cluttered kinds of yards.,kinds of,yards,cluttered
