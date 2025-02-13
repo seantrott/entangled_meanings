@@ -20,7 +20,7 @@ import utils
 
 ### Models to test
 MODELS = [
-          'EleutherAI/pythia-14m',
+         'EleutherAI/pythia-14m',
           # 'EleutherAI/pythia-70m',
           # 'EleutherAI/pythia-160m',
           # 'EleutherAI/pythia-410m',
@@ -31,7 +31,7 @@ MODELS = [
           # 'EleutherAI/pythia-12b',
           ]
 
-STIMULI = "data/raw/rawc/individual_sentences.csv"
+STIMULI = "data/raw/rawc/individual_sentences_PoS_test_cues.csv"
 
 
 
@@ -48,13 +48,13 @@ def main(df, mpath, revisions):
         print(checkpoint)
 
         ### Set up save path, filename, etc.
-        savepath = "data/processed/rawc/pythia/attention/"
+        savepath = "data/processed/rawc/pythia/attention_pos_check/"
         if not os.path.exists(savepath): 
             os.mkdir(savepath)
         if "/" in mpath:
-            filename = "rawc-attentions_model-" + mpath.split("/")[1] + "-" + checkpoint +  ".csv"
+            filename = "rawc-attentions-pos-check_model-" + mpath.split("/")[1] + "-" + checkpoint +  ".csv"
         else:
-            filename = "rawc-attentions_model-" + mpath +  "-" + checkpoint + ".csv"
+            filename = "rawc-attentions-pos-check_model-" + mpath +  "-" + checkpoint + ".csv"
 
         print("Checking if we've already run this analysis...")
         if os.path.exists(os.path.join(savepath,filename)):
@@ -85,12 +85,12 @@ def main(df, mpath, revisions):
         for (ix, row) in tqdm(df.iterrows(), total=df.shape[0]):
 
             ### Get word
-            target = " {w}".format(w = row['string'])
-            disambiguating_word = " {w}".format(w = row['disambiguating_word']) # row['string']
-            sentence = row['sentence']
+            target = " {w}".format(w = row['string_ambiguous_word'])
+            disambiguating_word_new = " {w}".format(w = row['disambiguating_word_new']) # row['string']
+            sentence_new = row['sentence_new']
 
             ### Run model for each sentence
-            model_outputs = utils.run_model(model, tokenizer, sentence, device)
+            model_outputs = utils.run_model(model, tokenizer, sentence_new, device)
 
             ### Now, for each layer...
             for layer in range(n_layers): 
@@ -98,18 +98,20 @@ def main(df, mpath, revisions):
                 for head in range(n_heads): 
     
                     ### Get heads
-                    ### TODO: Store attention to each token index maybe, and track which is disambiguating word, which is target, etc.?
-
                     attention_info = utils.get_attention_and_entropy_for_head(model_outputs['attentions'], model_outputs['tokens'], tokenizer, 
-                                                                             target, disambiguating_word, layer, head, device)
+                                                                             target, disambiguating_word_new, layer, head, device)
         
         
                     ### Add to results dictionary
                     results.append({
-                        'sentence': row['sentence'],
+                        'sentence_new': row['sentence_new'],
+                        'sentence_original': row['sentence_original'],
                         'word': row['word'],
-                        'string': row['string'],
-                        'disambiguating_word': disambiguating_word,
+                        'construction': row['construction'],
+                        'class_disambiguating_word': row['class_disambiguating_word'],
+                        'class_ambiguous_word': row['class_ambiguous_word'],
+                        'string': row['string_ambiguous_word'],
+                        'disambiguating_word_new': disambiguating_word_new,
                         'Attention': attention_info['attention_to_disambiguating'],
                         'Entropy': attention_info['entropy'],
                         'Head': head,
@@ -131,10 +133,10 @@ if __name__ == "__main__":
 
     ## Read stimuli
     df = pd.read_csv(STIMULI)
-    df_just_n = df[df['Class']=='N']
+    # df_just_n = df[df['Class']=='N'] ### Do for all words
 
     ### Get revisions
-    revisions = utils.generate_revisions_test()
+    revisions = utils.generate_revisions()
 
     ## Run main
-    main(df_just_n, MODELS[0], revisions)
+    main(df, MODELS[0], revisions)

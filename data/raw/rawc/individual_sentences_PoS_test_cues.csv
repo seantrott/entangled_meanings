@@ -58,7 +58,7 @@ cast,She cast a glow.,A glow was cast.,glow,V,N,cast,passive
 cause,It was a worthy cause.,She upheld the cause. ,upheld,N,V,cause,active
 cause,It was a political cause.,She pursued the cause. ,pursued,N,V,cause,active
 cause,It was a primary cause.,She revealed the cause. ,revealed,N,V,cause,active
-cause,It was a main cause.,She discoverd the cause.,discovered,N,V,cause,active
+cause,It was a main cause.,She discovered the cause.,discovered,N,V,cause,active
 cell,It was a skin cell.,He identified a cell.,identified,N,V,cell,active
 cell,It was a brain cell.,He stained a cell. ,stained,N,V,cell,active
 cell,It was a prison cell.,He built a cell. ,built,N,V,cell,active
@@ -96,7 +96,7 @@ cone,It was a sugar cone.,She ate a cone. ,ate,N,V,cone,active
 cone,It was an orange cone.,She painted a cone. ,painted,N,V,cone,active
 cone,It was a traffic cone.,She struck a cone. ,struck,N,V,cone,active
 contribution,He made a charitable contribution.,He financed a contribution. ,financed,N,V,contribution,active
-contribution,He made a contribution contribution.,He offered a contribution. ,volunteered,N,V,contribution,active
+contribution,He made a contribution contribution.,He offered a contribution. ,offered,N,V,contribution,active
 contribution,He made a scholarly contribution.,He produced a contribution. ,produced,N,V,contribution,active
 contribution,He made a well-written contribution.,He authored a contribution. ,authored,N,V,contribution,active
 count,That was the noble count.,She married the count. ,married,N,V,count,active
@@ -311,7 +311,7 @@ sage,He saw the wise sage.,He fooled the sage. ,fooled,N,V,sage,active
 sage,He saw the renowned sage.,He visited the sage. ,visited,N,V,sage,active
 sage,He saw the bushy sage.,He crushed the sage. ,crushed,N,V,sage,active
 sage,He saw the fragrant sage.,He picked the sage. ,picked,N,V,sage,active
-scale,It was a fish scale.,She hid a scale. ,collected,N,V,scale,active
+scale,It was a fish scale.,She hid a scale. ,hid,N,V,scale,active
 scale,It was a lizard scale.,She chipped a scale. ,chipped,N,V,scale,active
 scale,It was a music scale.,She played a scale. ,played,N,V,scale,active
 scale,It was a major scale.,She mastered a scale.,mastered,N,V,scale,active

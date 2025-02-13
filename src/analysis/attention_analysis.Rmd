@@ -283,7 +283,7 @@ df_attention_over_time %>%
   theme_minimal() +
   labs(x = "Training Step (Log10)",
        y = "Attention to Disambiguating Word",
-       color = "Attention Head") +
+       color = "Attention Head (Layer 3)") +
   scale_x_log10() +
     geom_vline(xintercept = 1000, 
              linetype = "dotted", 

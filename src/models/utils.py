@@ -172,6 +172,89 @@ def get_attention_and_entropy_for_head(
         "attention_distribution": attention_distribution
     }
 
+
+def get_attention_and_entropy_for_head_modified(
+    attentions, inputs, tokenizer, target, disambiguating, layer, head, device
+):
+    """
+    Get entropy over attention from a target token to all tokens,
+    attention from a target token to a specific disambiguating token,
+    number of tokens in the target and disambiguating words,
+    and attention to the token just before the target.
+    
+    Args:
+        attentions: Attention weights from the model.
+        inputs: Tokenized input data.
+        tokenizer: Corresponding tokenizer.
+        target (str): Target word.
+        disambiguating (str): Disambiguating word.
+        layer (int): Layer index for attention extraction.
+        head (int): Head index for attention extraction.
+        device (str): Device to run computations on (e.g., 'cpu', 'cuda').
+    
+    Returns:
+        dict: Contains entropy of attention distribution, attention to disambiguating token,
+              attention to the token just before the target, number of tokens in target,
+              and number of tokens in disambiguating word.
+    """
+    # Tokenize target and disambiguating words
+    target_enc = tokenizer.encode(target, return_tensors="pt", add_special_tokens=False).to(device)
+    disambiguating_enc = tokenizer.encode(disambiguating, return_tensors="pt", add_special_tokens=False).to(device)
+    
+    # Find indices of target and disambiguating words in input tokens
+    target_inds = find_sublist_index(
+        inputs["input_ids"][0].tolist(),
+        target_enc[0].tolist()
+    )
+    disambiguating_inds = find_sublist_index(
+        inputs["input_ids"][0].tolist(),
+        disambiguating_enc[0].tolist()
+    )
+    
+    if target_inds is None:
+        raise ValueError(f"Target word '{target}' not found in the tokenized input.")
+    if disambiguating_inds is None:
+        raise ValueError(f"Disambiguating word '{disambiguating}' not found in the tokenized input.")
+    
+    # Get number of tokens in target and disambiguating words
+    num_target_tokens = len(target_enc[0])
+    num_disambiguating_tokens = len(disambiguating_enc[0])
+    
+    # Extract attention from the specified layer
+    attention_layer = attentions[layer][0]  # Shape: (num_heads, seq_len, seq_len)
+    
+    # Select the specified head
+    attention_head = attention_layer[head]  # Shape: (seq_len, seq_len)
+    
+    # Get attention distribution for the target token(s)
+    target_attention = attention_head[target_inds[0]:target_inds[1]]  # Shape: (target_len, seq_len)
+    
+    # Average over multiple tokens if target spans multiple subwords
+    attention_distribution = torch.mean(target_attention, dim=0)  # Shape: (seq_len)
+    
+    # Calculate entropy over the attention distribution
+    attention_probs = softmax(attention_distribution, dim=-1)
+    entropy = -torch.sum(attention_probs * torch.log(attention_probs + 1e-12)).item()
+    
+    # Calculate attention to the disambiguating token(s)
+    disambiguating_attention = attention_distribution[
+        disambiguating_inds[0]:disambiguating_inds[1]
+    ]
+    attention_to_disambiguating = torch.mean(disambiguating_attention).item()
+    
+    # Get attention to the token just before the target
+    target_prev_index = max(0, target_inds[0] - 1)  # Ensure index is not negative
+    attention_to_previous = attention_distribution[target_prev_index].item()
+    
+    return {
+        "entropy": entropy,
+        "attention_to_disambiguating": attention_to_disambiguating,
+        "attention_to_previous": attention_to_previous,
+        "num_target_tokens": num_target_tokens,
+        "num_disambiguating_tokens": num_disambiguating_tokens,
+        "attention_distribution": attention_distribution
+    }
+
 ### ... grab the number of trainable parameters in the model
 
 def count_parameters(model):
