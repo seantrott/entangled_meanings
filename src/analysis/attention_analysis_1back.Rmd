@@ -1,0 +1,633 @@
+---
+title: "Analysis of HuggingFace Models Attention to Previous Tokens"
+author: "Sean Trott and Pam Rivière"
+date: "November 20, 2024"
+output:
+  html_document:
+    keep_md: yes
+    toc: yes
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(dpi = 300, fig.format = "pdf")
+```
+
+
+```{r include=FALSE}
+library(tidyverse)
+library(lmtest)
+library(forcats)
+library(broom)
+library(lme4)
+library(viridis)
+library(ggridges)
+library(lmerTest)
+library(ggrepel)
+library(ggcorrplot)
+
+all_colors <- viridis::viridis(10, option = "mako")
+my_colors <- all_colors[c(3, 5, 7)]  # Selecting specific colors from the palette
+```
+
+# Load Pythia data
+
+
+Here, we analyze data looking at the average attention each head gives from each token to the previous token.
+
+```{r}
+# setwd("/Users/seantrott/Dropbox/UCSD/Research/Ambiguity/SSD/entangled_meanings/src/analysis/")
+directory_path <- "../../data/processed/rawc/pythia/attention_1back/"
+csv_files <- list.files(path = directory_path, pattern = "*.csv", full.names = TRUE)
+csv_list <- csv_files %>%
+  map(~ read_csv(.))
+df_pythia_models <- bind_rows(csv_list) %>%
+  mutate(Layer = Layer + 1,
+         Head = Head + 1)
+
+table(df_pythia_models$mpath)
+
+```
+
+
+
+# Attention at final step
+
+```{r}
+df_final_step = df_pythia_models %>%
+  filter(step == 143000)
+nrow(df_final_step)
+
+df_attn_by_head = df_final_step %>%
+  group_by(mpath, Layer, Head, n_params) %>%
+  summarise(mean_attention = mean(Attention)) %>%
+  group_by(mpath) %>%
+  mutate(max_layer = max(Layer),
+         prop_layer = Layer / max_layer) %>%
+  mutate(binned_prop_layer = ntile(prop_layer, 6)) %>%
+  mutate(prop_binned = binned_prop_layer / 6) 
+
+
+df_attn_by_head %>%
+  ggplot(aes(x = Layer,
+             y = Head,
+             fill = mean_attention)) +
+  geom_tile() +
+  labs(x = "Layer",
+       y = "Head",
+       fill = "Attention to Previous Token") +
+  scale_fill_gradient2(low = "blue",
+                       mid = "white",
+                       high = "red",
+                       midpoint = 0, 
+                       name = "Attention to Previous Token") +
+  theme_minimal() +
+  theme(text = element_text(size = 15),
+        strip.text.y = element_text(angle = 0), # Keep facet labels horizontal
+        axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.position = "bottom") +
+  facet_wrap(~reorder(mpath, n_params))
+
+
+df_attn_by_head %>%
+  group_by(mpath, prop_binned, n_params) %>%
+  summarise(mean_attention = mean(mean_attention)) %>%
+  ggplot(aes(x = prop_binned,
+             y = reorder(mpath, n_params),
+             fill = mean_attention)) +
+  geom_tile() +
+  labs(x = "Layer Depth Ratio",
+       y = "",
+       fill = "Attention to Previous Token") +
+  scale_fill_gradient2(low = "blue",
+                       mid = "white",
+                       high = "red",
+                       midpoint = 0, 
+                       name = "Attention to Previous Token") +
+  theme_minimal() +
+  theme(text = element_text(size = 15),
+        strip.text.y = element_text(angle = 0), # Keep facet labels horizontal
+        axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.position = "bottom") 
+
+
+
+df_attn_by_head %>%
+  filter(mpath == "EleutherAI/pythia-14m") %>%
+  ggplot(aes(x = Layer,
+             y = Head,
+             fill = mean_attention)) +
+  geom_tile() +
+  labs(x = "Layer",
+       y = "Head",
+       fill = "Attention to Previous Token") +
+  scale_fill_gradient2(low = "blue",
+                       mid = "white",
+                       high = "red",
+                       midpoint = 0, 
+                       name = "Attention to Previous Token") +
+  theme_minimal() +
+  theme(text = element_text(size = 15),
+        strip.text.y = element_text(angle = 0), # Keep facet labels horizontal
+        axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.position = "bottom")
+```
+
+
+
+# Attention over time
+
+
+## Attention by head
+
+```{r}
+df_attention_over_time = df_pythia_models %>% 
+  filter(mpath %in% c("EleutherAI/pythia-14m")) %>%
+  # filter(Layer == 3) %>%
+  group_by(mpath, revision, Layer, Head, step, n_params) %>%
+  summarise(mean_attention = mean(Attention)) %>%
+  mutate(step_modded = step + 1) %>%
+  group_by(mpath, step, Head)
+
+df_attention_over_time %>%
+  # filter(Layer == 3) %>%
+  ggplot(aes(x = step_modded,
+             y = mean_attention,
+             color = factor(Head))) +
+  geom_point(size = 4, alpha = .7) +
+  geom_line(size = 2, alpha = .7) +
+  theme_minimal() +
+  labs(x = "Training Step (Log10)",
+       y = "Attention to Previous Token",
+       color = "Attention Head") +
+  scale_x_log10() +
+    geom_vline(xintercept = 1000, 
+             linetype = "dotted", 
+             size = 1.2) +
+  theme(text = element_text(size = 15),
+        legend.position = "bottom") +
+  scale_color_viridis(option = "mako", discrete=TRUE) +
+  facet_wrap(~Layer)
+
+df_attention_over_time %>%
+  filter(Layer == 3) %>%
+  # filter(Head %in% c(1, 2)) %>%
+  ggplot(aes(x = step_modded,
+             y = mean_attention,
+             color = factor(Head))) +
+  geom_point(size = 4, alpha = .7) +
+  geom_line(size = 2, alpha = .7) +
+  theme_minimal() +
+  labs(x = "Training Step (Log10)",
+       y = "Attention to Previous Token",
+       color = "Attention Head (Layer 3)") +
+  scale_x_log10() +
+    geom_vline(xintercept = 1000, 
+             linetype = "dotted", 
+             size = 1.2) +
+  theme(text = element_text(size = 15),
+        legend.position = "bottom") +
+  scale_color_viridis(option = "mako", discrete=TRUE) 
+
+```
+
+
+
+
+
+### Attention at sentence-level
+
+```{r}
+df_pythia_models %>%
+  filter(mpath == "EleutherAI/pythia-14m") %>%
+  filter(Layer == 3) %>%
+  filter(step %in% c(512, 1000, 2000, 143000)) %>%
+  ggplot(aes(x = Attention,
+             y = factor(Head),
+             fill = factor(mpath))) +
+  geom_density_ridges2(aes(height = ..density..), 
+                       color=gray(0.25), 
+                       alpha = .7, 
+                       scale=.85, 
+                       # size=1, 
+                       size = 0,
+                       stat="density") +
+  labs(x = "Attention to Previous Token",
+       y = "Attention Head",
+       fill = "") +
+  theme_minimal() +
+  scale_fill_viridis(option = "mako", discrete=TRUE) +
+  theme(text = element_text(size = 15),
+        legend.position="none") +
+  facet_wrap(~reorder(revision, step))
+```
+
+
+
+# Comparing to disambiguating word
+
+## Load initial data
+
+```{r}
+# setwd("/Users/seantrott/Dropbox/UCSD/Research/Ambiguity/SSD/entangled_meanings/src/analysis/")
+directory_path <- "../../data/processed/rawc/pythia/attention/"
+csv_files <- list.files(path = directory_path, pattern = "*.csv", full.names = TRUE)
+csv_list <- csv_files %>%
+  map(~ read_csv(.))
+df_pythia_models_original <- bind_rows(csv_list) %>%
+  mutate(Layer = Layer + 1,
+         Head = Head + 1) %>%
+  mutate(Attention_to_disambiguating = Attention) %>%
+  select(-Attention)
+
+table(df_pythia_models_original$mpath)
+
+
+
+```
+
+
+## Merging
+
+```{r}
+nrow(df_pythia_models_original)
+nrow(df_pythia_models)
+
+df_pythia_all = df_pythia_models %>%
+  inner_join(df_pythia_models_original) %>%
+  mutate(attention_diff = Attention_to_disambiguating - Attention) %>%
+  mutate(attention_ratio = Attention_to_disambiguating / Attention)
+nrow(df_pythia_all)
+```
+
+
+
+
+## Final step
+
+
+```{r}
+
+### Calculate
+df_attn_by_head_final = df_pythia_all %>%
+  filter(step == 143000) %>%
+  group_by(mpath, Layer, Head, n_params) %>%
+  summarise(attention_diff = mean(attention_diff),
+            attention_ratio = mean(attention_ratio)) 
+
+
+
+### Difference analysis
+df_attn_by_head_final %>%
+  ggplot(aes(x = Layer,
+             y = Head,
+             fill = attention_diff)) +
+  geom_tile() +
+  labs(x = "Layer",
+       y = "Head",
+       fill = "Attention Difference") +
+  scale_fill_gradient2(low = "blue",
+                       mid = "white",
+                       high = "red",
+                       midpoint = 0, 
+                       name = "Attention Difference") +
+  theme_minimal() +
+  theme(text = element_text(size = 15),
+        strip.text.y = element_text(angle = 0), # Keep facet labels horizontal
+        axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.position = "bottom") +
+  facet_wrap(~reorder(mpath, n_params))
+
+
+### Difference analysis
+df_attn_by_head_final %>%
+  ggplot(aes(x = Layer,
+             y = Head,
+             fill = attention_ratio)) +
+  geom_tile() +
+  labs(x = "Layer",
+       y = "Head",
+       fill = "Attention Ratio") +
+  scale_fill_gradient2(low = "blue",
+                       mid = "white",
+                       high = "red",
+                       midpoint = 1, 
+                       name = "Attention Ratio") +
+  theme_minimal() +
+  theme(text = element_text(size = 15),
+        strip.text.y = element_text(angle = 0), # Keep facet labels horizontal
+        axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.position = "bottom") +
+  facet_wrap(~reorder(mpath, n_params))
+
+```
+
+## Over time
+
+```{r}
+df_attention_over_time = df_pythia_all %>% 
+  filter(mpath %in% c("EleutherAI/pythia-14m")) %>%
+  group_by(mpath, revision, Layer, Head, step, n_params) %>%
+  summarise(mean_attention_1back = mean(Attention),
+            mean_attention_disambiguating = mean(Attention_to_disambiguating),
+            mean_attention_diff = mean(attention_diff),
+            mean_attention_ratio = mean(attention_ratio),
+            se_diff = sd(attention_diff) / n()) %>%
+  mutate(step_modded = step + 1)
+
+df_attention_over_time %>%
+  ggplot(aes(x = step_modded,
+             y = mean_attention_diff,
+             color = factor(Head))) +
+  geom_point(size = 2, alpha = .7) +
+  geom_line(size = 2, alpha = .7) +
+  theme_minimal() +
+  labs(x = "Training Step (Log10)",
+       y = "Attention Difference",
+       color = "Attention Head") +
+  scale_x_log10() +
+    geom_vline(xintercept = 1000, 
+             linetype = "dotted", 
+             size = 1.2) +
+    geom_hline(yintercept = 0, 
+             linetype = "dashed", 
+             size = 1.2,
+             color = "black") +
+  theme(text = element_text(size = 15),
+        legend.position = "bottom") +
+  scale_color_viridis(option = "mako", discrete=TRUE) +
+  facet_wrap(~Layer)
+
+df_attention_over_time %>%
+  ggplot(aes(x = step_modded,
+             y = mean_attention_ratio,
+             color = factor(Head))) +
+  geom_point(size = 2, alpha = .7) +
+  geom_line(size = 2, alpha = .7) +
+  theme_minimal() +
+  labs(x = "Training Step (Log10)",
+       y = "Attention Ratio",
+       color = "Attention Head") +
+  scale_x_log10() +
+    geom_vline(xintercept = 1000, 
+             linetype = "dotted", 
+             size = 1.2) +
+    geom_hline(yintercept = 1, 
+             linetype = "dashed", 
+             size = 1.2,
+             color = "black") +
+  theme(text = element_text(size = 15),
+        legend.position = "bottom") +
+  scale_color_viridis(option = "mako", discrete=TRUE) +
+  facet_wrap(~Layer)
+```
+
+
+## T-test for subtraction analysis
+
+```{r}
+t_test_results <- df_pythia_all %>%
+  group_by(mpath, Layer, Head, n_params, step) %>%
+  summarise(
+    t_test = list(
+      t.test(
+        Attention_to_disambiguating,
+        Attention,
+        paired = TRUE,
+        alternative = "greater"  # One-tailed test for greater values
+      )
+    ),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    p_value = map_dbl(t_test, ~ .x$p.value),          # Extract p-value
+    t_statistic = map_dbl(t_test, ~ .x$statistic)    # Extract t-statistic
+  )
+
+
+# Apply multiple testing correction
+t_test_results <- t_test_results %>%
+  group_by(mpath) %>%
+  mutate(
+    p_adjusted = p.adjust(p_value, method = "fdr")  # Adjust p-values (FDR)
+  ) %>%
+  mutate(p_adj2 = case_when(
+    p_adjusted < .05 ~ p_adjusted,
+    p_adjusted >= .05 ~ 1
+  ))
+
+# Filter significant results
+significant_results <- t_test_results %>%
+  filter(p_adjusted < 0.05) 
+
+
+significant_results %>%
+  filter(step == 143000) %>%
+  ggplot(aes(x = Layer, y = Head, fill = -log10(p_adjusted))) +
+  geom_tile() +
+  scale_fill_gradient(low = "white", high = "red", name = "-log10(FDR p-value)") +
+  theme_minimal() +
+  labs(
+    title = "Significant Heads/Layers",
+    x = "Layer",
+    y = "Head"
+  ) +
+  facet_wrap(~reorder(mpath, n_params))
+
+
+
+### Comparison for l3, h2 by step
+df_pythia_all %>%
+  filter(mpath == "EleutherAI/pythia-14m") %>%
+  filter(step %in% c(1, 1000, 2000, 143000)) %>%
+  filter(Head == 2) %>%
+  filter(Layer == 3) %>%
+  mutate(Attention_1back = Attention) %>%
+  select(step, Attention_1back, Attention_to_disambiguating) %>%
+  pivot_longer(cols = c(Attention_1back, Attention_to_disambiguating),
+               names_to = "Focus", values_to = "Attention") %>%
+  ggplot(aes(x = Attention, 
+             y = factor(step),
+             fill = Focus)) +
+  geom_density_ridges2(aes(height = ..density..), 
+                       color = gray(0.25), 
+                       alpha = .7, 
+                       scale = .85, 
+                       size = 0,
+                       stat = "density") +
+  theme_minimal() +
+  labs(x = "Attention (L3, H2)",
+       y = "Step",
+       fill = "Focus") +
+  scale_fill_viridis_d(option = "mako", 
+                       labels = c("1-back", "Disambiguating")) +
+  theme(text = element_text(size = 15),
+        legend.position = "bottom")
+
+
+
+### Now plot over time again
+df_attention_over_time %>%
+  filter(mpath == "EleutherAI/pythia-14m") %>%
+  inner_join(t_test_results) %>%
+  filter(Layer == 3) %>%
+  filter(Head == 2) %>%
+  mutate(is_significant = p_adjusted < .05) %>%
+  ggplot(aes(x = step_modded,
+             y = mean_attention_diff)) +
+  geom_point(size = 2, alpha = .7) +
+  geom_line(size = 2, alpha = .7) +
+  # Add significant points as larger red markers
+  geom_point(data = . %>% filter(p_adjusted < 0.05),
+             aes(x = step_modded, y = mean_attention_diff),
+             # color = "red", 
+             color = my_colors[2],
+             size = 2, shape = 21, 
+             # fill = "red", 
+             fill = my_colors[2],
+             alpha = 0.7) +
+  theme_minimal() +
+  labs(x = "Training Step (Log10)",
+       y = "Attention Difference (L3, H2)",
+       color = "Passes Significance Threshold") +
+  scale_x_log10() +
+    geom_vline(xintercept = 1000, 
+             linetype = "dotted", 
+             size = 1.2) +
+    geom_hline(yintercept = 0, 
+             linetype = "dashed", 
+             size = 1.2,
+             color = "black") +
+  theme(text = element_text(size = 15),
+        legend.position = "bottom") +
+  scale_color_viridis(option = "mako", discrete=TRUE) 
+
+
+```
+
+
+## Error analysis
+
+Sentences for which the target head attends on average to previous words more than specifically to the disambiguating word.
+
+
+```{r}
+just_h2 = df_pythia_all %>%
+  filter(mpath == "EleutherAI/pythia-14m") %>%
+  filter(step == 143000) %>%
+  filter(Head == 2) %>%
+  filter(Layer == 3)
+
+less_than_zero = just_h2 %>%
+  filter(attention_diff < 0) 
+```
+
+
+Anything systematic? (Not related to CS norms for sentences.)
+
+```{r}
+df_cs = read_csv("../../../cs_norms/data/processed/contextualized_sensorimotor_norms.csv")
+
+df_merged_cs = df_cs %>%
+  inner_join(just_h2, by = c("word", "sentence"))
+
+
+m = lm(data = df_merged_cs,
+       attention_diff ~ Vision.M + Touch.M + Taste.M + Olfaction.M + 
+         Hearing.M + Interoception.M +
+         Head.M + Mouth_throat.M + Hand_arm.M + Torso.M + Foot_leg.M)
+
+cols = df_merged_cs %>%
+  select(attention_diff, Vision.M, Touch.M, Taste.M, Olfaction.M,
+         Hearing.M, Interoception.M, Head.M, Mouth_throat.M, Hand_arm.M,
+         Torso.M, Foot_leg.M)
+
+cors = cor(cols)
+
+```
+
+
+What about tokenization? (These might all be cases where the disambiguating token is multiple tokens.)
+
+
+```{r}
+
+### Load data
+directory_path <- "../../data/processed/rawc/pythia/token_analysis/"
+csv_files <- list.files(path = directory_path, pattern = "*.csv", full.names = TRUE)
+csv_list <- csv_files %>%
+  map(~ read_csv(.))
+df_pythia_token_analysis <- bind_rows(csv_list) %>%
+  mutate(Layer = Layer + 1,
+         Head = Head + 1)
+
+nrow(df_pythia_token_analysis)
+
+
+### Final step
+df_pythia_token_analysis_final = df_pythia_token_analysis %>%
+  filter(step == 143000) %>%
+  filter(Head == 2) %>%
+  filter(Layer == 3) %>%
+  rename(Attention_new = Attention,
+         Entropy_new = Entropy) %>%
+  select(Head, Layer, Attention_new, Entropy_new, attention_to_previous,
+         step, word, sentence, 
+         num_target_tokens, num_disambiguating_tokens)
+
+
+### Merge
+df_merged_h2 = just_h2 %>%
+  select(Head, Layer, Entropy, Attention, step, word, sentence, disambiguating_word,
+         Attention_to_disambiguating, attention_diff) %>%
+  inner_join(df_pythia_token_analysis_final) %>%
+  mutate(attention_diff2 = attention_to_previous - Attention)
+nrow(df_merged_h2)
+
+
+### Compare to original attention_diff
+df_merged_h2 %>%
+  ggplot(aes(x = attention_diff,
+             y = attention_diff2,
+             color = num_disambiguating_tokens)) +
+  geom_point(size = 2, alpha = .6) +
+  theme_minimal() +
+  theme(text = element_text(size = 15),
+        legend.position = "bottom") +
+  labs(x = "Original Difference (L2, H3)",
+       y = "Recalculated Difference (L2, H3)",
+       color = "#Tokens in Disambiguating Word") + 
+  scale_color_viridis(option = "mako")
+
+### Calculate in model
+m = lm(data = df_merged_h2, attention_diff ~ num_disambiguating_tokens)
+summary(m)
+
+
+### Comparison for l3, h2 by step
+df_merged_h2 %>%
+  select(attention_diff, attention_diff2) %>%
+  pivot_longer(cols = c(attention_diff, attention_diff2),
+               names_to = "Comparison", values_to = "Difference") %>%
+  ggplot(aes(x = Difference, 
+             fill = Comparison)) +
+  geom_density(size = 0, alpha = .6) +
+  theme_minimal() +
+    geom_vline(xintercept = 0, linetype = "dotted", size =1.5) +
+  labs(x = "Attention Difference (L3, H2)",
+       fill = "") +
+  scale_fill_viridis_d(option = "mako", 
+                       labels = c("Entire Word", "Final Token")) +
+  theme(text = element_text(size = 15),
+        legend.position = "bottom")
+
+
+### Summaries
+summary(df_merged_h2$attention_diff)
+sd(df_merged_h2$attention_diff)
+summary(df_merged_h2$attention_diff2)
+sd(df_merged_h2$attention_diff2)
+
+```
+
+
