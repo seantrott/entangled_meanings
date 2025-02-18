@@ -1,0 +1,200 @@
+---
+title: "Pythia: Acquisition of Mod-NP Construction (v1)"
+author: "Sean Trott and Pam Rivière"
+date: "November 20, 2024"
+output:
+  html_document:
+    keep_md: yes
+    toc: yes
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(dpi = 300, fig.format = "pdf")
+```
+
+
+```{r include=FALSE}
+library(tidyverse)
+library(lmtest)
+library(forcats)
+library(broom)
+library(lme4)
+library(viridis)
+library(ggridges)
+library(lmerTest)
+library(changepoint)
+
+all_colors <- viridis::viridis(10, option = "mako")
+my_colors <- all_colors[c(3, 5, 7)]  # Selecting specific colors from the palette
+```
+
+
+In this notebook, we analyze the trajectory of learning the "modifier NP" construction in Pythia models, which we analyze as the log ratio of an original modifier NP construction ("desperate act") vs. the reversed version ("act desperate"), each presented after an *end of sequence token* to each Pythia model; see V2 for an alternative version that presents the original and reversed versions in entire sentences (e.g., "It was a desperate act") and analyzes the relative log-probability of the modifier-NP phrases respectively.
+
+# Load Pythia data
+
+
+```{r}
+# setwd("/Users/seantrott/Dropbox/UCSD/Research/Ambiguity/SSD/entangled_meanings/src/analysis/")
+directory_path <- "../../data/processed/rawc/pythia/mod_np_cxn/"
+csv_files <- list.files(path = directory_path, pattern = "*.csv", full.names = TRUE)
+csv_list <- csv_files %>%
+  map(~ read_csv(.))
+df_pythia_models <- bind_rows(csv_list)
+
+table(df_pythia_models$mpath)
+
+```
+
+
+# Analyzing log-ratio
+
+## At final step
+
+```{r}
+df_pythia_models %>%
+  # filter(mpath == "EleutherAI/pythia-14m") %>%
+  filter(step %in% c(0, 1, 512, 1000, 2000, 143000)) %>%
+  ggplot(aes(x = ratio,
+             y = factor(step),
+             fill = factor(mpath))) +
+  geom_density_ridges2(aes(height = ..density..), 
+                       color=gray(0.25), 
+                       alpha = .5, 
+                       scale=.85, 
+                       # size=1, 
+                       size = 0,
+                       stat="density") +
+  geom_vline(xintercept = 0, linetype = "dotted", size = 1.2) +
+  labs(x = "Log-ratio (original vs. reversed)",
+       y = "Step",
+       fill = "") +
+  theme_minimal() +
+  scale_fill_viridis(option = "mako", discrete=TRUE) +
+  theme(text = element_text(size = 15),
+        legend.position="none")
+```
+
+
+## Across steps
+
+```{r}
+df_ratio_steps = df_pythia_models %>% 
+  group_by(mpath, step, revision, n_params) %>%
+  summarise(mean_lr_ratio = mean(ratio)) %>%
+  mutate(step_modded = step + 1) %>%
+  group_by(mpath) %>%
+  mutate(
+    mean_lr_ratio_diff = mean_lr_ratio - lag(mean_lr_ratio),
+    mean_lr_ratio_diff2 = mean_lr_ratio_diff - lag(mean_lr_ratio_diff)
+  ) %>%
+  group_by(mpath) 
+
+df_ratio_steps %>%
+  ggplot(aes(x = step_modded,
+             y = mean_lr_ratio,
+             color = reorder(mpath, n_params))) +
+  geom_point(size = 4, alpha = .7) +
+  geom_line(size = 2, alpha = .7) +
+  theme_minimal() +
+  labs(x = "Training Step (Log10)",
+       y = "Log ratio (original vs. reversed)",
+       color = "") +
+  geom_vline(xintercept = 1000, 
+             linetype = "dotted", 
+             size = 1.2) +
+  scale_x_log10() +
+  theme(text = element_text(size = 15),
+        legend.position = "bottom") +
+  scale_color_viridis(option = "mako", discrete=TRUE)
+
+
+df_ratio_steps %>%
+  ggplot(aes(x = step_modded,
+             y = mean_lr_ratio_diff,
+             color = reorder(mpath, n_params))) +
+  geom_point(size = 4, alpha = .7) +
+  geom_line(size = 2, alpha = .7) +
+  theme_minimal() +
+  geom_hline(yintercept = 0, linetype = "dotted", size = 2) +
+  labs(x = "Training Step (Log10)",
+       y = "Log ratio change (1st derivative)",
+       color = "") +
+  scale_x_log10() +
+  geom_vline(xintercept = 1000, 
+             linetype = "dotted", 
+             size = 1.2) +
+  theme(text = element_text(size = 15),
+        legend.position = "bottom") +
+  scale_color_viridis(option = "mako", discrete=TRUE)
+
+
+df_ratio_steps %>%
+  ggplot(aes(x = step_modded,
+             y = mean_lr_ratio_diff2,
+             color = reorder(mpath, n_params))) +
+  geom_point(size = 4, alpha = .7) +
+  geom_line(size = 2, alpha = .7) +
+  theme_minimal() +
+  geom_hline(yintercept = 0, linetype = "dotted", size = 2) +
+  labs(x = "Training Step (Log10)",
+       y = "Log ratio change (2nd derivative)",
+       color = "") +
+  scale_x_log10() +
+  geom_vline(xintercept = 1000, 
+             linetype = "dotted", 
+             size = 1.2) +
+  theme(text = element_text(size = 15),
+        legend.position = "bottom") +
+  scale_color_viridis(option = "mako", discrete=TRUE)
+
+
+
+
+```
+
+
+## Changepoint analysis for 14m
+
+```{r}
+df_14m = df_ratio_steps %>%
+  filter(mpath == "EleutherAI/pythia-14m")
+
+### get ratios per step
+log_ratios <- df_14m$mean_lr_ratio
+# Detect changepoints in the mean
+cpt_result <- cpt.mean(log_ratios, method = "PELT")
+# Extract components
+changepoints <- cpts(cpt_result)             # Changepoint indices
+means <- param.est(cpt_result)$mean          # Segment means
+num_cpts <- ncpts(cpt_result)                # Number of changepoints
+
+## Which training steps?
+changepoint_steps <- df_14m$step[changepoints]
+print(changepoint_steps)
+
+## Annotate dataframe
+df_14m <- df_14m %>%
+  mutate(changepoint = ifelse(row_number() %in% changepoints, 1, 0))
+
+df_14m %>%
+  ggplot(aes(x = step_modded,
+             y = mean_lr_ratio)) +
+  geom_point(size = 4, alpha = .7) +
+  geom_line(size = 2, alpha = .7) +
+  theme_minimal() +
+  labs(x = "Training Step (Log10)",
+       y = "Log ratio (original vs. reversed)",
+       color = "") +
+  geom_vline(xintercept = changepoint_steps, color = "red", 
+             linetype = "dashed", size = 1.2) +
+  scale_x_log10() +
+  theme(text = element_text(size = 15),
+        legend.position = "bottom") +
+  scale_color_viridis(option = "mako", discrete=TRUE)
+
+
+```
+
+

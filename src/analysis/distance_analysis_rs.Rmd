@@ -1,0 +1,180 @@
+---
+title: "Analysis of HuggingFace Models (RS)"
+author: "Sean Trott and Pam Rivière"
+date: "November 20, 2024"
+output:
+  html_document:
+    keep_md: yes
+    toc: yes
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(dpi = 300, fig.format = "pdf")
+```
+
+
+```{r include=FALSE}
+library(tidyverse)
+library(lmtest)
+library(forcats)
+library(broom)
+library(lme4)
+library(viridis)
+library(ggridges)
+library(lmerTest)
+library(ggrepel)
+
+all_colors <- viridis::viridis(10, option = "mako")
+my_colors <- all_colors[c(3, 5, 7)]  # Selecting specific colors from the palette
+```
+
+# Load Pythia data
+
+
+```{r}
+# setwd("/Users/seantrott/Dropbox/UCSD/Research/Ambiguity/SSD/entangled_meanings/src/analysis/")
+directory_path <- "../../data/processed/rawc/pythia/distances_rs/"
+csv_files <- list.files(path = directory_path, pattern = "*.csv", full.names = TRUE)
+csv_list <- csv_files %>%
+  map(~ read_csv(.))
+df_pythia_models <- bind_rows(csv_list)
+
+table(df_pythia_models$mpath)
+
+```
+
+
+
+# Analyzing R2
+
+
+## Best R2 by layer
+
+```{r r2_layer}
+df_best_r2_final_step = df_pythia_models %>% 
+  filter(mpath %in% c("EleutherAI/pythia-14m")) %>%
+  filter(step == 143000) %>%
+  group_by(mpath, revision, seed, seed_name, Layer, n_params) %>%
+  summarise(r = cor(Distance, mean_relatedness, method = "pearson"),
+            r2 = r ** 2) 
+
+
+df_avg_final_step = df_best_r2_final_step %>% 
+  group_by(Layer) %>%
+  summarise(r2 = mean(r2)) 
+
+
+df_best_r2_final_step %>%
+  ggplot(aes(x = Layer,
+             y = r2,
+             color = seed_name)) +
+  geom_line(size = .7, alpha = .6, linetype = "dotted") +
+  geom_line(data = df_avg_final_step, aes(x = Layer, y = r2), 
+             color = "black", size = 1.5) + # Smoothed average
+  scale_color_viridis(option = "mako", discrete=TRUE) +
+  theme_minimal() +
+  labs(x = "Layer", y = "R2 at Final Step") +
+  theme(text = element_text(size = 15),
+        legend.position = "none") 
+  
+```
+
+
+## Best R2 by step
+
+```{r r2_by_step r2_step}
+df_best_r2 = df_pythia_models %>% 
+  filter(mpath %in% c("EleutherAI/pythia-14m")) %>%
+  group_by(mpath, revision, step, seed, seed_name, Layer, n_params) %>%
+  summarise(r = cor(Distance, mean_relatedness, method = "pearson"),
+            r2 = r ** 2) %>%
+  group_by(mpath, step, seed, seed_name, n_params) %>%
+  slice_max(r2, n = 1) %>%  
+  mutate(step_modded = step + 1) %>%
+  mutate(million_tokens_seen = 2.1 * step_modded) %>%
+  group_by(mpath) %>%
+  mutate(
+    r2_diff = r2 - lag(r2),
+    r2_diff2 = r2_diff - lag(r2_diff)
+  )
+
+df_best_r2_avg = df_best_r2 %>% 
+  group_by(step_modded) %>%
+  summarise(r2 = mean(r2)) %>%
+  mutate(r2_diff = r2 - lag(r2),
+         r2_diff2 = r2_diff - lag(r2_diff))
+
+df_best_r2 %>%
+  ggplot(aes(x = step_modded,
+             y = r2,
+             color = reorder(seed_name, n_params))) +
+  geom_line(size = .5, alpha = .7, linetype = "dotted") +
+  geom_line(data = df_best_r2_avg, aes(x = step_modded, y = r2), 
+             color = "black", size = 1.3) + # Smoothed average
+  geom_point(data = df_best_r2_avg, aes(x = step_modded, y = r2), 
+             color = "black", size = 2) +
+  theme_minimal() +
+  labs(x = "Training Step (Log10)",
+       y = "Best R2",
+       color = "") +
+  scale_x_log10() +
+  geom_vline(xintercept = 1000, 
+             linetype = "dotted", 
+             size = 1.2) +
+  theme(text = element_text(size = 15),
+        legend.position = "none") +
+  scale_color_viridis(option = "mako", discrete=TRUE)
+
+
+df_best_r2 %>%
+  filter(step > 0) %>%
+  ggplot(aes(x = step_modded,
+             y = r2_diff,
+             color = reorder(seed_name, n_params))) +
+  geom_line(size = .7, alpha = .7, linetype = "dotted") +
+  geom_line(data = df_best_r2_avg, aes(x = step_modded, y = r2_diff), 
+             color = "black", size = 1.3) + # Smoothed average
+  geom_point(data = df_best_r2_avg, aes(x = step_modded, y = r2_diff), 
+             color = "black", size = 2) +
+  theme_minimal() +
+  labs(x = "Training Step (Log10)",
+       y = "R2 change (1st derivative)",
+       color = "") +
+  scale_x_log10() +
+  geom_vline(xintercept = 1000, 
+             linetype = "dotted", 
+             size = 1.2) +
+  geom_hline(yintercept = 0, linetype = "dotted", size = 2) +
+  theme(text = element_text(size = 15),
+        legend.position = "none") +
+  scale_color_viridis(option = "mako", discrete=TRUE)
+
+
+df_best_r2 %>%
+  filter(step > 0) %>%
+  ggplot(aes(x = step_modded,
+             y = r2_diff2,
+             color = reorder(seed_name, n_params))) +
+  geom_point(size = 4, alpha = .7) +
+  geom_line(size = 2, alpha = .7) +
+  theme_minimal() +
+  labs(x = "Training Step (Log10)",
+       y = "R2 change (2nd derivative)",
+       color = "") +
+  scale_x_log10() +
+  geom_vline(xintercept = 1000, 
+             linetype = "dotted", 
+             size = 1.2) +
+  geom_hline(yintercept = 0, linetype = "dotted", size = 2) +
+  theme(text = element_text(size = 15),
+        legend.position = "bottom") +
+  scale_color_viridis(option = "mako", discrete=TRUE)
+
+
+
+
+```
+
+
+
