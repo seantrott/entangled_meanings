@@ -78,6 +78,27 @@ df_best_r2_final_step %>%
   theme(text = element_text(size = 15),
         legend.position = "none") 
   
+
+
+df_best = df_best_r2_final_step %>%
+  group_by(seed) %>%
+  slice_max(r2)
+df_best
+summary(df_best$r2)
+sd(df_best$r2)
+
+df_best %>% 
+  ggplot(aes(x = seed_name,
+             y = r2)) +
+  geom_bar(stat = "identity", alpha = .6)+
+  geom_hline(yintercept = mean(df_best$r2), linetype = "dotted", 
+             size = 1.2) +
+  theme_minimal() +
+  labs(x = "", y = "Best R2 at Final Step") +
+  theme(text = element_text(size = 15),
+        legend.position = "none") 
+  
+
 ```
 
 
@@ -172,7 +193,9 @@ df_best_r2 %>%
   scale_color_viridis(option = "mako", discrete=TRUE)
 
 
-
+m_step <- lmer(r2 ~ log10(step_modded) + (1 | seed), 
+              data = df_best_r2)
+summary(m_step)
 
 ```
 

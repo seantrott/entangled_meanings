@@ -160,10 +160,14 @@ if __name__ == "__main__":
     ## Read stimuli
     df = pd.read_csv(STIMULI)
     df_just_n = df[df['Class']=='N']
+    print(len(df))
+    print(len(df_just_n))
+
+    print(df_just_n['ambiguity_type'].value_counts())
 
     ### Get revisions
     revisions = utils.generate_revisions()
 
     ## Run main
-    main(df_just_n, MODELS[0], revisions)
+    # main(df_just_n, MODELS[0], revisions)
 

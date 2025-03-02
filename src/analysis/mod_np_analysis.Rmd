@@ -81,6 +81,7 @@ df_pythia_models %>%
 
 ```{r}
 df_ratio_steps = df_pythia_models %>% 
+  filter(mpath == "EleutherAI/pythia-14m") %>%
   group_by(mpath, step, revision, n_params) %>%
   summarise(mean_lr_ratio = mean(ratio)) %>%
   mutate(step_modded = step + 1) %>%
@@ -95,7 +96,7 @@ df_ratio_steps %>%
   ggplot(aes(x = step_modded,
              y = mean_lr_ratio,
              color = reorder(mpath, n_params))) +
-  geom_point(size = 4, alpha = .7) +
+  geom_point(size = 2, alpha = .7) +
   geom_line(size = 2, alpha = .7) +
   theme_minimal() +
   labs(x = "Training Step (Log10)",
@@ -106,7 +107,7 @@ df_ratio_steps %>%
              size = 1.2) +
   scale_x_log10() +
   theme(text = element_text(size = 15),
-        legend.position = "bottom") +
+        legend.position = "none") +
   scale_color_viridis(option = "mako", discrete=TRUE)
 
 

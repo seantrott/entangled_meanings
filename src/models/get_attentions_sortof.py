@@ -32,7 +32,7 @@ MODELS = [
           # 'EleutherAI/pythia-12b',
           ]
 
-STIMULI = "../../data/raw/rawc/individual_sentences_separate_adjcue.csv"
+STIMULI = "data/raw/rawc/individual_sentences_separate_adjcue.csv"
 
 
 
@@ -49,7 +49,7 @@ def main(df, mpath, revisions):
         print(checkpoint)
 
         ### Set up save path, filename, etc.
-        savepath = "../../data/processed/rawc/pythia/attention_sortof_check/"
+        savepath = "data/processed/rawc/pythia/attention_sortof_check/"
         if not os.path.exists(savepath): 
             os.mkdir(savepath)
         if "/" in mpath:
@@ -90,8 +90,16 @@ def main(df, mpath, revisions):
             disambiguating_word = " {w}".format(w = row['disambiguating_word']) # row['string']
             sentence = row['sentence_new']
 
+            ### Inserted string
+            inserted_string = row['inserted_string']
+            if "-" in inserted_string: ## remove "skin-type", etc.
+                continue
+            inserted_string_final_token = " {w}".format(w = inserted_string.split()[-1])
+
             ### Run model for each sentence
             model_outputs = utils.run_model(model, tokenizer, sentence, device)
+
+
 
             ### Now, for each layer...
             for layer in range(n_layers): 
@@ -103,6 +111,18 @@ def main(df, mpath, revisions):
 
                     attention_info = utils.get_attention_and_entropy_for_head(model_outputs['attentions'], model_outputs['tokens'], tokenizer, 
                                                                              target, disambiguating_word, layer, head, device)
+
+
+
+                    ### Attention to inserted string
+                    attention_info_inserted_string = utils.get_attention_and_entropy_for_head(model_outputs['attentions'], model_outputs['tokens'], tokenizer, 
+                                                                             target, inserted_string_final_token, layer, head, device)
+
+
+                    ### Get 1-back still
+                    attn_weights = model_outputs['attentions'][layer][0, head]  # Shape: (seq_len, seq_len)
+                    seq_len = attn_weights.shape[0]
+                    prev_token_attention = torch.diagonal(attn_weights, offset=-1).mean().item()
         
         
                     ### Add to results dictionary
@@ -112,6 +132,10 @@ def main(df, mpath, revisions):
                         'string': row['string_ambiguous_word'],
                         'disambiguating_word': disambiguating_word,
                         'Attention': attention_info['attention_to_disambiguating'],
+                        'inserted_string': inserted_string,
+                        'inserted_string_final_token': inserted_string_final_token,
+                        'Attention_inserted_string': attention_info_inserted_string['attention_to_disambiguating'],
+                        'Attention_1back': prev_token_attention,
                         'Entropy': attention_info['entropy'],
                         'Head': head,
                         'Layer': layer

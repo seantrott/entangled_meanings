@@ -3,6 +3,10 @@ title: "Analysis of HuggingFace Models"
 author: "Sean Trott and Pam Rivière"
 date: "November 20, 2024"
 output:
+  # pdf_document: 
+  #      fig_caption: yes
+  #     keep_md: yes
+  #     keep_tex: yes
   html_document:
     keep_md: yes
     toc: yes
@@ -24,6 +28,7 @@ library(viridis)
 library(ggridges)
 library(lmerTest)
 library(ggrepel)
+library(changepoint)
 
 all_colors <- viridis::viridis(10, option = "mako")
 my_colors <- all_colors[c(3, 5, 7)]  # Selecting specific colors from the palette
@@ -84,6 +89,11 @@ df_best_r2_scale %>%
   scale_color_manual(values = my_colors)  +
   theme(text = element_text(size = 15),
         legend.position="bottom")
+
+
+### Regression analysis
+summary(lm(data = df_best_r2_scale,
+           r2 ~ log10(n_params)))
 ```
 
 ## Scaling across time
@@ -100,7 +110,7 @@ df_best_r2_scale = df_pythia_models %>%
 df_best_r2_scale %>%
   ggplot(aes(x = n_params,
              y = r2)) +
-  geom_point(size = 6,
+  geom_point(size = 4,
              alpha = .5) +
   geom_hline(yintercept = .64,##TODO: Calculate from scratch
              linetype = "dotted", color = "red",
@@ -127,8 +137,7 @@ df_best_r2_scale %>%
 
 ```{r r2_by_step}
 df_best_r2 = df_pythia_models %>% 
-  filter(mpath %in% c("EleutherAI/pythia-14m",
-                      "EleutherAI/pythia-70m")) %>%
+  filter(mpath %in% c("EleutherAI/pythia-14m")) %>%
   group_by(mpath, revision, step, Layer, n_params) %>%
   summarise(r = cor(Distance, mean_relatedness, method = "pearson"),
             r2 = r ** 2) %>%
@@ -145,10 +154,9 @@ df_best_r2 = df_pythia_models %>%
 df_best_r2 %>%
   # filter(mpath == "EleutherAI/pythia-14m") %>%
   ggplot(aes(x = step_modded,
-             y = r2,
-             color = reorder(mpath, n_params))) +
-  geom_point(size = 4, alpha = .7) +
-  geom_line(size = 2, alpha = .7) +
+             y = r2)) +
+  geom_point(size = 2, alpha = .7) +
+  geom_line(size = 1.3, alpha = .7) +
   theme_minimal() +
   labs(x = "Training Step (Log10)",
        y = "Best R2",
@@ -158,7 +166,7 @@ df_best_r2 %>%
              linetype = "dotted", 
              size = 1.2) +
   theme(text = element_text(size = 15),
-        legend.position = "bottom") +
+        legend.position = "none") +
   scale_color_viridis(option = "mako", discrete=TRUE)
 
 
@@ -220,147 +228,11 @@ df_best_r2 %>%
   scale_color_viridis(option = "mako", discrete=TRUE)
 
 
-
-
-```
-
-## R2 by layer
-
-**TODO**: Plot $R^2$ as a function of layer, perhaps in final steps (or comparing early step to middle and layer steps).
-
-
-```{r}
-
+m_step <- lm(r2 ~ log10(step_modded), 
+                  data = df_best_r2)
+summary(m_step)
 
 ```
 
-
-
-## R2 by layer, by step
-
-```{r}
-df_perf = df_pythia_models %>% 
-  group_by(mpath, revision, step, Layer, n_params) %>%
-  summarise(r = cor(Distance, mean_relatedness, method = "pearson"),
-            r2 = r ** 2)
-
-### R2 by layer, by step
-df_perf %>%
-  filter(step == 143000) %>%
-  ggplot(aes(x = Layer,
-             y = r2,
-             color = mpath)) +
-  geom_line(size = 2, alpha = .7) +
-  theme_minimal() +
-  labs(x = "Layer",
-       y = "R2") +
-  # scale_x_continuous(breaks = c(0:13)) +
-  theme(text = element_text(size = 15),
-        legend.position = "bottom") +
-  scale_color_viridis(option = "mako", discrete=TRUE)
-
-
-### R2 by layer, by step
-df_perf %>%
-  ggplot(aes(x = Layer,
-             y = reorder(revision, step),
-             fill = r2)) +
-  geom_tile() +
-  theme_minimal() +
-  labs(x = "Layer",
-       y = "Step",
-       fill = "R2") +
-  scale_x_continuous(breaks = c(0:13)) +
-  theme(text = element_text(size = 15)) +
-  facet_wrap(~mpath)
-
-### Best R2 by step
-df_perf_best = df_perf %>%
-  group_by(mpath, step, n_params) %>%
-  summarise(best_r2 = max(r2)) %>%
-  mutate(step_modded = step + 1)
-
-
-df_perf_best %>%
-  ggplot(aes(x = step_modded, y = best_r2, 
-             size = n_params, color = n_params)) +
-  geom_point(alpha = .7) +
-  scale_x_log10() +
-  labs(x = "Parameters",
-       y = "Step",
-       size = "Maximum R2",
-       color = "",
-       shape = "") +
-  theme_minimal() +
-  # guides(color="none") +
-  # scale_color_viridis(option = "mako", discrete=TRUE) +
-  theme(text = element_text(size = 15),
-        legend.position="bottom")
-
-
-summary(lm(data = df_perf_best,
-           best_r2 ~ log10(n_params) * log10(step_modded)))
-
-
-
-df_perf_best %>%
-  ggplot(aes(x = step_modded, y = best_r2)) +
-  geom_point(size = 6,
-             alpha = .7,
-             ) +
-  scale_x_log10() +
-  scale_y_continuous(limits = c(0, 1)) +
-  labs(x = "Parameters",
-       y = "Maximum R2",
-       color = "",
-       shape = "") +
-  theme_minimal() +
-  # guides(color="none") +
-  # scale_color_viridis(option = "mako", discrete=TRUE) +
-  scale_color_manual(values = my_colors)  +
-  theme(text = element_text(size = 15),
-        legend.position="bottom")
-  
-
-```
-
-
-
-
-# "Learned distinction"
-
-**TODO**: For each model/step/word, calculate whether they've "learned" the sense distinction.
-
-```{r}
-df_pythia_models_wide = df_pythia_models %>%
-  group_by(Same_sense, mpath, step, Layer, word) %>%
-  summarise(mean_distance = mean(Distance)) %>%
-  pivot_wider(
-    names_from = Same_sense,      # Column to pivot on (e.g., Same_sense)
-    values_from = mean_distance, # Values to fill in (mean_distance)
-    names_prefix = "sense_"      # Optional prefix for new columns
-  ) %>%
-  mutate(distance_diff = `sense_Different Sense` - `sense_Same Sense`,
-         learned = distance_diff > 0)
-
-```
-
-
-
-# Residuals by step
-
-```{r}
-# Fit models and calculate residuals for each LLM
-models <- by(df_pythia_models, df_pythia_models$step, function(subdata) {
-  model <- lm(mean_relatedness ~ Distance * Layer, data = subdata)
-  subdata$residuals <- residuals(model)
-  return(subdata)
-})
-
-# Combine the results back into a single dataframe
-results <- do.call(rbind, models)
-
-
-```
 
 

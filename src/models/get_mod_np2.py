@@ -27,10 +27,10 @@ import utils
 
 ### Models to test
 MODELS = [
-          # 'EleutherAI/pythia-14m',
+          'EleutherAI/pythia-14m',
          # 'EleutherAI/pythia-70m',
          # 'EleutherAI/pythia-160m',
-           'EleutherAI/pythia-410m',
+          # 'EleutherAI/pythia-410m',
           # 'EleutherAI/pythia-1b',
           # 'EleutherAI/pythia-1.4b',
           # 'EleutherAI/pythia-2.8b',

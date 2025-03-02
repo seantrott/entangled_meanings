@@ -50,7 +50,60 @@ table(df_pythia_models$mpath)
 
 For this developmental analysis, we focus on Pythia-14m.
 
-## Mean entropy overall
+
+## Mean entropy for Pythia-14M
+
+
+```{r}
+### By model
+df_pythia_models %>%
+  filter(step == 143000) %>%
+  group_by(mpath) %>%
+  summarise(mean_entropy = mean(Entropy, na.rm = TRUE),
+            sd_entropy = sd(Entropy, na.rm = TRUE),
+            count = n())
+
+
+df_final = df_pythia_models %>%
+  filter(step == 143000) %>%
+  group_by(mpath, n_params, Layer, Head) %>%
+  summarise(mean_entropy = mean(Entropy, na.rm = TRUE),
+            sd_entropy = sd(Entropy, na.rm = TRUE),
+            count = n()) %>%
+  group_by(mpath) %>%
+  mutate(mean_entropy_scaled = scale(mean_entropy)) 
+mod_full = lmer(data = df_final, mean_entropy_scaled ~ Layer + 
+                  (1 | mpath) + (1 | Head))
+
+summary(mod_full)
+
+
+df_final %>%
+  group_by(mpath) %>%
+  mutate(mean_entropy_scaled = scale(mean_entropy)) %>%
+  ggplot(aes(x = Layer,
+             y = Head,
+             fill = mean_entropy_scaled)) +
+  geom_tile() +
+  labs(x = "Layer",
+       y = "Head",
+       fill = "Mean Entropy (Z-scored)") +
+  scale_fill_gradient2(low = "blue",
+                       mid = "white",
+                       high = "red",
+                       # midpoint = 0, 
+                       name = "Mean Entropy (Z-scored)") +
+  theme_minimal() +
+  theme(text = element_text(size = 15),
+        strip.text.y = element_text(angle = 0), # Keep facet labels horizontal
+        axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.position = "bottom") +
+  facet_wrap(~reorder(mpath, n_params))
+
+```
+
+
+## Mean entropy for Pythia-14M
 
 ```{r}
 summary_df <- df_pythia_models %>%
@@ -61,6 +114,10 @@ summary_df <- df_pythia_models %>%
     se_entropy = sd(Entropy, na.rm = TRUE) / sqrt(n()),
     .groups = "drop"
   )
+
+
+summary_df %>%
+  filter(step %in% c(1, 512, 143000))
 
 ggplot(summary_df, aes(x = step, y = mean_entropy, color = mpath)) +
   geom_line(color = "black") +  # Lineplot for mean entropy
@@ -80,6 +137,25 @@ ggplot(summary_df, aes(x = step, y = mean_entropy, color = mpath)) +
 
 
 
+pythia_14m = df_pythia_models %>%
+  filter(mpath == "EleutherAI/pythia-14m") %>%
+  mutate(step_modded = step + 1) %>%
+  group_by(step_modded, Head, Layer) %>%
+  summarise(avg_entropy = mean(Entropy))
+nrow(pythia_14m)
+
+mean(pythia_14m$avg_entropy)
+sd(pythia_14m$avg_entropy)
+summary(pythia_14m$avg_entropy)
+
+
+summary(lmer(data = pythia_14m, 
+             avg_entropy ~ log10(step_modded) + (1 | Head) + (1 | Layer)))
+
+
+
+summary(lm(data = pythia_14m, 
+             avg_entropy ~ log10(step_modded) * Layer))
 
 ```
 
@@ -189,6 +265,64 @@ df_attn_by_head %>%
         strip.text.y = element_text(angle = 0), # Keep facet labels horizontal
         axis.text.x = element_text(angle = 45, hjust = 1),
         legend.position = "bottom")
+
+
+
+
+
+
+final_step_14m = df_attn_by_head %>%
+  filter(mpath == "EleutherAI/pythia-14m") 
+summary(final_step_14m$mean_attention)
+sd(final_step_14m$mean_attention)
+
+final_step_14m %>%
+  ggplot(aes(x = mean_attention)) +
+  geom_histogram(alpha = .6, bins = 10) +
+  theme_minimal() +
+  labs(x = "Attention to Disambiguating Word") +
+  theme(text = element_text(size = 15),
+        legend.position = "bottom")
+
+
+final_step_14m %>%
+  mutate(mean_attention_scaled = scale(mean_attention)) %>%
+  ggplot(aes(x = mean_attention_scaled)) +
+  geom_histogram(alpha = .6, bins = 10) +
+  theme_minimal() +
+  labs(x = "Z-scored Attention to Disambiguating Word") +
+  theme(text = element_text(size = 15),
+        legend.position = "bottom")
+
+
+df_attn_by_head %>%
+  group_by(mpath) %>%
+  mutate(mean_attention_scaled = scale(mean_attention)) %>%
+  ggplot(aes(x = mean_attention_scaled,
+             y = ..density..)) +
+  geom_histogram(alpha = .6, bins = 10) +
+  theme_minimal() +
+  labs(x = "Z-scored Attention to Disambiguating Word") +
+  theme(text = element_text(size = 15),
+        legend.position = "bottom") +
+  facet_wrap(~reorder(mpath, n_params))
+
+
+### Very attentive heads
+df_most_attentive_heads = df_attn_by_head %>%
+  group_by(mpath) %>%
+  mutate(mean_attention_scaled = scale(mean_attention),
+         num_heads = max(Layer) * max(Head)) %>%
+  filter(mean_attention_scaled > 3) 
+
+df_most_attentive_heads %>%
+  group_by(mpath) %>%
+  summarise(count = n(),
+            num_heads = max(num_heads),
+            proportion = count/ num_heads)
+  
+
+
 ```
 
 
@@ -292,6 +426,9 @@ df_attention_over_time %>%
         legend.position = "bottom") +
   scale_color_viridis(option = "mako", discrete=TRUE) 
 
+
+
+
 ```
 
 
@@ -389,66 +526,50 @@ df_merged_r2_attention %>%
 ```
 
 
-## CCF
+## Analysis of attention and r2
 
 ```{r}
-df_ccf_by_head = df_merged_r2_attention %>%
-  group_by(Layer, Head) %>%
-  arrange(revision) %>%
-  summarise(
-    ccf = list(ccf(mean_attention, r2, plot = FALSE)),
-    .groups = "drop"
-  )
+### Make actual best R2
+df_best_r2_actual = df_best_r2 %>%
+  group_by(revision) %>%
+  slice_max(r2) %>%
+  select(revision, step, r2)
 
-# Extract the maximum cross-correlation and corresponding lag
-ccf_summary <- df_ccf_by_head %>%
-  mutate(
-    max_ccf = map_dbl(ccf, ~ max(.x$acf, na.rm = TRUE)),
-    lag_at_max_ccf = map_dbl(ccf, ~ .x$lag[which.max(.x$acf)])
-  ) %>%
-  select(Head, Layer, max_ccf, lag_at_max_ccf)
+### 
+df_merged_r2_attention_actual = df_attention_over_time %>%
+  inner_join(df_best_r2_actual)
 
-ccf_summary
+# Pivot the dataframe to wider format
+df_wide <- df_merged_r2_attention_actual %>%
+  select(revision, Layer, Head, step, mean_attention, r2) %>%
+  group_by(revision) %>%
+  slice_max(r2) %>%
+  pivot_wider(names_from = c(Layer, Head), 
+              values_from = c(mean_attention), names_sep = "_") %>%
+  ungroup()
 
-ccf_summary %>%
-  ggplot(aes(x = Layer,
-             y = Head,
-             fill = max_ccf)) +
-  geom_tile() +
-  labs(x = "Layer",
-       y = "Head",
-       fill = "Max CCF") +
-  scale_fill_gradient2(low = "blue",
-                       mid = "white",
-                       high = "red",
-                       midpoint = 0, 
-                       name = "Max CCF") +
-  theme_minimal() +
-  theme(text = element_text(size = 15),
-        strip.text.y = element_text(angle = 0), # Keep facet labels horizontal
-        axis.text.x = element_text(angle = 45, hjust = 1),
-        legend.position = "bottom")
+### Target variable
+y <- df_wide$r2
 
+# Run separate regressions for each predictor and measure R^2 and coefficient
+regression_results <- lapply(names(df_wide)[!(names(df_wide) %in% c("mpath", "revision", "step", "n_params", "step_modded", "r", "r2"))], function(var) {
+  model <- lm(y ~ df_wide[[var]])
+  summary_model <- summary(model)
+  list(Feature = var, 
+       R2 = summary_model$r.squared, 
+       Coefficient = coef(model)[2])
+})
 
-ccf_summary %>%
-  ggplot(aes(x = Layer,
-             y = Head,
-             fill = lag_at_max_ccf)) +
-  geom_tile() +
-  labs(x = "Layer",
-       y = "Head",
-       fill = "Lag at Max CCF") +
-  scale_fill_gradient2(low = "blue",
-                       mid = "white",
-                       high = "red",
-                       midpoint = 0, 
-                       name = "Lag at Max CCF") +
-  theme_minimal() +
-  theme(text = element_text(size = 15),
-        strip.text.y = element_text(angle = 0), # Keep facet labels horizontal
-        axis.text.x = element_text(angle = 45, hjust = 1),
-        legend.position = "bottom")
+# Convert results to a dataframe
+regression_results_df <- do.call(rbind, regression_results) %>% as.data.frame()
+
+# Print sorted R^2 values with coefficients
+regression_results_df <- regression_results_df %>% 
+  mutate(R2 = as.numeric(R2),
+         Coefficient = as.numeric(Coefficient)) 
+print(regression_results_df)
 
 
 ```
+
 

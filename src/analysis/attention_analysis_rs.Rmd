@@ -131,6 +131,74 @@ ggplot(summary_df, aes(x = step,
 
 ```
 
+
+## Mean entropy by layer and seed
+
+```{r}
+df_final = df_pythia_models %>%
+  filter(step == 143000) %>%
+  group_by(seed, seed_name, Layer, Head) %>%
+  summarise(mean_entropy = mean(Entropy, na.rm = TRUE),
+            sd_entropy = sd(Entropy, na.rm = TRUE),
+            count = n()) %>%
+  group_by(seed, seed_name) %>%
+  mutate(mean_entropy_scaled = scale(mean_entropy)) 
+
+mod_full = lmer(data = df_final, mean_entropy_scaled ~ Layer + 
+                  (1 | seed_name) + (1 | Head))
+
+summary(mod_full)
+
+
+df_final %>%
+  ggplot(aes(x = Layer,
+             y = Head,
+             fill = mean_entropy_scaled)) +
+  geom_tile() +
+  labs(x = "Layer",
+       y = "Head",
+       fill = "Mean Entropy (Z-scored)") +
+  scale_fill_gradient2(low = "blue",
+                       mid = "white",
+                       high = "red",
+                       # midpoint = 0, 
+                       name = "Mean Entropy (Z-scored)") +
+  theme_minimal() +
+  theme(text = element_text(size = 15),
+        strip.text.y = element_text(angle = 0), # Keep facet labels horizontal
+        axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.position = "bottom") +
+  facet_wrap(~seed_name)
+
+summary_avg = df_final %>%
+  group_by(Layer) %>%
+  summarise(
+    mean_entropy = mean(mean_entropy)
+  )
+
+
+df_final %>%
+  group_by(Layer, seed_name) %>%
+  summarise(mean_entropy = mean(mean_entropy)) %>%
+  ggplot(aes(x = Layer,
+             y = mean_entropy, 
+             color = seed_name)) +
+  geom_line(size = .5, linetype = "dotted") +  # Lineplot for mean entropy
+  geom_line(data = summary_avg, aes(x = Layer, y = mean_entropy), 
+             color = "black", size = 1.3) + # Smoothed average
+  labs(
+    title = "",
+    x = "Layer",
+    y = "Mean Entropy"
+  ) +
+  theme_minimal() +
+  theme(text = element_text(size = 15),
+        legend.position = "none") +
+  scale_color_viridis(option = "mako", discrete=TRUE)
+
+```
+
+
 # Attention
 
 
@@ -195,14 +263,10 @@ In an exploratory analysis, do these apparent attention patterns naturally separ
 ```{r}
 ### Pivot wider
 final_step_wide = df_pythia_models %>%
-  filter(step == 143000) %>% ### REDO WITH FINAL STEP
+  filter(step == 143000) %>% 
   select(-Entropy, -n_params) %>%
   pivot_wider(names_from = c(Head, Layer),
               values_from = Attention) 
-
-
-### Save for convenience
-write.csv(final_step_wide, "../../data/processed/rawc/pythia/attention_rs/pythia14m_final_step_wide.csv")
 
 # Get the numeric columns
 numeric_columns <- grep("^\\d+_\\d+$", colnames(final_step_wide), value = TRUE)
