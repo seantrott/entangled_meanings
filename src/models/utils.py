@@ -22,6 +22,12 @@ def generate_revisions_test():
     # revisions = [143000]
     return [f"step{step}" for step in revisions]
 
+def generate_revisions_post1000():
+
+    # Add every 1,000 steps afterward
+    revisions = range(2000, 144000, 1000)  # Adjust range as needed
+    # Format each step as "stepX"
+    return [f"step{step}" for step in revisions]
 
 
 def find_sublist_index(mylist, sublist):
@@ -273,3 +279,73 @@ def count_parameters(model):
     print(f"Total Trainable Params: {total_params}")
     
     return total_params
+
+def visualize_matrix(matrix, title="Matrix Visualization"):
+    plt.figure(figsize=(6, 6))
+    sns.heatmap(matrix.cpu().numpy(), cmap="viridis")
+    plt.title(title)
+    plt.show()
+    
+# ----
+# CAUSAL MANIPULATION
+# 1. zero out a given matrix (QK for target head)
+
+# 2. assign randomized values to a given matrix (QK for target head)
+
+# 3. rescale a given matrix (QK for target head) by some scalar value (negative to positive)
+# ----
+
+def modify_attention_weights(modification, qkv_weight, hidden_size, num_heads, 
+                            head_size, head_idx, device):
+    """
+    Modify the Q and K weight matrices for a specific layer and attention head.
+    
+    Args:
+        model: The Pythia model
+    """
+
+    # Calculate starting indices for Q and K for the specific head
+    q_start_idx = head_idx * head_size * 3  # *3 because QKV are concatenated
+    k_start_idx = q_start_idx + head_size
+
+    # Apply modifications of a specific type
+
+    if modification == "zeroed": 
+
+        q_modification = torch.zeros(head_size, hidden_size).to(device)
+        k_modification = torch.zeros(head_size, hidden_size).to(device)
+
+        # Apply modifications to Q weights for the specified head
+        qkv_weight.data[q_start_idx:q_start_idx+head_size, :] *= q_modification
+        
+        # Apply modifications to K weights for the specified head
+        qkv_weight.data[k_start_idx:k_start_idx+head_size, :] *= k_modification
+
+    elif modification == "random": 
+
+        q_modification = torch.randn(head_size, hidden_size) * 0.01
+        k_modification = torch.randn(head_size, hidden_size) * 0.01
+
+        q_modification.to(device)
+        k_modification.to(device)
+
+        # Apply modifications to Q weights for the specified head
+        qkv_weight.data[q_start_idx:q_start_idx+head_size, :] += q_modification       
+        # Apply modifications to K weights for the specified head
+        qkv_weight.data[k_start_idx:k_start_idx+head_size, :] += k_modification
+
+    elif modificaiton == "rescaled": 
+
+        q_modification = torch.ones(head_size, hidden_size) * 10
+        k_modification = torch.ones(head_size, hidden_size) * 10
+
+        # Apply modifications to Q weights for the specified head
+        qkv_weight.data[q_start_idx:q_start_idx+head_size, :] *= q_modification       
+        # Apply modifications to K weights for the specified head
+        qkv_weight.data[k_start_idx:k_start_idx+head_size, :] *= k_modification
+
+        
+    return qkv_weight
+
+
+
