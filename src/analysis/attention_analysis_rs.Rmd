@@ -403,108 +403,85 @@ df_attention_over_time %>%
   facet_wrap(~seed_name)
 
 
-```
 
 
-# Attention vs. R2
-
-## Load R2 data
-
-```{r}
-# setwd("/Users/seantrott/Dropbox/UCSD/Research/Ambiguity/SSD/entangled_meanings/src/analysis/")
-directory_path <- "../../data/processed/rawc/pythia/distances_rs/"
-csv_files <- list.files(path = directory_path, pattern = "*.csv", full.names = TRUE)
-csv_list <- csv_files %>%
-  map(~ read_csv(.))
-df_pythia_models <- bind_rows(csv_list)
-
-table(df_pythia_models$mpath)
-
-df_best_r2 = df_pythia_models %>% 
-  filter(mpath %in% c("EleutherAI/pythia-14m")) %>%
-  group_by(mpath, revision, step, Layer, seed, seed_name, n_params) %>%
-  summarise(r = cor(Distance, mean_relatedness, method = "pearson"),
-            r2 = r ** 2) %>%
-  group_by(mpath, step, n_params) %>%
-  mutate(step_modded = step + 1) 
-
-
-### Merge
-df_merged_r2_attention = df_attention_over_time %>%
-  inner_join(df_best_r2)
 
 ```
 
-## Modeling
 
-### CCF
+## Aggregating across layers/heads
 
 ```{r}
-df_ccf_by_head = df_merged_r2_attention %>%
-  group_by(seed_name, Layer, Head) %>%
-  arrange(revision) %>%
+### Track max disambiguating heads at each time point for each seed, across layer/head
+df_by_head_max_attention = df_pythia_models %>%
+  mutate(step_modded = step + 1) %>%
+  group_by(step_modded, revision, Layer, Head, seed, seed_name) %>%
+  summarise(mean_attention = mean(Attention)) %>%
+  group_by(step_modded, seed, seed_name) %>%
+  slice_max(mean_attention) %>%
+  mutate(Head = Head + 1)
+
+summary_avg = df_by_head_max_attention %>%
+  group_by(step_modded) %>%
   summarise(
-    ccf = list(ccf(mean_attention, r2, plot = FALSE)),
-    .groups = "drop"
+    mean_across_seeds = mean(mean_attention)
   )
 
-ccf_summary <- df_ccf_by_head %>%
-  mutate(
-    max_ccf = map_dbl(ccf, ~ max(.x$acf, na.rm = TRUE)),
-    lag_at_max_ccf = map_dbl(ccf, ~ .x$lag[which.max(.x$acf)])
-  ) %>%
-  select(seed_name, Head, Layer, max_ccf, lag_at_max_ccf)
-
-ccf_summary
-
-ccf_summary %>%
-  ggplot(aes(x = Layer,
-             y = Head,
-             fill = max_ccf)) +
-  geom_tile() +
-  labs(x = "Layer",
-       y = "Head",
-       fill = "Max CCF") +
-  scale_fill_gradient2(low = "blue",
-                       mid = "white",
-                       high = "red",
-                       midpoint = 0, 
-                       name = "Max CCF") +
+df_by_head_max_attention %>%
+  ggplot(aes(x = step_modded,
+             y = mean_attention,
+             color = factor(seed_name))) +
+  geom_line(size = .6, linetype = "dotted") +  # Lineplot for mean entropy
+  geom_line(data = summary_avg, aes(x = step_modded, y = mean_across_seeds), 
+             color = "black", size = 1.5) + # Smoothed average 
   theme_minimal() +
+  labs(x = "Training Step (Log10)",
+       y = "Max Attn. to Disambiguating Word",
+       color = "") +
+  scale_x_log10() +
+  geom_vline(xintercept = 1000, 
+           linetype = "dotted", 
+           size = 1.2) +
   theme(text = element_text(size = 15),
-        strip.text.y = element_text(angle = 0), # Keep facet labels horizontal
-        axis.text.x = element_text(angle = 45, hjust = 1),
         legend.position = "bottom") +
-  facet_wrap(~seed_name)
+  scale_color_viridis(option = "mako", discrete=TRUE) 
 
 
-### Any systematic effects by layer?
-avg_by_layer = ccf_summary %>%
-  group_by(Layer) %>%
-  summarise(mean_ccf = mean(max_ccf),
-            se_ccf = sd(max_ccf) / sqrt(n()))
-avg_by_layer
+### Track max disambiguation heads at each time point for each seed, across heads
+df_by_head_max_attention = df_pythia_models %>%
+  mutate(step_modded = step + 1) %>%
+  group_by(step_modded, revision, Layer, Head, seed, seed_name) %>%
+  summarise(mean_attention = mean(Attention)) %>%
+  group_by(step_modded, seed, seed_name, Layer) %>%
+  slice_max(mean_attention) %>%
+  mutate(Head = Head + 1)
 
-ccf_summary %>%
-  group_by(seed_name, Layer) %>%
-  summarise(mean_ccf = mean(max_ccf)) %>%
-  ggplot(aes(x = Layer, y = mean_ccf,
-             color = seed_name)) +
-  geom_line(size = .5, linetype = "dotted") +
-  geom_line(data = avg_by_layer, aes(x = Layer, y = mean_ccf), 
-             color = "black", size = 1.3) + # Smoothed average
-  labs(x = "Layer",
-       y = "Mean CCF") +
-  scale_color_viridis(option = "mako", discrete=TRUE) +
+summary_avg = df_by_head_max_attention %>%
+  group_by(step_modded, Layer) %>%
+  summarise(
+    mean_across_seeds = mean(mean_attention)
+  )
+
+df_by_head_max_attention %>%
+  ggplot(aes(x = step_modded,
+             y = mean_attention,
+             color = factor(seed_name))) +
+  geom_line(size = .6, linetype = "dotted") +  # Lineplot for mean entropy
+  geom_line(data = summary_avg, aes(x = step_modded, y = mean_across_seeds), 
+             color = "black", size = 1.5) + # Smoothed average 
   theme_minimal() +
+  labs(x = "Training Step (Log10)",
+       y = "Max Attn. to Disambiguating Word",
+       color = "") +
+  scale_x_log10() +
+  geom_vline(xintercept = 1000, 
+           linetype = "dotted", 
+           size = 1.2) +
   theme(text = element_text(size = 15),
-        legend.position = "bottom")
-  
-
+        legend.position = "bottom") +
+  scale_color_viridis(option = "mako", discrete=TRUE)  +
+  facet_wrap(~Layer)
 ```
-
-
-
 
 
 

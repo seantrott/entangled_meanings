@@ -3,10 +3,14 @@ title: "Analysis of 'Sort of' Attention"
 author: "Sean Trott and Pam Rivière"
 date: "November 20, 2024"
 output:
-  html_document:
-    keep_md: yes
-    toc: yes
-    toc_float: yes
+  # html_document:
+  #  keep_md: yes
+  #  toc: yes
+  #  toc_float: yes
+  pdf_document: 
+      fig_caption: yes
+      keep_md: yes
+      keep_tex: yes
 ---
 
 ```{r setup, include=FALSE}
@@ -81,8 +85,6 @@ df_attn_by_head %>%
         strip.text.y = element_text(angle = 0), # Keep facet labels horizontal
         axis.text.x = element_text(angle = 45, hjust = 1),
         legend.position = "bottom")
-
-
 
 
 
@@ -177,6 +179,27 @@ df_attention_over_time %>%
   facet_wrap(~Layer)
 
 
+df_attention_over_time %>%
+  filter(Layer == 3) %>%
+  ggplot(aes(x = step_modded,
+             y = mean_attention,
+             color = factor(Head))) +
+  geom_point(size = 3, alpha = .7) +
+  geom_line(size = 2, alpha = .7) +
+  theme_minimal() +
+  labs(x = "Training Step (Log10)",
+       y = "Attention to Disambiguating Word",
+       color = "Attention Head") +
+  scale_x_log10() +
+  scale_y_continuous(limits = c(0, .8)) +
+    geom_vline(xintercept = 1000, 
+             linetype = "dotted", 
+             size = 1.2) +
+  theme(text = element_text(size = 15),
+        legend.position = "bottom") +
+  scale_color_viridis(option = "mako", discrete=TRUE)
+
+
 ### 1back
 df_attention_over_time = df_pythia_models %>% 
   filter(mpath %in% c("EleutherAI/pythia-14m")) %>%
@@ -234,6 +257,28 @@ df_attention_over_time %>%
         legend.position = "bottom") +
   scale_color_viridis(option = "mako", discrete=TRUE) +
   facet_wrap(~Layer)
+
+
+df_attention_over_time %>%
+  filter(Layer == 3) %>%
+  ggplot(aes(x = step_modded,
+             y = mean_attention_inserted_string,
+             color = factor(Head))) +
+  geom_point(size = 3, alpha = .7) +
+  geom_line(size = 2, alpha = .7) +
+  theme_minimal() +
+  labs(x = "Training Step (Log10)",
+       y = "Attention to Inserted String",
+       color = "Attention Head") +
+  scale_x_log10() +
+  # scale_y_continuous(limits = c(0, .8)) +
+    geom_vline(xintercept = 1000, 
+             linetype = "dotted", 
+             size = 1.2) +
+  theme(text = element_text(size = 15),
+        legend.position = "bottom") +
+  scale_color_viridis(option = "mako", discrete=TRUE)
+
 
 ```
 
@@ -295,7 +340,7 @@ significant_results %>%
 ### Comparison for l3, h2 by step
 df_pythia_models %>%
   filter(mpath == "EleutherAI/pythia-14m") %>%
-  filter(step %in% c(1, 1000, 2000, 51000, 143000)) %>%
+  filter(step %in% c(1, 1000, 2000, 143000)) %>%
   filter(Head == 2) %>%
   filter(Layer == 3) %>%
   select(step, Attention_1back, Attention_inserted_string) %>%

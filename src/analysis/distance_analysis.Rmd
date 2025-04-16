@@ -96,6 +96,65 @@ summary(lm(data = df_best_r2_scale,
            r2 ~ log10(n_params)))
 ```
 
+
+## Residauls by model
+
+```{r}
+df_pythia_models_final = df_pythia_models %>%
+  filter(step == 143000)
+
+models <- by(df_pythia_models_final, df_pythia_models_final$mpath, function(subdata) {
+  model <- lm(mean_relatedness ~ Distance * Layer, data = subdata)
+  subdata$residuals <- residuals(model)
+  return(subdata)
+})
+
+# Combine the results back into a single dataframe
+results <- do.call(rbind, models)
+
+results %>%
+  ggplot(aes(x = residuals,
+             fill = Same_sense)) +
+  geom_density(alpha = .7, size = 0) +
+  geom_vline(xintercept = 0, size = .6, linetype = "dashed") +
+  theme_minimal() +
+  # scale_fill_viridis(option = "mako", discrete=TRUE) +
+  theme(text = element_text(size = 15),
+        legend.position="bottom") +
+  scale_fill_manual(values = my_colors)  +
+  labs(x = "Residuals (Relatedness ~ Distance * Layer)",
+       fill = "") +
+  facet_wrap(~reorder(mpath, n_params))
+
+
+results %>%
+  group_by(mpath, n_params, Same_sense) %>%
+  summarise(mean_resid = mean(residuals),
+            se_resid = sd(residuals)/sqrt(n())) %>%
+  ggplot(aes(x = n_params,
+             y = mean_resid,
+             color = Same_sense)) +
+  geom_point(size = 3, alpha = .6) +
+  # coord_flip() +
+  geom_hline(yintercept = 0, linetype = "dotted") +
+  geom_errorbar(aes(ymin = mean_resid - 2*se_resid, 
+                    ymax = mean_resid + 2*se_resid), 
+                width=.2) + 
+                # position=position_dodge(.9)) +
+  scale_x_log10() +
+  labs(x = "Parameters",
+       y = "Residual Error",
+       color = "") +
+  # geom_text_repel(aes(label=mpath), size=3) +
+  theme_minimal() +
+  scale_color_manual(values = my_colors)  +
+  theme(text = element_text(size = 15),
+        legend.position="bottom")
+
+
+```
+
+
 ## Scaling across time
 
 ```{r}
