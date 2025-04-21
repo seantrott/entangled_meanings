@@ -218,7 +218,7 @@ if __name__ == "__main__":
     df_just_n = df[df['Class']=='N']
 
     ### Get revisions
-    revisions = utils.generate_revisions_post1000()
+    revisions = utils.generate_revisions_post512()
 
     ## Specify layer/head to modify
     for layer_indices, head_indices in zip(LAYERS_HEADS_IDX["layers"],LAYERS_HEADS_IDX["heads"]):

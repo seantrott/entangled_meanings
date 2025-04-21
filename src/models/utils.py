@@ -29,7 +29,7 @@ def generate_revisions_test():
     # revisions = [143000]
     return [f"step{step}" for step in revisions]
 
-def generate_revisions_post1000():
+def generate_revisions_post512():
 
     revisions = [512, 1000]
     # Add every 1,000 steps afterward
