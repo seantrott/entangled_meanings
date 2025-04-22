@@ -1,6 +1,7 @@
 """Useful functions for getting distance information and embedding information."""
 
 import functools
+import random
 import torch
 from torch.nn.functional import softmax
 from transformers import GPTNeoXForCausalLM, AutoTokenizer
@@ -217,6 +218,56 @@ def visualize_matrix(matrix, title, figname,show, color_scale_tuple):
         plt.savefig(figname)
     if show == 1: 
         plt.show()
+
+
+
+def select_random_heads(num_layers, num_heads_per_layer, num_samples=1, seed=None, target_layer=None, blocked_heads=None):
+    """
+    Randomly select (layer, head) pairs, with options to restrict to a specific layer and avoid specific heads.
+
+    Args:
+        num_layers (int): Total number of layers.
+        num_heads_per_layer (int): Number of attention heads per layer.
+        num_samples (int): Number of (layer, head) pairs to sample.
+        seed (int, optional): Seed for reproducibility.
+        target_layer (int, optional): If set, only sample from this layer.
+        blocked_heads (list, optional): List of head indices to exclude from sampling.
+
+    Returns:
+        dict: {'layers': [...], 'heads': [...]}
+    """
+    if seed is not None:
+        random.seed(seed)
+    
+    blocked_heads = set(blocked_heads or [])
+
+    if target_layer is not None:
+        all_combinations = [
+            (target_layer, head)
+            for head in range(num_heads_per_layer)
+            if head not in blocked_heads
+        ]
+    else:
+        all_combinations = [
+            (layer, head)
+            for layer in range(num_layers)
+            for head in range(num_heads_per_layer)
+            if head not in blocked_heads
+        ]
+
+    if num_samples > len(all_combinations):
+        raise ValueError("Not enough valid (layer, head) combinations to sample from.")
+
+    selected = random.sample(all_combinations, num_samples)
+    layer_indices = [layer for layer, _ in selected]
+    head_indices = [head for _, head in selected]
+
+    LAYERS_HEADS_IDX = {"layers": layer_indices,
+                        "heads": head_indices}
+
+    return LAYERS_HEADS_IDX
+
+
 
 # ----
 # CAUSAL MANIPULATION
