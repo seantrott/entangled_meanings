@@ -24,7 +24,6 @@ library(viridis)
 library(ggridges)
 library(lmerTest)
 library(ggrepel)
-library(ggcorrplot)
 
 all_colors <- viridis::viridis(10, option = "mako")
 my_colors <- all_colors[c(3, 5, 7)]  # Selecting specific colors from the palette
@@ -555,21 +554,27 @@ y <- df_wide$r2
 regression_results <- lapply(names(df_wide)[!(names(df_wide) %in% c("mpath", "revision", "step", "n_params", "step_modded", "r", "r2"))], function(var) {
   model <- lm(y ~ df_wide[[var]])
   summary_model <- summary(model)
+  p_value <- coef(summary_model)[2, "Pr(>|t|)"]
   list(Feature = var, 
        R2 = summary_model$r.squared, 
-       Coefficient = coef(model)[2])
+       Coefficient = coef(model)[2],
+       P_Value = p_value)
 })
 
-# Convert results to a dataframe
+
 regression_results_df <- do.call(rbind, regression_results) %>% as.data.frame()
 
-# Print sorted R^2 values with coefficients
-regression_results_df <- regression_results_df %>% 
+# Coerce types and apply multiple comparisons correction
+regression_results_df <- regression_results_df %>%
   mutate(R2 = as.numeric(R2),
-         Coefficient = as.numeric(Coefficient)) 
-print(regression_results_df)
+         Coefficient = as.numeric(Coefficient),
+         P_Value = as.numeric(P_Value),
+         P_Value_adj = p.adjust(P_Value, method = "fdr"))
 
 
+regression_results_df %>%
+  filter(Coefficient > 0) %>%
+  filter(P_Value_adj < .05)
 ```
 
 
