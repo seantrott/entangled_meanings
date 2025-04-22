@@ -1,11 +1,15 @@
 ---
 title: "distance_analysis_QKweight_swaps"
-output: html_document
 date: "2025-03-24"
+output:
+  html_document:
+    keep_md: yes
+    toc: yes
+    toc_float: yes
 ---
   
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(dpi = 300, fig.format = "pdf")
+knitr::opts_chunk$set(dpi = 300, fig.format = "png")
 ```
 
 ```{r include=FALSE}

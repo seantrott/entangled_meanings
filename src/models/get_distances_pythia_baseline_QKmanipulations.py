@@ -22,12 +22,13 @@ import utils
 ### Models to modify and test
 MODELS = ['EleutherAI/pythia-14m']
 
-STIMULI = "../../data/raw/rawc/rawc_stimuli.csv"
+STIMULI = "data/raw/rawc/rawc_stimuli.csv"
 
 MODIFICATIONS = ["ablate_zero",
                  "ablate_copy_step1"]
 
 
+### Set up config
 num_layers = 6 #Pythia-14M
 num_heads_per_layer = 4 #Pythia-14M
 target_layer = 2 #layer index to from which to sample random heads
@@ -37,9 +38,13 @@ blocked_heads = [0,1]
 
 LAYERS_HEADS_IDX = {}
 for intervention in range(num_interventions):
-	num_samples = num_samples_list[intervention]
-	LAYERS_HEADS_IDX[intervention] = utils.select_random_heads(num_layers, num_heads_per_layer, num_samples=num_samples, seed=None, target_layer=target_layer, blocked_heads=blocked_heads)
-	
+    num_samples = num_samples_list[intervention]
+    LAYERS_HEADS_IDX[intervention] = utils.select_random_heads(num_layers, num_heads_per_layer, num_samples=num_samples, seed=None, target_layer=target_layer, blocked_heads=blocked_heads)
+
+LAYERS_HEADS_IDX = {
+    "layers": [v["layers"] for v in LAYERS_HEADS_IDX.values()],
+    "heads":  [v["heads"] for v in LAYERS_HEADS_IDX.values()]
+}
 
 
 def main(df, mpath, revisions, modification, layer_indices, head_indices):
@@ -234,7 +239,7 @@ if __name__ == "__main__":
     revisions = utils.generate_revisions_post512()
 
     ## Specify layer/head to modify
-    for layer_indices, head_indices in zip(LAYERS_HEADS_IDX["layers"],LAYERS_HEADS_IDX["heads"]):
+    for layer_indices, head_indices in zip(LAYERS_HEADS_IDX_REFORMATTED["layers"],LAYERS_HEADS_IDX_REFORMATTED["heads"]):
         print(f"Running with layers: {layer_indices}, and heads: {head_indices}")
 
         for modification in MODIFICATIONS:
