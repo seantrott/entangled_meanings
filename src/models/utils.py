@@ -203,7 +203,7 @@ def count_parameters(model):
         # otherwise, count it towards your number of params
         params = parameter.numel()
         total_params += params
-    print(f"Total Trainable Params: {total_params}")
+    # print(f"Total Trainable Params: {total_params}")
     
     return total_params
 

@@ -73,7 +73,7 @@ def main(df, mpath, revisions, modification, layer_indices, head_indices):
     for checkpoint in tqdm(revisions):
 
         # Set up save path, filename, etc.
-        savepath = f"../../data/processed/rawc/pythia-QKmod-random-heads/distances_{modification}_layer{layer_indices}head{head_indices}/"
+        savepath = f"data/processed/rawc/pythia/pythia-QKmod-random-heads/distances_{modification}_layer{layer_indices}head{head_indices}/"
         if not os.path.exists(savepath): 
             os.makedirs(savepath)
         if "/" in mpath:
@@ -82,7 +82,7 @@ def main(df, mpath, revisions, modification, layer_indices, head_indices):
             filename = "rawc-distances_model-" + mpath +  "-" + checkpoint + ".csv"
 
         # Set up figure savepath
-        figsavepath = f"../../data/processed/rawc/pythia-QKmod-random-heads/figures/{modification}"
+        figsavepath = f"data/processed/rawc/pythia/pythia-QKmod-random-heads/figures/{modification}"
         if not os.path.exists(figsavepath): 
             os.makedirs(figsavepath)
 
@@ -92,6 +92,7 @@ def main(df, mpath, revisions, modification, layer_indices, head_indices):
             print("Already run this model for this checkpoint.")
             continue
 
+        print(savepath)
 
         # Load the model & tokenizer (this will be the intact model)
         model = GPTNeoXForCausalLM.from_pretrained(
@@ -103,6 +104,8 @@ def main(df, mpath, revisions, modification, layer_indices, head_indices):
         model.to(device) # allocate model to desired device
 
         tokenizer = AutoTokenizer.from_pretrained(mpath, revision=checkpoint)
+
+        n_params = utils.count_parameters(model)
        
 
         #### -----------------------------
@@ -211,11 +214,10 @@ def main(df, mpath, revisions, modification, layer_indices, head_indices):
                 })
 
                 #for record-keeping
-                num_params = utils.count_parameters(modified_model)
     
         df_results = pd.DataFrame(results)
         df_results['token_diffs'] = np.abs(df_results['S1_ntokens'].values-df_results['S2_ntokens'].values)
-        df_results['n_params'] = np.repeat(num_params,df_results.shape[0])
+        df_results['n_params'] = n_params # np.repeat(num_params,df_results.shape[0])
         df_results['mpath'] = mpath
         df_results['revision'] = checkpoint
         df_results['step'] = int(checkpoint.replace("step", ""))
@@ -239,7 +241,7 @@ if __name__ == "__main__":
     revisions = utils.generate_revisions_post512()
 
     ## Specify layer/head to modify
-    for layer_indices, head_indices in zip(LAYERS_HEADS_IDX_REFORMATTED["layers"],LAYERS_HEADS_IDX_REFORMATTED["heads"]):
+    for layer_indices, head_indices in zip(LAYERS_HEADS_IDX["layers"],LAYERS_HEADS_IDX["heads"]):
         print(f"Running with layers: {layer_indices}, and heads: {head_indices}")
 
         for modification in MODIFICATIONS:
