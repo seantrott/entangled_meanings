@@ -351,6 +351,7 @@ df_merged_all_zero_ablations %>%
 df_summ = df_merged_all_zero_ablations %>%
   filter(Layer > 2) %>%
   group_by(condition, heads_modified, step_mod) %>%
+  slice_max(r2, n = 1) %>%
   group_by(condition, step_mod) %>%
   summarise(
     mean_r2_diff = mean(r2_diff, na.rm = TRUE),
@@ -361,7 +362,9 @@ df_summ = df_merged_all_zero_ablations %>%
 summary(df_summ$mean_r2_diff)
 sd(df_summ$mean_r2_diff)
 ### Model
-mod_r2_diff = lm(data = df_summ, mean_r2_diff ~ step_mod * condition)
+mod_r2_diff = lm(data = df_summ, mean_r2_diff ~ log10(step_mod) + condition)
+summary(mod_r2_diff)
+mod_r2_diff = lm(data = df_summ, mean_r2_diff ~ step_mod + condition)
 summary(mod_r2_diff)
 
 
@@ -369,13 +372,16 @@ summary(mod_r2_diff)
 df_summ = df_merged_all_zero_ablations %>%
   filter(Layer > 2) %>%
   group_by(condition, heads_modified, step_mod) %>%
+  slice_max(r2, n = 1) %>%
   group_by(condition, step_mod) %>%
   summarise(mean_r2_frac = mean(r2_frac, na.rm = TRUE))
 
 summary(df_summ$mean_r2_frac)
 sd(df_summ$mean_r2_frac)
 ### Model
-mod_r2_frac = lm(data = df_summ, mean_r2_frac ~ step_mod * condition)
+mod_r2_frac = lm(data = df_summ, mean_r2_frac ~ log10(step_mod) + condition)
+summary(mod_r2_frac)
+mod_r2_frac = lm(data = df_summ, mean_r2_frac ~ step_mod + condition)
 summary(mod_r2_frac)
 
 
@@ -583,6 +589,7 @@ df_merged_all_copy_ablations %>%
 df_summ = df_merged_all_copy_ablations %>%
   filter(Layer > 2) %>%
   group_by(condition, heads_modified, step_mod) %>%
+  slice_max(r2, n = 1) %>%
   group_by(condition, step_mod) %>%
   summarise(
     mean_r2_diff = mean(r2_diff, na.rm = TRUE),
@@ -593,7 +600,9 @@ df_summ = df_merged_all_copy_ablations %>%
 summary(df_summ$mean_r2_diff)
 sd(df_summ$mean_r2_diff)
 ### Model
-mod_r2_diff = lm(data = df_summ, mean_r2_diff ~ step_mod * condition)
+mod_r2_diff = lm(data = df_summ, mean_r2_diff ~ log10(step_mod) + condition)
+summary(mod_r2_diff)
+mod_r2_diff = lm(data = df_summ, mean_r2_diff ~ step_mod + condition)
 summary(mod_r2_diff)
 
 
@@ -602,6 +611,7 @@ summary(mod_r2_diff)
 df_summ = df_merged_all_copy_ablations %>%
   filter(Layer > 2) %>%
   group_by(condition, heads_modified, step_mod) %>%
+  slice_max(r2, n = 1) %>%
   group_by(condition, step_mod) %>%
   summarise(
     mean_r2_frac = mean(r2_frac, na.rm = TRUE),
@@ -612,7 +622,9 @@ df_summ = df_merged_all_copy_ablations %>%
 summary(df_summ$mean_r2_frac)
 sd(df_summ$mean_r2_frac)
 ### Model
-mod_r2_diff = lm(data = df_summ, mean_r2_frac ~ step_mod * condition)
-summary(mod_r2_diff)
+mod_r2_frac = lm(data = df_summ, mean_r2_frac ~ log10(step_mod) + condition)
+summary(mod_r2_frac)
+mod_r2_frac = lm(data = df_summ, mean_r2_frac ~ step_mod + condition)
+summary(mod_r2_frac)
 
 ```
