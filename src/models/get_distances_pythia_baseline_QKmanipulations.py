@@ -31,7 +31,7 @@ MODIFICATIONS = ["ablate_zero",
 ### Set up config
 num_layers = 6 #Pythia-14M
 num_heads_per_layer = 4 #Pythia-14M
-target_layer = 2 #layer index to from which to sample random heads
+target_layer = 3 #layer index to from which to sample random heads
 num_interventions = 3 #three rounds of separate interventions
 num_samples_list = [2,1,1]
 blocked_heads = [0,1]
@@ -43,7 +43,7 @@ for intervention in range(num_interventions):
 
 LAYERS_HEADS_IDX = {
     "layers": [v["layers"] for v in LAYERS_HEADS_IDX.values()],
-    "heads":  [v["heads"] for v in LAYERS_HEADS_IDX.values()]
+    "heads":  [sorted(v["heads"]) for v in LAYERS_HEADS_IDX.values()]
 }
 
 
