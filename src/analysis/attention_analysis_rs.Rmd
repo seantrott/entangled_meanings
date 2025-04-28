@@ -36,6 +36,7 @@ my_colors <- all_colors[c(3, 5, 7)]  # Selecting specific colors from the palett
 
 ```{r}
 # setwd("/Users/seantrott/Dropbox/UCSD/Research/Ambiguity/SSD/entangled_meanings/src/analysis/")
+setwd("/Users/pamelariviere/Desktop/backburner_projects/projects_sean/entangled_meanings/src/analysis/")
 directory_path <- "../../data/processed/rawc/pythia/attention_rs/"
 csv_files <- list.files(path = directory_path, pattern = "*.csv", full.names = TRUE)
 csv_list <- csv_files %>%
@@ -69,12 +70,12 @@ summary_avg = summary_df %>%
 ggplot(summary_df, aes(x = step, 
                        y = mean_entropy, 
                        color = seed_name)) +
-  geom_line(size = .5, linetype = "dotted") +  # Lineplot for mean entropy
+  geom_line(size = .5, alpha=0.6, linewidth=1) +  # Lineplot for mean entropy
   geom_line(data = summary_avg, aes(x = step, y = mean_entropy), 
              color = "black", size = 1.3) + # Smoothed average
   labs(
     title = "",
-    x = "Step",
+    x = "Training Step (Log10)",
     y = "Mean Entropy"
   ) +
   theme_minimal() +
@@ -85,7 +86,7 @@ ggplot(summary_df, aes(x = step,
   geom_vline(xintercept = 1000, 
              linetype = "dotted", 
              size = 1.2) +
-  scale_color_viridis(option = "mako", discrete=TRUE)
+  scale_color_manual(values = viridisLite::viridis(9,option = "magma", begin = 0.9, end = 0.15))
 
 
 ```
@@ -109,7 +110,7 @@ summary_avg = summary_df %>%
 ggplot(summary_df, aes(x = step, 
                        y = mean_entropy, 
                        color = seed_name)) +
-  geom_line(size = .5, linetype = "dotted") +  # Lineplot for mean entropy
+  geom_line(size = .5, linewidth = 1, alpha=0.6) +  # Lineplot for mean entropy
   geom_line(data = summary_avg, aes(x = step, y = mean_entropy), 
              color = "black", size = 1.3) + # Smoothed average
   labs(
@@ -125,7 +126,7 @@ ggplot(summary_df, aes(x = step,
   geom_vline(xintercept = 1000, 
              linetype = "dotted", 
              size = 1.2) +
-  scale_color_viridis(option = "mako", discrete=TRUE) +
+  scale_color_manual(values = viridisLite::viridis(9,option = "magma", begin = 0.9, end=0.15)) +
   facet_wrap(~Layer)
 
 
@@ -183,9 +184,9 @@ df_final %>%
   ggplot(aes(x = Layer,
              y = mean_entropy, 
              color = seed_name)) +
-  geom_line(size = .5, linetype = "dotted") +  # Lineplot for mean entropy
+  geom_line(size = .5, linewidth = 1,alpha=0.5) +  # Lineplot for mean entropy
   geom_line(data = summary_avg, aes(x = Layer, y = mean_entropy), 
-             color = "black", size = 1.3) + # Smoothed average
+             color = "black", size = 3) + # Smoothed average
   labs(
     title = "",
     x = "Layer",
@@ -194,7 +195,7 @@ df_final %>%
   theme_minimal() +
   theme(text = element_text(size = 15),
         legend.position = "none") +
-  scale_color_viridis(option = "mako", discrete=TRUE)
+  scale_color_manual(values = viridisLite::viridis(9,option = "magma", begin=0.9,end=0.15))
 
 ```
 
@@ -299,14 +300,14 @@ final_step_wide$PC2 = pca_result$x[,2]
 final_step_wide %>%
   ggplot(aes(x = PC1, y = PC2, color = seed_name, 
              shape = factor(cluster_kmeans))) +
-  geom_point(alpha = .8, size = 2) +
+  geom_point(alpha = .7, size = 2) +
   theme_minimal() +
-  geom_vline(xintercept = 0, linetype = "dotted", size = 1.5) +
+  geom_vline(xintercept = 0, linetype = "dashed", size = 1.5) +
   labs(x = "PC1", 
        y = "PC2") +
   theme(text = element_text(size = 15),
         legend.position = "none") +
-  scale_color_viridis(option = "mako", discrete=TRUE)
+  scale_color_manual(values = viridisLite::viridis(9,option = "magma", begin=0.9,end=0.15))
 
 
 
@@ -322,14 +323,14 @@ final_step_wide$ts2 = tsne_result$Y[,2]
 final_step_wide %>%
   ggplot(aes(x = ts1, y = ts2, color = factor(seed), 
              shape = factor(cluster_kmeans))) +
-  geom_point(alpha = .8, size = 2) +
+  geom_point(alpha = .7, size = 2) +
   theme_minimal() +
-  geom_vline(xintercept = 0, linetype = "dotted", size = 1.5) +
+  geom_vline(xintercept = 0, linetype = "dashed", size = 1.5) +
   labs(x = "Dim 1", 
        y = "Dim 2") +
   theme(text = element_text(size = 15),
         legend.position = "none") +
-  scale_color_viridis(option = "mako", discrete=TRUE)
+  scale_color_manual(values = viridisLite::viridis(9,option = "magma", begin=0.9,end=0.15))
 
 
 ```
@@ -368,14 +369,14 @@ df_attention_over_time %>%
   labs(x = "Training Step (Log10)",
        y = "Attention to Disambiguating Word",
        color = "Attention Head",
-       title = "Layer 3") +
+       title = "Layer 3 by Random Seed") +
   scale_x_log10() +
     geom_vline(xintercept = 1000, 
              linetype = "dotted", 
              size = 1.2) +
   theme(text = element_text(size = 15),
         legend.position = "bottom") +
-  scale_color_viridis(option = "mako", discrete=TRUE) +
+  scale_color_manual(values = viridisLite::viridis(4,option = "mako", begin=0.8,end=0.15)) +
   facet_wrap(~seed_name)
 
 
@@ -392,14 +393,14 @@ df_attention_over_time %>%
   labs(x = "Training Step (Log10)",
        y = "Attention to Disambiguating Word",
        color = "Attention Head",
-       title = "Layer 4") +
+       title = "Layer 4 Attention By Random Seed") +
   scale_x_log10() +
     geom_vline(xintercept = 1000, 
              linetype = "dotted", 
              size = 1.2) +
   theme(text = element_text(size = 15),
         legend.position = "bottom") +
-  scale_color_viridis(option = "mako", discrete=TRUE) +
+  scale_color_manual(values = viridisLite::viridis(4,option = "mako", begin=0.8,end=0.15)) +
   facet_wrap(~seed_name)
 
 
@@ -466,21 +467,64 @@ df_by_head_max_attention %>%
   ggplot(aes(x = step_modded,
              y = mean_attention,
              color = factor(seed_name))) +
-  geom_line(size = .6, linetype = "dotted") +  # Lineplot for mean entropy
+  geom_line(size = .6, alpha=0.6, linewidth=2) +  # Lineplot for mean entropy
   geom_line(data = summary_avg, aes(x = step_modded, y = mean_across_seeds), 
-             color = "black", size = 1.5) + # Smoothed average 
+             color = "black", size = 3) + # Smoothed average 
   theme_minimal() +
   labs(x = "Training Step (Log10)",
        y = "Max Attn. to Disambiguating Word",
        color = "") +
   scale_x_log10() +
   geom_vline(xintercept = 1000, 
-           linetype = "dotted", 
+           linetype = "dashed", 
            size = 1.2) +
   theme(text = element_text(size = 15),
         legend.position = "bottom") +
-  scale_color_viridis(option = "mako", discrete=TRUE)  +
+  scale_color_manual(values = viridisLite::viridis(9,option = "magma", begin=0.9,end=0.15))  +
   facet_wrap(~Layer)
+
+
+
+df_by_head_max_attention %>%
+  filter(Layer == 3) %>%
+  ggplot(aes(x = step_modded,
+             y = mean_attention,
+             color = factor(seed_name))) +
+  geom_line(size = .6, alpha=0.6, linewidth=2) +  # Lineplot for mean entropy
+  theme_minimal() +
+  labs(x = "Training Step (Log10)",
+       y = "Max Attn. to Disambiguating Word",
+       title = "Layer 3",
+       color = "") +
+  scale_x_log10() +
+  geom_vline(xintercept = 1000, 
+           linetype = "dashed", 
+           size = 1.2) +
+  theme(text = element_text(size = 15),
+        legend.position = "bottom") +
+  scale_color_manual(values = viridisLite::viridis(9,option = "magma", begin=0.9,end=0.15))  
+
+
+df_by_head_max_attention %>%
+  filter(Layer == 4) %>%
+  ggplot(aes(x = step_modded,
+             y = mean_attention,
+             color = factor(seed_name))) +
+  geom_line(size = .6, alpha=0.6, linewidth=2) +  # Lineplot for mean entropy
+  theme_minimal() +
+  labs(x = "Training Step (Log10)",
+       y = "Max Attn. to Disambiguating Word",
+       title = "Layer 4",
+       color = "") +
+  scale_x_log10() +
+  geom_vline(xintercept = 1000, 
+           linetype = "dashed", 
+           size = 1.2) +
+  theme(text = element_text(size = 15),
+        legend.position = "bottom") +
+  scale_color_manual(values = viridisLite::viridis(9,option = "magma", begin=0.9,end=0.15))  
+
+
 ```
 
 
