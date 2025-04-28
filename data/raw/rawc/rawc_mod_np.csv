@@ -1,0 +1,337 @@
+word,sentence,disambiguating_word,string,mod_np,non_adjective,reversed_mod_np,reversed_sentence,revesred_and_modified_sentence,reversed_and_modified_sentence
+act,It was a desperate act.,desperate,act,desperate act,False,act desperate,It was a act desperate.,It was an act desperate.,It was an act desperate.
+act,It was a humane act.,humane,act,humane act,False,act humane,It was a act humane.,It was an act humane.,It was an act humane.
+act,It was a magic act.,magic,act,magic act,False,act magic,It was a act magic.,It was an act magic.,It was an act magic.
+appeal,He had a universal appeal.,universal,appeal,universal appeal,False,appeal universal,He had a appeal universal.,He had an appeal universal.,He had an appeal universal.
+appeal,He had an undefinable appeal.,undefinable,appeal,undefinable appeal,False,appeal undefinable,He had an appeal undefinable.,He had an appeal undefinable.,He had an appeal undefinable.
+appeal,He had a legal appeal.,legal,appeal,legal appeal,False,appeal legal,He had a appeal legal.,He had an appeal legal.,He had an appeal legal.
+atmosphere,It was a tense atmosphere.,tense,atmosphere,tense atmosphere,False,atmosphere tense,It was a atmosphere tense.,It was an atmosphere tense.,It was an atmosphere tense.
+atmosphere,It was a hostile atmosphere.,hostile,atmosphere,hostile atmosphere,False,atmosphere hostile,It was a atmosphere hostile.,It was an atmosphere hostile.,It was an atmosphere hostile.
+atmosphere,It was a gaseous atmosphere.,gaseous,atmosphere,gaseous atmosphere,False,atmosphere gaseous,It was a atmosphere gaseous.,It was an atmosphere gaseous.,It was an atmosphere gaseous.
+band,It was a gold band.,gold,band,gold band,True,band gold,It was a band gold.,It was a band gold.,It was a band gold.
+band,It was a rubber band.,rubber,band,rubber band,True,band rubber,It was a band rubber.,It was a band rubber.,It was a band rubber.
+band,It was a jazz band.,jazz,band,jazz band,True,band jazz,It was a band jazz.,It was a band jazz.,It was a band jazz.
+barrier,There was a police barrier.,police,barrier,police barrier,True,barrier police,There was a barrier police.,There was a barrier police.,There was a barrier police.
+barrier,There was a concrete barrier.,concrete,barrier,concrete barrier,False,barrier concrete,There was a barrier concrete.,There was a barrier concrete.,There was a barrier concrete.
+barrier,There was a language barrier.,language,barrier,language barrier,True,barrier language,There was a barrier language.,There was a barrier language.,There was a barrier language.
+bat,He saw a furry bat.,furry,bat,furry bat,False,bat furry,He saw a bat furry.,He saw a bat furry.,He saw a bat furry.
+bat,He saw a fruit bat.,fruit,bat,fruit bat,True,bat fruit,He saw a bat fruit.,He saw a bat fruit.,He saw a bat fruit.
+bat,He saw a wooden bat.,wooden,bat,wooden bat,False,bat wooden,He saw a bat wooden.,He saw a bat wooden.,He saw a bat wooden.
+beam,He saw the laser beam.,laser,beam,laser beam,True,beam laser,He saw the beam laser.,He saw the beam laser.,He saw the beam laser.
+beam,He saw the bright beam.,bright,beam,bright beam,False,beam bright,He saw the beam bright.,He saw the beam bright.,He saw the beam bright.
+beam,He saw the wood beam.,wood,beam,wood beam,True,beam wood,He saw the beam wood.,He saw the beam wood.,He saw the beam wood.
+block,She had a toy block.,toy,block,toy block,True,block toy,She had a block toy.,She had a block toy.,She had a block toy.
+block,She had a wooden block.,wooden,block,wooden block,False,block wooden,She had a block wooden.,She had a block wooden.,She had a block wooden.
+block,She had a mental block.,mental,block,mental block,False,block mental,She had a block mental.,She had a block mental.,She had a block mental.
+blood,He has coagulated blood.,coagulated,blood,coagulated blood,True,blood coagulated,He has blood coagulated.,He has blood coagulated.,He has blood coagulated.
+blood,He has thin blood.,thin,blood,thin blood,False,blood thin,He has blood thin.,He has blood thin.,He has blood thin.
+blood,He has noble blood.,noble,blood,noble blood,False,blood noble,He has blood noble.,He has blood noble.,He has blood noble.
+board,It was the ironing board.,ironing,board,ironing board,False,board ironing,It was the board ironing.,It was the board ironing.,It was the board ironing.
+board,It was the wooden board.,wooden,board,wooden board,False,board wooden,It was the board wooden.,It was the board wooden.,It was the board wooden.
+board,It was the executive board.,executive,board,executive board,True,board executive,It was the board executive.,It was the board executive.,It was the board executive.
+book,He had a best-selling book.,best-selling,book,best-selling book,False,book best-selling,He had a book best-selling.,He had a book best-selling.,He had a book best-selling.
+book,He had a popular book.,popular,book,popular book,False,book popular,He had a book popular.,He had a book popular.,He had a book popular.
+book,He had a heavy book.,heavy,book,heavy book,False,book heavy,He had a book heavy.,He had a book heavy.,He had a book heavy.
+breakfast,They ate a pancake breakfast.,pancake,breakfast,pancake breakfast,True,breakfast pancake,They ate a breakfast pancake.,They ate a breakfast pancake.,They ate a breakfast pancake.
+breakfast,They ate a nutritious breakfast.,nutritious,breakfast,nutritious breakfast,False,breakfast nutritious,They ate a breakfast nutritious.,They ate a breakfast nutritious.,They ate a breakfast nutritious.
+breakfast,They ate a family breakfast.,family,breakfast,family breakfast,True,breakfast family,They ate a breakfast family.,They ate a breakfast family.,They ate a breakfast family.
+cape,It was a red cape.,red,cape,red cape,False,cape red,It was a cape red.,It was a cape red.,It was a cape red.
+cape,It was a flowing cape.,flowing,cape,flowing cape,False,cape flowing,It was a cape flowing.,It was a cape flowing.,It was a cape flowing.
+cape,It was a rocky cape.,rocky,cape,rocky cape,False,cape rocky,It was a cape rocky.,It was a cape rocky.,It was a cape rocky.
+case,It was a beer case.,beer,case,beer case,True,case beer,It was a case beer.,It was a case beer.,It was a case beer.
+case,It was a display case.,display,case,display case,True,case display,It was a case display.,It was a case display.,It was a case display.
+case,It was a divorce case.,divorce,case,divorce case,True,case divorce,It was a case divorce.,It was a case divorce.,It was a case divorce.
+cause,It was a worthy cause.,worthy,cause,worthy cause,False,cause worthy,It was a cause worthy.,It was a cause worthy.,It was a cause worthy.
+cause,It was a political cause.,political,cause,political cause,False,cause political,It was a cause political.,It was a cause political.,It was a cause political.
+cause,It was a main cause.,main,cause,main cause,False,cause main,It was a cause main.,It was a cause main.,It was a cause main.
+cell,It was a skin cell.,skin,cell,skin cell,True,cell skin,It was a cell skin.,It was a cell skin.,It was a cell skin.
+cell,It was a brain cell.,brain,cell,brain cell,True,cell brain,It was a cell brain.,It was a cell brain.,It was a cell brain.
+cell,It was a prison cell.,prison,cell,prison cell,True,cell prison,It was a cell prison.,It was a cell prison.,It was a cell prison.
+charm,She had a devilish charm.,devilish,charm,devilish charm,False,charm devilish,She had a charm devilish.,She had a charm devilish.,She had a charm devilish.
+charm,She had a natural charm.,natural,charm,natural charm,False,charm natural,She had a charm natural.,She had a charm natural.,She had a charm natural.
+charm,She had a gold charm.,gold,charm,gold charm,True,charm gold,She had a charm gold.,She had a charm gold.,She had a charm gold.
+chicken,They liked the juicy chicken.,juicy,chicken,juicy chicken,False,chicken juicy,They liked the chicken juicy.,They liked the chicken juicy.,They liked the chicken juicy.
+chicken,They liked the roasted chicken.,roasted,chicken,roasted chicken,False,chicken roasted,They liked the chicken roasted.,They liked the chicken roasted.,They liked the chicken roasted.
+chicken,They liked the clucking chicken.,clucking,chicken,clucking chicken,True,chicken clucking,They liked the chicken clucking.,They liked the chicken clucking.,They liked the chicken clucking.
+class,It was a perceptive class.,perceptive,class,perceptive class,False,class perceptive,It was a class perceptive.,It was a class perceptive.,It was a class perceptive.
+class,It was a misbehaving class.,misbehaving,class,misbehaving class,False,class misbehaving,It was a class misbehaving.,It was a class misbehaving.,It was a class misbehaving.
+class,It was a boring class.,boring,class,boring class,False,class boring,It was a class boring.,It was a class boring.,It was a class boring.
+clip,It was a film clip.,film,clip,film clip,True,clip film,It was a clip film.,It was a clip film.,It was a clip film.
+clip,It was a video clip.,video,clip,video clip,True,clip video,It was a clip video.,It was a clip video.,It was a clip video.
+clip,It was a hair clip.,hair,clip,hair clip,True,clip hair,It was a clip hair.,It was a clip hair.,It was a clip hair.
+cold,It was an icy cold.,icy,cold,icy cold,False,cold icy,It was an cold icy.,It was an cold icy.,It was an cold icy.
+cold,It was a freezing cold.,freezing,cold,freezing cold,False,cold freezing,It was a cold freezing.,It was a cold freezing.,It was a cold freezing.
+cold,It was a chest cold.,chest,cold,chest cold,False,cold chest,It was a cold chest.,It was a cold chest.,It was a cold chest.
+column,It was a gossip column.,gossip,column,gossip column,True,column gossip,It was a column gossip.,It was a column gossip.,It was a column gossip.
+column,It was a sports column.,sports,column,sports column,True,column sports,It was a column sports.,It was a column sports.,It was a column sports.
+column,It was a concrete column.,concrete,column,concrete column,False,column concrete,It was a column concrete.,It was a column concrete.,It was a column concrete.
+company,He liked the investment company.,investment,company,investment company,True,company investment,He liked the company investment.,He liked the company investment.,He liked the company investment.
+company,He liked the pharmaceutical company.,pharmaceutical,company,pharmaceutical company,False,company pharmaceutical,He liked the company pharmaceutical.,He liked the company pharmaceutical.,He liked the company pharmaceutical.
+company,He liked the pleasant company.,pleasant,company,pleasant company,False,company pleasant,He liked the company pleasant.,He liked the company pleasant.,He liked the company pleasant.
+cone,It was a waffle cone.,waffle,cone,waffle cone,True,cone waffle,It was a cone waffle.,It was a cone waffle.,It was a cone waffle.
+cone,It was a sugar cone.,sugar,cone,sugar cone,True,cone sugar,It was a cone sugar.,It was a cone sugar.,It was a cone sugar.
+cone,It was an orange cone.,orange,cone,orange cone,False,cone orange,It was an cone orange.,It was an cone orange.,It was an cone orange.
+contribution,He made a charitable contribution.,charitable,contribution,charitable contribution,False,contribution charitable,He made a contribution charitable.,He made a contribution charitable.,He made a contribution charitable.
+contribution,He made a voluntary contribution.,voluntary,contribution,voluntary contribution,False,contribution voluntary,He made a contribution voluntary.,He made a contribution voluntary.,He made a contribution voluntary.
+contribution,He made a scholarly contribution.,scholarly,contribution,scholarly contribution,False,contribution scholarly,He made a contribution scholarly.,He made a contribution scholarly.,He made a contribution scholarly.
+count,That was the noble count.,noble,count,noble count,False,count noble,That was the count noble.,That was the count noble.,That was the count noble.
+count,That was the vengeful count.,vengeful,count,vengeful count,False,count vengeful,That was the count vengeful.,That was the count vengeful.,That was the count vengeful.
+count,That was the final count.,final,count,final count,False,count final,That was the count final.,That was the count final.,That was the count final.
+course,It was an introductory course.,introductory,course,introductory course,False,course introductory,It was an course introductory.,It was an course introductory.,It was an course introductory.
+course,It was a pass-fail course.,pass-fail,course,pass-fail course,False,course pass-fail,It was a course pass-fail.,It was a course pass-fail.,It was a course pass-fail.
+course,It was a charted course.,charted,course,charted course,False,course charted,It was a course charted.,It was a course charted.,It was a course charted.
+date,It was a dinner date.,dinner,date,dinner date,True,date dinner,It was a date dinner.,It was a date dinner.,It was a date dinner.
+date,It was a blind date.,blind,date,blind date,False,date blind,It was a date blind.,It was a date blind.,It was a date blind.
+date,It was an expiration date.,expiration,date,expiration date,True,date expiration,It was an date expiration.,It was an date expiration.,It was an date expiration.
+degree,It was about forty degrees.,forty,degrees,forty degrees,True,degrees forty,It was about degrees forty.,It was about degrees forty.,It was about degrees forty.
+degree,It was about fifty degrees.,fifty,degrees,fifty degrees,True,degrees fifty,It was about degrees fifty.,It was about degrees fifty.,It was about degrees fifty.
+degree,It was about associate degrees.,associate,degrees,associate degrees,False,degrees associate,It was about degrees associate.,It was about degrees associate.,It was about degrees associate.
+design,They liked the floral design.,floral,design,floral design,False,design floral,They liked the design floral.,They liked the design floral.,They liked the design floral.
+design,They liked the geometric design.,geometric,design,geometric design,False,design geometric,They liked the design geometric.,They liked the design geometric.,They liked the design geometric.
+design,They liked the product design.,product,design,product design,True,design product,They liked the design product.,They liked the design product.,They liked the design product.
+dinner,They liked the turkey dinner.,turkey,dinner,turkey dinner,True,dinner turkey,They liked the dinner turkey.,They liked the dinner turkey.,They liked the dinner turkey.
+dinner,They liked the light dinner.,light,dinner,light dinner,False,dinner light,They liked the dinner light.,They liked the dinner light.,They liked the dinner light.
+dinner,They liked the formal dinner.,formal,dinner,formal dinner,False,dinner formal,They liked the dinner formal.,They liked the dinner formal.,They liked the dinner formal.
+dream,He had a recurring dream.,recurring,dream,recurring dream,False,dream recurring,He had a dream recurring.,He had a dream recurring.,He had a dream recurring.
+dream,He had a bad dream.,bad,dream,bad dream,False,dream bad,He had a dream bad.,He had a dream bad.,He had a dream bad.
+dream,He had a childhood dream.,childhood,dream,childhood dream,True,dream childhood,He had a dream childhood.,He had a dream childhood.,He had a dream childhood.
+drill,It was a grueling drill.,grueling,drill,grueling drill,False,drill grueling,It was a drill grueling.,It was a drill grueling.,It was a drill grueling.
+drill,It was a challenging drill.,challenging,drill,challenging drill,False,drill challenging,It was a drill challenging.,It was a drill challenging.,It was a drill challenging.
+drill,It was an electric drill.,electric,drill,electric drill,False,drill electric,It was an drill electric.,It was an drill electric.,It was an drill electric.
+examination,It was a multiple-choice examination.,multiple-choice,examination,multiple-choice examination,False,examination multiple-choice,It was a examination multiple-choice.,It was an examination multiple-choice.,It was an examination multiple-choice.
+examination,It was a difficult examination.,difficult,examination,difficult examination,False,examination difficult,It was a examination difficult.,It was an examination difficult.,It was an examination difficult.
+examination,It was a prostate examination.,prostate,examination,prostate examination,True,examination prostate,It was a examination prostate.,It was an examination prostate.,It was an examination prostate.
+fan,They had an electric fan.,electric,fan,electric fan,False,fan electric,They had an fan electric.,They had an fan electric.,They had an fan electric.
+fan,They had a ceiling fan.,ceiling,fan,ceiling fan,True,fan ceiling,They had a fan ceiling.,They had a fan ceiling.,They had a fan ceiling.
+fan,They had a zealous fan.,zealous,fan,zealous fan,False,fan zealous,They had a fan zealous.,They had a fan zealous.,They had a fan zealous.
+file,She had a text file.,text,file,text file,True,file text,She had a file text.,She had a file text.,She had a file text.
+file,She had a data file.,data,file,data file,True,file data,She had a file data.,She had a file data.,She had a file data.
+file,She had a nail file.,nail,file,nail file,True,file nail,She had a file nail.,She had a file nail.,She had a file nail.
+film,It was an action film.,action,film,action film,True,film action,It was an film action.,It was an film action.,It was an film action.
+film,It was a censored film.,censored,film,censored film,False,film censored,It was a film censored.,It was a film censored.,It was a film censored.
+film,It was a transparent film.,transparent,film,transparent film,False,film transparent,It was a film transparent.,It was a film transparent.,It was a film transparent.
+foundation,It was a charitable foundation.,charitable,foundation,charitable foundation,False,foundation charitable,It was a foundation charitable.,It was a foundation charitable.,It was a foundation charitable.
+foundation,It was an educational foundation.,educational,foundation,educational foundation,False,foundation educational,It was an foundation educational.,It was an foundation educational.,It was an foundation educational.
+foundation,It was a wooden foundation.,wooden,foundation,wooden foundation,False,foundation wooden,It was a foundation wooden.,It was a foundation wooden.,It was a foundation wooden.
+function,It was a mathematical function.,mathematical,function,mathematical function,False,function mathematical,It was a function mathematical.,It was a function mathematical.,It was a function mathematical.
+function,It was a linear function.,linear,function,linear function,False,function linear,It was a function linear.,It was a function linear.,It was a function linear.
+function,It was a social function.,social,function,social function,False,function social,It was a function social.,It was a function social.,It was a function social.
+ground,He was on the firm ground.,firm,ground,firm ground,False,ground firm,He was on the ground firm.,He was on the ground firm.,He was on the ground firm.
+ground,He was on the frozen ground.,frozen,ground,frozen ground,False,ground frozen,He was on the ground frozen.,He was on the ground frozen.,He was on the ground frozen.
+ground,He was on the camp ground.,camp,ground,camp ground,True,ground camp,He was on the ground camp.,He was on the ground camp.,He was on the ground camp.
+guard,They liked the night guard.,night,guard,night guard,True,guard night,They liked the guard night.,They liked the guard night.,They liked the guard night.
+guard,They liked the security guard.,security,guard,security guard,True,guard security,They liked the guard security.,They liked the guard security.,They liked the guard security.
+guard,They liked the coast guard.,coast,guard,coast guard,True,guard coast,They liked the guard coast.,They liked the guard coast.,They liked the guard coast.
+guide,He had an assembly guide.,assembly,guide,assembly guide,True,guide assembly,He had an guide assembly.,He had an guide assembly.,He had an guide assembly.
+guide,He had a TV guide.,TV,guide,TV guide,True,guide TV,He had a guide TV.,He had a guide TV.,He had a guide TV.
+guide,He had a talkative guide.,talkative,guide,talkative guide,False,guide talkative,He had a guide talkative.,He had a guide talkative.,He had a guide talkative.
+home,It was a summer home.,summer,home,summer home,True,home summer,It was a home summer.,It was a home summer.,It was a home summer.
+home,It was a childhood home.,childhood,home,childhood home,True,home childhood,It was a home childhood.,It was a home childhood.,It was a home childhood.
+home,It was a funeral home.,funeral,home,funeral home,False,home funeral,It was a home funeral.,It was a home funeral.,It was a home funeral.
+intelligence,They had natural intelligence.,natural,intelligence,natural intelligence,False,intelligence natural,They had intelligence natural.,They had intelligence natural.,They had intelligence natural.
+intelligence,They had innate intelligence.,innate,intelligence,innate intelligence,False,intelligence innate,They had intelligence innate.,They had intelligence innate.,They had intelligence innate.
+intelligence,They had classified intelligence.,classified,intelligence,classified intelligence,False,intelligence classified,They had intelligence classified.,They had intelligence classified.,They had intelligence classified.
+issue,It was a sensitive issue.,sensitive,issue,sensitive issue,False,issue sensitive,It was a issue sensitive.,It was an issue sensitive.,It was an issue sensitive.
+issue,It was a political issue.,political,issue,political issue,False,issue political,It was a issue political.,It was an issue political.,It was an issue political.
+issue,It was a weekly issue.,weekly,issue,weekly issue,False,issue weekly,It was a issue weekly.,It was an issue weekly.,It was an issue weekly.
+jam,It was a blackberry jam.,blackberry,jam,blackberry jam,True,jam blackberry,It was a jam blackberry.,It was a jam blackberry.,It was a jam blackberry.
+jam,It was a peach jam.,peach,jam,peach jam,False,jam peach,It was a jam peach.,It was a jam peach.,It was a jam peach.
+jam,It was a traffic jam.,traffic,jam,traffic jam,True,jam traffic,It was a jam traffic.,It was a jam traffic.,It was a jam traffic.
+key,It was a duplicate key.,duplicate,key,duplicate key,False,key duplicate,It was a key duplicate.,It was a key duplicate.,It was a key duplicate.
+key,It was a master key.,master,key,master key,True,key master,It was a key master.,It was a key master.,It was a key master.
+key,It was a delete key.,delete,key,delete key,False,key delete,It was a key delete.,It was a key delete.,It was a key delete.
+lamb,They liked the marinated lamb.,marinated,lamb,marinated lamb,True,lamb marinated,They liked the lamb marinated.,They liked the lamb marinated.,They liked the lamb marinated.
+lamb,They liked the grilled lamb.,grilled,lamb,grilled lamb,False,lamb grilled,They liked the lamb grilled.,They liked the lamb grilled.,They liked the lamb grilled.
+lamb,They liked the cute lamb.,cute,lamb,cute lamb,False,lamb cute,They liked the lamb cute.,They liked the lamb cute.,They liked the lamb cute.
+lock,She had curly locks.,curly,locks,curly locks,False,locks curly,She had locks curly.,She had locks curly.,She had locks curly.
+lock,She had brown locks.,brown,locks,brown locks,False,locks brown,She had locks brown.,She had locks brown.,She had locks brown.
+lock,She had window locks.,window,locks,window locks,True,locks window,She had locks window.,She had locks window.,She had locks window.
+lunch,They liked the hot lunch.,hot,lunch,hot lunch,False,lunch hot,They liked the lunch hot.,They liked the lunch hot.,They liked the lunch hot.
+lunch,They liked the sandwich lunch.,sandwich,lunch,sandwich lunch,True,lunch sandwich,They liked the lunch sandwich.,They liked the lunch sandwich.,They liked the lunch sandwich.
+lunch,They liked the afternoon lunch.,afternoon,lunch,afternoon lunch,True,lunch afternoon,They liked the lunch afternoon.,They liked the lunch afternoon.,They liked the lunch afternoon.
+market,He liked the flea market.,flea,market,flea market,True,market flea,He liked the market flea.,He liked the market flea.,He liked the market flea.
+market,He liked the fish market.,fish,market,fish market,True,market fish,He liked the market fish.,He liked the market fish.,He liked the market fish.
+market,He liked the housing market.,housing,market,housing market,True,market housing,He liked the market housing.,He liked the market housing.,He liked the market housing.
+match,It was a lit match.,lit,match,lit match,False,match lit,It was a match lit.,It was a match lit.,It was a match lit.
+match,It was a burning match.,burning,match,burning match,False,match burning,It was a match burning.,It was a match burning.,It was a match burning.
+match,It was a soccer match.,soccer,match,soccer match,True,match soccer,It was a match soccer.,It was a match soccer.,It was a match soccer.
+medicine,It was cough medicine.,cough,medicine,cough medicine,True,medicine cough,It was medicine cough.,It was medicine cough.,It was medicine cough.
+medicine,It was prescription medicine.,prescription,medicine,prescription medicine,True,medicine prescription,It was medicine prescription.,It was medicine prescription.,It was medicine prescription.
+medicine,It was orthopedic medicine.,orthopedic,medicine,orthopedic medicine,False,medicine orthopedic,It was medicine orthopedic.,It was medicine orthopedic.,It was medicine orthopedic.
+message,There was a phone message.,phone,message,phone message,True,message phone,There was a message phone.,There was a message phone.,There was a message phone.
+message,There was a computer message.,computer,message,computer message,True,message computer,There was a message computer.,There was a message computer.,There was a message computer.
+message,There was an urgent message.,urgent,message,urgent message,False,message urgent,There was an message urgent.,There was an message urgent.,There was an message urgent.
+mold,It was a fungal mold.,fungal,mold,fungal mold,False,mold fungal,It was a mold fungal.,It was a mold fungal.,It was a mold fungal.
+mold,It was a harmful mold.,harmful,mold,harmful mold,False,mold harmful,It was a mold harmful.,It was a mold harmful.,It was a mold harmful.
+mold,It was a rubber mold.,rubber,mold,rubber mold,True,mold rubber,It was a mold rubber.,It was a mold rubber.,It was a mold rubber.
+mole,She saw the cancerous mole.,cancerous,mole,cancerous mole,False,mole cancerous,She saw the mole cancerous.,She saw the mole cancerous.,She saw the mole cancerous.
+mole,She saw the raised mole.,raised,mole,raised mole,False,mole raised,She saw the mole raised.,She saw the mole raised.,She saw the mole raised.
+mole,She saw the cute mole.,cute,mole,cute mole,False,mole cute,She saw the mole cute.,She saw the mole cute.,She saw the mole cute.
+movement,He liked the rhythmic movement.,rhythmic,movement,rhythmic movement,False,movement rhythmic,He liked the movement rhythmic.,He liked the movement rhythmic.,He liked the movement rhythmic.
+movement,He liked the graceful movement.,graceful,movement,graceful movement,False,movement graceful,He liked the movement graceful.,He liked the movement graceful.,He liked the movement graceful.
+movement,He liked the feminist movement.,feminist,movement,feminist movement,True,movement feminist,He liked the movement feminist.,He liked the movement feminist.,He liked the movement feminist.
+newspaper,It was a national newspaper.,national,newspaper,national newspaper,False,newspaper national,It was a newspaper national.,It was a newspaper national.,It was a newspaper national.
+newspaper,It was a daily newspaper.,daily,newspaper,daily newspaper,False,newspaper daily,It was a newspaper daily.,It was a newspaper daily.,It was a newspaper daily.
+newspaper,It was a faded newspaper.,faded,newspaper,faded newspaper,False,newspaper faded,It was a newspaper faded.,It was a newspaper faded.,It was a newspaper faded.
+orange,It was a juicy orange.,juicy,orange,juicy orange,False,orange juicy,It was a orange juicy.,It was an orange juicy.,It was an orange juicy.
+orange,It was a ripe orange.,ripe,orange,ripe orange,False,orange ripe,It was a orange ripe.,It was an orange ripe.,It was an orange ripe.
+orange,It was a bright orange.,bright,orange,bright orange,False,orange bright,It was a orange bright.,It was an orange bright.,It was an orange bright.
+page,He saw the young page.,young,page,young page,False,page young,He saw the page young.,He saw the page young.,He saw the page young.
+page,He saw the loyal page.,loyal,page,loyal page,False,page loyal,He saw the page loyal.,He saw the page loyal.,He saw the page loyal.
+page,He saw the blank page.,blank,page,blank page,False,page blank,He saw the page blank.,He saw the page blank.,He saw the page blank.
+palm,It was a calloused palm.,calloused,palm,calloused palm,False,palm calloused,It was a palm calloused.,It was a palm calloused.,It was a palm calloused.
+palm,It was a wrinkled palm.,wrinkled,palm,wrinkled palm,False,palm wrinkled,It was a palm wrinkled.,It was a palm wrinkled.,It was a palm wrinkled.
+palm,It was a tropical palm.,tropical,palm,tropical palm,False,palm tropical,It was a palm tropical.,It was a palm tropical.,It was a palm tropical.
+panel,It was a control panel.,control,panel,control panel,True,panel control,It was a panel control.,It was a panel control.,It was a panel control.
+panel,It was an instrument panel.,instrument,panel,instrument panel,False,panel instrument,It was an panel instrument.,It was an panel instrument.,It was an panel instrument.
+panel,It was an advisory panel.,advisory,panel,advisory panel,False,panel advisory,It was an panel advisory.,It was an panel advisory.,It was an panel advisory.
+passage,It was a secret passage.,secret,passage,secret passage,False,passage secret,It was a passage secret.,It was a passage secret.,It was a passage secret.
+passage,It was a narrow passage.,narrow,passage,narrow passage,False,passage narrow,It was a passage narrow.,It was a passage narrow.,It was a passage narrow.
+passage,It was a literary passage.,literary,passage,literary passage,False,passage literary,It was a passage literary.,It was a passage literary.,It was a passage literary.
+perch,It was a tasty perch.,tasty,perch,tasty perch,False,perch tasty,It was a perch tasty.,It was a perch tasty.,It was a perch tasty.
+perch,It was a freshwater perch.,freshwater,perch,freshwater perch,True,perch freshwater,It was a perch freshwater.,It was a perch freshwater.,It was a perch freshwater.
+perch,It was a lofty perch.,lofty,perch,lofty perch,False,perch lofty,It was a perch lofty.,It was a perch lofty.,It was a perch lofty.
+pitcher,He saw the fast pitcher.,fast,pitcher,fast pitcher,False,pitcher fast,He saw the pitcher fast.,He saw the pitcher fast.,He saw the pitcher fast.
+pitcher,He saw the right-handed pitcher.,right-handed,pitcher,right-handed pitcher,False,pitcher right-handed,He saw the pitcher right-handed.,He saw the pitcher right-handed.,He saw the pitcher right-handed.
+pitcher,He saw the glass pitcher.,glass,pitcher,glass pitcher,True,pitcher glass,He saw the pitcher glass.,He saw the pitcher glass.,He saw the pitcher glass.
+port,It was a windy port.,windy,port,windy port,False,port windy,It was a port windy.,It was a port windy.,It was a port windy.
+port,It was a seaside port.,seaside,port,seaside port,True,port seaside,It was a port seaside.,It was a port seaside.,It was a port seaside.
+port,It was a delicious port.,delicious,port,delicious port,False,port delicious,It was a port delicious.,It was a port delicious.,It was a port delicious.
+position,He was in a distinguished position.,distinguished,position,distinguished position,False,position distinguished,He was in a position distinguished.,He was in a position distinguished.,He was in a position distinguished.
+position,He was in a prominent position.,prominent,position,prominent position,False,position prominent,He was in a position prominent.,He was in a position prominent.,He was in a position prominent.
+position,He was in a fetal position.,fetal,position,fetal position,False,position fetal,He was in a position fetal.,He was in a position fetal.,He was in a position fetal.
+post,It was a wooden post.,wooden,post,wooden post,False,post wooden,It was a post wooden.,It was a post wooden.,It was a post wooden.
+post,It was a fence post.,fence,post,fence post,True,post fence,It was a post fence.,It was a post fence.,It was a post fence.
+post,It was a teaching post.,teaching,post,teaching post,True,post teaching,It was a post teaching.,It was a post teaching.,It was a post teaching.
+punch,He had the alcoholic punch.,alcoholic,punch,alcoholic punch,False,punch alcoholic,He had the punch alcoholic.,He had the punch alcoholic.,He had the punch alcoholic.
+punch,He had the fruit punch.,fruit,punch,fruit punch,True,punch fruit,He had the punch fruit.,He had the punch fruit.,He had the punch fruit.
+punch,He had the strongest punch.,strongest,punch,strongest punch,False,punch strongest,He had the punch strongest.,He had the punch strongest.,He had the punch strongest.
+pupil,She had a brilliant pupil.,brilliant,pupil,brilliant pupil,False,pupil brilliant,She had a pupil brilliant.,She had a pupil brilliant.,She had a pupil brilliant.
+pupil,She had an interested pupil.,interested,pupil,interested pupil,False,pupil interested,She had an pupil interested.,She had an pupil interested.,She had an pupil interested.
+pupil,She had a dilated pupil.,dilated,pupil,dilated pupil,False,pupil dilated,She had a pupil dilated.,She had a pupil dilated.,She had a pupil dilated.
+racket,That was a loud racket.,loud,racket,loud racket,False,racket loud,That was a racket loud.,That was a racket loud.,That was a racket loud.
+racket,That was an annoying racket.,annoying,racket,annoying racket,False,racket annoying,That was an racket annoying.,That was an racket annoying.,That was an racket annoying.
+racket,That was a badminton racket.,badminton,racket,badminton racket,True,racket badminton,That was a racket badminton.,That was a racket badminton.,That was a racket badminton.
+rock,He liked electronic rock.,electronic,rock,electronic rock,False,rock electronic,He liked rock electronic.,He liked rock electronic.,He liked rock electronic.
+rock,He liked alternative rock.,alternative,rock,alternative rock,False,rock alternative,He liked rock alternative.,He liked rock alternative.,He liked rock alternative.
+rock,He liked limestone rock.,limestone,rock,limestone rock,True,rock limestone,He liked rock limestone.,He liked rock limestone.,He liked rock limestone.
+sage,He saw the wise sage.,wise,sage,wise sage,False,sage wise,He saw the sage wise.,He saw the sage wise.,He saw the sage wise.
+sage,He saw the renowned sage.,renowned,sage,renowned sage,False,sage renowned,He saw the sage renowned.,He saw the sage renowned.,He saw the sage renowned.
+sage,He saw the fragrant sage.,fragrant,sage,fragrant sage,False,sage fragrant,He saw the sage fragrant.,He saw the sage fragrant.,He saw the sage fragrant.
+scale,It was a fish scale.,fish,scale,fish scale,True,scale fish,It was a scale fish.,It was a scale fish.,It was a scale fish.
+scale,It was a lizard scale.,lizard,scale,lizard scale,True,scale lizard,It was a scale lizard.,It was a scale lizard.,It was a scale lizard.
+scale,It was a music scale.,music,scale,music scale,True,scale music,It was a scale music.,It was a scale music.,It was a scale music.
+scene,It was a touching scene.,touching,scene,touching scene,False,scene touching,It was a scene touching.,It was a scene touching.,It was a scene touching.
+scene,It was a well-acted scene.,well-acted,scene,well-acted scene,False,scene well-acted,It was a scene well-acted.,It was a scene well-acted.,It was a scene well-acted.
+scene,It was a nature scene.,nature,scene,nature scene,True,scene nature,It was a scene nature.,It was a scene nature.,It was a scene nature.
+seal,It was a gold seal.,gold,seal,gold seal,True,seal gold,It was a seal gold.,It was a seal gold.,It was a seal gold.
+seal,It was a certified seal.,certified,seal,certified seal,False,seal certified,It was a seal certified.,It was a seal certified.,It was a seal certified.
+seal,It was a circus seal.,circus,seal,circus seal,True,seal circus,It was a seal circus.,It was a seal circus.,It was a seal circus.
+tape,He used the scotch tape.,scotch,tape,scotch tape,True,tape scotch,He used the tape scotch.,He used the tape scotch.,He used the tape scotch.
+tape,He used the double-sided tape.,double-sided,tape,double-sided tape,False,tape double-sided,He used the tape double-sided.,He used the tape double-sided.,He used the tape double-sided.
+tape,He used the interview tape.,interview,tape,interview tape,True,tape interview,He used the tape interview.,He used the tape interview.,He used the tape interview.
+term,It was a winter term.,winter,term,winter term,True,term winter,It was a term winter.,It was a term winter.,It was a term winter.
+term,It was a fall term.,fall,term,fall term,True,term fall,It was a term fall.,It was a term fall.,It was a term fall.
+term,It was a legal term.,legal,term,legal term,False,term legal,It was a term legal.,It was a term legal.,It was a term legal.
+tick,It was a clock tick.,clock,tick,clock tick,True,tick clock,It was a tick clock.,It was a tick clock.,It was a tick clock.
+tick,It was an audible tick.,audible,tick,audible tick,False,tick audible,It was an tick audible.,It was an tick audible.,It was an tick audible.
+tick,It was a parasitic tick.,parasitic,tick,parasitic tick,False,tick parasitic,It was a tick parasitic.,It was a tick parasitic.,It was a tick parasitic.
+tip,It was a generous tip.,generous,tip,generous tip,False,tip generous,It was a tip generous.,It was a tip generous.,It was a tip generous.
+tip,It was a stingy tip.,stingy,tip,stingy tip,False,tip stingy,It was a tip stingy.,It was a tip stingy.,It was a tip stingy.
+tip,It was a pencil tip.,pencil,tip,pencil tip,True,tip pencil,It was a tip pencil.,It was a tip pencil.,It was a tip pencil.
+title,She liked the essay title.,essay,title,essay title,True,title essay,She liked the title essay.,She liked the title essay.,She liked the title essay.
+title,She liked the poem title.,poem,title,poem title,True,title poem,She liked the title poem.,She liked the title poem.,She liked the title poem.
+title,She liked the academic title.,academic,title,academic title,False,title academic,She liked the title academic.,She liked the title academic.,She liked the title academic.
+toll,It was a costly toll.,costly,toll,costly toll,False,toll costly,It was a toll costly.,It was a toll costly.,It was a toll costly.
+toll,It was a road toll.,road,toll,road toll,True,toll road,It was a toll road.,It was a toll road.,It was a toll road.
+toll,It was a loud toll.,loud,toll,loud toll,False,toll loud,It was a toll loud.,It was a toll loud.,It was a toll loud.
+track,She saw the train tracks.,train,tracks,train tracks,True,tracks train,She saw the tracks train.,She saw the tracks train.,She saw the tracks train.
+track,She saw the trolley tracks.,trolley,tracks,trolley tracks,True,tracks trolley,She saw the tracks trolley.,She saw the tracks trolley.,She saw the tracks trolley.
+track,She saw the moose tracks.,moose,tracks,moose tracks,False,tracks moose,She saw the tracks moose.,She saw the tracks moose.,She saw the tracks moose.
+yard,It was five yards.,five,yards,five yards,True,yards five,It was yards five.,It was yards five.,It was yards five.
+yard,It was ten yards.,ten,yards,ten yards,True,yards ten,It was yards ten.,It was yards ten.,It was yards ten.
+yard,They were big yards.,big,yards,big yards,False,yards big,They were yards big.,They were yards big.,They were yards big.
+act,It was a comedic act.,comedic,act,comedic act,False,act comedic,It was a act comedic.,It was an act comedic.,It was an act comedic.
+appeal,He had a pending appeal.,pending,appeal,pending appeal,False,appeal pending,He had a appeal pending.,He had an appeal pending.,He had an appeal pending.
+atmosphere,It was a polluted atmosphere.,polluted,atmosphere,polluted atmosphere,False,atmosphere polluted,It was a atmosphere polluted.,It was an atmosphere polluted.,It was an atmosphere polluted.
+band,It was a country band.,country,band,country band,True,band country,It was a band country.,It was a band country.,It was a band country.
+barrier,There was a religious barrier.,religious,barrier,religious barrier,False,barrier religious,There was a barrier religious.,There was a barrier religious.,There was a barrier religious.
+bat,He saw a baseball bat.,baseball,bat,baseball bat,True,bat baseball,He saw a bat baseball.,He saw a bat baseball.,He saw a bat baseball.
+beam,He saw the balance beam.,balance,beam,balance beam,True,beam balance,He saw the beam balance.,He saw the beam balance.,He saw the beam balance.
+block,She had a writer's block.,writer,block,writer's block,True,block writer's,She had a block writer's.,She had a block writer's.,She had a block writer's.
+blood,He has royal blood.,royal,blood,royal blood,False,blood royal,He has blood royal.,He has blood royal.,He has blood royal.
+board,It was the school board.,school,board,school board,True,board school,It was the board school.,It was the board school.,It was the board school.
+book,He had a leather-bound book.,leather-bound,book,leather-bound book,False,book leather-bound,He had a book leather-bound.,He had a book leather-bound.,He had a book leather-bound.
+breakfast,They ate a lonely breakfast.,lonely,breakfast,lonely breakfast,False,breakfast lonely,They ate a breakfast lonely.,They ate a breakfast lonely.,They ate a breakfast lonely.
+cape,It was an island cape.,island,cape,island cape,True,cape island,It was an cape island.,It was an cape island.,It was an cape island.
+case,It was a criminal case.,criminal,case,criminal case,False,case criminal,It was a case criminal.,It was a case criminal.,It was a case criminal.
+cause,It was a primary cause.,primary,cause,primary cause,False,cause primary,It was a cause primary.,It was a cause primary.,It was a cause primary.
+cell,It was a jail cell.,jail,cell,jail cell,True,cell jail,It was a cell jail.,It was a cell jail.,It was a cell jail.
+charm,She had a good-luck charm.,good-luck,charm,good-luck charm,False,charm good-luck,She had a charm good-luck.,She had a charm good-luck.,She had a charm good-luck.
+chicken,They liked the pet chicken.,pet,chicken,pet chicken,True,chicken pet,They liked the chicken pet.,They liked the chicken pet.,They liked the chicken pet.
+class,It was a stimulating class.,stimulating,class,stimulating class,False,class stimulating,It was a class stimulating.,It was a class stimulating.,It was a class stimulating.
+clip,It was a metal clip.,metal,clip,metal clip,True,clip metal,It was a clip metal.,It was a clip metal.,It was a clip metal.
+cold,It was a common cold.,common,cold,common cold,False,cold common,It was a cold common.,It was a cold common.,It was a cold common.
+column,It was a marble column.,marble,column,marble column,True,column marble,It was a column marble.,It was a column marble.,It was a column marble.
+company,He liked the polite company.,polite,company,polite company,False,company polite,He liked the company polite.,He liked the company polite.,He liked the company polite.
+cone,It was a traffic cone.,traffic,cone,traffic cone,True,cone traffic,It was a cone traffic.,It was a cone traffic.,It was a cone traffic.
+contribution,He made a well-written contribution.,well-written,contribution,well-written contribution,False,contribution well-written,He made a contribution well-written.,He made a contribution well-written.,He made a contribution well-written.
+count,That was the correct count.,correct,count,correct count,False,count correct,That was the count correct.,That was the count correct.,That was the count correct.
+course,It was a collision course.,collision,course,collision course,True,course collision,It was a course collision.,It was a course collision.,It was a course collision.
+date,It was a historical date.,historical,date,historical date,False,date historical,It was a date historical.,It was a date historical.,It was a date historical.
+degree,It was about college degrees.,college,degrees,college degrees,True,degrees college,It was about degrees college.,It was about degrees college.,It was about degrees college.
+design,They liked the architectural design.,architectural,design,architectural design,False,design architectural,They liked the design architectural.,They liked the design architectural.,They liked the design architectural.
+dinner,They liked the anniversary dinner.,anniversary,dinner,anniversary dinner,True,dinner anniversary,They liked the dinner anniversary.,They liked the dinner anniversary.,They liked the dinner anniversary.
+dream,He had a career dream.,career,dream,career dream,True,dream career,He had a dream career.,He had a dream career.,He had a dream career.
+drill,It was a battery-powered drill.,battery-powered,drill,battery-powered drill,False,drill battery-powered,It was a drill battery-powered.,It was a drill battery-powered.,It was a drill battery-powered.
+examination,It was a physical examination.,physical,examination,physical examination,False,examination physical,It was a examination physical.,It was an examination physical.,It was an examination physical.
+fan,They had an enthusiastic fan.,enthusiastic,fan,enthusiastic fan,False,fan enthusiastic,They had an fan enthusiastic.,They had an fan enthusiastic.,They had an fan enthusiastic.
+file,She had a steel file.,steel,file,steel file,True,file steel,She had a file steel.,She had a file steel.,She had a file steel.
+film,It was a plastic film.,plastic,film,plastic film,False,film plastic,It was a film plastic.,It was a film plastic.,It was a film plastic.
+foundation,It was a concrete foundation.,concrete,foundation,concrete foundation,False,foundation concrete,It was a foundation concrete.,It was a foundation concrete.,It was a foundation concrete.
+function,It was a business function.,business,function,business function,True,function business,It was a function business.,It was a function business.,It was a function business.
+ground,He was on the parade ground.,parade,ground,parade ground,True,ground parade,He was on the ground parade.,He was on the ground parade.,He was on the ground parade.
+guard,They liked the national guard.,national,guard,national guard,False,guard national,They liked the guard national.,They liked the guard national.,They liked the guard national.
+guide,He had a friendly guide.,friendly,guide,friendly guide,False,guide friendly,He had a guide friendly.,He had a guide friendly.,He had a guide friendly.
+home,It was a nursing home.,nursing,home,nursing home,True,home nursing,It was a home nursing.,It was a home nursing.,It was a home nursing.
+intelligence,They had military intelligence.,military,intelligence,military intelligence,False,intelligence military,They had intelligence military.,They had intelligence military.,They had intelligence military.
+issue,It was a special issue.,special,issue,special issue,False,issue special,It was a issue special.,It was an issue special.,It was an issue special.
+jam,It was a paper jam.,paper,jam,paper jam,True,jam paper,It was a jam paper.,It was a jam paper.,It was a jam paper.
+key,It was a backspace key.,backspace,key,backspace key,True,key backspace,It was a key backspace.,It was a key backspace.,It was a key backspace.
+lamb,They liked the friendly lamb.,friendly,lamb,friendly lamb,False,lamb friendly,They liked the lamb friendly.,They liked the lamb friendly.,They liked the lamb friendly.
+lock,She had door locks.,door,locks,door locks,True,locks door,She had locks door.,She had locks door.,She had locks door.
+lunch,They liked the women's lunch.,women,lunch,women's lunch,True,lunch women's,They liked the lunch women's.,They liked the lunch women's.,They liked the lunch women's.
+market,He liked the stock market.,stock,market,stock market,True,market stock,He liked the market stock.,He liked the market stock.,He liked the market stock.
+match,It was a tennis match.,tennis,match,tennis match,True,match tennis,It was a match tennis.,It was a match tennis.,It was a match tennis.
+medicine,It was veterinary medicine.,veterinary,medicine,veterinary medicine,False,medicine veterinary,It was medicine veterinary.,It was medicine veterinary.,It was medicine veterinary.
+message,There was a clear message.,clear,message,clear message,False,message clear,There was a message clear.,There was a message clear.,There was a message clear.
+mold,It was a clay mold.,clay,mold,clay mold,True,mold clay,It was a mold clay.,It was a mold clay.,It was a mold clay.
+mole,She saw the fast mole.,fast,mole,fast mole,False,mole fast,She saw the mole fast.,She saw the mole fast.,She saw the mole fast.
+movement,He liked the civil-rights movement.,civil-rights,movement,civil-rights movement,False,movement civil-rights,He liked the movement civil-rights.,He liked the movement civil-rights.,He liked the movement civil-rights.
+newspaper,It was a shredded newspaper.,shredded,newspaper,shredded newspaper,False,newspaper shredded,It was a newspaper shredded.,It was a newspaper shredded.,It was a newspaper shredded.
+orange,It was a reddish orange.,reddish,orange,reddish orange,False,orange reddish,It was a orange reddish.,It was an orange reddish.,It was an orange reddish.
+page,He saw the ripped page.,ripped,page,ripped page,False,page ripped,He saw the page ripped.,He saw the page ripped.,He saw the page ripped.
+palm,It was a tree palm.,tree,palm,tree palm,True,palm tree,It was a palm tree.,It was a palm tree.,It was a palm tree.
+panel,It was a consumer panel.,consumer,panel,consumer panel,True,panel consumer,It was a panel consumer.,It was a panel consumer.,It was a panel consumer.
+passage,It was a biblical passage.,biblical,passage,biblical passage,False,passage biblical,It was a passage biblical.,It was a passage biblical.,It was a passage biblical.
+perch,It was a secure perch.,secure,perch,secure perch,False,perch secure,It was a perch secure.,It was a perch secure.,It was a perch secure.
+pitcher,He saw the plastic pitcher.,plastic,pitcher,plastic pitcher,True,pitcher plastic,He saw the pitcher plastic.,He saw the pitcher plastic.,He saw the pitcher plastic.
+port,It was a sweet port.,sweet,port,sweet port,False,port sweet,It was a port sweet.,It was a port sweet.,It was a port sweet.
+position,He was in a yoga position.,yoga,position,yoga position,True,position yoga,He was in a position yoga.,He was in a position yoga.,He was in a position yoga.
+post,It was a challenging post.,challenging,post,challenging post,False,post challenging,It was a post challenging.,It was a post challenging.,It was a post challenging.
+punch,He had the quickest punch.,quickest,punch,quickest punch,False,punch quickest,He had the punch quickest.,He had the punch quickest.,He had the punch quickest.
+pupil,She had a cloudy pupil.,cloudy,pupil,cloudy pupil,False,pupil cloudy,She had a pupil cloudy.,She had a pupil cloudy.,She had a pupil cloudy.
+racket,That was a tennis racket.,tennis,racket,tennis racket,True,racket tennis,That was a racket tennis.,That was a racket tennis.,That was a racket tennis.
+rock,He liked granite rock.,granite,rock,granite rock,True,rock granite,He liked rock granite.,He liked rock granite.,He liked rock granite.
+sage,He saw the bushy sage.,bushy,sage,bushy sage,False,sage bushy,He saw the sage bushy.,He saw the sage bushy.,He saw the sage bushy.
+scale,It was a major scale.,major,scale,major scale,False,scale major,It was a scale major.,It was a scale major.,It was a scale major.
+scene,It was a panoramic scene.,panoramic,scene,panoramic scene,False,scene panoramic,It was a scene panoramic.,It was a scene panoramic.,It was a scene panoramic.
+seal,It was a trained seal.,trained,seal,trained seal,False,seal trained,It was a seal trained.,It was a seal trained.,It was a seal trained.
+tape,He used the video tape.,video,tape,video tape,True,tape video,He used the tape video.,He used the tape video.,He used the tape video.
+term,It was a technical term.,technical,term,technical term,False,term technical,It was a term technical.,It was a term technical.,It was a term technical.
+tick,It was a diseased tick.,diseased,tick,diseased tick,False,tick diseased,It was a tick diseased.,It was a tick diseased.,It was a tick diseased.
+tip,It was a finger tip.,finger,tip,finger tip,True,tip finger,It was a tip finger.,It was a tip finger.,It was a tip finger.
+title,She liked the professional title.,professional,title,professional title,False,title professional,She liked the title professional.,She liked the title professional.,She liked the title professional.
+toll,It was a bell toll.,bell,toll,bell toll,True,toll bell,It was a toll bell.,It was a toll bell.,It was a toll bell.
+track,She saw the snowshoe tracks.,snowshoe,tracks,snowshoe tracks,True,tracks snowshoe,She saw the tracks snowshoe.,She saw the tracks snowshoe.,She saw the tracks snowshoe.
+yard,They were cluttered yards.,cluttered,yards,cluttered yards,False,yards cluttered,They were yards cluttered.,They were yards cluttered.,They were yards cluttered.

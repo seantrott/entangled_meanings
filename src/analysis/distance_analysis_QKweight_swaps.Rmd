@@ -385,6 +385,17 @@ mod_r2_frac = lm(data = df_summ, mean_r2_frac ~ step_mod + condition)
 summary(mod_r2_frac)
 
 
+
+
+df_merged_all_zero_ablations %>%
+  group_by(condition) %>%
+  summarise(m_frac = mean(r2_frac),
+            sd_frac = sd(r2_frac),
+            m_diff = mean(r2_diff),
+            sd_diff = sd(r2_diff),
+            min_frac = min(r2_frac),
+            max_diff = max(r2_diff))
+
 ```
 
 # Copy-step1 ablation analysis
@@ -412,6 +423,8 @@ df_copy_ablations <- bind_rows(csv_list) %>%
 
 table(df_copy_ablations$heads_modified)
 table(df_copy_ablations$Layer)
+
+
 
 
 
@@ -626,5 +639,15 @@ mod_r2_frac = lm(data = df_summ, mean_r2_frac ~ log10(step_mod) + condition)
 summary(mod_r2_frac)
 mod_r2_frac = lm(data = df_summ, mean_r2_frac ~ step_mod + condition)
 summary(mod_r2_frac)
+
+
+df_merged_all_zero_ablations %>%
+  group_by(condition) %>%
+  summarise(m_frac = mean(r2_frac),
+            sd_frac = sd(r2_frac),
+            m_diff = mean(r2_diff),
+            sd_diff = sd(r2_diff),
+            min_frac = min(r2_frac),
+            max_diff = max(r2_diff))
 
 ```
