@@ -1,0 +1,202 @@
+---
+title: "Pythia: Acquisition of Mod-NP Construction (v2, RS)"
+author: "Sean Trott and Pam Rivière"
+date: "November 20, 2024"
+output:
+  html_document:
+    keep_md: yes
+    toc: yes
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(dpi = 300, fig.format = "pdf")
+```
+
+
+```{r include=FALSE}
+library(tidyverse)
+library(lmtest)
+library(forcats)
+library(ggrepel)
+library(broom)
+library(lme4)
+library(viridis)
+library(ggridges)
+library(lmerTest)
+library(changepoint)
+
+all_colors <- viridis::viridis(10, option = "mako")
+my_colors <- all_colors[c(3, 5, 7)]  # Selecting specific colors from the palette
+```
+
+
+In this notebook, we analyze the trajectory of learning the "modifier NP" construction in Pythia models, in the context of the original or reversed entier sentence. 
+
+# Load Pythia data
+
+
+```{r}
+# setwd("/Users/seantrott/Dropbox/UCSD/Research/Ambiguity/SSD/entangled_meanings/src/analysis/")
+directory_path <- "../../data/processed/rawc/pythia/mod_np_cxn2_rs/"
+csv_files <- list.files(path = directory_path, pattern = "*.csv", full.names = TRUE)
+csv_list <- csv_files %>%
+  map(~ read_csv(.))
+df_pythia_models <- bind_rows(csv_list)
+
+table(df_pythia_models$mpath)
+max(df_pythia_models$step)
+
+```
+
+
+# Analyzing log-ratio
+
+
+## Across steps
+
+```{r}
+df_ratio_steps = df_pythia_models %>% 
+  filter(mpath == "EleutherAI/pythia-14m") %>%
+  group_by(mpath, step, revision, seed, seed_name, n_params) %>%
+  summarise(mean_lr_ratio = mean(ratio)) %>%
+  mutate(step_modded = step + 1) %>%
+  group_by(mpath) %>%
+  mutate(
+    mean_lr_ratio_diff = mean_lr_ratio - lag(mean_lr_ratio),
+    mean_lr_ratio_diff2 = mean_lr_ratio_diff - lag(mean_lr_ratio_diff)
+  ) %>%
+  group_by(mpath) 
+
+summary_avg = df_ratio_steps %>%
+  group_by(step) %>%
+  summarise(
+    mean_ratio = mean(mean_lr_ratio)
+  )
+
+df_ratio_steps %>%
+  ggplot(aes(x = step,
+             y = mean_lr_ratio,
+             color = seed_name)) +
+  geom_line(size = .5, linetype = "dotted") +  # Lineplot for mean entropy
+    geom_line(data = summary_avg, aes(x = step, y = mean_ratio), 
+             color = "black", size = 1.3) + # Smoothed average
+  theme_minimal() +
+  labs(x = "Training Step (Log10)",
+       y = "Log ratio (original vs. reversed)",
+       color = "") +
+  geom_vline(xintercept = 1000, 
+             linetype = "dotted", 
+             size = 1.2) +
+  scale_x_log10() +
+  theme(text = element_text(size = 15),
+        legend.position = "none") +
+  scale_color_viridis(option = "mako", discrete=TRUE)
+
+
+```
+
+
+# Correlation with distances
+
+## Load and wrangle data
+
+```{r}
+# setwd("/Users/seantrott/Dropbox/UCSD/Research/Ambiguity/SSD/entangled_meanings/src/analysis/")
+directory_path <- "../../data/processed/rawc/pythia/distances_rs/"
+csv_files <- list.files(path = directory_path, pattern = "*.csv", full.names = TRUE)
+csv_list <- csv_files %>%
+  map(~ read_csv(.))
+df_pythia_models_r2 <- bind_rows(csv_list) %>%
+  filter(mpath == "EleutherAI/pythia-14m")
+
+table(df_pythia_models_r2$mpath)
+
+
+
+### Group
+df_best_r2 = df_pythia_models_r2 %>% 
+  filter(mpath %in% c("EleutherAI/pythia-14m")) %>%
+  group_by(mpath, revision, step, seed, seed_name, Layer, n_params) %>%
+  summarise(r = cor(Distance, mean_relatedness, method = "pearson"),
+            r2 = r ** 2) %>%
+  group_by(mpath, step, seed, seed_name, n_params) %>%
+  slice_max(r2, n = 1) %>%  
+  mutate(step_modded = step + 1) %>%
+  mutate(million_tokens_seen = 2.1 * step_modded) %>%
+  group_by(mpath) %>%
+  mutate(
+    r2_diff = r2 - lag(r2),
+    r2_diff2 = r2_diff - lag(r2_diff)
+  )
+
+## Merge
+df_merged_r2_ratio = df_ratio_steps %>%
+  inner_join(df_best_r2)
+nrow(df_merged_r2_ratio)
+
+```
+
+
+## Analyze
+
+```{r}
+# Compute correlation within each seed
+cor_results <- df_merged_r2_ratio %>%
+  group_by(seed) %>%
+  summarize(correlation = cor(mean_lr_ratio, r2))
+cor_results
+
+
+### Does LR ratio account for effect of step?
+m_full <- lmer(r2 ~ mean_lr_ratio + log10(step_modded) + 
+                 (1 | seed), 
+              data = df_merged_r2_ratio)
+
+m_just_step <- lmer(r2 ~ log10(step_modded) + (1 | seed), 
+              data = df_merged_r2_ratio)
+
+m_just_ratio <- lmer(r2 ~ mean_lr_ratio + (1 | seed), 
+              data = df_merged_r2_ratio)
+
+summary(m_full)
+summary(m_just_step)
+summary(m_just_ratio)
+anova(m_full, m_just_step)
+anova(m_full, m_just_ratio)
+
+AIC(m_just_step)
+AIC(m_just_ratio)
+
+AIC(m_just_step) - AIC(m_just_ratio)
+```
+
+## Final-step variance
+
+```{r}
+df_final_step = df_merged_r2_ratio %>%
+  filter(step == 143000) 
+
+summary(df_final_step$mean_lr_ratio)
+sd(df_final_step$mean_lr_ratio)
+
+df_final_step %>%
+  ggplot(aes(x = mean_lr_ratio,
+             y = r2)) +
+  geom_point(size = 6,
+             alpha = .5) +
+  geom_text_repel(aes(label=seed_name), size=3) +
+  labs(x = "Mean Log Ratio at Final Step",
+       y = "Best R2 at Final Step",
+       color = "",
+       shape = "") +
+  theme_minimal() +
+  # guides(color="none") +
+  # scale_color_viridis(option = "mako", discrete=TRUE) +
+  scale_color_manual(values = my_colors)  +
+  theme(text = element_text(size = 15),
+        legend.position="bottom")
+
+
+```
+
