@@ -12,7 +12,7 @@ import torch
 
 from scipy.spatial.distance import cosine
 from tqdm import tqdm
-from transformers import GPTNeoXForCausalLM, AutoTokenizer
+from transformers import AutoModelForCausalLM, AutoTokenizer
 
 
 import utils
