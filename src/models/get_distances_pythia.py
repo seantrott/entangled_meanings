@@ -110,7 +110,7 @@ def main(df, mpath, revisions):
             print("Already run this model for this checkpoint.")
             continue
 
-        model = GPTNeoXForCausalLM.from_pretrained(
+        model = AutoModelForCausalLM.from_pretrained(
             mpath,
             revision=checkpoint,
             # output_hidden_states = True,
