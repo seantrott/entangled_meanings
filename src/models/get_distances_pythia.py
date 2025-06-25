@@ -41,6 +41,11 @@ def run_model(model, tokenizer, sentence):
     # Tokenize sentence
     inputs = tokenizer(sentence, return_tensors="pt")
 
+    # Move inputs to the same device as the model
+    device = next(model.parameters()).device
+    inputs = {k: v.to(device) for k, v in inputs.items()}
+
+
     # Run model
     with torch.no_grad():
         output = model(**inputs, output_attentions=True, output_hidden_states=True)
