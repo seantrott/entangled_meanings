@@ -113,7 +113,7 @@ def main(df, mpath, revisions):
         model = GPTNeoXForCausalLM.from_pretrained(
             mpath,
             revision=checkpoint,
-            output_hidden_states = True,
+            # output_hidden_states = True,
             device_map="auto",
         )
 
