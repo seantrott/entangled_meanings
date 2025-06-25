@@ -109,7 +109,6 @@ def main(df, mpath, revisions):
             output_hidden_states = True,
             device_map="auto",
         )
-        model.to(device) # allocate model to desired device
 
         tokenizer = AutoTokenizer.from_pretrained(mpath, revision=checkpoint)
 
@@ -128,8 +127,8 @@ def main(df, mpath, revisions):
             target = " {w}".format(w = row['string'])
 
             ### Run model for each sentence
-            s1_outputs = run_model(model, tokenizer, row['sentence1'], device)
-            s2_outputs = run_model(model, tokenizer, row['sentence2'], device)
+            s1_outputs = run_model(model, tokenizer, row['sentence1'])
+            s2_outputs = run_model(model, tokenizer, row['sentence2'])
 
             ### Now, for each layer...
             for layer in range(n_layers+1): # `range` is non-inclusive for the last value of interval
