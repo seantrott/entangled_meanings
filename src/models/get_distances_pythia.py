@@ -77,6 +77,14 @@ def get_embedding(hidden_states, inputs, tokenizer, target, layer):
     
     return embedding
 
+def find_sublist_index(mylist, sublist):
+    """Find the first occurence of sublist in list.
+    Return the start and end indices of sublist in list"""
+
+    for i in range(len(mylist)):
+        if mylist[i] == sublist[0] and mylist[i:i+len(sublist)] == sublist:
+            return i, i+len(sublist)
+    return None
 
 
 ### Handle logic for a dataset/model
