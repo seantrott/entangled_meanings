@@ -40,6 +40,7 @@ def run_model(model, tokenizer, sentence):
     """Run model, return hidden states and attention"""
     # Tokenize sentence
     inputs = tokenizer(sentence, return_tensors="pt")
+    inputs = {k: v.to(device) for k, v in inputs.items()}
 
     # Run model
     with torch.no_grad():
