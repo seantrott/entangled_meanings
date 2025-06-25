@@ -7,8 +7,6 @@ from torch.nn.functional import softmax
 from transformers import GPTNeoXForCausalLM, AutoTokenizer
 
 
-import matplotlib.pyplot as plt
-import seaborn as sns
 
 ## TODO: have to write a unit test for the weights swap --- 
 ## subtract the modified matrices from the intact matrix 
