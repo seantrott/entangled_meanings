@@ -43,7 +43,7 @@ def run_model(model, tokenizer, sentence):
 
     # Run model
     with torch.no_grad():
-        output = model(**inputs, output_attentions=True)
+        output = model(**inputs, output_attentions=True, output_hidden_states=True)
         hidden_states = output.hidden_states
         attentions = output.attentions
 
