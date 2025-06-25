@@ -40,7 +40,6 @@ def run_model(model, tokenizer, sentence):
     """Run model, return hidden states and attention"""
     # Tokenize sentence
     inputs = tokenizer(sentence, return_tensors="pt")
-    inputs = {k: v.to(device) for k, v in inputs.items()}
 
     # Run model
     with torch.no_grad():
@@ -91,7 +90,7 @@ def find_sublist_index(mylist, sublist):
 ### Handle logic for a dataset/model
 def main(df, mpath, revisions):
 
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    # device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     print("number of checkpoints:", len(revisions))
 
@@ -202,10 +201,6 @@ if __name__ == "__main__":
     ## Read stimuli
     df = pd.read_csv(STIMULI)
     df_just_n = df[df['Class']=='N']
-    print(len(df))
-    print(len(df_just_n))
-
-    print(df_just_n['ambiguity_type'].value_counts())
 
     ### Get revisions
     revisions = utils.generate_revisions_test()
