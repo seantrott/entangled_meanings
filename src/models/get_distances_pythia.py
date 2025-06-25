@@ -24,9 +24,9 @@ import utils
 MODELS = [
          # 'EleutherAI/pythia-14m',
          'EleutherAI/pythia-70m',
-         # 'EleutherAI/pythia-160m',
-         # 'EleutherAI/pythia-410m',
-          # 'EleutherAI/pythia-1b',
+         'EleutherAI/pythia-160m',
+         'EleutherAI/pythia-410m',
+          'EleutherAI/pythia-1b',
           #  'EleutherAI/pythia-1.4b',
           # 'EleutherAI/pythia-2.8b',
           # 'EleutherAI/pythia-6.9b',
@@ -37,12 +37,53 @@ STIMULI = "data/raw/rawc/rawc_stimuli.csv"
 
 
 
-### Get distances
+def run_model(model, tokenizer, sentence):
+    """Run model, return hidden states and attention"""
+    # Tokenize sentence
+    inputs = tokenizer(sentence, return_tensors="pt")
+
+    # Run model
+    with torch.no_grad():
+        output = model(**inputs, output_attentions=True)
+        hidden_states = output.hidden_states
+        attentions = output.attentions
+
+    return {'hidden_states': hidden_states,
+            'attentions': attentions,
+            'tokens': inputs}
+
+
+def get_embedding(hidden_states, inputs, tokenizer, target, layer):
+    """Extract embedding for TARGET from set of hidden states and token ids."""
+    
+    # Tokenize target
+    target_enc = tokenizer.encode(target, return_tensors="pt",
+                                  add_special_tokens=False)
+    
+    # Get indices of target in input tokens
+    target_inds = find_sublist_index(
+        inputs["input_ids"][0].tolist(),
+        target_enc[0].tolist()
+    )
+
+    # Get layer
+    selected_layer = hidden_states[layer][0]
+
+    #grab just the embeddings for your target word's token(s)
+    token_embeddings = selected_layer[target_inds[0]:target_inds[1]]
+
+    #if a word is represented by >1 tokens, take mean
+    #across the multiple tokens' embeddings
+    embedding = torch.mean(token_embeddings, dim=0)
+    
+    return embedding
+
+
 
 ### Handle logic for a dataset/model
 def main(df, mpath, revisions):
 
-    device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     print("number of checkpoints:", len(revisions))
 
@@ -65,7 +106,8 @@ def main(df, mpath, revisions):
         model = GPTNeoXForCausalLM.from_pretrained(
             mpath,
             revision=checkpoint,
-            output_hidden_states = True
+            output_hidden_states = True,
+            device_map="auto",
         )
         model.to(device) # allocate model to desired device
 
@@ -86,25 +128,18 @@ def main(df, mpath, revisions):
             target = " {w}".format(w = row['string'])
 
             ### Run model for each sentence
-            s1_outputs = utils.run_model(model, tokenizer, row['sentence1'], device)
-            s2_outputs = utils.run_model(model, tokenizer, row['sentence2'], device)
+            s1_outputs = run_model(model, tokenizer, row['sentence1'], device)
+            s2_outputs = run_model(model, tokenizer, row['sentence2'], device)
 
             ### Now, for each layer...
             for layer in range(n_layers+1): # `range` is non-inclusive for the last value of interval
     
                 ### Get embeddings for word
-                s1 = utils.get_embedding(s1_outputs['hidden_states'], s1_outputs['tokens'], tokenizer, target, layer, device)
-                s2 = utils.get_embedding(s2_outputs['hidden_states'], s2_outputs['tokens'], tokenizer, target, layer, device)
+                s1 = get_embedding(s1_outputs['hidden_states'], s1_outputs['tokens'], tokenizer, target, layer)
+                s2 = get_embedding(s2_outputs['hidden_states'], s2_outputs['tokens'], tokenizer, target, layer)
     
                 ### Now calculate cosine distance 
-                #.  note, tensors need to be copied to cpu to make this run;
-                #.  still faster to do this copy than to just have everything
-                #.  running on the cpu
-                if device.type == "mps":  
-                    model_cosine = cosine(s1.cpu(), s2.cpu())
-    
-                else: 
-                    model_cosine = cosine(s1, s2)
+                model_cosine = cosine(s1.cpu(), s2.cpu())
     
     
                 if row['same'] == True:
@@ -166,8 +201,10 @@ if __name__ == "__main__":
     print(df_just_n['ambiguity_type'].value_counts())
 
     ### Get revisions
-    revisions = utils.generate_revisions()
+    revisions = utils.generate_revisions_test()
 
     ## Run main
-    # main(df_just_n, MODELS[0], revisions)
+    for mpath in MODELS:
+        print("Running:", mpath)
+        main(df_just_n, mpath, revisions)
 
