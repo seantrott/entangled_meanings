@@ -53,7 +53,7 @@ table(df_pythia_models$mpath)
 
 ```{r distance_by_step}
 df_rawc = read_csv("../../data/raw/rawc/rawc_stimuli.csv") %>%
-  select(word, sentence1, sentence2, ambiguity_type) 
+  dplyr::select(word, sentence1, sentence2, ambiguity_type) 
 
 
 df_pythia_models_14m = df_pythia_models %>%
@@ -87,7 +87,7 @@ df_distance %>%
   scale_color_viridis(option = "mako", discrete=TRUE)
 
 df_wide <- df_distance %>%
-  select(-Layer) %>%
+  dplyr::select(-Layer) %>%
   pivot_wider(
     names_from = Same_sense,
     values_from = mean_distance,
@@ -128,6 +128,7 @@ df_wide %>%
 ```{r}
 df_best_r2_scale = df_pythia_models %>% 
   filter(step == 143000) %>%
+  filter(Layer >0 )%>%
   group_by(mpath, Layer, n_params) %>%
   summarise(r = cor(Distance, mean_relatedness, method = "pearson"),
             r2 = r ** 2) %>%
@@ -136,8 +137,12 @@ df_best_r2_scale = df_pythia_models %>%
   mutate(mpath = str_remove(mpath, ".*?/"))
 
 df_best_r2_scale %>%
+  arrange(n_params)
+
+df_best_r2_scale %>%
   ggplot(aes(x = n_params,
              y = r2)) +
+  geom_line(size = 2, alpha = .3, linetype = "dotted") +
   geom_point(size = 6,
              alpha = .5) +
   geom_hline(yintercept = .64,##TODO: Calculate from scratch
@@ -167,7 +172,7 @@ summary(lm(data = df_best_r2_scale,
 ```
 
 
-## Residauls by model
+## Residuals by model
 
 ```{r}
 df_pythia_models_final = df_pythia_models %>%
@@ -257,12 +262,92 @@ df_best_r2_scale %>%
        shape = "") +
   theme_bw() +
   # guides(color="none") +
-  # scale_color_viridis(option = "mako", discrete=TRUE) +
-  scale_color_manual(values = viridisLite::viridis(2, option = "mako", 
-                                                   begin = 0.8, end = 0.15))  +
   theme(text = element_text(size = 15)) +
   facet_wrap(~reorder(revision, step))
 ```
+
+
+## R2 by layer, final step
+
+```{r}
+df_best_r2_layer = df_pythia_models %>% 
+  filter(step == 1000) %>%
+  filter(Layer > 0) %>%
+  group_by(mpath, Layer, n_params) %>%
+  summarise(r = cor(Distance, mean_relatedness, method = "pearson"),
+            r2 = r ** 2) %>%  
+  mutate(model = sub("^EleutherAI/", "", mpath)) %>%
+  group_by(model) %>%
+  mutate(max_layer = max(Layer),
+         prop_layer = Layer / max_layer) %>%
+  ### Scale for interpreting the coefficients more easily
+  mutate(prop_layer_scaled = scale(prop_layer)) %>%
+  ungroup()
+
+df_best_r2_layer %>%
+  ggplot(aes(x = Layer,
+             y = r2,
+             color = reorder(model, n_params))) +
+  geom_point(size = 3, alpha = .7) +
+  geom_line(size = 1.3, alpha = .7) +
+  geom_hline(yintercept = .64,##TODO: Calculate from scratch
+             linetype = "dotted", color = "red",
+             size = 1.2, alpha = .5) + 
+  theme_minimal() +
+  labs(x = "Layer",
+       y = "Best R2",
+       color = "") +
+  # scale_x_log10() +
+  theme(text = element_text(size = 15),
+        legend.position = "bottom") +
+  scale_color_manual(values = viridisLite::viridis(8, option = "mako", 
+                                                   begin = 0.8, end = 0.15))
+
+
+
+
+summary_df <- df_best_r2_layer %>%
+  mutate(binned_prop_layer = ntile(prop_layer, 10)) %>%
+  mutate(prop_binned = binned_prop_layer / 10) %>%
+  group_by(model, n_params, prop_binned) %>%
+  summarise(
+    mean_r2 = mean(r2)
+  ) 
+
+ggplot(summary_df, aes(x = prop_binned, 
+                       y = mean_r2, 
+                       color = reorder(model, n_params))) +
+  geom_point(size = 3, alpha = .7) +
+  geom_line(size = 1.3, alpha = .7) +
+  geom_hline(yintercept = .64,##TODO: Calculate from scratch
+             linetype = "dotted", color = "red",
+             size = 1.2, alpha = .5) + 
+  labs(x = "Layer Depth",
+       y = "Mean R2",
+       color = "Model", fill = "Model") +
+  scale_color_manual(values = viridisLite::viridis(8, option = "mako", 
+                                                   begin = 0.8, end = 0.15)) + 
+  theme_minimal(base_size = 15) +
+  theme(text = element_text(size = 15),
+        legend.position = "bottom")
+
+
+### Effect of absolute layer?
+mod = lmer(data = df_best_r2_layer,
+           r2 ~ Layer + (1 |model))
+summary(mod)
+
+### Effect of relative layer?
+mod = lmer(data = df_best_r2_layer,
+           r2 ~ prop_layer_scaled + (1 |model))
+summary(mod)
+
+### Independent effects?
+mod = lmer(data = df_best_r2_layer,
+           r2 ~ prop_layer_scaled + Layer + (1 |model))
+summary(mod)
+```
+
 
 ## Best R2 by step, only 14m
 
@@ -370,7 +455,6 @@ summary(m_step)
 ## Best R2 by step, multiple models
 
 ```{r r2_by_step}
-
 TARGET_REVISIONS = c(0, 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1000, 
                      2000, 5000, 10000, 25000, 50000, 75000, 100000, 143000)
 
@@ -397,7 +481,7 @@ df_best_r2 %>%
              y = r2,
              color = reorder(model, n_params))) +
   geom_point(size = 3, alpha = .7) +
-  geom_line(size = 1.3, alpha = .7) +
+  geom_line(size = 1, alpha = .7, linetype = "dashed") +
   geom_hline(yintercept = .64,##TODO: Calculate from scratch
              linetype = "dotted", color = "red",
              size = 1.2, alpha = .5) + 
@@ -411,7 +495,7 @@ df_best_r2 %>%
              size = 1.2) +
   theme(text = element_text(size = 15),
         legend.position = "bottom") +
-  scale_color_manual(values = viridisLite::viridis(6, option = "mako", 
+  scale_color_manual(values = viridisLite::viridis(8, option = "mako", 
                                                    begin = 0.8, end = 0.15))
 
 
@@ -422,8 +506,8 @@ df_best_r2 %>%
              color = reorder(model, n_params))) +
   geom_point(size = 3, alpha = .7) +
   geom_line(size = 1.3, alpha = .7) +
-  geom_hline(yintercept = .64,##TODO: Calculate from scratch
-             linetype = "dotted", color = "red",
+  geom_hline(yintercept = 0,
+             linetype = "dotted", color = "black",
              size = 1.2, alpha = .5) + 
   theme_minimal() +
   labs(x = "Training Step (Log10)",
@@ -435,7 +519,7 @@ df_best_r2 %>%
              size = 1.2) +
   theme(text = element_text(size = 15),
         legend.position = "bottom") +
-  scale_color_manual(values = viridisLite::viridis(6, option = "mako", 
+  scale_color_manual(values = viridisLite::viridis(8, option = "mako", 
                                                    begin = 0.8, end = 0.15))
 
 
@@ -443,59 +527,4 @@ df_best_r2 %>%
 ```
 
 
-## Breakpoints
 
-Can we quantify differences in *when* $R^2$ starts improving?
-
-```{r}
-
-df_best_r2 <- df_best_r2 %>% 
-  mutate(log_step = log10(step_modded))
-
-# Run segmented regression per model
-breakpoints_df <- df_best_r2 %>%
-  group_by(model, n_params) %>%
-  group_split() %>%
-  map_dfr(function(df_model) {
-    mpath_id <- unique(df_model$model)
-    n_params_val <- unique(df_model$n_params)
-    
-    lin_fit <- tryCatch(
-      lm(r2 ~ log_step, data = df_model),
-      error = function(e) return(NULL)
-    )
-    
-    if (is.null(lin_fit)) return(tibble(mpath = mpath_id, breakpoint_step = NA_real_, se = NA_real_))
-    
-    seg_fit <- tryCatch(
-      segmented(lin_fit, seg.Z = ~log_step),
-      error = function(e) return(NULL)
-    )
-    
-    if (is.null(seg_fit)) {
-      tibble(mpath = mpath_id, breakpoint_step = NA_real_, se = NA_real_)
-    } else {
-      bp_log <- seg_fit$psi[1, "Est."]
-      bp_se <- seg_fit$psi[1, "St.Err"]
-      tibble(
-        mpath = mpath_id,
-        n_params = n_params_val,
-        breakpoint_log = bp_log,
-        breakpoint_step = 10^bp_log,
-        se = bp_se
-      )
-    }
-  })
-
-
-
-
-ggplot(breakpoints_df, aes(x = reorder(mpath, n_params), y = breakpoint_step)) +
-  geom_point(size = 3) +
-  geom_errorbar(aes(ymin = 10^(breakpoint_log - se), ymax = 10^(breakpoint_log + se)), width = 0.2) +
-  # scale_y_log10() +
-  coord_flip() +
-  theme_minimal(base_size = 14) +
-  labs(y = "Estimated Onset Step", 
-       x = "Model")
-```
