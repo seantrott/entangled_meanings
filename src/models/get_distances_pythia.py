@@ -111,6 +111,7 @@ def main(df, mpath, revisions):
             filename = "rawc-distances_model-" + mpath +  "-" + checkpoint + ".csv"
 
         print("Checking if we've already run this analysis...")
+        print(filename)
         if os.path.exists(os.path.join(savepath,filename)):
             print("Already run this model for this checkpoint.")
             continue

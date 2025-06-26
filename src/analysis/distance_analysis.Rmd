@@ -236,7 +236,7 @@ results %>%
 
 ```{r}
 df_best_r2_scale = df_pythia_models %>% 
-  filter(step %in% c(32, 1000, 143000)) %>%
+  filter(step %in% c(32, 5000, 143000)) %>%
   group_by(mpath, step, revision, Layer, n_params) %>%
   summarise(r = cor(Distance, mean_relatedness, method = "pearson"),
             r2 = r ** 2) %>%
@@ -495,7 +495,7 @@ df_best_r2 %>%
              size = 1.2) +
   theme(text = element_text(size = 15),
         legend.position = "bottom") +
-  scale_color_manual(values = viridisLite::viridis(8, option = "mako", 
+  scale_color_manual(values = viridisLite::viridis(9, option = "mako", 
                                                    begin = 0.8, end = 0.15))
 
 
@@ -519,12 +519,88 @@ df_best_r2 %>%
              size = 1.2) +
   theme(text = element_text(size = 15),
         legend.position = "bottom") +
-  scale_color_manual(values = viridisLite::viridis(8, option = "mako", 
+  scale_color_manual(values = viridisLite::viridis(9, option = "mako", 
                                                    begin = 0.8, end = 0.15))
 
 
 
 ```
 
+
+## Identifying breakpoints
+
+```{r}
+### Approach 1: maximum jump in r2
+df_jump <- df_best_r2 %>%
+  group_by(model) %>%
+  filter(r2_diff == max(r2_diff, na.rm = TRUE)) %>%
+  dplyr::select(model, step, r2, r2_diff, n_params)
+df_jump %>%
+  arrange(n_params)
+
+### Approach 2: maximum rate of increase
+df_infl <- df_best_r2 %>%
+  group_by(model) %>%
+  filter(r2_diff2 == max(r2_diff2, na.rm = TRUE)) %>%
+  dplyr::select(model, step, r2, r2_diff2, n_params)
+df_infl %>%
+  arrange(n_params)
+
+
+
+
+### Approach 3: Changepoint detection
+# Function: interpolate R² over log-steps and detect changepoints
+detect_changepoints <- function(df_model, Q = 10, n_grid = 100, pen = 0.01) {
+  model_name <- unique(df_model$model)
+  n_params_val <- unique(df_model$n_params)
+
+  df_model <- df_model %>%
+    arrange(step_modded) %>%
+    mutate(log_step = log10(step_modded))
+
+  # Create regular log-scale grid
+  log_step_grid <- seq(min(df_model$log_step),
+                       max(df_model$log_step),
+                       length.out = n_grid)
+
+  # Interpolate r2 values onto that grid
+  interp_r2 <- approx(x = df_model$log_step, y = df_model$r2, xout = log_step_grid)$y
+
+  # Run changepoint detection
+  cpt <- tryCatch({
+    cpt.mean(interp_r2, method = "BinSeg", Q = Q, penalty = "Manual", pen.value = pen)
+  }, error = function(e) return(NULL))
+
+  if (is.null(cpt)) {
+    return(tibble(model = model_name, n_params = n_params_val,
+                  changepoint_index = NA_integer_, changepoint_step = NA_real_))
+  }
+
+  indices <- cpts(cpt)
+  changepoint_log_steps <- log_step_grid[indices]
+  changepoint_steps <- 10^changepoint_log_steps
+
+  tibble(model = model_name,
+         n_params = n_params_val,
+         changepoint_index = indices,
+         log_changepoint = changepoint_log_steps,
+         changepoint_step = changepoint_steps)
+}
+
+# Apply to all models
+df_multi_cp <- df_best_r2 %>%
+  group_by(model) %>%
+  group_split() %>%
+  map_dfr(~ detect_changepoints(.x))
+
+### Any patterns in number of inflection points, etc.
+df_multi_cp %>%
+  group_by(model, n_params) %>%
+  summarise(num_changepoints = n(),
+            first_changepoint = min(changepoint_step)) %>%
+  arrange(n_params)
+
+```
 
 

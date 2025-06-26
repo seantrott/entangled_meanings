@@ -20,10 +20,10 @@ import utils
 
 ### Models to test
 MODELS = [
-          'EleutherAI/pythia-14m',
+          # 'EleutherAI/pythia-14m',
           # 'EleutherAI/pythia-70m',
           # 'EleutherAI/pythia-160m',
-          # 'EleutherAI/pythia-410m',
+          'EleutherAI/pythia-410m',
           # 'EleutherAI/pythia-1b',
           # 'EleutherAI/pythia-1.4b',
           # 'EleutherAI/pythia-2.8b',
@@ -35,10 +35,12 @@ STIMULI = "data/raw/rawc/individual_sentences.csv"
 
 
 
+
 ### Handle logic for a dataset/model
 def main(df, mpath, revisions):
 
-    device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
+
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     print("number of checkpoints:", len(revisions))
 
@@ -65,7 +67,8 @@ def main(df, mpath, revisions):
         model = GPTNeoXForCausalLM.from_pretrained(
             mpath,
             revision=checkpoint,
-            output_hidden_states = True
+            output_hidden_states = True,
+            device_map="auto"
         )
         model.to(device) # allocate model to desired device
 
@@ -104,6 +107,11 @@ def main(df, mpath, revisions):
                                                                              target, disambiguating_word, layer, head, device)
         
         
+                    ### Get 1-back still
+                    attn_weights = model_outputs['attentions'][layer][0, head]  # Shape: (seq_len, seq_len)
+                    seq_len = attn_weights.shape[0]
+                    prev_token_attention = torch.diagonal(attn_weights, offset=-1).mean().item()
+        
                     ### Add to results dictionary
                     results.append({
                         'sentence': row['sentence'],
@@ -112,6 +120,7 @@ def main(df, mpath, revisions):
                         'disambiguating_word': disambiguating_word,
                         'Attention': attention_info['attention_to_disambiguating'],
                         'Entropy': attention_info['entropy'],
+                        'Attention_1back': prev_token_attention,
                         'Head': head,
                         'Layer': layer
                     })
