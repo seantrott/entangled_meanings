@@ -162,6 +162,7 @@ if __name__ == "__main__":
 
     ### Get revisions
     revisions = utils.generate_revisions_test()
+    revisions = ['step143000']
 
     ## Run main
     main(df_just_n, MODELS[0], revisions)
