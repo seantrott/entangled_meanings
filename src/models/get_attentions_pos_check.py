@@ -89,7 +89,6 @@ def main(df, mpath, revisions):
             output_hidden_states = True,
             device_map="auto"
         )
-        model.to(device) # allocate model to desired device
 
         tokenizer = AutoTokenizer.from_pretrained(mpath, revision=checkpoint)
 
