@@ -116,7 +116,7 @@ def main(df, mpath, revisions):
             inserted_string_final_token = " {w}".format(w = inserted_string.split()[-1])
 
             ### Run model for each sentence
-            model_outputs = utils.run_model(model, tokenizer, sentence)
+            model_outputs = run_model(model, tokenizer, sentence)
 
 
 
