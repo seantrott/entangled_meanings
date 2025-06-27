@@ -307,10 +307,15 @@ df_attn_by_head_wide %>%
 
 ## Correlating with other stress tests
 
+### Loading data
+
 ```{r}
+
+### R2 ~ Attention to disambiguation word
 regression_results_df = read_csv("../../data/processed/rawc/pythia/summaries/r2_results_410m.csv") %>%
   select(-`...1`)
 
+### Subtraction results
 t_test_results_subset = read_csv("../../data/processed/rawc/pythia/summaries/t_test_results.csv") %>%
   select(-`...1`) %>%
   filter(step ==143000) %>%
@@ -318,18 +323,31 @@ t_test_results_subset = read_csv("../../data/processed/rawc/pythia/summaries/t_t
   mutate(Head = Head + 1) ### To match others
 
 
+### Sort of
+df_attn_sortof = read_csv("../../data/processed/rawc/pythia/summaries/sortof_410m.csv") %>%
+  select(-`...1`) %>%
+  select(attn_disamb_sort_of, Layer, Head)
 
+
+### POS agnostic
 df_attn_by_head_wide = read_csv("../../data/processed/rawc/pythia/summaries/attn_diff_410m.csv") %>%
   select(-`...1`) %>%
   select(N, V, diff, min_attn, Layer, Head)
 
+
+### Joining
 df_ttest_r2_attns = df_attn_by_head_wide %>%
   inner_join(regression_results_df) %>%
-  inner_join(t_test_results_subset)
+  inner_join(t_test_results_subset) %>%
+  inner_join(df_attn_sortof)
 
 nrow(df_ttest_r2_attns)
+```
 
 
+### Analysis
+
+```{r}
 
 ### Now look at relationships
 
@@ -389,7 +407,7 @@ df_ttest_r2_attns %>%
 
 ```{r}
 pca_features <- df_ttest_r2_attns %>%
-  select(Coefficient, t_statistic, is_sig, N, V) %>%
+  select(Coefficient, t_statistic, is_sig, N, V, attn_disamb_sort_of) %>%
   scale()  # Standardize
 
 pca_result <- prcomp(pca_features, center = TRUE, scale. = TRUE)
@@ -439,27 +457,29 @@ ggplot(loadings_long, aes(x = PC, y = feature, fill = Loading)) +
 df_ttest_r2_attns <- df_ttest_r2_attns %>%
   mutate(disambig_PC1 = pca_result$x[,1])
 
+### Labeling bottom 1% of PC1
 df_ttest_r2_attns %>%
-  mutate(label = ifelse(disambig_PC1 <= quantile(disambig_PC1, 0.025),
+  mutate(label = ifelse(disambig_PC1 <= quantile(disambig_PC1, .01),
                         paste(Layer, Head, sep = "_"),
                         NA)) %>%
   ggplot(aes(x = disambig_PC1)) +
+  geom_vline(xintercept = 0, linetype = "dotted") +
   geom_text_repel(aes(label = label, y = 0), 
                   size = 3.5,
                   nudge_y = 5, 
                   direction = "x", 
                   segment.color = "grey50",
                   na.rm = TRUE) +
-  geom_histogram(bins = 30) +
+  geom_histogram(bins = 30, alpha = .5) +
   theme_minimal() +
   labs(title = "PC1: Disambiguation Head Axis")
 
 
 df_ttest_r2_attns %>%
-  mutate(label = ifelse(disambig_PC1 <= quantile(disambig_PC1, 0.025) & is_sig == TRUE,
+  mutate(label = ifelse(disambig_PC1 <= quantile(disambig_PC1, 0.05) & is_sig == TRUE,
                         paste(Layer, Head, sep = "_"),
                         NA)) %>%
-  ggplot(aes(x = min_attn,
+  ggplot(aes(x = attn_disamb_sort_of,
              y = disambig_PC1,
              color = is_sig)) +
   geom_point(size = 3, alpha = .5) +
@@ -469,7 +489,7 @@ df_ttest_r2_attns %>%
   geom_vline(xintercept = 0 ,linetype = "dotted") +
     scale_color_manual(values = viridisLite::viridis(2, option = "mako", 
                                                    begin = 0.8, end = 0.15)) +
-  labs(x = "Min. Attn. Across POS",
+  labs(x = "Mean Attn. (Sort Of Analysis)",
        y = "PC 1") +
   theme(text = element_text(size = 15),
         legend.position = "none")

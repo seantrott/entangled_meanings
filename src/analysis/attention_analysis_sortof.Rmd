@@ -54,11 +54,13 @@ table(df_pythia_models$mpath)
 ```
 
 
+# Analysis of 14m
 
-# Attention at final step
+## Attention at final step
 
 ```{r}
 df_final_step = df_pythia_models %>%
+  filter(mpath == "EleutherAI/pythia-14m") %>%
   filter(step == 143000)
 nrow(df_final_step)
 
@@ -145,10 +147,10 @@ df_attn_by_head %>%
 
 
 
-# Attention over time
+## Attention over time
 
 
-## Attention by head
+### Attention by head
 
 ```{r}
 df_attention_over_time = df_pythia_models %>% 
@@ -284,7 +286,7 @@ df_attention_over_time %>%
 
 
 
-# Subtraction analysis
+## Subtraction analysis
 
 Finally, we compare attention to 'of' to attention to previous tokens more generally.
 
@@ -365,3 +367,160 @@ df_pythia_models %>%
         legend.position = "bottom")
 
 ```
+
+
+# Analysis of 410m
+
+
+## Attention at final step
+
+```{r}
+df_final_step = df_pythia_models %>%
+  filter(mpath == "EleutherAI/pythia-410m") %>%
+  filter(step == 143000)
+nrow(df_final_step)
+
+df_attn_by_head = df_final_step %>%
+  group_by(mpath, Layer, Head, n_params) %>%
+  summarise(mean_attention = mean(Attention)) %>%
+  mutate(attn_disamb_sort_of = mean_attention)
+
+
+write.csv(df_attn_by_head, "../../data/processed/rawc/pythia/summaries/sortof_410m.csv")
+
+df_attn_by_head %>%
+  ggplot(aes(x = Layer,
+             y = Head,
+             fill = mean_attention)) +
+  geom_tile() +
+  labs(x = "Layer",
+       y = "Head",
+       fill = "Attention to Disambiguating Word") +
+  scale_fill_gradient2(low = "blue",
+                       mid = "white",
+                       high = "red",
+                       midpoint = 0, 
+                       name = "Attention to Disambiguating Word") +
+  theme_minimal() +
+  theme(text = element_text(size = 15),
+        strip.text.y = element_text(angle = 0), # Keep facet labels horizontal
+        axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.position = "bottom")
+
+
+
+### 
+df_attn_by_head = df_final_step %>%
+  group_by(mpath, Layer, Head, n_params) %>%
+  summarise(mean_attention_1back = mean(Attention_1back))
+
+
+df_attn_by_head %>%
+  ggplot(aes(x = Layer,
+             y = Head,
+             fill = mean_attention_1back)) +
+  geom_tile() +
+  labs(x = "Layer",
+       y = "Head",
+       fill = "Avg. Attention to Previous Token") +
+  scale_fill_gradient2(low = "blue",
+                       mid = "white",
+                       high = "red",
+                       midpoint = 0, 
+                       name = "Avg. Attention to Previous Token") +
+  theme_minimal() +
+  theme(text = element_text(size = 15),
+        strip.text.y = element_text(angle = 0), # Keep facet labels horizontal
+        axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.position = "bottom")
+
+
+
+### 
+df_attn_by_head = df_final_step %>%
+  group_by(mpath, Layer, Head, n_params) %>%
+  summarise(mean_attention_inserted_string = mean(Attention_inserted_string))
+
+
+df_attn_by_head %>%
+  ggplot(aes(x = Layer,
+             y = Head,
+             fill = mean_attention_inserted_string)) +
+  geom_tile() +
+  labs(x = "Layer",
+       y = "Head",
+       fill = "Attention to Inserted String") +
+  scale_fill_gradient2(low = "blue",
+                       mid = "white",
+                       high = "red",
+                       midpoint = 0, 
+                       name = "Attention to Inserted String") +
+  theme_minimal() +
+  theme(text = element_text(size = 15),
+        strip.text.y = element_text(angle = 0), # Keep facet labels horizontal
+        axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.position = "bottom")
+
+
+```
+
+
+
+## Attention over time
+
+
+### Attention by head
+
+```{r}
+df_attention_over_time = df_pythia_models %>% 
+  filter(mpath %in% c("EleutherAI/pythia-410m")) %>%
+  group_by(mpath, revision, Layer, Head, step, n_params) %>%
+  summarise(mean_attention = mean(Attention)) %>%
+  mutate(step_modded = step + 1) %>%
+  group_by(mpath, step, Head)
+
+df_attention_over_time %>%
+  filter(Layer %in% c(1, 2, 4, 6, 22, 23)) %>%
+  ggplot(aes(x = step_modded,
+             y = mean_attention,
+             color = factor(Head))) +
+  geom_point(size = 3, alpha = .7) +
+  geom_line(size = 2, alpha = .7) +
+  theme_minimal() +
+  labs(x = "Training Step (Log10)",
+       y = "Attention to Disambiguating Word",
+       color = "Attention Head") +
+  scale_x_log10() +
+  scale_y_continuous(limits = c(0, .8)) +
+    geom_vline(xintercept = 1000, 
+             linetype = "dotted", 
+             size = 1.2) +
+  theme(text = element_text(size = 15),
+        legend.position = "bottom") +
+  scale_color_viridis(option = "mako", discrete=TRUE) +
+  facet_wrap(~Layer)
+
+
+df_attention_over_time %>%
+  filter(Layer == 3) %>%
+  ggplot(aes(x = step_modded,
+             y = mean_attention,
+             color = factor(Head))) +
+  geom_point(size = 3, alpha = .7) +
+  geom_line(size = 2, alpha = .7) +
+  theme_minimal() +
+  labs(x = "Training Step (Log10)",
+       y = "Attention to Disambiguating Word",
+       color = "Attention Head") +
+  scale_x_log10() +
+  scale_y_continuous(limits = c(0, .8)) +
+    geom_vline(xintercept = 1000, 
+             linetype = "dotted", 
+             size = 1.2) +
+  theme(text = element_text(size = 15),
+        legend.position = "bottom") +
+  scale_color_viridis(option = "mako", discrete=TRUE)
+
+
+```
+

@@ -22,12 +22,12 @@ MODELS = [
           # 'EleutherAI/pythia-14m',
           # 'EleutherAI/pythia-70m',
           # 'EleutherAI/pythia-160m',
-          'EleutherAI/pythia-410m',
+          # 'EleutherAI/pythia-410m',
           # 'EleutherAI/pythia-1b',
           # 'EleutherAI/pythia-1.4b',
-          # 'EleutherAI/pythia-2.8b',
-          # 'EleutherAI/pythia-6.9b',
-          # 'EleutherAI/pythia-12b',
+          'EleutherAI/pythia-2.8b',
+          'EleutherAI/pythia-6.9b',
+          'EleutherAI/pythia-12b',
           ]
 
 STIMULI = "data/raw/rawc/individual_sentences.csv"
