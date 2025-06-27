@@ -26,7 +26,7 @@ MODELS = [
           # 'EleutherAI/pythia-1b',
           # 'EleutherAI/pythia-1.4b',
           # 'EleutherAI/pythia-2.8b',
-          'EleutherAI/pythia-6.9b',
+          # 'EleutherAI/pythia-6.9b',
           'EleutherAI/pythia-12b',
           ]
 
