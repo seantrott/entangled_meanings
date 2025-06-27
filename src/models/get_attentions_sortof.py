@@ -178,7 +178,7 @@ if __name__ == "__main__":
     # df_just_n = df[df['Class']=='N']
 
     ### Get revisions
-    revisions = utils.generate_revisions()
+    revisions = utils.generate_revisions_test()
 
     ## Run main
     main(df, MODELS[0], revisions)
