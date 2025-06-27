@@ -20,10 +20,10 @@ import utils
 
 ### Models to test
 MODELS = [
-         'EleutherAI/pythia-14m',
+         # 'EleutherAI/pythia-14m',
           # 'EleutherAI/pythia-70m',
           # 'EleutherAI/pythia-160m',
-          # 'EleutherAI/pythia-410m',
+          'EleutherAI/pythia-410m',
           # 'EleutherAI/pythia-1b',
           # 'EleutherAI/pythia-1.4b',
           # 'EleutherAI/pythia-2.8b',
@@ -35,10 +35,32 @@ STIMULI = "data/raw/rawc/individual_sentences_PoS_test_cues.csv"
 
 
 
+def run_model(model, tokenizer, sentence):
+    """Run model, return hidden states and attention"""
+    # Tokenize sentence
+    inputs = tokenizer(sentence, return_tensors="pt")
+
+    # Move inputs to the same device as the model
+    device = next(model.parameters()).device
+    inputs = {k: v.to(device) for k, v in inputs.items()}
+
+
+    # Run model
+    with torch.no_grad():
+        output = model(**inputs, output_attentions=True, output_hidden_states=True)
+        hidden_states = output.hidden_states
+        attentions = output.attentions
+
+    return {'hidden_states': hidden_states,
+            'attentions': attentions,
+            'tokens': inputs}
+
+
+
 ### Handle logic for a dataset/model
 def main(df, mpath, revisions):
 
-    device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     print("number of checkpoints:", len(revisions))
 
@@ -65,7 +87,8 @@ def main(df, mpath, revisions):
         model = GPTNeoXForCausalLM.from_pretrained(
             mpath,
             revision=checkpoint,
-            output_hidden_states = True
+            output_hidden_states = True,
+            device_map="auto"
         )
         model.to(device) # allocate model to desired device
 
@@ -90,7 +113,7 @@ def main(df, mpath, revisions):
             sentence_new = row['sentence_new']
 
             ### Run model for each sentence
-            model_outputs = utils.run_model(model, tokenizer, sentence_new, device)
+            model_outputs = run_model(model, tokenizer, sentence_new)
 
             ### Now, for each layer...
             for layer in range(n_layers): 

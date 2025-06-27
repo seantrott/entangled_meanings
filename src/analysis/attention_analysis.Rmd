@@ -50,7 +50,7 @@ table(df_pythia_models$mpath)
 For this developmental analysis, we focus on Pythia-14m.
 
 
-## Mean entropy for Pythia-14M
+## Mean entropy
 
 
 ```{r}
@@ -102,7 +102,7 @@ df_final %>%
 ```
 
 
-## Mean entropy for Pythia-14M
+## Mean entropy for 14M
 
 ```{r}
 summary_df <- df_pythia_models %>%
@@ -326,7 +326,7 @@ df_most_attentive_heads %>%
 
 
 
-# Attention over time
+# Main analysis: attention over time for 14m
 
 ## Averaging across heads, per layer
 
@@ -578,3 +578,554 @@ regression_results_df %>%
 ```
 
 
+
+# Replication for 410m
+
+
+## Averaging across heads, per layer
+
+```{r}
+df_attention_over_time = df_pythia_models %>% 
+  filter(mpath %in% c("EleutherAI/pythia-410m")) %>%
+  group_by(mpath, step, revision, Head, Layer, n_params) %>%
+  summarise(mean_attention = mean(Attention)) %>%
+  group_by(mpath, step, revision, Layer, n_params) %>%
+  summarise(max_attention_head = max(mean_attention)) %>%
+  mutate(step_modded = step + 1) %>%
+  group_by(mpath, Layer) %>%
+  mutate(
+    attention_diff = max_attention_head - lag(max_attention_head)
+  )
+
+df_attention_over_time %>%
+  ggplot(aes(x = step_modded,
+             y = max_attention_head,
+             color = factor(Layer))) +
+  geom_point(size = 4, alpha = .7) +
+  geom_line(size = 2, alpha = .7) +
+  theme_minimal() +
+  geom_vline(xintercept = 1000, 
+             linetype = "dotted", 
+             size = 1.2) +
+  labs(x = "Training Step (Log10)",
+       y = "Max. Attention to Disambiguating Word",
+       color = "Layer") +
+  scale_x_log10() +
+  geom_vline(xintercept = 1000, 
+             linetype = "dotted", 
+             size = 1.2) +
+  theme(text = element_text(size = 15),
+        legend.position = "bottom") +
+  scale_color_viridis(option = "mako", discrete=TRUE) +
+  facet_wrap(~Layer)
+
+
+```
+
+
+
+## Attention by head
+
+```{r}
+df_attention_over_time = df_pythia_models %>% 
+  filter(mpath %in% c("EleutherAI/pythia-410m")) %>%
+  # filter(Layer == 3) %>%
+  group_by(mpath, revision, Layer, Head, step, n_params) %>%
+  summarise(mean_attention = mean(Attention)) %>%
+  mutate(step_modded = step + 1) %>%
+  group_by(mpath, step, Head) %>%
+  mutate(
+    attention_diff = mean_attention - lag(mean_attention),
+    Head = Head + 1
+  )
+
+df_attention_over_time %>%
+  # filter(Layer == 3) %>%
+  ggplot(aes(x = step_modded,
+             y = mean_attention,
+             color = factor(Head))) +
+  geom_point(size = 4, alpha = .7) +
+  geom_line(size = 2, alpha = .7) +
+  theme_minimal() +
+  labs(x = "Training Step (Log10)",
+       y = "Attention to Disambiguating Word",
+       color = "Attention Head") +
+  scale_x_log10() +
+    geom_vline(xintercept = 1000, 
+             linetype = "dotted", 
+             size = 1.2) +
+  theme(text = element_text(size = 15),
+        legend.position = "bottom") +
+  scale_color_viridis(option = "mako", discrete=TRUE) +
+  facet_wrap(~Layer)
+
+df_attention_over_time %>%
+  filter(Layer %in% c(1, 4, 5, 6, 10, 22, 24)) %>%
+  # filter(Head %in% c(1, 2)) %>%    
+  ggplot(aes(x = step_modded,
+             y = mean_attention,
+             color = factor(Head))) +
+  geom_point(size = 4, alpha = .7) +
+  geom_line(size = 2, alpha = .7) +
+  theme_minimal() +
+  labs(x = "Training Step (Log10)",
+       y = "Attention to Disambiguating Word",
+       color = "Attention Head (Layer 3)") +
+  scale_x_log10() +
+    geom_vline(xintercept = 1000, 
+             linetype = "dotted", 
+             size = 1.2) +
+  theme(text = element_text(size = 15),
+        legend.position = "bottom") +
+  scale_color_viridis(option = "mako", discrete=TRUE) +
+  facet_wrap(~Layer)
+
+
+
+
+```
+
+
+## 1-back for 410m
+
+### Over time
+
+```{r}
+df_attention_over_time = df_pythia_models %>% 
+  filter(mpath %in% c("EleutherAI/pythia-410m")) %>%
+  group_by(mpath, revision, Layer, Head, step, n_params) %>%
+  mutate(attention_diff = Attention - Attention_1back,
+         attention_ratio = Attention / Attention_1back) %>%
+  summarise(mean_attention_diff = mean(attention_diff),
+            mean_attention_ratio = mean(attention_ratio),
+            se_diff = sd(attention_diff) / n()) %>%
+  mutate(step_modded = step + 1)
+
+df_attention_over_time %>%
+  ggplot(aes(x = step_modded,
+             y = mean_attention_diff,
+             color = factor(Head))) +
+  geom_point(size = 2, alpha = .7) +
+  geom_line(size = 2, alpha = .7) +
+  theme_minimal() +
+  labs(x = "Training Step (Log10)",
+       y = "Attention Difference",
+       color = "Attention Head") +
+  scale_x_log10() +
+    geom_vline(xintercept = 1000, 
+             linetype = "dotted", 
+             size = 1.2) +
+    geom_hline(yintercept = 0, 
+             linetype = "dashed", 
+             size = 1.2,
+             color = "black") +
+  theme(text = element_text(size = 15),
+        legend.position = "bottom") +
+  scale_color_viridis(option = "mako", discrete=TRUE) +
+  facet_wrap(~Layer)
+
+df_attention_over_time %>%
+  filter(Layer %in% c(1, 4, 5, 6, 10, 22, 24)) %>%
+  ggplot(aes(x = step_modded,
+             y = mean_attention_diff,
+             color = factor(Head))) +
+  geom_point(size = 2, alpha = .7) +
+  geom_line(size = 2, alpha = .7) +
+  theme_minimal() +
+  labs(x = "Training Step (Log10)",
+       y = "Attention Difference",
+       color = "Attention Head") +
+  scale_x_log10() +
+    geom_vline(xintercept = 1000, 
+             linetype = "dotted", 
+             size = 1.2) +
+    geom_hline(yintercept = 0, 
+             linetype = "dashed", 
+             size = 1.2,
+             color = "black") +
+  theme(text = element_text(size = 15),
+        legend.position = "bottom") +
+  scale_color_viridis(option = "mako", discrete=TRUE) +
+  facet_wrap(~Layer)
+
+df_attention_over_time %>%
+  ggplot(aes(x = step_modded,
+             y = mean_attention_ratio,
+             color = factor(Head))) +
+  geom_point(size = 2, alpha = .7) +
+  geom_line(size = 2, alpha = .7) +
+  theme_minimal() +
+  labs(x = "Training Step (Log10)",
+       y = "Attention Ratio",
+       color = "Attention Head") +
+  scale_x_log10() +
+    geom_vline(xintercept = 1000, 
+             linetype = "dotted", 
+             size = 1.2) +
+    geom_hline(yintercept = 1, 
+             linetype = "dashed", 
+             size = 1.2,
+             color = "black") +
+  theme(text = element_text(size = 15),
+        legend.position = "bottom") +
+  scale_color_viridis(option = "mako", discrete=TRUE) +
+  facet_wrap(~Layer)
+```
+
+
+## T-test for subtraction analysis
+
+```{r}
+t_test_results <- df_pythia_models %>%
+  filter(mpath == "EleutherAI/pythia-410m") %>%
+  group_by(mpath, Layer, Head, n_params, step) %>%
+  summarise(
+    t_test = list(
+      t.test(
+        Attention,
+        Attention_1back,
+        paired = TRUE,
+        alternative = "greater"  # One-tailed test for greater values
+      )
+    ),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    p_value = map_dbl(t_test, ~ .x$p.value),          # Extract p-value
+    t_statistic = map_dbl(t_test, ~ .x$statistic)    # Extract t-statistic
+  )
+
+
+# Apply multiple testing correction
+t_test_results <- t_test_results %>%
+  group_by(mpath) %>%
+  mutate(
+    p_adjusted = p.adjust(p_value, method = "fdr")  # Adjust p-values (FDR)
+  ) %>%
+  mutate(p_adj2 = case_when(
+    p_adjusted < .05 ~ p_adjusted,
+    p_adjusted >= .05 ~ 1
+  ))
+
+# Filter significant results
+significant_results <- t_test_results %>%
+  filter(p_adjusted < 0.05) 
+
+
+### Significant at final step
+significant_results %>%
+  filter(step == 143000) %>%
+  ggplot(aes(x = Layer, y = Head, fill = -log10(p_adjusted))) +
+  geom_tile() +
+  scale_fill_gradient(low = "white", high = "red", name = "-log10(FDR p-value)") +
+  theme_minimal() +
+  labs(
+    title = "Significant Heads/Layers",
+    x = "Layer",
+    y = "Head"
+  )
+
+significant_results %>%
+  filter(step == 143000) %>%
+  select(Layer, Head, t_statistic, p_adj2)
+
+
+
+### How many timesteps?
+significant_results %>%
+  filter(mpath == "EleutherAI/pythia-410m") %>%
+  group_by(Layer, Head) %>%
+  summarise(count = n(),
+            prop = count / 20)
+
+### Geom rug
+df_attention_over_time %>%
+  filter(mpath == "EleutherAI/pythia-410m") %>%
+  inner_join(t_test_results) %>%
+  filter(Layer == 1) %>%
+  mutate(is_significant = p_adjusted < .05,
+         Head = factor(Head)) %>%
+  ggplot(aes(x = step_modded,
+             y = mean_attention_diff,
+             color = Head)) +
+  geom_line(size = 1.2, alpha = 0.8) +
+  geom_point(alpha = 0.6) +
+  # Head-specific rug layer
+  geom_rug(data = ~ .x %>% filter(is_significant),
+           aes(x = step_modded, color = Head),
+           inherit.aes = FALSE,
+           sides = "b",
+           alpha = 0.8,
+           length = unit(0.05, "npc")) +
+  scale_x_log10() +
+  geom_vline(xintercept = 1000, linetype = "dotted", size = 1.2) +
+  geom_hline(yintercept = 0, linetype = "dashed", size = 1.2) +
+  scale_color_viridis_d(option = "mako") +
+  labs(x = "Training Step (Log10)",
+       y = "Attention Difference",
+       color = "Head") +
+  facet_wrap(~Head, ncol = 2) +  # separate panel per head
+  theme_minimal() +
+  theme(text = element_text(size = 15),
+        legend.position = "none")
+
+
+
+### Stacked rugs
+df_rugs <- df_attention_over_time %>%
+  filter(mpath == "EleutherAI/pythia-410m") %>%
+  inner_join(t_test_results) %>%
+  filter(Layer == 1, p_adjusted < 0.05) %>%
+  mutate(Head = factor(Head),
+         rug_ymin = -0.25 - as.numeric(Head) * 0.02,  # more spacing here
+         rug_ymax = rug_ymin + 0.01)  
+
+
+df_attention_over_time %>%
+  filter(mpath == "EleutherAI/pythia-410m") %>%
+  inner_join(t_test_results) %>%
+  filter(Layer == 1) %>%
+  mutate(is_significant = p_adjusted < .05,
+         Head = factor(Head)) %>%
+  ggplot(aes(x = step_modded,
+             y = mean_attention_diff,
+             color = Head)) +
+  geom_line(size = 1.2, alpha = 0.8) +
+  geom_point(alpha = 0.5) +
+
+  geom_segment(data = df_rugs,
+               aes(x = step_modded, xend = step_modded,
+                   y = rug_ymin, yend = rug_ymax, color = Head),
+               inherit.aes = FALSE,
+               alpha = 0.8) +
+
+  scale_x_log10() +
+  geom_vline(xintercept = 1000, linetype = "dotted", size = 1.2) +
+  geom_hline(yintercept = 0, linetype = "dashed", size = 1.2) +
+  scale_color_viridis_d(option = "mako") +
+  labs(x = "Training Step (Log10)",
+       y = "Attention Difference",
+       color = "Head") +
+  theme_minimal() +
+  theme(text = element_text(size = 15),
+        legend.position = "bottom")
+
+
+
+
+### Layer 6
+df_rugs <- df_attention_over_time %>%
+  filter(mpath == "EleutherAI/pythia-410m") %>%
+  inner_join(t_test_results) %>%
+  filter(Layer == 6, p_adjusted < 0.05) %>%
+  mutate(Head = factor(Head),
+         rug_ymin = -0.25 - as.numeric(Head) * 0.02,  # more spacing here
+         rug_ymax = rug_ymin + 0.01)  
+
+
+df_attention_over_time %>%
+  filter(mpath == "EleutherAI/pythia-410m") %>%
+  inner_join(t_test_results) %>%
+  filter(Layer == 6) %>%
+  mutate(is_significant = p_adjusted < .05,
+         Head = factor(Head)) %>%
+  ggplot(aes(x = step_modded,
+             y = mean_attention_diff,
+             color = Head)) +
+  geom_line(size = 1.2, alpha = 0.8) +
+  geom_point(alpha = 0.5) +
+
+  geom_segment(data = df_rugs,
+               aes(x = step_modded, xend = step_modded,
+                   y = rug_ymin, yend = rug_ymax, color = Head),
+               inherit.aes = FALSE,
+               alpha = 0.8) +
+
+  scale_x_log10() +
+  geom_vline(xintercept = 1000, linetype = "dotted", size = 1.2) +
+  geom_hline(yintercept = 0, linetype = "dashed", size = 1.2) +
+  scale_color_viridis_d(option = "mako") +
+  labs(x = "Training Step (Log10)",
+       y = "Attention Difference",
+       color = "Head") +
+  theme_minimal() +
+  theme(text = element_text(size = 15),
+        legend.position = "bottom")
+
+
+```
+
+
+
+
+# Attention vs. R2
+
+
+## Load R2 data
+
+```{r}
+# setwd("/Users/seantrott/Dropbox/UCSD/Research/Ambiguity/SSD/entangled_meanings/src/analysis/")
+directory_path <- "../../data/processed/rawc/pythia/distances/"
+csv_files <- list.files(path = directory_path, pattern = "*.csv", full.names = TRUE)
+csv_list <- csv_files %>%
+  map(~ read_csv(.))
+df_pythia_models_distance <- bind_rows(csv_list)
+
+table(df_pythia_models_distance$mpath)
+
+df_best_r2 = df_pythia_models_distance %>% 
+  filter(mpath %in% c("EleutherAI/pythia-410m")) %>%
+  group_by(mpath, revision, step, Layer, n_params) %>%
+  summarise(r = cor(Distance, mean_relatedness, method = "pearson"),
+            r2 = r ** 2) %>%
+  group_by(mpath, step, n_params) %>%
+  mutate(step_modded = step + 1) 
+```
+
+## Merge
+
+```{r}
+df_attention_over_time = df_pythia_models %>% 
+  filter(mpath %in% c("EleutherAI/pythia-410m")) %>%
+  group_by(mpath, revision, Layer, Head, step, n_params) %>%
+  summarise(mean_attention = mean(Attention)) %>%
+  mutate(step_modded = step + 1) %>%
+  group_by(mpath, step, Head) %>%
+  mutate(
+    attention_diff = mean_attention - lag(mean_attention),
+    Head = Head + 1
+  )
+
+df_merged_r2_attention = df_attention_over_time %>%
+  inner_join(df_best_r2)
+
+
+scale_factor <- max(df_merged_r2_attention$mean_attention, na.rm = TRUE) / 
+                max(df_merged_r2_attention$r2, na.rm = TRUE)
+
+df_merged_r2_attention %>%
+  filter(Head == 2) %>%
+  filter(Layer == 3) %>%
+  ggplot(aes(x = step_modded)) +
+  # Primary Y-axis: Attention
+  geom_line(aes(y = mean_attention), size = 2, alpha = .7) +
+  # Secondary Y-axis: R-squared
+  geom_line(aes(y = r2 * scale_factor), 
+            size = 2, linetype = "dotted") +
+  scale_y_continuous(
+    name = "Attention to Disambiguating Word",
+    sec.axis = sec_axis(~ . / scale_factor, name = "R-squared")
+  ) +
+  scale_x_log10() +
+  theme_minimal() +
+  labs(
+    x = "Training Step (Log10)",
+    color = ""
+  ) +
+  # facet_wrap(~Head) +
+  scale_color_viridis(option = "mako", discrete=TRUE) +
+  theme(
+    text = element_text(size = 15),
+    legend.position = "bottom"
+  )
+
+```
+
+
+## Analysis of attention and r2
+
+```{r}
+### Make actual best R2
+df_best_r2_actual = df_best_r2 %>%
+  group_by(revision) %>%
+  slice_max(r2) %>%
+  select(revision, step, r2)
+
+### 
+df_merged_r2_attention_actual = df_attention_over_time %>%
+  inner_join(df_best_r2_actual)
+
+# Pivot the dataframe to wider format
+df_wide <- df_merged_r2_attention_actual %>%
+  select(revision, Layer, Head, step, mean_attention, r2) %>%
+  group_by(revision) %>%
+  slice_max(r2) %>%
+  pivot_wider(names_from = c(Layer, Head), 
+              values_from = c(mean_attention), names_sep = "_") %>%
+  ungroup()
+
+### Target variable
+y <- df_wide$r2
+
+# Run separate regressions for each predictor and measure R^2 and coefficient
+regression_results <- lapply(names(df_wide)[!(names(df_wide) %in% c("mpath", "revision", "step", "n_params", "step_modded", "r", "r2"))], function(var) {
+  model <- lm(y ~ df_wide[[var]])
+  summary_model <- summary(model)
+  p_value <- coef(summary_model)[2, "Pr(>|t|)"]
+  list(Feature = var, 
+       R2 = summary_model$r.squared, 
+       Coefficient = coef(model)[2],
+       P_Value = p_value)
+})
+
+
+regression_results_df <- do.call(rbind, regression_results) %>% as.data.frame()
+
+# Coerce types and apply multiple comparisons correction
+regression_results_df <- regression_results_df %>%
+  mutate(R2 = as.numeric(R2),
+         Coefficient = as.numeric(Coefficient),
+         P_Value = as.numeric(P_Value),
+         P_Value_adj = p.adjust(P_Value, method = "fdr")) %>%
+  separate(Feature, into = c("Layer", "Head"), sep = "_", convert = TRUE) 
+
+
+regression_results_df %>%
+  filter(Coefficient > 0) %>%
+  filter(P_Value_adj < .05)
+
+regression_results_df %>%
+  mutate(Coefficient_sig = ifelse(P_Value_adj < 0.05, Coefficient, 0)) %>%
+  filter(P_Value_adj < .05) %>%
+  ggplot(aes(x = Layer, y = Head, fill = Coefficient_sig)) +
+  geom_tile() +
+  scale_fill_gradient2(low = "blue",
+                       mid = "white",
+                       high = "red",
+                       midpoint = 0, 
+                       name = "R2 ~ Attention") +
+  theme_minimal() +
+  labs(
+    title = "",
+    x = "Layer",
+    y = "Head"
+  )
+
+
+t_test_results$is_sig = t_test_results$p_adjusted < .05
+
+regression_results_df %>%
+  mutate(Coefficient_floor = ifelse(Coefficient > 0, Coefficient, 0)) %>%
+  inner_join(t_test_results) %>%
+  filter(step == 143000) %>%
+  mutate(
+    t_test_floor = ifelse(t_statistic > 0, t_statistic, 0),
+    label = ifelse(Coefficient_floor > 0 & t_test_floor > 0 & is_sig == TRUE,
+                   paste(Layer, Head, sep = "_"),
+                   NA)
+  ) %>%
+  ggplot(aes(x = Coefficient_floor,
+             y = t_test_floor,
+             color = is_sig)) +
+  geom_point(size = 3, alpha = .5) +
+  theme_minimal() +
+  geom_hline(yintercept = 0 ,linetype = "dotted") +
+  geom_text_repel(aes(label = label), size = 4) +
+  geom_vline(xintercept = 0 ,linetype = "dotted") +
+    scale_color_manual(values = viridisLite::viridis(2, option = "mako", 
+                                                   begin = 0.8, end = 0.15)) +
+  labs(x = "Coefficient (R2 ~ Attention)",
+       y = "t-statistic (1-back analysis)") +
+  theme(text = element_text(size = 15),
+        legend.position = "none")
+```
