@@ -47,6 +47,21 @@ LAYERS_HEADS_IDX = {
 }
 
 
+
+### For 410m, we choose the heads at the bottom of the disamb_index distribution
+
+"""
+Layer  Head disambig_index
+   <dbl> <dbl>          <dbl>
+ 1    24     3         -0.764
+ 2    24     5         -0.741
+ 3     8     9         -0.736
+ 4    20     2         -0.734
+ 5     9     8         -0.731
+ 6    23    13         -0.724
+ """
+
+
 def main(df, mpath, revisions, modification, layer_indices, head_indices):
     """
     Modify the Q and K weight matrices for a specific layer and attention head.
@@ -239,7 +254,7 @@ if __name__ == "__main__":
 
     ### Get revisions
     ### Now doing pre512
-    revisions = utils.generate_revisions_pre512()
+    revisions = utils.generate_revisions_test()
 
 
     print(LAYERS_HEADS_IDX)

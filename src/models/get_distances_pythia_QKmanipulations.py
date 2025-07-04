@@ -24,8 +24,9 @@ STIMULI = "data/raw/rawc/rawc_stimuli.csv"
 MODIFICATIONS = ["ablate_zero",
                  "ablate_copy_step1"]
 
-LAYERS_HEADS_IDX = {"layers": [[1],[4],[1], [2], [6], [1]],
-                    "heads": [[14],[7],[3], [3], [10],[13]]}
+### 410m heads: (1, 14); (4, 7); (1, 3); (2, 3); (6, 10); (1, 13)
+LAYERS_HEADS_IDX = {"layers": [[0],[3],[0], [1], [5], [0]],
+                    "heads": [[13],[6],[2], [2], [9],[12]]}
 
 def main(df, mpath, revisions, modification, layer_indices, head_indices):
     """
@@ -127,9 +128,6 @@ def main(df, mpath, revisions, modification, layer_indices, head_indices):
 
             outside_premod = premod_qkv_weight[mask, :]
             outside_postmod = qkv_weight[mask, :]
-
-            print(block_premod)
-            print(block_postmod)
 
             if np.array_equal(block_premod,block_postmod) and modification != "ablate_copy_step1":
                 if checkpoint != 0:
