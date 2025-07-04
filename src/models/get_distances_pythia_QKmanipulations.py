@@ -216,7 +216,7 @@ if __name__ == "__main__":
 
     ### Get revisions
     ### Filling in pre512 now
-    revisions = utils.generate_revisions_pre512()
+    revisions = utils.generate_revisions_test()
 
     ## Specify layer/head to modify
     for layer_indices, head_indices in zip(LAYERS_HEADS_IDX["layers"],LAYERS_HEADS_IDX["heads"]):
