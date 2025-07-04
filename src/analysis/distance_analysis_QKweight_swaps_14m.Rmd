@@ -35,7 +35,7 @@ all_colors <- viridis::magma(10)
 ```{r}
 
 # setwd("/Users/seantrott/Dropbox/UCSD/Research/Ambiguity/SSD/entangled_meanings/src/analysis/")
-
+setwd("/Users/pamelariviere/Dropbox/Research/projects/entangled_meanings/src/analysis/")
 ########## Intact Model
 directory_path <- "../../data/processed/rawc/pythia/distances/"
 
@@ -62,12 +62,15 @@ csv_files <- list.files(
 
 csv_list <- csv_files %>%
   map(~ read_csv(.))
-df_baselines <- bind_rows(csv_list) %>%
+df_baselines_all <- bind_rows(csv_list) %>%
   mutate(Layer = Layer + 0) %>%
   mutate(heads_modified = case_when(
     heads_modified %in% c("[2, 3]", "[3, 2]") ~ "[2, 3]",
     TRUE ~ heads_modified
   ))
+
+df_baselines <- df_baselines_all %>%
+  filter(mpath == "EleutherAI/pythia-14m")
 
 table(df_baselines$heads_modified)
 table(df_baselines$model_modification)
