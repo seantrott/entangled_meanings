@@ -31,7 +31,7 @@ MODIFICATIONS = ["ablate_zero",
 ### Set up config
 num_layers = 6 #Pythia-14M
 num_heads_per_layer = 4 #Pythia-14M
-target_layer = 3 #layer index to from which to sample random heads
+target_layer = 2 #layer index to from which to sample random heads
 num_interventions = 3 #three rounds of separate interventions
 num_samples_list = [2,1,1]
 blocked_heads = [0,1]
@@ -149,7 +149,7 @@ def main(df, mpath, revisions, modification, layer_indices, head_indices):
             outside_premod = premod_qkv_weight[mask, :]
             outside_postmod = qkv_weight[mask, :]
 
-            if np.array_equal(block_premod,block_postmod) and checkpoint != "step143000": 
+            if np.array_equal(block_premod,block_postmod) and modification != "ablate_copy_step1": 
                 raise ValueError("The target matrix blocks are identical! They should be different.")
 
             if not np.array_equal(outside_premod, outside_postmod):
@@ -238,7 +238,11 @@ if __name__ == "__main__":
     df_just_n = df[df['Class']=='N']
 
     ### Get revisions
-    revisions = utils.generate_revisions_post512()
+    ### Now doing pre512
+    revisions = utils.generate_revisions_pre512()
+
+
+    print(LAYERS_HEADS_IDX)
 
     ## Specify layer/head to modify
     for layer_indices, head_indices in zip(LAYERS_HEADS_IDX["layers"],LAYERS_HEADS_IDX["heads"]):

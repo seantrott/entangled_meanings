@@ -38,6 +38,7 @@ my_colors <- all_colors[c(3, 5, 7)]  # Selecting specific colors from the palett
 
 ```{r}
 # setwd("/Users/seantrott/Dropbox/UCSD/Research/Ambiguity/SSD/entangled_meanings/src/analysis/")
+setwd("/Users/pamelariviere/Dropbox/Research/projects/entangled_meanings/src/analysis/")
 directory_path <- "../../data/processed/rawc/pythia/distances/"
 csv_files <- list.files(path = directory_path, pattern = "*.csv", full.names = TRUE)
 csv_list <- csv_files %>%
@@ -84,7 +85,7 @@ df_distance %>%
              size = 1.2) +
   theme(text = element_text(size = 15),
         legend.position = "bottom") +
-  scale_color_viridis(option = "mako", discrete=TRUE)
+   scale_color_manual(values = viridisLite::viridis(2, option = "mako", begin = 0.8, end = 0.15))
 
 df_wide <- df_distance %>%
   dplyr::select(-Layer) %>%
@@ -113,8 +114,7 @@ df_wide %>%
              linetype = "dotted", 
              size = 1.2) +
   theme(text = element_text(size = 15),
-        legend.position = "bottom") +
-  scale_color_viridis(option = "mako", discrete=TRUE)
+        legend.position = "bottom") 
 
   
 ```
@@ -142,19 +142,19 @@ df_best_r2_scale %>%
 df_best_r2_scale %>%
   ggplot(aes(x = n_params,
              y = r2)) +
-  geom_line(size = 2, alpha = .3, linetype = "dotted") +
+  #geom_line(size = 2, alpha = .3, linetype = "dotted") +
   geom_point(size = 6,
              alpha = .5) +
   geom_hline(yintercept = .64,##TODO: Calculate from scratch
-             linetype = "dotted", color = "red",
-             size = 1.2, alpha = .5) + 
-  # geom_hline(yintercept = mean(df_r$estimate)**2, ### Human accuracy 
-  #             linetype = "dotted", color = "red",
-  #           size = 1.2, alpha = .5) +
+             linetype = "dashed", color = "red",
+             size = 4, alpha = .5) + 
+  #geom_hline(yintercept = mean(df_r$estimate)**2, ### Human accuracy 
+              #linetype = "dotted", color = "red",
+             #size = 1.2, alpha = .5) +
   scale_x_log10() +
   geom_text_repel(aes(label=mpath), size=3) +
   scale_y_continuous(limits = c(0, 1)) +
-  labs(x = "Parameters",
+  labs(x = "Parameters (Log10)",
        y = "Maximum R2",
        color = "",
        shape = "") +
@@ -352,7 +352,7 @@ summary(mod)
 ## Best R2 by step, only 14m
 
 ```{r r2_by_step}
-df_best_r2 = df_pythia_models %>% 
+df_best_r2_14m = df_pythia_models %>% 
   filter(mpath %in% c("EleutherAI/pythia-14m")) %>%
   group_by(mpath, revision, step, Layer, n_params) %>%
   summarise(r = cor(Distance, mean_relatedness, method = "pearson"),
@@ -367,7 +367,7 @@ df_best_r2 = df_pythia_models %>%
     r2_diff2 = r2_diff - lag(r2_diff)
   )
 
-df_best_r2 %>%
+df_best_r2_14m %>%
   # filter(mpath == "EleutherAI/pythia-14m") %>%
   ggplot(aes(x = step_modded,
              y = r2)) +
@@ -447,6 +447,65 @@ df_best_r2 %>%
 m_step <- lm(r2 ~ log10(step_modded), 
                   data = df_best_r2)
 summary(m_step)
+
+## Now just for Pythia410M
+df_best_r2_410m = df_pythia_models %>% 
+  filter(mpath %in% c("EleutherAI/pythia-410m")) %>%
+  group_by(mpath, revision, step, Layer, n_params) %>%
+  summarise(r = cor(Distance, mean_relatedness, method = "pearson"),
+            r2 = r ** 2) %>%
+  group_by(mpath, step, n_params) %>%
+  slice_max(r2, n = 1) %>%  
+  mutate(step_modded = step + 1) %>%
+  mutate(million_tokens_seen = 2.1 * step_modded) %>%
+  group_by(mpath) %>%
+  mutate(
+    r2_diff = r2 - lag(r2),
+    r2_diff2 = r2_diff - lag(r2_diff)
+  )
+
+df_best_r2_410m %>%
+  ggplot(aes(x = step_modded,
+             y = r2)) +
+  geom_point(size = 2, alpha = .7) +
+  geom_line(size = 1.3, alpha = .7) +
+  theme_minimal() +
+  labs(x = "Training Step (Log10)",
+       y = "Best R2",
+       color = "") +
+  scale_x_log10() +
+  geom_vline(xintercept = 1000, 
+             linetype = "dotted", 
+             size = 1.2) +
+  theme(text = element_text(size = 15),
+        legend.position = "none") +
+  scale_color_viridis(option = "mako", discrete=TRUE)
+
+#Combine the dataframes to see the curves together?
+# Vertically concatenate
+df_best_r2_14mand410m <- rbind(df_best_r2_14m, df_best_r2_410m)
+print(df_best_r2_14mand410m)
+
+df_best_r2_14mand410m %>%
+    ggplot(aes(x = step_modded,
+             y = r2,
+             color=mpath)) +
+  #geom_point(size = 2, alpha = .7) +
+  geom_line(size = 3, alpha = .7) +
+  theme_minimal() +
+  labs(x = "Training Step (Log10)",
+       y = "Best R2",
+       color = "") +
+  scale_x_log10() +
+  geom_vline(xintercept = 1000, 
+             linetype = "dashed", 
+             size = 1.2) +
+  theme(text = element_text(size = 15),
+        legend.position = "bottom") +
+  scale_color_manual(values = viridisLite::viridis(2, option = "mako", 
+                                                   begin = 0.8, end = 0.15)) 
+
+
 
 ```
 
@@ -626,6 +685,28 @@ cor.test(log10(df_summ_changepoints$n_params),
 ### No correlation with when first changepoint happens
 cor.test(log10(df_summ_changepoints$n_params),
          df_summ_changepoints$first_changepoint)
+
+```
+
+```{r}
+### Pam's changepoint detection attempt
+library(changepoint)
+
+bestr2_by_time_14m <- df_best_r2_14mand410m %>%
+  filter(mpath == "EleutherAI/pythia-14m")
+
+bestr2_by_time_410m <- df_best_r2_14mand410m %>%
+  filter(mpath == "EleutherAI/pythia-410m")
+
+cpt_14m <- cpt.meanvar(bestr2_by_time_14m$r2, method = "PELT")
+inflection_index_14m <- cpts(cpt_14m)[1]
+
+# Setting the amount of checkpoints to assess prior to the inflection point in 
+# R2 
+window_length <- 20
+start_index <- max(1, inflection_index - window_length)
+window_B <- time_series_B[start_index:inflection_index]
+window_C <- time_series_C[start_index:inflection_index]
 
 ```
 

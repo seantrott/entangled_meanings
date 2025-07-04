@@ -38,6 +38,12 @@ def generate_revisions_post512():
     return [f"step{step}" for step in revisions]
 
 
+def generate_revisions_pre512():
+
+    revisions = [0, 1, 2, 4, 8, 16, 32, 64, 128, 256]
+    return [f"step{step}" for step in revisions]
+
+
 
 def find_sublist_index(mylist, sublist):
     """Find the first occurence of sublist in list.

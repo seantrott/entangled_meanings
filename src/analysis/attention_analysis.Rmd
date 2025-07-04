@@ -34,6 +34,7 @@ my_colors <- all_colors[c(3, 5, 7)]  # Selecting specific colors from the palett
 
 ```{r}
 # setwd("/Users/seantrott/Dropbox/UCSD/Research/Ambiguity/SSD/entangled_meanings/src/analysis/")
+setwd("/Users/pamelariviere/Dropbox/Research/projects/entangled_meanings/src/analysis/")
 directory_path <- "../../data/processed/rawc/pythia/attention/"
 csv_files <- list.files(path = directory_path, pattern = "*.csv", full.names = TRUE)
 csv_list <- csv_files %>%
@@ -88,12 +89,12 @@ df_final %>%
   scale_fill_gradient2(low = "blue",
                        mid = "white",
                        high = "red",
-                       # midpoint = 0, 
+                       midpoint = 0, 
                        name = "Mean Entropy (Z-scored)") +
   theme_minimal() +
   theme(text = element_text(size = 15),
         strip.text.y = element_text(angle = 0), # Keep facet labels horizontal
-        axis.text.x = element_text(angle = 45, hjust = 1),
+        axis.text.x = element_text(angle = 0, hjust = 1),
         legend.position = "bottom") +
   facet_wrap(~reorder(mpath, n_params))
 
@@ -156,6 +157,58 @@ summary(lm(data = pythia_14m,
 
 ```
 
+## Mean entropy for 410m
+
+```{r}
+summary_df <- df_pythia_models %>%
+  filter(mpath == "EleutherAI/pythia-410m") %>%
+  group_by(step) %>%
+  summarise(
+    mean_entropy = mean(Entropy, na.rm = TRUE),
+    se_entropy = sd(Entropy, na.rm = TRUE) / sqrt(n()),
+    .groups = "drop"
+  )
+
+
+summary_df %>%
+  filter(step %in% c(1, 512, 143000))
+
+ggplot(summary_df, aes(x = step, y = mean_entropy, color = mpath)) +
+  geom_line(color = "black") +  # Lineplot for mean entropy
+  labs(
+    title = "",
+    x = "Step",
+    y = "Mean Entropy"
+  ) +
+  theme_minimal() +
+  scale_x_log10() +
+  scale_y_continuous(limits = c(1.72, 1.85)) +
+  theme(text = element_text(size = 15),
+        legend.position = "bottom") +
+  geom_vline(xintercept = 1000, 
+             linetype = "dotted", 
+             size = 1.2)
+
+
+
+pythia_410m = df_pythia_models %>%
+  filter(mpath == "EleutherAI/pythia-410m") %>%
+  mutate(step_modded = step + 1) %>%
+  group_by(step_modded, Head, Layer) %>%
+  summarise(avg_entropy = mean(Entropy))
+nrow(pythia_410m)
+
+
+summary(lmer(data = pythia_410m, 
+             avg_entropy ~ log10(step_modded) + (1 | Head) + (1 | Layer)))
+
+
+
+summary(lm(data = pythia_410m, 
+             avg_entropy ~ log10(step_modded) * Layer))
+
+```
+
 
 
 
@@ -197,26 +250,6 @@ df_attn_by_head %>%
         legend.position = "bottom") +
   facet_wrap(~reorder(mpath, n_params))
 
-df_attn_by_head %>%
-  ggplot(aes(x = Layer,
-             y = Head,
-             fill = mean_attention)) +
-  geom_tile() +
-  labs(x = "Layer",
-       y = "Head",
-       fill = "Attention to Disambiguating Word") +
-  scale_fill_gradient2(low = "blue",
-                       mid = "white",
-                       high = "red",
-                       midpoint = 0, 
-                       name = "Attention to Disambiguating Word") +
-  theme_minimal() +
-  theme(text = element_text(size = 15),
-        strip.text.y = element_text(angle = 0), # Keep facet labels horizontal
-        axis.text.x = element_text(angle = 45, hjust = 1),
-        legend.position = "bottom") +
-  facet_wrap(~reorder(mpath, n_params),
-             scales = "free")
 
 
 
@@ -298,12 +331,35 @@ df_attn_by_head %>%
   ggplot(aes(x = mean_attention_scaled,
              y = ..density..)) +
   geom_histogram(alpha = .6, bins = 10) +
+  geom_vline(xintercept = 3, linetype = "dotted") +
   theme_minimal() +
   labs(x = "Z-scored Attention to Disambiguating Word") +
   theme(text = element_text(size = 15),
         legend.position = "bottom") +
   facet_wrap(~reorder(mpath, n_params))
 
+
+df_attn_by_head %>%
+  group_by(mpath) %>%
+  mutate(mean_attention_scaled = scale(mean_attention)) %>%
+  ggplot(aes(x = Layer,
+             y = Head,
+             fill = mean_attention_scaled)) +
+  geom_tile() +
+  labs(x = "Layer",
+       y = "Head",
+       fill = "Mean Attn. (Z-scored)") +
+  scale_fill_gradient2(low = "blue",
+                       mid = "white",
+                       high = "red",
+                       # midpoint = 0, 
+                       name = "Mean Attn. (Z-scored)") +
+  theme_minimal() +
+  theme(text = element_text(size = 15),
+        strip.text.y = element_text(angle = 0), # Keep facet labels horizontal
+        axis.text.x = element_text(angle = 0, hjust = 1),
+        legend.position = "bottom") +
+  facet_wrap(~reorder(mpath, n_params))
 
 ### Very attentive heads
 df_most_attentive_heads = df_attn_by_head %>%
@@ -312,12 +368,69 @@ df_most_attentive_heads = df_attn_by_head %>%
          num_heads = max(Layer) * max(Head)) %>%
   filter(mean_attention_scaled > 3) 
 
-df_most_attentive_heads %>%
-  group_by(mpath) %>%
+summ_stats = df_most_attentive_heads %>%
+  group_by(mpath, n_params) %>%
   summarise(count = n(),
             num_heads = max(num_heads),
-            proportion = count/ num_heads)
-  
+            proportion = count/ num_heads) %>%
+  arrange(n_params)
+summ_stats
+
+
+summ_stats %>%
+  ggplot(aes(x = n_params,
+             y = count)) +
+  #geom_line(size = 2, alpha = .3, linetype = "dotted") +
+  geom_point(size = 6,
+             alpha = .5) +
+  scale_x_log10() +
+  geom_text_repel(aes(label=mpath), size=3) +
+  labs(x = "Parameters (Log10)",
+       y = "# Candidate Heads",
+       color = "",
+       shape = "") +
+  theme_minimal() +
+  # guides(color="none") +
+  # scale_color_viridis(option = "mako", discrete=TRUE) +
+  # scale_color_manual(values = my_colors)  +
+  theme(text = element_text(size = 15),
+        legend.position="bottom")
+
+summ_stats %>%
+  ggplot(aes(x = num_heads,
+             y = count)) +
+  #geom_line(size = 2, alpha = .3, linetype = "dotted") +
+  geom_point(size = 6,
+             alpha = .5) +
+  geom_text_repel(aes(label=mpath), size=3) +
+  labs(x = "#Heads Overall",
+       y = "#Candidate Heads",
+       color = "",
+       shape = "") +
+  theme_minimal() +
+  # guides(color="none") +
+  # scale_color_viridis(option = "mako", discrete=TRUE) +
+  # scale_color_manual(values = my_colors)  +
+  theme(text = element_text(size = 15),
+        legend.position="bottom")
+
+
+summ_stats %>%
+  ggplot(aes(x = num_heads,
+             y = proportion)) +
+  geom_point(size = 6,
+             alpha = .5) +
+  geom_text_repel(aes(label=mpath), size=3) +
+  labs(x = "#Heads Overall",
+       y = "Proportion of Candidate Heads",
+       color = "",
+       shape = "") +
+  theme_minimal() +
+  # guides(color="none") +
+  # scale_color_viridis(option = "mako", discrete=TRUE) +
+  # scale_color_manual(values = my_colors)  +
+  theme(text = element_text(size = 15),
+        legend.position="bottom")
 
 
 ```
@@ -360,7 +473,8 @@ df_attention_over_time %>%
              size = 1.2) +
   theme(text = element_text(size = 15),
         legend.position = "bottom") +
-  scale_color_viridis(option = "mako", discrete=TRUE) +
+  scale_color_manual(values = viridisLite::viridis(6, option = "mako", 
+                                                   begin = 0.8, end = 0.15)) +
   facet_wrap(~reorder(mpath, n_params))
 
 
@@ -400,7 +514,8 @@ df_attention_over_time %>%
              size = 1.2) +
   theme(text = element_text(size = 15),
         legend.position = "bottom") +
-  scale_color_viridis(option = "mako", discrete=TRUE) +
+  scale_color_manual(values = viridisLite::viridis(4, option = "mako", 
+                                                   begin = 0.8, end = 0.15)) +
   facet_wrap(~Layer)
 
 df_attention_over_time %>%
@@ -409,19 +524,21 @@ df_attention_over_time %>%
   ggplot(aes(x = step_modded,
              y = mean_attention,
              color = factor(Head))) +
-  geom_point(size = 4, alpha = .7) +
-  geom_line(size = 2, alpha = .7) +
+  #geom_point(size = 4, alpha = .7) +
+  geom_line(size = 4, alpha = .7) +
   theme_minimal() +
   labs(x = "Training Step (Log10)",
        y = "Attention to Disambiguating Word",
        color = "Attention Head (Layer 3)") +
   scale_x_log10() +
     geom_vline(xintercept = 1000, 
-             linetype = "dotted", 
+             linetype = "dashed", 
              size = 1.2) +
   theme(text = element_text(size = 15),
         legend.position = "bottom") +
-  scale_color_viridis(option = "mako", discrete=TRUE) 
+  scale_color_manual(values = viridisLite::viridis(4, option = "mako", 
+                                                   begin = 0.8, end = 0.1))
+
 
 
 

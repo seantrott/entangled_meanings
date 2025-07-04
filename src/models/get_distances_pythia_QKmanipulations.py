@@ -11,23 +11,21 @@ import torch
 from scipy.spatial.distance import cosine
 from tqdm import tqdm
 from transformers import GPTNeoXForCausalLM, AutoTokenizer
-import statsmodels.formula.api as smf
 
 
 import utils
 
 
 ### Models to modify and test
-MODELS = ['EleutherAI/pythia-14m']
+MODELS = ['EleutherAI/pythia-410m']
 
-STIMULI = "../../data/raw/rawc/rawc_stimuli.csv"
+STIMULI = "data/raw/rawc/rawc_stimuli.csv"
 
 MODIFICATIONS = ["ablate_zero",
-                 "ablate_copy_step1",
-                 "rescue_copy_step143000"]
+                 "ablate_copy_step1"]
 
-LAYERS_HEADS_IDX = {"layers": [[2,2],[2],[2]],
-                    "heads": [[0,1],[0],[1]]}
+LAYERS_HEADS_IDX = {"layers": [[1],[4],[1], [2], [6], [1]],
+                    "heads": [[14],[7],[3], [3], [10],[13]]}
 
 def main(df, mpath, revisions, modification, layer_indices, head_indices):
     """
@@ -55,7 +53,7 @@ def main(df, mpath, revisions, modification, layer_indices, head_indices):
     for checkpoint in tqdm(revisions):
 
         # Set up save path, filename, etc.
-        savepath = f"../../data/processed/rawc/pythia-QKmod/distances_{modification}_layer{layer_indices}head{head_indices}/"
+        savepath = f"data/processed/rawc/pythia/pythia-QKmod/distances_{modification}/distances_{modification}_layer{layer_indices}head{head_indices}/"
         if not os.path.exists(savepath): 
             os.makedirs(savepath)
         if "/" in mpath:
@@ -64,12 +62,13 @@ def main(df, mpath, revisions, modification, layer_indices, head_indices):
             filename = "rawc-distances_model-" + mpath +  "-" + checkpoint + ".csv"
 
         # Set up figure savepath
-        figsavepath = f"../../data/processed/rawc/pythia-QKmod/figures/{modification}"
+        figsavepath = f"data/processed/rawc/pythia/pythia-QKmod/figures/{modification}"
         if not os.path.exists(figsavepath): 
             os.makedirs(figsavepath)
 
         # Skip this checkpoint's analysis if you've already run it before
         print("Checking if we've already run this analysis...")
+        print(os.path.join(savepath,filename))
         if os.path.exists(os.path.join(savepath,filename)):
             print("Already run this model for this checkpoint.")
             continue
@@ -128,7 +127,7 @@ def main(df, mpath, revisions, modification, layer_indices, head_indices):
             outside_premod = premod_qkv_weight[mask, :]
             outside_postmod = qkv_weight[mask, :]
 
-            if np.array_equal(block_premod,block_postmod) and checkpoint != "step143000": 
+            if np.array_equal(block_premod,block_postmod) and modification != "ablate_copy_step1": 
                 raise ValueError("The target matrix blocks are identical! They should be different.")
 
             if not np.array_equal(outside_premod, outside_postmod):
@@ -218,7 +217,8 @@ if __name__ == "__main__":
     df_just_n = df[df['Class']=='N']
 
     ### Get revisions
-    revisions = utils.generate_revisions_post512()
+    ### Filling in pre512 now
+    revisions = utils.generate_revisions_pre512()
 
     ## Specify layer/head to modify
     for layer_indices, head_indices in zip(LAYERS_HEADS_IDX["layers"],LAYERS_HEADS_IDX["heads"]):
