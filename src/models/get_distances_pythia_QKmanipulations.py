@@ -127,6 +127,9 @@ def main(df, mpath, revisions, modification, layer_indices, head_indices):
             outside_premod = premod_qkv_weight[mask, :]
             outside_postmod = qkv_weight[mask, :]
 
+            print(block_premod)
+            print(block_postmod)
+
             if np.array_equal(block_premod,block_postmod) and modification != "ablate_copy_step1":
                 if checkpoint != 0:
                     raise ValueError("The target matrix blocks are identical! They should be different.")
