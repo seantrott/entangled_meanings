@@ -161,7 +161,7 @@ def main(df, mpath, revisions, modification, layer_indices, head_indices):
                 s2 = utils.get_embedding(s2_outputs['hidden_states'], s2_outputs['tokens'], tokenizer, target, layer, device)
     
                 ### Now calculate cosine distance 
-                model_cosine = cosine(s1, s2)
+                model_cosine = cosine(s1.cpu(), s2.cpu())
     
     
                 if row['same'] == True:
