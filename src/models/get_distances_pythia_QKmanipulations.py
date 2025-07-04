@@ -44,7 +44,8 @@ def main(df, mpath, revisions, modification, layer_indices, head_indices):
     """
 
     # Specify the device you'll allocate the model to
-    device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
 
     print("number of checkpoints:", len(revisions))
 
@@ -92,7 +93,7 @@ def main(df, mpath, revisions, modification, layer_indices, head_indices):
         ## TODO: need to check that the flow of nested for loops is working
         for layer_idx, head_idx in zip(layer_indices,head_indices):
 
-            premod_qkv_weight = model.gpt_neox.layers[layer_idx].attention.query_key_value.weight.data.cpu().numpy()
+            premod_qkv_weight = model.gpt_neox.layers[layer_idx].attention.query_key_value.weight.data.cpu().clone().numpy()
             # figpremod = figsavepath + f"/QKVmatrix_{checkpoint}_l{layer_idx}h{head_idx}.pdf"
             # if not os.path.exists(figpremod): 
                 #utils.visualize_matrix(premod_qkv_weight, "qkv_pre-", figpremod, 0, None)
@@ -160,14 +161,7 @@ def main(df, mpath, revisions, modification, layer_indices, head_indices):
                 s2 = utils.get_embedding(s2_outputs['hidden_states'], s2_outputs['tokens'], tokenizer, target, layer, device)
     
                 ### Now calculate cosine distance 
-                #.  note, tensors need to be copied to cpu to make this run;
-                #.  still faster to do this copy than to just have everything
-                #.  running on the cpu
-                if device.type == "mps":  
-                    model_cosine = cosine(s1.cpu(), s2.cpu())
-    
-                else: 
-                    model_cosine = cosine(s1, s2)
+                model_cosine = cosine(s1, s2)
     
     
                 if row['same'] == True:
