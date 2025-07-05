@@ -119,7 +119,7 @@ def main(df, mpath, revisions, modification, layer_indices, head_indices):
         ## TODO: need to check that the flow of nested for loops is working
         for layer_idx, head_idx in zip(layer_indices,head_indices):
 
-            premod_qkv_weight = model.gpt_neox.layers[layer_idx].attention.query_key_value.weight.data.cpu().numpy()
+            premod_qkv_weight = model.gpt_neox.layers[layer_idx].attention.query_key_value.weight.data.cpu().clone().numpy()
             # figpremod = figsavepath + f"/QKVmatrix_{checkpoint}_l{layer_idx}h{head_idx}.pdf"
             # if not os.path.exists(figpremod): 
                 #utils.visualize_matrix(premod_qkv_weight, "qkv_pre-", figpremod, 0, None)
