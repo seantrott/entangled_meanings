@@ -216,6 +216,9 @@ if __name__ == "__main__":
     ### Filling in pre512 now
     revisions = utils.generate_revisions_test()
 
+    print(LAYERS_HEADS_IDX)
+
+    
     ## Specify layer/head to modify
     for layer_indices, head_indices in zip(LAYERS_HEADS_IDX["layers"],LAYERS_HEADS_IDX["heads"]):
         print(f"Running with layers: {layer_indices}, and heads: {head_indices}")
@@ -224,3 +227,4 @@ if __name__ == "__main__":
             ## Run main
             main(df_just_n, MODELS[0], revisions, modification, layer_indices, head_indices)
 
+    

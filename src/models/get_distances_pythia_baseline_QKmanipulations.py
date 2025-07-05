@@ -20,7 +20,7 @@ import utils
 
 
 ### Models to modify and test
-MODELS = ['EleutherAI/pythia-14m']
+MODELS = ['EleutherAI/pythia-410m']
 
 STIMULI = "data/raw/rawc/rawc_stimuli.csv"
 
@@ -28,12 +28,12 @@ MODIFICATIONS = ["ablate_zero",
                  "ablate_copy_step1"]
 
 
-### Set up config
+### Set up config (for 14m, randomly selecting non-target heads from target layer)
 num_layers = 6 #Pythia-14M
 num_heads_per_layer = 4 #Pythia-14M
 target_layer = 2 #layer index to from which to sample random heads
 num_interventions = 3 #three rounds of separate interventions
-num_samples_list = [2,1,1]
+num_samples_list = [2,1,1] (for 14m)
 blocked_heads = [0,1]
 
 LAYERS_HEADS_IDX = {}
@@ -48,18 +48,9 @@ LAYERS_HEADS_IDX = {
 
 
 
-### For 410m, we choose the heads at the bottom of the disamb_index distribution
-
-"""
-Layer  Head disambig_index
-   <dbl> <dbl>          <dbl>
- 1    24     3         -0.764
- 2    24     5         -0.741
- 3     8     9         -0.736
- 4    20     2         -0.734
- 5     9     8         -0.731
- 6    23    13         -0.724
- """
+### For 410m, we manually the heads at the bottom of the disamb_index distribution
+LAYERS_HEADS_IDX = {"layers": [[23],[23],[7], [19], [8], [22]],
+                    "heads": [[2],[5],[8], [1], [7],[12]]}
 
 
 def main(df, mpath, revisions, modification, layer_indices, head_indices):
