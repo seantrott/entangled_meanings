@@ -10,7 +10,7 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(dpi = 300, fig.format = "pdf")
+knitr::opts_chunk$set(dpi = 300, fig.format = "png")
 ```
 
 
@@ -34,7 +34,7 @@ my_colors <- all_colors[c(3, 5, 7)]  # Selecting specific colors from the palett
 
 ```{r}
 # setwd("/Users/seantrott/Dropbox/UCSD/Research/Ambiguity/SSD/entangled_meanings/src/analysis/")
-setwd("/Users/pamelariviere/Dropbox/Research/projects/entangled_meanings/src/analysis/")
+# setwd("/Users/pamelariviere/Dropbox/Research/projects/entangled_meanings/src/analysis/")
 directory_path <- "../../data/processed/rawc/pythia/attention/"
 csv_files <- list.files(path = directory_path, pattern = "*.csv", full.names = TRUE)
 csv_list <- csv_files %>%
@@ -458,7 +458,7 @@ df_attention_over_time %>%
   ggplot(aes(x = step_modded,
              y = max_attention_head,
              color = factor(Layer))) +
-  geom_point(size = 4, alpha = .7) +
+  #geom_point(size = 4, alpha = .7) +
   geom_line(size = 2, alpha = .7) +
   theme_minimal() +
   geom_vline(xintercept = 1000, 
@@ -502,7 +502,7 @@ df_attention_over_time %>%
   ggplot(aes(x = step_modded,
              y = mean_attention,
              color = factor(Head))) +
-  geom_point(size = 4, alpha = .7) +
+  #geom_point(size = 4, alpha = .7) +
   geom_line(size = 2, alpha = .7) +
   theme_minimal() +
   labs(x = "Training Step (Log10)",
@@ -588,11 +588,11 @@ directory_path <- "../../data/processed/rawc/pythia/distances/"
 csv_files <- list.files(path = directory_path, pattern = "*.csv", full.names = TRUE)
 csv_list <- csv_files %>%
   map(~ read_csv(.))
-df_pythia_models <- bind_rows(csv_list)
+df_pythia_models_distance <- bind_rows(csv_list)
 
-table(df_pythia_models$mpath)
+table(df_pythia_models_distance$mpath)
 
-df_best_r2 = df_pythia_models %>% 
+df_best_r2 = df_pythia_models_distance %>% 
   filter(mpath %in% c("EleutherAI/pythia-14m")) %>%
   group_by(mpath, revision, step, Layer, n_params) %>%
   summarise(r = cor(Distance, mean_relatedness, method = "pearson"),
@@ -604,6 +604,17 @@ df_best_r2 = df_pythia_models %>%
 ## Merge
 
 ```{r}
+df_attention_over_time = df_pythia_models %>% 
+  filter(mpath %in% c("EleutherAI/pythia-14m")) %>%
+  group_by(mpath, revision, Layer, Head, step, n_params) %>%
+  summarise(mean_attention = mean(Attention)) %>%
+  mutate(step_modded = step + 1) %>%
+  group_by(mpath, step, Head) %>%
+  mutate(
+    attention_diff = mean_attention - lag(mean_attention),
+    Head = Head + 1
+  )
+
 df_merged_r2_attention = df_attention_over_time %>%
   inner_join(df_best_r2)
 
@@ -612,8 +623,86 @@ scale_factor <- max(df_merged_r2_attention$mean_attention, na.rm = TRUE) /
                 max(df_merged_r2_attention$r2, na.rm = TRUE)
 
 df_merged_r2_attention %>%
-  filter(Head == 2) %>%
-  filter(Layer == 3) %>%
+  filter(Head == 7) %>%
+  filter(Layer == 1) %>%
+  ggplot(aes(x = step_modded)) +
+  # Primary Y-axis: Attention
+  geom_line(aes(y = mean_attention), size = 2, alpha = .7) +
+  # Secondary Y-axis: R-squared
+  geom_line(aes(y = r2 * scale_factor), 
+            size = 2, linetype = "dotted") +
+  scale_y_continuous(
+    name = "Attention to Disambiguating Word",
+    sec.axis = sec_axis(~ . / scale_factor, name = "R-squared")
+  ) +
+  scale_x_log10() +
+  theme_minimal() +
+  labs(
+    x = "Training Step (Log10)",
+    color = ""
+  ) +
+  # facet_wrap(~Head) +
+  scale_color_viridis(option = "mako", discrete=TRUE) +
+  theme(
+    text = element_text(size = 15),
+    legend.position = "bottom"
+  )
+
+df_merged_r2_attention %>%
+  filter(Head == 14) %>%
+  filter(Layer == 1) %>%
+  ggplot(aes(x = step_modded)) +
+  # Primary Y-axis: Attention
+  geom_line(aes(y = mean_attention), size = 2, alpha = .7) +
+  # Secondary Y-axis: R-squared
+  geom_line(aes(y = r2 * scale_factor), 
+            size = 2, linetype = "dotted") +
+  scale_y_continuous(
+    name = "Attention to Disambiguating Word",
+    sec.axis = sec_axis(~ . / scale_factor, name = "R-squared")
+  ) +
+  scale_x_log10() +
+  theme_minimal() +
+  labs(
+    x = "Training Step (Log10)",
+    color = ""
+  ) +
+  # facet_wrap(~Head) +
+  scale_color_viridis(option = "mako", discrete=TRUE) +
+  theme(
+    text = element_text(size = 15),
+    legend.position = "bottom"
+  )
+
+df_merged_r2_attention %>%
+  filter(Head == 3) %>%
+  filter(Layer == 2) %>%
+  ggplot(aes(x = step_modded)) +
+  # Primary Y-axis: Attention
+  geom_line(aes(y = mean_attention), size = 2, alpha = .7) +
+  # Secondary Y-axis: R-squared
+  geom_line(aes(y = r2 * scale_factor), 
+            size = 2, linetype = "dotted") +
+  scale_y_continuous(
+    name = "Attention to Disambiguating Word",
+    sec.axis = sec_axis(~ . / scale_factor, name = "R-squared")
+  ) +
+  scale_x_log10() +
+  theme_minimal() +
+  labs(
+    x = "Training Step (Log10)",
+    color = ""
+  ) +
+  # facet_wrap(~Head) +
+  scale_color_viridis(option = "mako", discrete=TRUE) +
+  theme(
+    text = element_text(size = 15),
+    legend.position = "bottom"
+  )
+
+df_merged_r2_attention %>%
+  filter(Head == 7) %>%
+  filter(Layer == 24) %>%
   ggplot(aes(x = step_modded)) +
   # Primary Y-axis: Attention
   geom_line(aes(y = mean_attention), size = 2, alpha = .7) +
@@ -643,11 +732,31 @@ df_merged_r2_attention %>%
 ## Analysis of attention and r2
 
 ```{r}
+### Get best R2 at final layer
+df_best_r2_layer = df_pythia_models_distance %>% 
+  filter(step == 143000) %>%
+  filter(Layer > 0) %>%
+  group_by(mpath, Layer, n_params) %>%
+  summarise(r = cor(Distance, mean_relatedness, method = "pearson"),
+            r2 = r ** 2) %>%  
+  mutate(model = sub("^EleutherAI/", "", mpath)) %>%
+  group_by(model) %>%
+  slice_max(r2, n = 1, with_ties = FALSE) %>%
+  dplyr::select(model, Layer) 
+
+
+df_best_r2_layer = df_best_r2 %>%
+  filter(step == 143000) %>%
+  group_by(mpath) %>%
+  slice_max(r2, n = 1, with_ties = FALSE) %>%
+  dplyr::select(mpath, Layer) 
+  
+
 ### Make actual best R2
 df_best_r2_actual = df_best_r2 %>%
-  group_by(revision) %>%
-  slice_max(r2) %>%
-  select(revision, step, r2)
+    inner_join(df_best_r2_layer) %>%
+  ungroup() %>%
+  dplyr::select(step, r2)
 
 ### 
 df_merged_r2_attention_actual = df_attention_over_time %>%
@@ -655,7 +764,7 @@ df_merged_r2_attention_actual = df_attention_over_time %>%
 
 # Pivot the dataframe to wider format
 df_wide <- df_merged_r2_attention_actual %>%
-  select(revision, Layer, Head, step, mean_attention, r2) %>%
+  dplyr::select(revision, Layer, Head, step, mean_attention, r2) %>%
   group_by(revision) %>%
   slice_max(r2) %>%
   pivot_wider(names_from = c(Layer, Head), 
@@ -684,12 +793,33 @@ regression_results_df <- regression_results_df %>%
   mutate(R2 = as.numeric(R2),
          Coefficient = as.numeric(Coefficient),
          P_Value = as.numeric(P_Value),
-         P_Value_adj = p.adjust(P_Value, method = "fdr"))
+         P_Value_adj = p.adjust(P_Value, method = "fdr")) %>%
+  separate(Feature, into = c("Layer", "Head"), sep = "_", convert = TRUE) 
 
 
 regression_results_df %>%
   filter(Coefficient > 0) %>%
-  filter(P_Value_adj < .05)
+  filter(P_Value_adj < .05) %>%
+  arrange(desc(Coefficient))
+
+regression_results_df %>%
+  mutate(Coefficient_sig = ifelse(P_Value_adj < 0.05, Coefficient, 0)) %>%
+  filter(P_Value_adj < .05) %>%
+  ggplot(aes(x = Layer, y = Head, fill = Coefficient_sig)) +
+  geom_tile() +
+  scale_fill_gradient2(low = "blue",
+                       mid = "white",
+                       high = "red",
+                       midpoint = 0, 
+                       name = "R2 ~ Attention") +
+  theme_minimal() +
+  labs(
+    title = "",
+    x = "Layer",
+    y = "Head"
+  )
+
+
 ```
 
 
@@ -1157,11 +1287,31 @@ df_merged_r2_attention %>%
 ## Analysis of attention and r2
 
 ```{r}
+### Get best R2 at final layer
+df_best_r2_layer = df_pythia_models_distance %>% 
+  filter(step == 143000) %>%
+  filter(Layer > 0) %>%
+  group_by(mpath, Layer, n_params) %>%
+  summarise(r = cor(Distance, mean_relatedness, method = "pearson"),
+            r2 = r ** 2) %>%  
+  mutate(model = sub("^EleutherAI/", "", mpath)) %>%
+  group_by(model) %>%
+  slice_max(r2, n = 1, with_ties = FALSE) %>%
+  dplyr::select(model, Layer) 
+
+
+df_best_r2_layer = df_best_r2 %>%
+  filter(step == 143000) %>%
+  group_by(mpath) %>%
+  slice_max(r2, n = 1, with_ties = FALSE) %>%
+  dplyr::select(mpath, Layer) 
+  
+
 ### Make actual best R2
 df_best_r2_actual = df_best_r2 %>%
-  group_by(revision) %>%
-  slice_max(r2) %>%
-  select(revision, step, r2)
+    inner_join(df_best_r2_layer) %>%
+  ungroup() %>%
+  dplyr::select(step, r2)
 
 ### 
 df_merged_r2_attention_actual = df_attention_over_time %>%
@@ -1169,7 +1319,7 @@ df_merged_r2_attention_actual = df_attention_over_time %>%
 
 # Pivot the dataframe to wider format
 df_wide <- df_merged_r2_attention_actual %>%
-  select(revision, Layer, Head, step, mean_attention, r2) %>%
+  dplyr::select(revision, Layer, Head, step, mean_attention, r2) %>%
   group_by(revision) %>%
   slice_max(r2) %>%
   pivot_wider(names_from = c(Layer, Head), 
@@ -1204,7 +1354,8 @@ regression_results_df <- regression_results_df %>%
 
 regression_results_df %>%
   filter(Coefficient > 0) %>%
-  filter(P_Value_adj < .05)
+  filter(P_Value_adj < .05) %>%
+  arrange(desc(Coefficient))
 
 regression_results_df %>%
   mutate(Coefficient_sig = ifelse(P_Value_adj < 0.05, Coefficient, 0)) %>%

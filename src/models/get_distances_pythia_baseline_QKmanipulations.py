@@ -51,6 +51,19 @@ LAYERS_HEADS_IDX = {
 LAYERS_HEADS_IDX = {"layers": [[23],[23],[7], [19], [8], [22]],
                     "heads": [[2],[5],[8], [1], [7],[12]]}
 
+"""
+Stress test disambiguation index results for 410M (Bottom of distribution):
+   Layer  Head disambig_index
+   <dbl> <dbl>          <dbl>
+ 1    24     3         -0.764
+ 2    24     5         -0.741
+ 3     8     9         -0.736
+ 4    20     2         -0.734
+ 5     9     8         -0.731
+ 6    23    13         -0.724
+
+"""
+
 
 def main(df, mpath, revisions, modification, layer_indices, head_indices):
     """

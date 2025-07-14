@@ -578,6 +578,36 @@ df_merged_all_copy_ablations %>%
        fill = "Condition") +
   theme_minimal()
 
+# Pam added: baseline v. target by layer
+df_merged_all_copy_ablations %>%
+  group_by(condition, step_mod, Layer) %>%
+  summarise(
+    mean_r2_diff = mean(r2_diff, na.rm = TRUE),
+    se_r2_diff = sd(r2_diff, na.rm = TRUE) / sqrt(n()),
+    count = n()
+  ) %>%
+  ggplot(aes(x = step_mod, 
+             y = mean_r2_diff, 
+             color = condition, 
+             fill = condition)) +
+  geom_vline(xintercept = 1000, linetype = "dashed", size = 1.2) +
+  geom_hline(yintercept = 0, linetype = "dashed", size = 1.2) +
+  geom_ribbon(aes(ymin = mean_r2_diff - se_r2_diff,
+                  ymax = mean_r2_diff + se_r2_diff),
+              alpha = 0.2, color = NA) +
+  geom_line(linewidth = 1.5) +
+  scale_x_log10() + 
+  scale_color_manual(values = viridisLite::viridis(4, option = "mako", begin = 0.8, end = 0.15)) +
+  scale_fill_manual(values = viridisLite::viridis(4, option = "mako", begin = 0.8, end = 0.15)) +
+  labs(title = "R2 Differences by Layer",
+       x = "Training Step (Log10)",
+       y = "R2 Differences",
+       color = "Condition",
+       fill = "Condition") +
+  theme_minimal() +
+  facet_wrap(~Layer)
+
+
 ### collapsing across all layers
 df_merged_all_copy_ablations %>%
   filter(Layer > 2) %>%
