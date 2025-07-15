@@ -47,9 +47,14 @@ LAYERS_HEADS_IDX = {
 
 
 
-### For 410m, we manually the heads at the bottom of the disamb_index distribution
+### For 410m, we manually the heads at the bottom of the disamb_index distribution (baseline 1)
 LAYERS_HEADS_IDX = {"layers": [[23],[23],[7], [19], [8], [22]],
                     "heads": [[2],[5],[8], [1], [7],[12]]}
+
+
+### 410m heads matched for low index and same layers (baseline 2)
+LAYERS_HEADS_IDX = {"layers": [[0],[3],[0], [1], [5], [0]],
+                    "heads": [[5],[2],[3], [1], [7],[1]]}
 
 """
 Stress test disambiguation index results for 410M (Bottom of distribution):

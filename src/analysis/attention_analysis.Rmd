@@ -338,7 +338,7 @@ df_attn_by_head %>%
         legend.position = "bottom") +
   facet_wrap(~reorder(mpath, n_params))
 
-
+# Manuscript figure (Fig.1c)
 df_attn_by_head %>%
   group_by(mpath) %>%
   mutate(mean_attention_scaled = scale(mean_attention)) %>%
@@ -497,26 +497,28 @@ df_attention_over_time = df_pythia_models %>%
     Head = Head + 1
   )
 
+# Manuscript Figure (Appendix FigS2)
 df_attention_over_time %>%
   # filter(Layer == 3) %>%
   ggplot(aes(x = step_modded,
              y = mean_attention,
              color = factor(Head))) +
   #geom_point(size = 4, alpha = .7) +
-  geom_line(size = 2, alpha = .7) +
+  geom_line(size = 3, alpha = .7) +
   theme_minimal() +
   labs(x = "Training Step (Log10)",
        y = "Attention to Disambiguating Word",
        color = "Attention Head") +
   scale_x_log10() +
     geom_vline(xintercept = 1000, 
-             linetype = "dotted", 
+             linetype = "dashed", 
              size = 1.2) +
   theme(text = element_text(size = 15),
         legend.position = "bottom") +
   scale_color_manual(values = viridisLite::viridis(4, option = "mako", 
                                                    begin = 0.8, end = 0.15)) +
   facet_wrap(~Layer)
+
 
 df_attention_over_time %>%
   filter(Layer == 3) %>%
@@ -592,8 +594,16 @@ df_pythia_models_distance <- bind_rows(csv_list)
 
 table(df_pythia_models_distance$mpath)
 
-df_best_r2 = df_pythia_models_distance %>% 
+df_best_r2_14m = df_pythia_models_distance %>% 
   filter(mpath %in% c("EleutherAI/pythia-14m")) %>%
+  group_by(mpath, revision, step, Layer, n_params) %>%
+  summarise(r = cor(Distance, mean_relatedness, method = "pearson"),
+            r2 = r ** 2) %>%
+  group_by(mpath, step, n_params) %>%
+  mutate(step_modded = step + 1) 
+
+df_best_r2_410m = df_pythia_models_distance %>% 
+  filter(mpath %in% c("EleutherAI/pythia-410m")) %>%
   group_by(mpath, revision, step, Layer, n_params) %>%
   summarise(r = cor(Distance, mean_relatedness, method = "pearson"),
             r2 = r ** 2) %>%
@@ -601,10 +611,10 @@ df_best_r2 = df_pythia_models_distance %>%
   mutate(step_modded = step + 1) 
 ```
 
-## Merge
+## Merge Attention and R2 data
 
 ```{r}
-df_attention_over_time = df_pythia_models %>% 
+df_attention_over_time_14m = df_pythia_models %>% 
   filter(mpath %in% c("EleutherAI/pythia-14m")) %>%
   group_by(mpath, revision, Layer, Head, step, n_params) %>%
   summarise(mean_attention = mean(Attention)) %>%
@@ -615,14 +625,115 @@ df_attention_over_time = df_pythia_models %>%
     Head = Head + 1
   )
 
-df_merged_r2_attention = df_attention_over_time %>%
-  inner_join(df_best_r2)
+df_merged_r2_attention_14m = df_attention_over_time_14m %>%
+  inner_join(df_best_r2_14m)
 
 
-scale_factor <- max(df_merged_r2_attention$mean_attention, na.rm = TRUE) / 
-                max(df_merged_r2_attention$r2, na.rm = TRUE)
+scale_factor <- max(df_merged_r2_attention_14m$mean_attention, na.rm = TRUE) / 
+                max(df_merged_r2_attention_14m$r2, na.rm = TRUE)
 
-df_merged_r2_attention %>%
+# Manuscript Figure (Fig. 2c)
+df_merged_r2_attention_14m %>%
+  filter(Layer == 3) %>%
+  # filter(Head %in% c(1, 2)) %>%
+  ggplot(aes(x = step_modded, color = factor(Head))) + 
+  # Primary Y-axis: Attention
+  geom_line(aes(y = mean_attention), size = 3, alpha = .7) +
+  # Secondary Y-axis: R-squared
+  geom_line(aes(y = r2 * scale_factor), 
+            size = 3, linetype = "dashed") +
+  scale_y_continuous(
+    name = "Attention to Disambiguating Word",
+    sec.axis = sec_axis(~ . / scale_factor, name = "R-squared")
+  ) +
+ theme_minimal() +
+  labs(
+    x = "Training Step (Log10)",
+    color = "Attention Head"
+  ) +
+  scale_x_log10() +
+    geom_vline(xintercept = 1000, 
+             linetype = "dashed", 
+             size = 1.2) +
+  theme(text = element_text(size = 15),
+        legend.position = "bottom") +
+  scale_color_manual(values = viridisLite::viridis(4, option = "mako", 
+                                                   begin = 0.8, end = 0.1))
+
+# --- for Pythia-410M
+df_attention_over_time_410m = df_pythia_models %>% 
+  filter(mpath %in% c("EleutherAI/pythia-410m")) %>%
+  group_by(mpath, revision, Layer, Head, step, n_params) %>%
+  summarise(mean_attention = mean(Attention)) %>%
+  mutate(step_modded = step + 1) %>%
+  group_by(mpath, step, Head) %>%
+  mutate(
+    attention_diff = mean_attention - lag(mean_attention),
+    Head = Head + 1
+  )
+
+df_merged_r2_attention_410m = df_attention_over_time_410m %>%
+  inner_join(df_best_r2_410m)
+
+
+df_merged_r2_attention_410m %>%
+  ggplot(aes(x = step_modded, color = factor(Head))) +
+  # Primary Y-axis: Attention
+  geom_line(aes(y = mean_attention), size = 3, alpha = .7) +
+  # Secondary Y-axis: R-squared
+  geom_line(aes(y = r2 * scale_factor), 
+            size = 1.5, linetype = "dashed", color = "black") +
+  scale_y_continuous(
+    name = "Attention to Disambiguating Word",
+    sec.axis = sec_axis(~ . / scale_factor, name = "R-squared")
+  ) +
+  scale_x_log10() +
+  theme_minimal() +
+  labs(
+    x = "Training Step (Log10)",
+    color = ""
+  ) +
+  facet_wrap(~Layer) +
+  scale_color_manual(values = viridisLite::viridis(16, option = "mako", 
+                                                   begin = 0.1, end = 0.9)) +
+  theme(
+    text = element_text(size = 15),
+    legend.position = "right"
+  )
+
+SELECT_LAYERS_410M = c(1,2,4,5,6,10,13,22,24)
+
+df_merged_r2_attention_410m %>%
+  filter(Layer %in% SELECT_LAYERS_410M) %>%
+  ggplot(aes(x = step_modded, color = factor(Head))) +
+  # Primary Y-axis: Attention
+  geom_line(aes(y = mean_attention), size = 3, alpha = .7) +
+  geom_vline(xintercept = 1000, 
+             linetype = "dashed", 
+             size = 1.2) +
+  # Secondary Y-axis: R-squared
+  geom_line(aes(y = r2 * scale_factor), 
+            size = 1.5, linetype = "dashed", color = "black") +
+  scale_y_continuous(
+    name = "Attention to Disambiguating Word",
+    sec.axis = sec_axis(~ . / scale_factor, name = "R-squared")
+  ) +
+  scale_x_log10() +
+  theme_minimal() +
+  labs(
+    x = "Training Step (Log10)",
+    color = ""
+  ) +
+  facet_wrap(~Layer) +
+  scale_color_manual(values = viridisLite::viridis(16, option = "mako", 
+                                                   begin = 0.1, end = 0.9)) +
+  theme(
+    text = element_text(size = 15),
+    legend.position = "right"
+  )
+
+
+df_merged_r2_attention_410m %>%
   filter(Head == 7) %>%
   filter(Layer == 1) %>%
   ggplot(aes(x = step_modded)) +
@@ -630,7 +741,7 @@ df_merged_r2_attention %>%
   geom_line(aes(y = mean_attention), size = 2, alpha = .7) +
   # Secondary Y-axis: R-squared
   geom_line(aes(y = r2 * scale_factor), 
-            size = 2, linetype = "dotted") +
+            size = 2, linetype = "dashed") +
   scale_y_continuous(
     name = "Attention to Disambiguating Word",
     sec.axis = sec_axis(~ . / scale_factor, name = "R-squared")
@@ -648,7 +759,7 @@ df_merged_r2_attention %>%
     legend.position = "bottom"
   )
 
-df_merged_r2_attention %>%
+df_merged_r2_attention_410m %>%
   filter(Head == 14) %>%
   filter(Layer == 1) %>%
   ggplot(aes(x = step_modded)) +
@@ -656,7 +767,7 @@ df_merged_r2_attention %>%
   geom_line(aes(y = mean_attention), size = 2, alpha = .7) +
   # Secondary Y-axis: R-squared
   geom_line(aes(y = r2 * scale_factor), 
-            size = 2, linetype = "dotted") +
+            size = 2, linetype = "dashed") +
   scale_y_continuous(
     name = "Attention to Disambiguating Word",
     sec.axis = sec_axis(~ . / scale_factor, name = "R-squared")

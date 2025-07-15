@@ -35,7 +35,7 @@ all_colors <- viridis::magma(10)
 ```{r}
 
 # setwd("/Users/seantrott/Dropbox/UCSD/Research/Ambiguity/SSD/entangled_meanings/src/analysis/")
-setwd("/Users/pamelariviere/Dropbox/Research/projects/entangled_meanings/src/analysis/")
+# setwd("/Users/pamelariviere/Dropbox/Research/projects/entangled_meanings/src/analysis/")
 ########## Intact Model
 directory_path <- "../../data/processed/rawc/pythia/distances/"
 
@@ -115,7 +115,6 @@ table(df_zero_ablations$Layer)
 
 ## Layerwise R2 by step
 
-**TODO**: Tag all baselines as "Baseline"; compare distribution of R2 differences for baselines to each target head at each timestep. 
 
 ```{r r2_zero_ablations}
 
@@ -292,6 +291,64 @@ df_merged_all_zero_ablations %>%
   facet_wrap(~Layer)
 
 
+### Showoing just layer 3
+df_merged_all_zero_ablations %>%
+    filter(Layer == 3) %>%
+  group_by(condition, step_mod, Layer) %>%
+  summarise(
+    mean_r2_diff = mean(r2_diff, na.rm = TRUE),
+    se_r2_diff = sd(r2_diff, na.rm = TRUE) / sqrt(n()),
+    count = n()
+  ) %>%
+  ggplot(aes(x = step_mod, 
+             y = mean_r2_diff, 
+             color = condition, 
+             fill = condition)) +
+  geom_vline(xintercept = 1000, linetype = "dashed", size = 1.2) +
+  geom_hline(yintercept = 0, linetype = "dashed", size = 1.2) +
+  geom_ribbon(aes(ymin = mean_r2_diff - se_r2_diff,
+                  ymax = mean_r2_diff + se_r2_diff),
+              alpha = 0.2, color = NA) +
+  geom_line(linewidth = 1.5) +
+  scale_x_log10() + 
+  scale_color_manual(values = viridisLite::viridis(4, option = "mako", begin = 0.8, end = 0.15)) +
+  scale_fill_manual(values = viridisLite::viridis(4, option = "mako", begin = 0.8, end = 0.15)) +
+  labs(title = "R2 Differences (Layer 3)",
+       x = "Training Step (Log10)",
+       y = "R2 Differences",
+       color = "Condition",
+       fill = "Condition") +
+  theme_minimal()
+
+df_merged_all_zero_ablations %>%
+  filter(Layer == 3) %>%
+  group_by(condition, step_mod, Layer) %>%
+  summarise(
+    mean_r2_frac = mean(r2_frac, na.rm = TRUE),
+    se_r2_frac = sd(r2_frac, na.rm = TRUE) / sqrt(n()),
+    count = n()
+  ) %>%
+  ggplot(aes(x = step_mod, 
+             y = mean_r2_frac, 
+             color = condition, 
+             fill = condition)) +
+  geom_vline(xintercept = 1000, linetype = "dashed", size = 1.2) +
+  geom_hline(yintercept = 1, linetype = "dashed", size = 1.2) +
+  geom_ribbon(aes(ymin = mean_r2_frac - se_r2_frac,
+                  ymax = mean_r2_frac + se_r2_frac),
+              alpha = 0.2, color = NA) +
+  geom_line(linewidth = 1.5) +
+  scale_x_log10() + 
+  scale_color_manual(values = viridisLite::viridis(4, option = "mako", begin = 0.8, end = 0.15)) +
+  scale_fill_manual(values = viridisLite::viridis(4, option = "mako", begin = 0.8, end = 0.15)) +
+  labs(title = "% Intact R2",
+       x = "Training Step (Log10)",
+       y = "% Intact R2 (Layer 3)",
+       color = "Condition",
+       fill = "Condition") +
+  theme_minimal() 
+
+
 ### collapsing across all layers
 df_merged_all_zero_ablations %>%
   filter(Layer > 2) %>%
@@ -358,7 +415,7 @@ df_merged_all_zero_ablations %>%
 
 ########## Difference model
 df_summ = df_merged_all_zero_ablations %>%
-  filter(Layer > 2) %>%
+  filter(Layer == 3) %>%
   group_by(condition, heads_modified, step_mod) %>%
   slice_max(r2, n = 1) %>%
   group_by(condition, step_mod) %>%
@@ -379,7 +436,7 @@ summary(mod_r2_diff)
 
 ########## Percentage model
 df_summ = df_merged_all_zero_ablations %>%
-  filter(Layer > 2) %>%
+  filter(Layer ==3 ) %>%
   group_by(condition, heads_modified, step_mod) %>%
   slice_max(r2, n = 1) %>%
   group_by(condition, step_mod) %>%
@@ -397,6 +454,7 @@ summary(mod_r2_frac)
 
 
 df_merged_all_zero_ablations %>%
+  filter(Layer == 3) %>%
   group_by(condition) %>%
   summarise(m_frac = mean(r2_frac),
             sd_frac = sd(r2_frac),
@@ -578,6 +636,37 @@ df_merged_all_copy_ablations %>%
        fill = "Condition") +
   theme_minimal()
 
+### Just layer 3
+df_merged_all_copy_ablations %>%
+  filter(Layer == 3) %>%
+  group_by(condition, heads_modified, step_mod) %>%
+  slice_max(r2, n = 1) %>%
+  group_by(condition, step_mod) %>%
+  summarise(
+    mean_r2_diff = mean(r2_diff, na.rm = TRUE),
+    se_r2_diff = sd(r2_diff, na.rm = TRUE) / sqrt(n()),
+    count = n()
+  ) %>%
+  ggplot(aes(x = step_mod, 
+             y = mean_r2_diff, 
+             color = condition, 
+             fill = condition)) +
+  geom_vline(xintercept = 1000, linetype = "dashed", size = 1.2) +
+  geom_hline(yintercept = 0, linetype = "dashed", size = 1.2) +
+  geom_ribbon(aes(ymin = mean_r2_diff - se_r2_diff,
+                  ymax = mean_r2_diff + se_r2_diff),
+              alpha = 0.2, color = NA) +
+  geom_line(linewidth = 1.5) +
+  scale_x_log10() + 
+  scale_color_manual(values = viridisLite::viridis(4, option = "mako", begin = 0.8, end = 0.15)) +
+  scale_fill_manual(values = viridisLite::viridis(4, option = "mako", begin = 0.8, end = 0.15)) +
+  labs(title = "R2 Differences (Layer 3)",
+       x = "Training Step (Log10)",
+       y = "R2 Differences",
+       color = "Condition",
+       fill = "Condition") +
+  theme_minimal()
+
 # Pam added: baseline v. target by layer
 df_merged_all_copy_ablations %>%
   group_by(condition, step_mod, Layer) %>%
@@ -639,12 +728,42 @@ df_merged_all_copy_ablations %>%
        fill = "Condition") +
   theme_minimal()
 
+### Just layer 3
+df_merged_all_copy_ablations %>%
+  filter(Layer == 3) %>%
+  group_by(condition, heads_modified, step_mod) %>%
+  slice_max(r2, n = 1) %>%
+  group_by(condition, step_mod) %>%
+  summarise(
+    mean_r2_frac = mean(r2_frac, na.rm = TRUE),
+    se_r2_frac = sd(r2_frac, na.rm = TRUE) / sqrt(n()),
+    count = n()
+  ) %>%
+  ggplot(aes(x = step_mod, 
+             y = mean_r2_frac, 
+             color = condition, 
+             fill = condition)) +
+  geom_vline(xintercept = 1000, linetype = "dashed", size = 1.2) +
+  geom_hline(yintercept = 1, linetype = "dashed", size = 1.2) +
+  geom_ribbon(aes(ymin = mean_r2_frac - se_r2_frac,
+                  ymax = mean_r2_frac + se_r2_frac),
+              alpha = 0.2, color = NA) +
+  geom_line(linewidth = 1.5) +
+  scale_x_log10() + 
+  scale_color_manual(values = viridisLite::viridis(4, option = "mako", begin = 0.8, end = 0.15)) +
+  scale_fill_manual(values = viridisLite::viridis(4, option = "mako", begin = 0.8, end = 0.15)) +
+  labs(title = "% Intact R2 (Layer 3)",
+       x = "Training Step (Log10)",
+       y = "% Intact R2",
+       color = "Condition",
+       fill = "Condition") +
+  theme_minimal()
 
 
 
 ####### Difference model
 df_summ = df_merged_all_copy_ablations %>%
-  filter(Layer > 2) %>%
+  filter(Layer ==3 ) %>%
   group_by(condition, heads_modified, step_mod) %>%
   slice_max(r2, n = 1) %>%
   group_by(condition, step_mod) %>%
@@ -666,7 +785,7 @@ summary(mod_r2_diff)
 
 ####### Proportion model
 df_summ = df_merged_all_copy_ablations %>%
-  filter(Layer > 2) %>%
+  filter(Layer == 3) %>%
   group_by(condition, heads_modified, step_mod) %>%
   slice_max(r2, n = 1) %>%
   group_by(condition, step_mod) %>%
@@ -686,6 +805,7 @@ summary(mod_r2_frac)
 
 
 df_merged_all_zero_ablations %>%
+  filter(Layer == 3) %>%
   group_by(condition) %>%
   summarise(m_frac = mean(r2_frac),
             sd_frac = sd(r2_frac),

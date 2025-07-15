@@ -10,7 +10,7 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(dpi = 300, fig.format = "pdf")
+knitr::opts_chunk$set(dpi = 300, fig.format = "png")
 ```
 
 

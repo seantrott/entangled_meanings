@@ -293,7 +293,7 @@ summary(mod)
 ```
 
 
-## Best R2 by step, only 14m (best layer)
+## Best R2 by step, only 14m (best R2, could be from any layer at each time step)
 
 ```{r r2_by_step}
 df_best_r2_14m = df_pythia_models %>% 
@@ -376,7 +376,7 @@ df_best_r2_14m %>%
   #filter(mpath == "EleutherAI/pythia-14m") %>%
   ggplot(aes(x = step_modded,
              y = r2)) +
-  geom_point(size = 4, alpha = .7) +
+  #geom_point(size = 4, alpha = .7) +
   geom_line(size = 2, alpha = .7) +
   theme_minimal() +
   labs(x = "Training Step (Log10)",
@@ -411,15 +411,15 @@ df_best_r2_410m = df_pythia_models %>%
 df_best_r2_410m %>%
   ggplot(aes(x = step_modded,
              y = r2)) +
-  geom_point(size = 2, alpha = .7) +
-  geom_line(size = 1.3, alpha = .7) +
+  #geom_point(size = 2, alpha = .7) +
+  geom_line(size = 3, alpha = .7) +
   theme_minimal() +
   labs(x = "Training Step (Log10)",
        y = "Best R2",
        color = "") +
   scale_x_log10() +
   geom_vline(xintercept = 1000, 
-             linetype = "dotted", 
+             linetype = "dashed", 
              size = 1.2) +
   theme(text = element_text(size = 15),
         legend.position = "none") +
@@ -462,7 +462,7 @@ df_best_r2_14m = df_pythia_models %>%
   summarise(r = cor(Distance, mean_relatedness, method = "pearson"),
             r2 = r ** 2) %>%
   group_by(mpath, step, n_params) %>%
-  filter(Layer == 3) %>%
+  filter(Layer == 3) %>% # from output of `df_best_r2_scale'
   mutate(step_modded = step + 1) %>%
   mutate(million_tokens_seen = 2.1 * step_modded) %>%
   group_by(mpath) %>%
@@ -475,15 +475,15 @@ df_best_r2_14m %>%
   # filter(mpath == "EleutherAI/pythia-14m") %>%
   ggplot(aes(x = step_modded,
              y = r2)) +
-  geom_point(size = 2, alpha = .7) +
-  geom_line(size = 1.3, alpha = .7) +
+  #geom_point(size = 2, alpha = .7) +
+  geom_line(size = 3, alpha = .7) +
   theme_minimal() +
   labs(x = "Training Step (Log10)",
        y = "Best R2",
        color = "") +
   scale_x_log10() +
   geom_vline(xintercept = 1000, 
-             linetype = "dotted", 
+             linetype = "dashed", 
              size = 1.2) +
   theme(text = element_text(size = 15),
         legend.position = "none") +
@@ -559,7 +559,7 @@ df_best_r2_410m = df_pythia_models %>%
   summarise(r = cor(Distance, mean_relatedness, method = "pearson"),
             r2 = r ** 2) %>%
   group_by(mpath, step, n_params) %>%
-  slice_max(r2, n = 1) %>%  
+  filter(Layer == 24) %>%  # from output of `df_best_r2_scale'
   mutate(step_modded = step + 1) %>%
   mutate(million_tokens_seen = 2.1 * step_modded) %>%
   group_by(mpath) %>%
@@ -571,15 +571,15 @@ df_best_r2_410m = df_pythia_models %>%
 df_best_r2_410m %>%
   ggplot(aes(x = step_modded,
              y = r2)) +
-  geom_point(size = 2, alpha = .7) +
-  geom_line(size = 1.3, alpha = .7) +
+  #geom_point(size = 2, alpha = .7) +
+  geom_line(size = 3, alpha = .7) +
   theme_minimal() +
   labs(x = "Training Step (Log10)",
        y = "Best R2",
        color = "") +
   scale_x_log10() +
   geom_vline(xintercept = 1000, 
-             linetype = "dotted", 
+             linetype = "dashed", 
              size = 1.2) +
   theme(text = element_text(size = 15),
         legend.position = "none") +
@@ -624,7 +624,7 @@ TARGET_REVISIONS = c(0, 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1000,
                      75000, 100000, 143000)
 
 
-### Get best R2 at final layer
+### Get best R2 at final step
 df_best_r2_layer = df_pythia_models %>% 
   filter(step == 143000) %>%
   filter(Layer > 0) %>%
@@ -646,22 +646,22 @@ df_best_r2 = df_pythia_models %>%
   mutate(step_modded = step + 1) %>%
   mutate(model = sub("^EleutherAI/", "", mpath)) %>%
   filter(step %in% TARGET_REVISIONS) %>%
-  inner_join(df_best_r2_layer) %>%
+  inner_join(df_best_r2_layer) %>% #filters for layer with maxR2 at last step
   group_by(mpath) %>%
   mutate(
     r2_diff = r2 - lag(r2),
     r2_diff2 = r2_diff - lag(r2_diff)
   )
 
-
+# Manuscript figure (Fig.2b)
 df_best_r2 %>%
   ggplot(aes(x = step_modded,
              y = r2,
              color = reorder(model, n_params))) +
-  geom_point(size = 3, alpha = .7) +
-  geom_line(size = 1, alpha = .7, linetype = "dashed") +
+  #geom_point(size = 3, alpha = .7) +
+  geom_line(size = 3, alpha = .7) +
   geom_hline(yintercept = .64,##TODO: Calculate from scratch
-             linetype = "dotted", color = "red",
+             linetype = "dashed", color = "red",
              size = 1.2, alpha = .5) + 
   theme_minimal() +
   labs(x = "Training Step (Log10)",
@@ -669,7 +669,7 @@ df_best_r2 %>%
        color = "") +
   scale_x_log10() +
   geom_vline(xintercept = 1000, 
-             linetype = "dotted", 
+             linetype = "dashed", 
              size = 1.2) +
   theme(text = element_text(size = 15),
         legend.position = "bottom") +

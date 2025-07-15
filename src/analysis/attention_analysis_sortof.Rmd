@@ -3,18 +3,18 @@ title: "Analysis of 'Sort of' Attention"
 author: "Sean Trott and Pam Rivière"
 date: "November 20, 2024"
 output:
-  # html_document:
-  #  keep_md: yes
-  #  toc: yes
-  #  toc_float: yes
-  pdf_document: 
-      fig_caption: yes
-      keep_md: yes
-      keep_tex: yes
+  html_document:
+    keep_md: yes
+    toc: yes
+    toc_float: yes
+  # pdf_document: 
+  #    fig_caption: yes
+  #    keep_md: yes
+  #    keep_tex: yes
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(dpi = 300, fig.format = "pdf")
+knitr::opts_chunk$set(dpi = 300, fig.format = "png")
 ```
 
 
